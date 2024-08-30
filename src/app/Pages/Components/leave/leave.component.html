@@ -1,1 +1,106 @@
-<p>leave works!</p>
+<div class="p-fluid">
+  <div class="p-card">
+    <h2 class="flex justify-content-left">New Leave Request</h2>
+    <div style="display: flex; justify-content: flex-end; margin-bottom: 1rem;">
+      <p-button label="Leave Application Form" (onClick)="showDialog()"></p-button>
+    </div>
+
+    <!-- Dialog for the leave application form -->
+    <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false" [style]="{ width: '50rem' }" 
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }" >
+
+      <div class="p-fluid grid">
+        <!-- Start Date -->
+        <div class="col-12 lg:col-6">
+          <div class="p-field">
+            <label for="startDate">Start Date <span style="color: red;">*</span></label>
+            <p-calendar [(ngModel)]="leaveRequest.startDate" dateFormat="yy-mm-dd"></p-calendar>
+          </div>
+        </div>
+    
+        <!-- End Date -->
+        <div class="col-12 lg:col-6">
+          <div class="p-field">
+            <label for="endDate">End Date <span style="color: red;">*</span></label>
+            <p-calendar [(ngModel)]="leaveRequest.endDate" dateFormat="yy-mm-dd"></p-calendar>
+          </div>
+        </div>
+    
+        <!-- Leave Type -->
+        <div class="col-12 lg:col-6">
+          <div class="p-field">
+            <label for="leaveType">Leave Type <span style="color: red;">*</span></label>
+            <p-dropdown [options]="leaveTypes" [(ngModel)]="leaveRequest.leaveType" placeholder="Select Leave Type"></p-dropdown>
+          </div>
+        </div>
+    
+        <!-- Status -->
+        <div class="col-12 lg:col-6">
+          <div class="p-field">
+            <label for="status">Status <span style="color: red;">*</span></label>
+            <p-dropdown [options]="statusOptions" [(ngModel)]="leaveRequest.status" placeholder="Select Status"></p-dropdown>
+          </div>
+        </div>
+    
+        <!-- Reason -->
+        <div class="col-12">
+          <div class="p-field">
+            <label for="reason">Reason</label>
+            <textarea pInputTextarea [(ngModel)]="leaveRequest.reason" rows="3"></textarea>
+          </div>
+        </div>
+    
+        <!-- Total Leaves -->
+        <div class="col-12 lg:col-6">
+          <div class="p-field">
+            <label for="totalLeaves">Total Leaves <span style="color: red;">*</span></label>
+            <input pInputText [(ngModel)]="leaveRequest.totalLeaves" type="number" />
+          </div>
+        </div>
+      </div>
+    
+      <!-- Dialog Footer -->
+      <div class="p-dialog-footer">
+        <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
+        <p-button label="Save" icon="pi pi-check" (onClick)="saveLeaveRequest()" [disabled]="!isFormValid()"></p-button>
+      </div>
+    </p-dialog>
+    
+
+    <!-- Add Margin Using Inline Style -->
+    <div style="margin-top: 2rem;">
+      <!-- Table to display submitted leave requests -->
+      <p-table [value]="leaveRequests" responsiveLayout="scroll" class="responsive-table">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Leave Type</th>
+            <th>Status</th>
+            <th>Reason</th>
+            <th>Total Leaves</th>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-request>
+          <tr>
+            <td>{{ request.startDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ request.endDate | date:'yyyy-MM-dd' }}</td>
+            <td>{{ request.leaveType }}</td>
+            <td>
+              <span class="p-tag" [ngClass]="{
+                        'p-tag-success': request.status === 'Approved',
+                        'p-tag-danger': request.status === 'Rejected',
+                        'p-tag-warning': request.status === 'Pending'
+                      }">
+                {{ request.status }}
+              </span>
+            </td>
+            <td>{{ request.reason }}</td>
+            <td>{{ request.totalLeaves }}</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

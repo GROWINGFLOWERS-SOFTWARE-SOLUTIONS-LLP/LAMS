@@ -1,0 +1,58 @@
+/* For larger screens, increase the dialog width */
+@media (min-width: 768px) {
+    .custom-dialog {
+      width: 60vw !important; /* Increase width to 60% of the viewport */
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .custom-dialog {
+      width: 50% !important; /* For even larger screens, set width to 50% */
+    }
+  }
+  
+  /* For smaller screens, ensure the dialog is responsive */
+  @media (max-width: 767px) {
+    .custom-dialog {
+      width: 90vw !important; /* Adjust width to 90% of the viewport */
+    }
+  
+    .p-dialog-content {
+      padding: 1rem !important; /* Ensure proper padding */
+    }
+  
+    /* Ensure form fields are full-width */
+    .p-field, textarea, input, .p-button {
+      width: 100% !important;
+    }
+  
+    /* Adjust padding and margins for compact layout */
+    .p-field {
+      margin-bottom: 1rem;
+      padding: 0 0.5rem;
+    }
+  
+    /* Center buttons in mobile view */
+    .p-dialog-footer {
+      display: flex;
+      justify-content: center; /* Center align items horizontally */
+      gap: 1rem; /* Add spacing between buttons */
+    }
+  
+    .p-dialog-footer .p-button {
+      flex: 1; /* Make buttons take up equal space */
+    }
+  }
+  
+  @media (max-width: 320px) {
+    .custom-dialog {
+      width: 100vw !important; /* Full-width for very small screens */
+      padding: 0.75rem !important; /* Reduce padding */
+    }
+  
+    /* Ensure the card content is not too close to the edges */
+    .p-card {
+      padding: 0.75rem !important;
+    }
+  }
+  
