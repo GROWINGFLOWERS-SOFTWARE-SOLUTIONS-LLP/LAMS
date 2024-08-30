@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { HistoryComponent } from './Pages/Components/history/history.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [HistoryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
