@@ -1,0 +1,93 @@
+.help-page {
+    text-align: center;
+    padding: 2rem;
+    
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+  
+      .highlight {
+        color: red; 
+      }
+    }
+  
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.2rem;
+    }
+
+    /* .custom-width {
+        width: 50% !important;
+      } */
+  
+    .faq-card, .contact-card {
+        
+      margin-top: 2rem;
+      padding: 1.5rem;
+      width: 50%; 
+       max-width: 600px;
+    }
+  }
+  
+  .contact-card button {
+    margin-left: 1rem;
+    vertical-align: middle;
+
+  }
+
+  .faq-card .p-accordion .p-accordion-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .faq-card .p-accordion .p-accordion-header span {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+ 
+
+
+  /* Media queries for responsiveness */
+
+  /* For screens smaller than 768px (tablets and mobiles) */
+  @media only screen and (max-width: 768px) {
+    .help-page {
+      padding: 1rem;
+    }
+    
+    .faq-card, .contact-card {
+      width: 80%; 
+      max-width: none;
+      margin-top: 1rem;
+    }
+    
+    .contact-card button {
+      margin-left: 0.5rem;
+    }
+    
+    .faq-card .p-accordion .p-accordion-header span {
+      font-size: 1rem;
+    }
+  }
+  
+  /* For screens smaller than 480px (smaller mobiles) */
+  @media only screen and (max-width: 480px) {
+    .help-page {
+      padding: 0.5rem;
+    }
+    
+    .faq-card, .contact-card {
+      width: 90%; 
+      margin-top: 0.5rem;
+    }
+    
+    .contact-card button {
+      margin-left: 0.2rem;
+    }
+    
+    .faq-card .p-accordion .p-accordion-header span {
+      font-size: 0.8rem;
+    }
+  }
+  
