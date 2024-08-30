@@ -34,6 +34,7 @@
               "node_modules/primeicons/primeicons.css"
             ],
             "scripts": [
+               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
        
             ]
           },
@@ -100,6 +101,6 @@
     }
   },
   "cli": {
-    "analytics": "10e88b87-065c-4888-8f39-6c01a3b7e412"
+    "analytics": "bb3f5031-0332-40e8-b612-1695ec904daa"
   }
 }
