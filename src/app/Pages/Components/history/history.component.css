@@ -1,0 +1,82 @@
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #af1010;
+    background-color: #f4f4f4;
+}
+
+header {
+    background: #3da844;
+    color: #fff;
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    padding: 2rem;
+}
+
+.history-list {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.history-list h2 {
+    border-bottom: 2px solid #333;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.history-list ul {
+    list-style: none;
+}
+
+.history-list li {
+    background: #fff;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.history-list time {
+    display: block;
+    font-size: 0.9rem;
+    color: #8e1515;
+}
+
+.event-details h3 {
+    margin-top: 0.5rem;
+    color: #22d2c9;
+}
+
+footer {
+    background: #333333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+} 
+/*Resopnsive design */
+ /* @media(max-width:768px){  
+    .timeline {
+        padding: 0.5rem;
+    }
+     .timeline article{
+        padding: 0.5rem;
+        font-size: 0.9rem;
+     }
+
+}  */
+
+
+
+ 

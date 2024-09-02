@@ -56,23 +56,7 @@ button {
   margin-bottom: 20px;
 }
 
-.attendance-header {
-    font-size: 1.5em;
-    font-weight: bold;
-    color: #5A5A5A;
-    margin-bottom: 20px;
-}
 
-.time-box {
-    font-size: 2em;
-    color: #5A5A5A;
-   
-    padding: 10px;
-    margin: 20px 0;
-    
-    border-radius: 10px;
-    
-}
 
 .punch-in-button {
     margin-top: 20px;
