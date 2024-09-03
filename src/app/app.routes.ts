@@ -7,6 +7,16 @@ import { HelpComponent } from './Pages/Components/help/help.component';
 import { AttendanceComponent } from './Pages/Components/attendance/attendance.component';
 
 export const routes: Routes = [
+    // {
+    //     path:'',
+    //     redirectTo:'login',
+    //     pathMatch:'full'
+    //   },
+    //   {
+    //     path:'login',
+    //     component:LoginComponent
+    //   },
+    
     {
         path: '',
         component: NavbarComponent,

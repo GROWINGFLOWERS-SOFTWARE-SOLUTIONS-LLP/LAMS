@@ -62,15 +62,15 @@
     
   <p-button label="Punch In" icon="pi pi-check" (click)="showPunchInDialog()"></p-button>
   
-  <p-dialog [(visible)]="displayPunchInDialog" [modal]="true" [closable]="false"  >
-    <div style="text-align: center" class="dialog-content" class="shadow-8 m-3 surface-card text-center p-3 border-round-sm h-6rem w-9rem flex align-items-center justify-content-center font-semibold">
-      <h2>Attendance</h2><br>
-      <p-avatar image="https://cdn-icons-png.flaticon.com/512/1869/1869397.png" shape="circle" size="xlarge" class="avatar-image"></p-avatar>
-      <div class="attendance-header">{{ attendance_date }}</div>
-      <div class="time-box">{{ currentTime }}</div>
-      <p-button label="Punch In" icon="pi pi-check" (click)="punchIn()"></p-button>
-    </div>
-  </p-dialog>
+<p-dialog [(visible)]="displayPunchInDialog" [modal]="true" [closable]="false"  >
+  <div style="text-align: center shadow-8 m-3 surface-card text-center p-3 border-round-sm h-6rem w-9rem flex align-items-center justify-content-center font-semibold">
+    <h2>Attendance</h2>
+    <p-avatar image="https://cdn-icons-png.flaticon.com/512/1869/1869397.png" shape="circle" size="xlarge" class="avatar-image"></p-avatar>
+    <div style="font-size: 1.5em; font-weight: bold; color: #5A5A5A; margin-bottom: 20px;">{{ attendance_date }}</div>
+    <div style="font-size: 2em; color: #5A5A5A; padding: 10px; margin: 20px 0; border-radius: 10px;">{{ currentTime }}</div>
+    <p-button label="Punch In" icon="pi pi-check" (click)="punchIn()"></p-button>
+  </div>
+</p-dialog>
   
   <p-button label="Checkout" icon="pi pi-times" (click)="checkout()" ></p-button>
   
