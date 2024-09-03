@@ -7,11 +7,12 @@ import { AttendanceComponent } from './Pages/Components/attendance/attendance.co
 import { LeaveComponent } from './Pages/Components/leave/leave.component';
 
 import { HolidaysComponent } from './Pages/Components/holidays/holidays.component';
+import { DashboardComponent } from './Pages/Components/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent],
+  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent,DashboardComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
