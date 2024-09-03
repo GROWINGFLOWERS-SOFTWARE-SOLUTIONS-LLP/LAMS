@@ -1,14 +1,38 @@
-
-
-.card{
-    /* max-width: 265px; 
-     margin-bottom: 4px; */
-    background-color:aquamarine
+body {
+    overflow: hidden; /* Hides the scrollbars globally */
 }
- 
- .cards{
+
+.container {
+    overflow: auto;
+    scrollbar-width: none; /* Hides scrollbar for Firefox */
+}
+
+.container::-webkit-scrollbar {
+    display: none; /* Hides scrollbar for Chrome, Safari, Edge */
+}
+
+.card {
+    background-color: aquamarine;
+}
+
+.cards {
     max-width: 675px;
     text-align: center;
-    background-color:seashell;
+    background-color: seashell;
 }
-   
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-left {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.icon {
+    font-size: 45px;
+    align-self: center; /* Vertically centers the icon */
+}

@@ -5,6 +5,7 @@ import { NavbarComponent } from './Pages/Layout/navbar/navbar.component';
 import { HistoryComponent } from './Pages/Components/history/history.component';
 import { HelpComponent } from './Pages/Components/help/help.component';
 import { AttendanceComponent } from './Pages/Components/attendance/attendance.component';
+import { DashboardComponent } from './Pages/Components/dashboard/dashboard.component';
 
 export const routes: Routes = [
     // {
@@ -21,7 +22,7 @@ export const routes: Routes = [
         path: '',
         component: NavbarComponent,
         children: [
-            // { path: 'dashboard', component: },
+             { path: 'dashboard', component: DashboardComponent },
             { path: 'attendance', component: AttendanceComponent },
             { path: 'leave', component: LeaveComponent },
             { path: 'holidays', component: HolidaysComponent }, 
