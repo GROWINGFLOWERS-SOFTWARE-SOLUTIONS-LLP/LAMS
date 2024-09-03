@@ -5,13 +5,14 @@ import { NavbarComponent } from './Pages/Layout/navbar/navbar.component';
 import { HelpComponent } from './Pages/Components/help/help.component';
 import { AttendanceComponent } from './Pages/Components/attendance/attendance.component';
 import { LeaveComponent } from './Pages/Components/leave/leave.component';
-
+import { FooterComponent } from './Pages/Layout/footer/footer.component';
 import { HolidaysComponent } from './Pages/Components/holidays/holidays.component';
+
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent],
+  imports: [RouterOutlet,FooterComponent, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

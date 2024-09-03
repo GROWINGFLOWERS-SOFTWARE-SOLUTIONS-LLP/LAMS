@@ -15,10 +15,29 @@ img{
     width: 50%
 
 }
-.small-dropdown {
+/* .small-dropdown {
   width: 150px;
 
+} */
+.small-dropdown {
+  border: none;
+  padding: 0;
+  background-color: transparent;
 }
+.small-dropdown .p-dropdown-label {
+  font-weight: bold;
+  color: var(--bluegray-50);
+}
+.small-dropdown .p-dropdown-item {
+  background-color: #fff;
+  color: #333;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+.small-dropdown .p-dropdown-item:hover {
+  background-color: #f5f5f5;
+}
+
 
 
 /* .rcustom-toolbar {
