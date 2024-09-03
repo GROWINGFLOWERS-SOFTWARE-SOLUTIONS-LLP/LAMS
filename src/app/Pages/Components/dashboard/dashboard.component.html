@@ -1,141 +1,133 @@
-<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">
 
-<div class="text-xl p-2">
-<b text-3xl>Welcome,</b>Shweta Sonje
- </div>
- 
-<br>
-<!-- Card -->
- <div class="container mx-3">
+<div class="container">
+    <div class="text-xl p-2">
+        <b class="text-3xl">Welcome,</b> Shweta Sonje
+    </div>
+    <br>
+
+    <!-- Card Section -->
+    <div class="container mx-3">
         <div class="grid">
-        <div class="col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="People">
-                    <!-- <div class="grid">
-                        <p class="m-0 p-0 col-5">25 Employees</p>
-                        <div class="flex justify-content-end col-7">
-                            <i class="pi pi-users" style="color: #74C0FC; font-size:35px;"></i>
-                            </div>
-                        </div> -->
-                        <div class="flex justify-content-between ">
-                            <p class="m-0">25 Employees</p>
-                            <i class="pi pi-users" style="color: #74C0FC; font-size:45px;"></i>
-                            </div>  
-                 </p-card>
-                </div>
-             </div>
-
-         <div class="col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="Company">
-                    <div class="flex justify-content-between">
-                    <p class="m-0">4 Department</p>
-                    <i class=" pi pi-building" style="color: #82f784;  font-size:45px;"></i>
-                    </div>
-                </p-card>
-            </div>
-        </div>
-
-        <div class="col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="Users">
-                    <div class="flex justify-content-between">
-                        <p class="m-0">15 Users</p>
-                        <i class="pi pi-user-plus" style="color: #fe9862;  font-size: 45px;"></i>
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="People">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">25 Employees</p>
+                            <i class="pi pi-users icon" style="color: #74C0FC;"></i>
                         </div>
                     </p-card>
                 </div>
             </div>
-            
-        <div class="col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="Projects">
-                <div class="flex justify-content-between">
-                    <p class="m-0">4 Active Projects</p>
-                    <i class=" pi pi-chart-pie" style="color: #ffd952;  font-size: 45px;"></i>
-                    </div>
-                </p-card>
+
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Company">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">4 Departments</p>
+                            <i class="pi pi-building icon" style="color: #82f784;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Users">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">15 Users</p>
+                            <i class="pi pi-user-plus icon" style="color: #fe9862;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Projects">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">4 Active Projects</p>
+                            <i class="pi pi-chart-pie icon" style="color: #ffd952;"></i>
+                        </div>
+                    </p-card>
+                </div>
             </div>
         </div>
- </div>
- </div>
+    </div>
 
-
-<!--Employee Check-in Cards -->
-<div class="container">
+    <!-- Employee Check-in and Attendance Summary Cards -->
+    <div class="container">
         <div class="grid">
             <div class="col-6">
-            <div class="cards mx-5">
-                <div>
-                    <h2>Employee Check-ins</h2>
+                <div class="cards mx-5">
+                    <div>
+                        <h2>Employee Check-ins</h2>
+                    </div>
+                    <br>
+                    <p-meterGroup [value]="value" labelPosition="start" labelOrientation="vertical"></p-meterGroup>
                 </div>
-                <br>
-                <p-meterGroup [value]="value" labelPosition="start" labelOrientation="vertical"/>
             </div>
-        </div>
 
- <!-- Attendance Summary Cards -->
-       <div class="col-6">
-            <div class="cards mx-5">
-                <div>
-                    <h2>Attendance Summary</h2>
+            <div class="col-6">
+                <div class="cards mx-5">
+                    <div>
+                        <h2>Attendance Summary</h2>
+                    </div>
+                    <br>
+                    <p-meterGroup [value]="value1" labelPosition="start" labelOrientation="vertical"></p-meterGroup>
                 </div>
-                <br>
-                <p-meterGroup [value]="value1" labelPosition="start" labelOrientation="vertical" />
             </div>
         </div>
     </div>
-    </div>
-<br>
-<br>
 
-<!-- Card -->
-<div class="container mx-3">
+    <br><br>
+
+    <!-- Additional Cards -->
+    <div class="container mx-3">
         <div class="grid">
-        <div class="col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="Attendance">
-                <div class="flex justify-content-between">
-                    <p class="m-0">2 Entrys Last Week</p>
-                    <i class=" pi pi-clock" style="color: #c0acfb; font-size: 45px;" ></i>
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Attendance">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">2 Entries Last Week</p>
+                            <i class="pi pi-clock icon" style="color: #c0acfb;"></i>
+                        </div>
+                    </p-card>
                 </div>
-                </p-card>
+            </div>
+
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Leave">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">1 Upcoming</p>
+                            <i class="pi pi-calendar icon" style="color: #ffd952;"></i>
+                        </div>
+                    </p-card>
                 </div>
             </div>
-    
-<div class="col-3">
-    <div class="card max-w-22rem shadow-3">
-        <p-card header="Leave">
-            <div class="flex justify-content-between">
-                <p class="m-0">1 Upcoming</p>
-                <i class=" pi pi-calendar" style="color: #ffd952; font-size: 45px;"></i>
-                    </div>
-                </p-card>
-            </div>
-        </div>
 
-        
-<div class="col-3">
-    <div class="card max-w-22rem shadow-3">
-        <p-card header="Reports">
-            <div class="flex justify-content-between">
-                <p class="m-0">View/Download Reports</p>
-                <i class=" pi pi-file" style="color: #8df7d4; font-size: 45px;"></i>
-                    </div>
-                </p-card>
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Reports">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">View/Download Reports</p>
+                            <i class="pi pi-file icon" style="color: #8df7d4;"></i>
+                        </div>
+                    </p-card>
+                </div>
             </div>
-        </div>
 
-    
-<div class="col-3">
-    <div class="card max-w-22rem shadow-3">
-        <p-card header="Settings">
-            <div class="flex justify-content-between">
-                <p class="m-0">Configure IceHrm</p>
-                <i class=" pi pi-cog" style="color: #96e3fd;  font-size: 45px;"></i>
-                    </div>
-                </p-card>
+            <div class="col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Settings">
+                        <div class="flex-container">
+                            <p class="m-0 text-left">Configure IceHrm</p>
+                            <i class="pi pi-cog icon" style="color: #96e3fd;"></i>
+                        </div>
+                    </p-card>
+                </div>
             </div>
         </div>
     </div>
-    </div>
+</div>
