@@ -1,0 +1,14 @@
+
+
+.card{
+    /* max-width: 265px; 
+     margin-bottom: 4px; */
+    background-color:aquamarine
+}
+ 
+ .cards{
+    max-width: 675px;
+    text-align: center;
+    background-color:seashell;
+}
+   

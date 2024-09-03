@@ -1,15 +1,14 @@
 import { Component } from '@angular/core'
 import { ToolbarModule } from 'primeng/toolbar';
 import { AvatarModule } from 'primeng/avatar'; 
+import { RouterModule } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
-
-
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ToolbarModule , AvatarModule, DropdownModule,  FormsModule],
+  imports: [ToolbarModule , AvatarModule, DropdownModule,  FormsModule, RouterModule ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })

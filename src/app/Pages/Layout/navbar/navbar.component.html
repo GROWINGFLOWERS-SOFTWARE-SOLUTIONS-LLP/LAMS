@@ -40,7 +40,7 @@
         </ng-template>
 </p-toolbar> -->
 
-<p-toolbar 
+<!-- <p-toolbar 
     styleClass="bg-blue-900 shadow-2 custom-toolbar" 
     [style]="{  'background-image': 'linear-gradient(to right, var(--blue-500), var(--blue-800))','padding':'0px' }">
         <ng-template pTemplate="start">
@@ -48,10 +48,12 @@
         </ng-template>
         <ng-template pTemplate="center">
             <div class="flex flex-wrap align-items-center gap-6">
-                <button class="p-link inline-flex justify-content-start align-items-center text-white h-3rem w-5rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200" >
+                <button class="p-link inline-flex justify-content-start align-items-center text-white h-3rem w-5rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200"
+                 >
                    Dashboard
                 </button>
-                <button class="p-link inline-flex justify-content-start align-items-center text-white h-3rem w-4rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 ">
+                <button class="p-link inline-flex justify-content-start align-items-center text-white h-3rem w-4rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 "
+                routerLink="attendance">
                     Attendance
                 </button>
                 <button class="p-link inline-flex justify-content-start align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 ">
@@ -82,5 +84,104 @@
                     </p-dropdown>
                 </div>
             </div>
-        </ng-template>
+        </ng-template> -->
+<p-toolbar 
+    styleClass="bg-blue-900 shadow-2 custom-toolbar"
+    [style]="{ 'background-image': 'linear-gradient(to right, var(--blue-500), var(--blue-800))', 'padding': '2px' }">
+    
+    <ng-template pTemplate="start">
+        <img class="w-25 h-25"
+            src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95" />
+    </ng-template>
+    
+    <ng-template pTemplate="center">
+        <div class="flex align-items-center gap-3"> <!-- Adjusted gap -->
+            <button
+                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-0 p-2">
+                Dashboard
+            </button>
+            <button
+                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-0 p-2"
+                routerLink="attendance">
+                Attendance
+            </button>
+            <button
+                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-0 p-2"
+                routerLink="leave">
+                Leave
+            </button>
+            <button
+                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-0 p-2"
+                routerLink="holidays">
+                Holidays
+            </button>
+            <button
+                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-0 p-2"
+                routerLink="history">
+                History
+            </button>
+            <button
+                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-0 p-2"
+                routerLink="help">
+                Help
+            </button>
+        </div>
+    </ng-template>
+    
+    <ng-template pTemplate="end">
+        <div class="flex align-items-center gap-2">
+            <p-avatar 
+                image="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"  
+                shape="circle" 
+                class="mt-2"/>
+            <div class="flex align-items-center">
+                <p-dropdown [options]="userOptions" [(ngModel)]="selectedOption" (onChange)="onChange($event)"  class="small-dropdown" >
+                    <ng-template let-option pTemplate="item">
+                        {{ option.label }}
+                    </ng-template>
+                    <ng-template pTemplate="value">
+                        <span class="font-bold text-bluegray-50">
+                            {{ selectedOption.label }}
+                        </span>
+                    </ng-template>
+                </p-dropdown>
+            </div>
+        </div>
+    </ng-template>
 </p-toolbar>
+
+<router-outlet></router-outlet>
+
+
+
+<!-- <p-toolbar height="30px" 
+styleClass="bg-blue-500 shadow-2" 
+[style]="{ 'background-image': 'linear-gradient(to right, var(--Blue-500), var(Blue-800))' }">
+<ng-template pTemplate="start">
+<img src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95" 
+class="toolbar-logo">
+</ng-template>
+<ng-template pTemplate="center">
+<div class="flex flex-wrap align-items-center gap-3 toolbar-buttons">
+<button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+             Help page
+</button>
+<button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+          <i class="pi pi-user text-2xl"></i>
+</button>
+<button class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-3rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200">
+           <i class="pi pi-search text-2xl"></i>
+</button>
+</div>
+</ng-template>
+<ng-template pTemplate="end">
+<div class="flex align-items-center toolbar-profile">
+<p-avatar image="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg" 
+     shape="circle" 
+     class="mt-2" />
+<span class="font-bold text-bluegray-50 toolbar-username">
+        Zaid Saboowala
+</span>
+</div>
+</ng-template>
+</p-toolbar> -->
