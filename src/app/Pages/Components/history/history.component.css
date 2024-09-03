@@ -11,12 +11,7 @@ body {
     background-color: #f4f4f4;
 }
 
-header {
-    background: #3da844;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
+
 
 main {
     padding: 2rem;
@@ -66,16 +61,20 @@ footer {
     bottom: 0;
 } 
 /*Resopnsive design */
- /* @media(max-width:768px){  
-    .timeline {
+ @media(max-width:768px){  
+    .body  {
         padding: 0.5rem;
     }
      .timeline article{
         padding: 0.5rem;
         font-size: 0.9rem;
+        
      }
+     header h1 {
+        font-size: 1.5em;
+    }
 
-}  */
+} 
 
 
 
