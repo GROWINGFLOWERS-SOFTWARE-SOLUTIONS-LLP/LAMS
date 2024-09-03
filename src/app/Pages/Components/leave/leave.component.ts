@@ -18,7 +18,7 @@ interface LeaveRequest {
   totalLeaves: number;
 }
 
-@Component({
+@Component({ 
   selector: 'app-leave',
   standalone: true,
   imports:  [
