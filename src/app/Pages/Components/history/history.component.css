@@ -62,13 +62,17 @@ footer {
 } 
 /*Resopnsive design */
  @media(max-width:768px){  
-    .timeline {
+    .body  {
         padding: 0.5rem;
     }
      .timeline article{
         padding: 0.5rem;
         font-size: 0.9rem;
+        
      }
+     header h1 {
+        font-size: 1.5em;
+    }
 
 } 
 
