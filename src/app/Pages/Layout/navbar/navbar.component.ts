@@ -1,33 +1,33 @@
-import { Component } from '@angular/core'
+
+import { Component } from '@angular/core';
 import { ToolbarModule } from 'primeng/toolbar';
-import { AvatarModule } from 'primeng/avatar'; 
-import { RouterModule } from '@angular/router';
-import { DropdownModule } from 'primeng/dropdown';
-import { FormsModule } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { RouterModule, Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ToolbarModule , AvatarModule, DropdownModule,  FormsModule, RouterModule ],
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, RouterModule, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
 
-  userOptions = [
-    { label: 'My Profile', value: 'profile' },
-    { label: 'Log Out', value: 'logout' }
-  ];
+  constructor(private router: Router) {}
 
-  selectedOption: any;
-
-  onChange(event: any) {
-    if (event.value === 'profile') {
-      // Navigate to profile page or perform other actions
-    } else if (event.value === 'logout') {
-      // Perform logout actions
-    }
+  toggleDropdown(event: Event, overlayPanel: any) {
+    overlayPanel.toggle(event);
   }
 
-} 
- 
+  navigateTo(route: string) {
+    if (route === 'profile') {
+      this.router.navigate(['/profile']);
+    } else if (route === 'logout') {
+      console.log('Logging out...');
+    }
+  }
+}
+
