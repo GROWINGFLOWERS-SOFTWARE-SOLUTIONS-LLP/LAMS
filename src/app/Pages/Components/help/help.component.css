@@ -51,7 +51,7 @@
   /* Media queries for responsiveness */
 
   /* For screens smaller than 768px (tablets and mobiles) */
-  @media only screen and (max-width: 768px) {
+  /* @media only screen and (max-width: 768px) {
     .help-page {
       padding: 1rem;
     }
@@ -69,16 +69,16 @@
     .faq-card .p-accordion .p-accordion-header span {
       font-size: 1rem;
     }
-  }
+  } */
   
   /* For screens smaller than 480px (smaller mobiles) */
-  @media only screen and (max-width: 480px) {
+  /* @media only screen and (max-width: 480px) {
     .help-page {
       padding: 0.5rem;
     }
     
     .faq-card, .contact-card {
-      width: 90%; 
+      width: 100%; 
       margin-top: 0.5rem;
     }
     
@@ -89,5 +89,5 @@
     .faq-card .p-accordion .p-accordion-header span {
       font-size: 0.8rem;
     }
-  }
+  } */
   

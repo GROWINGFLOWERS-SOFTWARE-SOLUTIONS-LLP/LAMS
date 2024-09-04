@@ -1,125 +1,103 @@
-
-p-dialog h2,
-p-dialog h3 {
-  margin: 0;
-  padding: 0;
-}
-
-p-dialog {
-  text-align: center;
-}
-
-p-table {
-  width: 100%;
-}
-
-button {
-  margin: 10px;
-  
-}
 .header {
-    display: flex;
-    align-items: center;
-    padding: 10px;
-    background-color: #f8f9fa;
-    border-bottom: 1px solid #dee2e6;
-  }
-  
-  .logo {
-    height: 50px;
-    margin-right: 20px;
-  }
-  
-  .company-name {
-    font-size: 24px;
-    color: #343a40;
-    margin: 0;
-  }
-  
-  .menubar-start {
-    display: flex;
-    gap: 20px;
-  }
-  
-  p-menubar {
-    margin-top: 10px;
-  }
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+}
 
-  .dialog-content {
-    text-align: center;
+.company-name {
+  font-size: 24px;
+  color: #343a40;
+  margin: 0;
+}
+
+.menubar-start {
+  margin-top: 10px;
+}
+
+.dialog-content {
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  height: 400px; /* Adjust as needed */
+  width: 300px; /* Adjust as needed */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  
+}
+
+.avatar-image {
+  margin: 20px;
 }
 
 .attendance-panel {
   font-size: 1.5em;
   font-weight: bold;
-  color: #5A5A5A;
+  color: #5a5a5a;
   margin-bottom: 20px;
 }
 
-
+.font-size-lg {
+  font-size: 2em;
+  color: #5a5a5a;
+  padding: 10px;
+  margin: 20px 0;
+  border-radius: 10px;
+}
 
 .punch-in-button {
-    margin-top: 20px;
-    background-color: #bebebe;
+  margin-top: 20px;
+  background-color: #bebebe;
 }
 
-p-table {
-    width: 100%;
-}
-
-button {
-    margin: 10px;
-}
-
-.avatar-image {
-  margin: 20px;
-  
-}
-
- 
 .container {
   width: 100%;
   height: 100vh;
-  box-sizing: border-box; 
+  box-sizing: border-box;
 }
 
 .fc {
-  font-size: 1rem; 
+  font-size: 1rem;
 }
- 
+
 @media (max-width: 320px) {
- 
-  .fc {
-    font-size: 0.7rem; 
+  .attendance-panel {
+    font-size: 1.2em;
   }
- 
-  .fc-daygrid-day-number {
-    font-size: 0.6em; 
+  .font-size-lg {
+    font-size: 1em;
   }
 }
- 
+
 @media (min-width: 321px) and (max-width: 768px) {
-
-  .fc {
-    font-size: 0.8rem; 
+  .attendance-panel {
+    font-size: 1.3em;
+  }
+  .font-size-lg {
+    font-size: 1.2em;
   }
 }
- 
+
 @media (min-width: 769px) and (max-width: 992px) {
- 
-  .fc {
-    font-size: 0.9rem;
+  .attendance-panel {
+    font-size: 1.4em;
+  }
+  .font-size-lg {
+    font-size: 1.5em;
   }
 }
- 
-@media (min-width: 993px) {
 
-  .fc {
-    font-size: 1rem;
+@media (min-width: 993px) {
+  .attendance-panel {
+    font-size: 1.5em;
   }
- 
-  .fc-daygrid-day-number {
-    font-size: 0.8em; 
+  .font-size-lg {
+    font-size: 2em;
   }
 }
- 
