@@ -10,14 +10,6 @@ body {
     color: #af1010;
     background-color: #f4f4f4;
 }
-
-header {
-    background: #3da844;
-    color: #fff;
-    padding: 1rem;
-    text-align: center;
-}
-
 main {
     padding: 2rem;
 }
@@ -65,18 +57,72 @@ footer {
     width: 100%;
     bottom: 0;
 } 
-/*Resopnsive design */
- /* @media(max-width:768px){  
-    .timeline {
+
+
+
+
+/* Responsive Styles */
+@media (max-width: 1024px) {
+    main {
+        padding: 1.5rem;
+    }
+    
+    .history-list {
+        padding: 1rem;
+    }
+    
+    .history-list h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    main {
+        padding: 1rem;
+    }
+    
+    .history-list {
         padding: 0.5rem;
     }
-     .timeline article{
+    
+    .history-list h2 {
+        font-size: 1.25rem;
+    }
+    
+    .history-list li {
+        padding: 0.75rem;
+    }
+    
+    .history-list time {
+        font-size: 0.8rem;
+    }
+    
+    .event-details h3 {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .history-list h2 {
+        font-size: 1rem;
+    }
+    
+    .history-list li {
         padding: 0.5rem;
-        font-size: 0.9rem;
-     }
-
-}  */
-
+    }
+    
+    .history-list time {
+        font-size: 0.7rem;
+    }
+    
+    .event-details h3 {
+        font-size: 1rem;
+    }
+    
+    footer {
+        padding: 0.5rem;
+    }
+}
 
 
  

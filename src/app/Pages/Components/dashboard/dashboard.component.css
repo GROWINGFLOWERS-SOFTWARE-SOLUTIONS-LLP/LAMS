@@ -77,8 +77,36 @@
     display: none; /* Hides scrollbar for Chrome, Safari, Edge */
 }
 
+<<<<<<< HEAD
  .cards{
     max-width: 715px;
     text-align: center;
     background-color:seashell;
 }
+=======
+.card {
+    background-color: aquamarine;
+}
+
+.cards {
+    max-width: 675px;
+    text-align: center;
+    background-color: seashell;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.text-left {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.icon {
+    font-size: 45px;
+    align-self: center; /* Vertically centers the icon */
+}
+>>>>>>> 7db25efba9e4f644e648914790548e0ed2109474
