@@ -32,10 +32,11 @@ export class LoginComponent {
         if(this.loginObj.email == 'admin@gfss.com' && this.loginObj.password == 'admin'){
          alert('login successfully')
          localStorage.setItem('logincredentials',JSON.stringify(this.loginObj));
-         this.route.navigateByUrl('dashboard');
+         this.route.navigateByUrl('attendance');
         }else{
          alert('please check details ... and try again');
         }
+       
     }
 
 }

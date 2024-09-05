@@ -1,5 +1,7 @@
 <div class="container">
-
+  <div class="flex justify-content-center gap-2 mt-4 mb-4">
+    <p-button label="Checkout" icon="pi pi-times" (click)="checkout()"></p-button>
+  </div>
   <!-- Punch In Dialog -->
   <p-dialog [(visible)]="displayPunchInDialog" [modal]="true" [closable]="false" class="text-center">
     <div class="dialog-content">
@@ -32,7 +34,5 @@
   </p-table>
 
   <!-- Checkout Button -->
-  <div class="flex justify-content-center gap-2 mt-4">
-    <p-button label="Checkout" icon="pi pi-times" (click)="checkout()"></p-button>
-  </div>
+
 </div>
