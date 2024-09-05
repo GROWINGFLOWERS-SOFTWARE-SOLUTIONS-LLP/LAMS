@@ -122,11 +122,11 @@ body {
   
   .signup-form button {
     color: white;
-    background-color: green;
+    background-color:violet;
     border: none;
     padding: 1rem;
     font-family: inherit;
-    border-radius: 10px;
+    
     font-size: 1.5rem;
     display: block;
     width: 200px;
@@ -136,8 +136,9 @@ body {
   }
   
   .signup-form button:hover{
-    background-color: #83260a;
+    background-color: skyblue;
     cursor: pointer;
+    transform: translateY(-5px);
   }
   
   button.disabled {
