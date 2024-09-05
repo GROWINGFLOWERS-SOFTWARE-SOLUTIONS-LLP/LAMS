@@ -7,6 +7,8 @@ import { HelpComponent } from './Pages/Components/help/help.component';
 import { AttendanceComponent } from './Pages/Components/attendance/attendance.component';
 import { DashboardComponent } from './Pages/Components/dashboard/dashboard.component';
 import { LoginComponent } from './Pages/Auth/login/login.component';
+import { ProfileComponent } from './Pages/Components/profile/profile.component';
+import { ProfileFormComponent } from './Pages/Components/profile-form/profile-form.component';
 
 export const routes: Routes = [
     {
@@ -24,6 +26,8 @@ export const routes: Routes = [
         component: NavbarComponent,
         children: [
             { path: 'dashboard', component:DashboardComponent },
+            { path: 'profile', component: ProfileComponent }, 
+            { path: 'profile-form', component: ProfileFormComponent },
             { path: 'attendance', component: AttendanceComponent },
             { path: 'leave', component: LeaveComponent },
             { path: 'holidays', component: HolidaysComponent }, 
