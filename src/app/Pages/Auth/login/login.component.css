@@ -9,6 +9,8 @@ body {
   }
   h1{
     margin: 0;
+    margin-top: 2rem;
+
   }
   a {
     text-decoration: none;
@@ -72,13 +74,14 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
+    margin-top: 6
+    rem;
   }
   
   .signup-form input {
     border-radius: 200px;
     padding: 5px 15px;
-    height: 2rem;
+    height: 3rem;
     font-size: 1rem;
     background-color: #ddd;
     color: #444;
@@ -129,7 +132,7 @@ body {
     width: 200px;
     height:60px;
     
-    margin-top: 9rem;
+    margin-top: 5rem;
   }
   
   .signup-form button:hover{
@@ -180,7 +183,7 @@ body {
   
   @media (max-width:950px) {
     .left-container{
-      width: 100%;
+      width: 110%;
       border-radius: 10px;
     }
     .main-container h1{

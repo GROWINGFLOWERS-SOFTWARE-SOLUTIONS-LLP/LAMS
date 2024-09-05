@@ -22,20 +22,17 @@
     </div> -->
   
     <div id="log-in" class="left-container log-in">
-      <img src="../../../../assets/images/image1.png">
-      <br>
-      <br>
-      <h1>let's log in</h1>
-      <br>
+      <img src="/src/assets/images/image1.png">
+      <h1>Let's log in</h1>
       <div style="width: 100%;">
-        <form action="index.html" class="signup-form">
-          <input type="email" id="email" placeholder="E-mail">
-          <input type="password" id="password" placeholder="Password">
-          <button type="submit" id="submit" class="button log-in-btn" disabled>Login</button>
+        <form  class="signup-form">
+          <input type="email"  name="email" [(ngModel)]="loginObj.email"   placeholder="E-mail">
+          <input type="password" name="password"  [(ngModel)]="loginObj.password"   placeholder="Password">
+          <button type="submit"  class="button log-in-btn"  (click)="loginFun()">Login</button>
         </form>
       </div>
       <div class="login-link-container">
-        <p onclick="changeToSignup()" class="login-link"></p>
+        <p onclick="changeToSignup()"    class="login-link"></p>
       </div>
     </div>
   
