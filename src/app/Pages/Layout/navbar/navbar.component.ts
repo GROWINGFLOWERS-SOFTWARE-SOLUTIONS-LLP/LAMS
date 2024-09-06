@@ -22,11 +22,13 @@ export class NavbarComponent {
     overlayPanel.toggle(event);
   }
 
-  navigateTo(route: string) {
+  navigateTo(route: string) { 
     if (route === 'profile') {
       this.router.navigate(['/profile']);
     } else if (route === 'logout') {
-      console.log('Logging out...');
+      localStorage.removeItem('logincredentials');
+      this.router.navigate(['/login'])
+      
     }
   }
 }
