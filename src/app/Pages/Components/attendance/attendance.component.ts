@@ -20,7 +20,7 @@ import { AuthService } from '../../../Core/Services/auth.service';
   styleUrls: ['./attendance.component.css']
 })
 export class AttendanceComponent implements OnInit {
-  displayPunchInDialog: boolean = false;
+  displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
   currentTime: string = '';
   attendance_date: string = '';
   Punch_in_time: string | null = null;
@@ -45,7 +45,6 @@ export class AttendanceComponent implements OnInit {
     if (!this.hasPunchedIn) {
       this.displayPunchInDialog = true;
       this.updateCurrentTime();
-      sessionStorage.setItem('hasPunchedIn', 'true'); // Set session storage flag
     }
   }
 
@@ -62,6 +61,7 @@ export class AttendanceComponent implements OnInit {
     this.hasPunchedIn = true;
     this.saveAttendanceRecords();
     this.displayPunchInDialog = false;
+    sessionStorage.setItem('hasPunchedIn', 'true'); // Set session storage flag to true after punch-in
     this.router.navigate(['/dashboard']);
   }
 
@@ -110,9 +110,12 @@ export class AttendanceComponent implements OnInit {
   }
 
   checkPunchInStatus() {
+    // Check session storage for the punch-in status for this session
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
     this.hasPunchedIn = hasPunchedInSession === 'true';
+    
     if (!this.hasPunchedIn) {
+      // Show the punch-in dialog only if the user hasn't punched in this session
       this.showPunchInDialog();
     }
   }

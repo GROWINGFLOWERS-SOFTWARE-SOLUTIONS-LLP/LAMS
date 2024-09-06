@@ -1,5 +1,5 @@
 /* Import Google font - Poppins */
-* {
+/* * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -12,11 +12,12 @@
     justify-content: center;
     padding: 20px;
     
-  }
+  } */
   .center-container {
       display: flex;
       justify-content: center;
       margin-top: 30px;
+      /* flex-direction: column; */
   }
   .pi {
       color: #007ad9;
@@ -26,11 +27,13 @@
   .container {
     position: relative;
     max-width: 700px;
-    width: 100%;
+    width: 80%;
     background: #fff;
     padding: 25px;
     border-radius: 8px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    left: 30%;
+    margin-top: 10px;
   }
   .container header {
     font-size: 1.5rem;

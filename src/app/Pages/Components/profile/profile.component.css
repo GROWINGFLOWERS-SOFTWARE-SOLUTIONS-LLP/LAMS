@@ -1,18 +1,4 @@
- /* Import Google font - Poppins */
- * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    background-color: rgb(249, 246, 253);
-  }
+
   
  
   .center-container {
@@ -21,6 +7,7 @@
       margin-top: 30px;
       font-size: 16px;
       font-weight:bold ;
+      flex-direction: column;
   }
   
   .pi {
@@ -43,9 +30,9 @@
         font-weight: 500;
         text-align: center;
       }
-      .container {
+      /* .container {
         text-align: center;
-    }
+    } */
     
     .name {
         font-size: 24px;
@@ -113,6 +100,6 @@
     }
     
     .update-button:hover {
-        background-color: #0056b3; /* Darker shade for hover effect */
+        background-color: #0056b3; 
     }
    

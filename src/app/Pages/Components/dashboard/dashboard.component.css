@@ -64,10 +64,6 @@
         }
     }
 
-/* body {
-        overflow: hidden; 
-    } */
- 
 .container {
     overflow: auto;
     scrollbar-width: none; /* Hides scrollbar for Firefox */
