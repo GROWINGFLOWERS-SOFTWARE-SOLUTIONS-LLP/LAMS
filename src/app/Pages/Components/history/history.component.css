@@ -1,6 +1,6 @@
 .container {
     width: 100%;
-    /* height: 100vh; */
+    height: 100vh;
     /* box-sizing: border-box; */
     margin-bottom: 30px;
   }
@@ -113,6 +113,15 @@ main {
     .event-details h3 {
         font-size: 1rem;
     }
+}
+@media (max-width: 325px) {
+    .container {
+        width: 100%;
+        height: 100vh; 
+        /* box-sizing: border-box;  */
+        margin-bottom: 100px;
+        z-index: 1;
+      }
 }
 
 
