@@ -6,11 +6,12 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { RouterModule, Router } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
+import { FooterComponent } from '../footer/footer.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, RouterModule, CommonModule],
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, RouterModule, CommonModule,FooterComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
