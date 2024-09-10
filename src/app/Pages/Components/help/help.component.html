@@ -1,1 +1,50 @@
-<p>help works!</p>
+<div class="help-page p-fluid">
+  <h1 class="text-center">Frequently asked <span class="highlight">questions</span></h1>
+  <p class="text-center">Do you need some help with something or do you have questions on some features?</p>
+
+  <div class="p-grid p-justify-center">
+      <div class="p-col-12 p-md-8 p-lg-6">
+          <p-card class="faq-card">
+              <p-accordion>
+                  <p-accordionTab header="How do I request a leave?" (selectedChange)="onTabSelect($event, 0)">
+                      <ng-template pTemplate="header"></ng-template>
+                      <p>Click on the "Request Leave" button on the dashboard, fill in the required details, and submit the request.</p>
+                  </p-accordionTab>
+
+                  <p-accordionTab header="How can I check the status of my leave request?" (selectedChange)="onTabSelect($event, 1)">
+                      <ng-template pTemplate="header"></ng-template>
+                      <p>Go to the "Leave Status" section under your profile. Here, you can view the status of all your leave requests, including those that are pending, approved, or rejected.</p>
+                  </p-accordionTab>
+
+                  <p-accordionTab header="Can I cancel or modify an existing leave request?" (selectedChange)="onTabSelect($event, 2)">
+                      <ng-template pTemplate="header"></ng-template>
+                      <p>Yes, you can cancel or modify a leave request if it has not yet been approved. Go to the "Leave History" section, select the request you want to change, and follow the prompts to make modifications or cancel the request.</p>
+                  </p-accordionTab>
+
+                  <p-accordionTab header="What types of leave are available?" (selectedChange)="onTabSelect($event, 3)">
+                      <ng-template pTemplate="header"></ng-template>
+                      <p>The system typically includes various leave types such as Annual Leave, Sick Leave, Casual Leave, Maternity/Paternity Leave, and Unpaid Leave. For specific details on each type and eligibility criteria, check the "Leave Policies" section.</p>
+                  </p-accordionTab>
+
+                  <p-accordionTab header="Who can approve my leave requests?" (selectedChange)="onTabSelect($event, 4)">
+                      <ng-template pTemplate="header"></ng-template>
+                      <p>Leave requests are usually approved by your direct supervisor or manager. The system will route your request to the appropriate approver based on your organization's approval workflow.</p>
+                  </p-accordionTab>
+              </p-accordion>
+          </p-card>
+      </div>
+  </div>
+
+  <div class="p-grid p-justify-center">
+      <div class="p-col-12 p-md-8 p-lg-6">
+          <p-card class="contact-card">
+              <h2 class="text-center">Have any other questions?</h2>
+              <p class="text-center">
+                  Don't hesitate to send us an email with your inquiry or statement at:
+                  <a href="mailto:contact&#64;growing-flowers-softwaresolutions.com">contact&#64;growing-flowers-softwaresolutions.com</a>
+                  <button pButton type="button" icon="pi pi-copy" (click)="copyEmail()"></button>
+              </p>
+          </p-card>
+      </div>
+  </div>
+</div>

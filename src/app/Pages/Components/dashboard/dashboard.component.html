@@ -1,0 +1,133 @@
+<link rel="stylesheet" href="https://unpkg.com/primeflex@latest/primeflex.css">  
+<body>
+<div class="text-xl p-2">
+<b text-3xl>Welcome,</b>Admin</div>
+ <br>
+<!-- Card -->
+    <div class="container mx-3">
+        <div class="grid">
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card max-w-22rem shadow-3">
+                <p-card header="People">
+                        <div class="flex justify-content-between ">
+                            <p class="m-0">30 Employees</p>
+                            <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
+                            </div> 
+                    </p-card>
+                </div>
+             </div>
+
+             <div class="col-12 md:col-6 lg:col-3">
+            <div class="card max-w-22rem shadow-3">
+                <p-card header="Company">
+                    <div class="flex justify-content-between">
+                    <p class="m-0">4 Department</p>
+                    <i class=" pi pi-building" style="color: #82f784;  font-size:45px;"></i>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card max-w-22rem shadow-3">
+                <p-card header="Users">
+                    <div class="flex justify-content-between">
+                        <p class="m-0">15 Users</p>
+                        <i class="pi pi-user-plus" style="color: #fe9862;  font-size: 45px;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+            
+            <div class="col-12 md:col-6 lg:col-3">
+            <div class="card max-w-22rem shadow-3">
+                <p-card header="Projects">
+                <div class="flex justify-content-between">
+                    <p class="m-0">4 Active Projects</p>
+                    <i class=" pi pi-chart-pie" style="color: #ffd952;  font-size: 45px;"></i>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+ </div>
+ 
+<!--Employee Check-in Cards -->
+<div class="container mx-4">
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-6">
+                <div class="cards max-w-42rem shadow-3 p-1">
+                <div>
+                    <h2>Employee Check-ins</h2>
+                </div>
+                    <div class="container ml-3 p-5">
+                    <!-- Placeholder for p-meterGroup -->
+                <p-meterGroup [value]="value" labelPosition="start" labelOrientation="vertical"/>
+            </div>
+        </div>
+        </div>
+
+<!-- Attendance Summary Cards -->
+<div class="col-12 md:col-6 lg:col-6">
+        <div class="cards max-w-42rem shadow-3 p-1">
+                <div>
+                    <h2>Attendance Summary</h2>
+                </div>
+                <div class="container ml-3 p-5">
+                    <!-- Placeholder for p-meterGroup -->
+                <p-meterGroup [value]="value1" labelPosition="start" labelOrientation="vertical" />
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    
+<!-- Card -->
+<div class="container mx-3">
+        <div class="grid">
+            <div class="col-12 md:col-6 lg:col-3">
+            <div class="card max-w-22rem shadow-3">
+                <p-card header="Attendance">
+                <div class="flex justify-content-between">
+                    <p class="m-0">2 Entrys Last Week</p>
+                    <i class=" pi pi-clock" style="color: #886fd3; font-size: 45px;" ></i>
+                </div>
+                </p-card>
+                </div>
+            </div>
+    
+        <div class="col-12 md:col-6 lg:col-3">
+            <div class="card max-w-22rem shadow-3">
+        <p-card header="Leave">
+            <div class="flex justify-content-between">
+                <p class="m-0">1 Upcoming</p>
+                <i class=" pi pi-calendar" style="color: #ffd952; font-size: 45px;"></i>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+         <div class="col-12 md:col-6 lg:col-3">
+    <div class="card max-w-22rem shadow-3">
+        <p-card header="Reports">
+            <div class="flex justify-content-between">
+                <p class="m-0">View/Download Reports</p>
+                <i class=" pi pi-file" style="color: #72c9ac; font-size: 45px;"></i>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+        <div class="col-12 md:col-6 lg:col-3">
+    <div class="card max-w-22rem shadow-3">
+        <p-card header="Settings">
+            <div class="flex justify-content-between">
+                <p class="m-0">Configure IceHrm</p>
+                <i class=" pi pi-cog" style="color:rgb(111, 111, 238);  font-size: 45px;"></i>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+    </div>
+    </div>
+</body>

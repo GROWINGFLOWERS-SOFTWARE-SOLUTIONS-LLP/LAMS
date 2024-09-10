@@ -1,12 +1,33 @@
+
 import { Component } from '@angular/core';
+import { ToolbarModule } from 'primeng/toolbar';
+import { AvatarModule } from 'primeng/avatar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { RouterModule, Router } from '@angular/router';
+import { ButtonModule } from 'primeng/button';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, RouterModule, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
 
+  constructor(private router: Router) {}
+
+  toggleDropdown(event: Event, overlayPanel: any) {
+    overlayPanel.toggle(event);
+  }
+
+  navigateTo(route: string) {
+    if (route === 'profile') {
+      this.router.navigate(['/profile']);
+    } else if (route === 'logout') {
+      console.log('Logging out...');
+    }
+  }
 }
+

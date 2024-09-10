@@ -1,1 +1,77 @@
-<p>profile works!</p>
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    
+   
+    <!--<title>Registration Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+  </head>
+  <body>
+    
+    <section class="container">
+      <header>Employee Details </header>
+    
+      <br>
+     
+        <div class="card flex justify-content-last">
+        
+          <p-button label="Update Your Details" />
+        <!-- Other content of your webpage -->
+
+      </div>
+      
+      <div class="center-container">
+       
+       
+      <p-avatar 
+    icon="pi pi-user" 
+    styleClass="mr-2" 
+    size="xlarge" 
+    shape="circle" />
+      </div>
+      <br>
+      <div class="container">
+        <p class="name">Shubham Sonje</p>
+        <br>
+        <p class="Designation">Software Engineer</p>
+      </div>
+   
+    <div class="p-p-4">
+        <div class="p-grid">
+            <div class="p-col-12 p-md-6 ">
+                <div class="p-d-flex p-ai-center p-mb-3">
+                  <i class="pi pi-envelope" style="font-size: 1.5rem"></i>
+                   <span>Email: {{ employee.email }}</span>
+                </div>
+             
+                  <div class="p-d-flex p-ai-center p-mb-3">
+                    <i class="pi pi-phone p-mr-2"></i>
+                    <span>Phone Number: {{ employee.phoneNumber }}</span>
+                </div>
+
+                 <div class="p-d-flex p-ai-center p-mb-3">
+                    <i class="pi pi-calendar p-mr-2"></i>
+                    <p class="joining-date">Joining Date: <span id="join-date">January 15, 2023</span></p>
+                </div>
+            </div>
+            <div class="p-col-12 p-md-6">
+                <div class="p-d-flex p-ai-center p-mb-3">
+                    <i class="pi pi-briefcase p-mr-2"></i>
+                    <span>Department: {{ employee.department }}</span>
+                </div>
+                <div class="p-d-flex p-ai-center p-mb-3">
+                    <i class="pi pi-home p-mr-2"></i>
+                    <span>Address: {{ employee.address }}</span>
+                </div>
+            </div>
+           </div>
+         </div>
+    </section>
+    
+
+   
