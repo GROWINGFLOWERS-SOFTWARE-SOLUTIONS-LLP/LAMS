@@ -120,6 +120,15 @@
       "status": "Rejected",
       "reason": "enjoy",
       "totalLeaves": 4
+    },
+    {
+      "id": "e6e3",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-10T18:30:00.000Z",
+      "endDate": "2024-09-16T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Personal zaid",
+      "totalLeaves": 4
     }
   ],
   "leaveBalance": [
