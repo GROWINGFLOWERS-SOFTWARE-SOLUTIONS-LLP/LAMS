@@ -168,30 +168,54 @@ button.disabled:hover {
   cursor: pointer;
 }
 
-@media (max-width:1240px) {
+@media (max-width:320px) {
   .left-container {
-    width: 100%;
-  }
+    width: 50%;
 
+  }
+  .signup-form input {
+    width: 200px;
+  }
   .right-container {
     width: 50%;
   }
-}
-
-@media (max-width:970px) {
-  .signup-form button {
-    font-size: 1rem;
-  }
-
-  .signup-form input[type="checkbox"]+label {
-    font-size: 0.8rem;
-  }
-
-  .signin-link {
-    font-size: 0.8rem;
+  .footer {
+    display: none;
   }
 }
 
+
+@media (min-width: 321px) and (max-width: 768px) {
+  .left-container {
+    width: 70%;
+  }
+
+  .signup-form input {
+    width: 300px;
+  }
+
+  .right-container {
+    width: 30%;
+  }
+}
+@media (min-width: 769px) and (max-width: 992px) {
+  .left-container {
+    width: 80%;
+  }
+
+  .signup-form input {
+    width: 350px;
+  }
+
+  .right-container {
+    width: 20%;
+  }
+.footer {
+    width: 100%;
+  }
+
+
+}
 @media (max-width:950px) {
   .left-container {
     width: 110%;
@@ -212,7 +236,7 @@ button.disabled:hover {
   }
 }
 
-@media (max-width:550px) {
+@media (max-width:1024px) {
   .main-container {
     width: 90%;
     left: 5%;
