@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
+import { ApiService } from '../../../Core/Services/api.service';
+import { Router } from '@angular/router';
 
 interface LeaveRequest {
   leaveType: string;
@@ -23,19 +25,19 @@ interface LeaveRequest {
   standalone: true,
   imports:  [
     CommonModule,
-  FormsModule,
-  DialogModule,
-  ButtonModule,
-  InputTextModule,
-  DropdownModule,
-  CalendarModule,
-  InputTextareaModule,
-  TableModule
+    FormsModule,
+    DialogModule,
+    ButtonModule,
+    InputTextModule,
+    DropdownModule,
+    CalendarModule,
+    InputTextareaModule,
+    TableModule
   ],
   templateUrl: './leave.component.html',
-  styleUrl: './leave.component.css'
+  styleUrls: ['./leave.component.css']
 })
-export class LeaveComponent {
+export class LeaveComponent implements OnInit {
   visible: boolean = false;
   leaveRequests: LeaveRequest[] = [];
   leaveRequest: LeaveRequest = {
@@ -59,26 +61,37 @@ export class LeaveComponent {
     { label: 'Rejected', value: 'Rejected' }
   ];
 
-  showDialog() {
+  constructor(private apiService: ApiService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.loadLeaveRequests();
+  }
+
+  loadLeaveRequests(): void {
+    this.apiService.getLeaveRequests().subscribe((data: LeaveRequest[]) => {
+      this.leaveRequests = data;
+    });
+  }
+
+  showDialog(): void {
     this.visible = true;
   }
 
-  saveLeaveRequest() {
-    // Push the current leave request to the list of leave requests
-    this.leaveRequests.push({ ...this.leaveRequest });
-
-    // Reset the form
-    this.leaveRequest = {
-      leaveType: '',
-      startDate: new Date(),
-      endDate: new Date(),
-      status: '',
-      reason: '',
-      totalLeaves: 0
-    };
-
-    // Close the dialog
-    this.visible = false;
+  saveLeaveRequest(): void {
+    if (this.isFormValid()) {
+      this.apiService.submitLeaveRequest(this.leaveRequest).subscribe(() => {
+        this.leaveRequests.push({ ...this.leaveRequest });
+        this.leaveRequest = {
+          leaveType: '',
+          startDate: new Date(),
+          endDate: new Date(),
+          status: '',
+          reason: '',
+          totalLeaves: 0
+        };
+        this.visible = false;
+      });
+    }
   }
 
   isFormValid(): boolean {
