@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class ApiService {
 
- apiUrl:string="http://localhost:3000";
+  apiUrl:string="http://localhost:3000";
 
   constructor(private http:HttpClient) { }
 
@@ -17,6 +17,16 @@ export class ApiService {
 
   postAttendance(attendanceRecord: any){
     return this.http.post(this.apiUrl + "/attendance", attendanceRecord);
+  }
+  
+  // Method to get leave requests from the backend API
+  getLeaveRequests(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/leaveApplications`);
+  }
+
+  // Method to submit a leave request to the backend API
+  submitLeaveRequest(leaveRequest: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
   
 }
