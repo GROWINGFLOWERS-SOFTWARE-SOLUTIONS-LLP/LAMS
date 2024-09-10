@@ -11,6 +11,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
+import { ApiService } from '../../../Core/Services/api.service';
 
 @Component({
   selector: 'app-attendance',
@@ -27,14 +28,14 @@ export class AttendanceComponent implements OnInit {
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
     this.loadAttendanceRecords();
     this.checkPunchInStatus();
 
-    // Subscribe to the logout observable from AuthService
+   
     this.authService.logoutObservable.subscribe(() => {
       this.checkout();
       sessionStorage.removeItem('hasPunchedIn'); // Clear session storage on logout
@@ -57,11 +58,23 @@ export class AttendanceComponent implements OnInit {
       checkOut: '',
       break: ''
     };
+
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
+
+  
+    this.apiService.postAttendance(newRecord).subscribe(
+      (response) => {
+        console.log('Attendance record posted successfully:', response);
+      },
+      (error) => {
+        console.error('Error posting attendance record:', error);
+      }
+    );
+
     this.saveAttendanceRecords();
     this.displayPunchInDialog = false;
-    sessionStorage.setItem('hasPunchedIn', 'true'); // Set session storage flag to true after punch-in
+    sessionStorage.setItem('hasPunchedIn', 'true'); 
     this.router.navigate(['/dashboard']);
   }
 
@@ -71,6 +84,17 @@ export class AttendanceComponent implements OnInit {
     if (lastRecord && !lastRecord.checkOut) {
       lastRecord.checkOut = Punch_out_time;
       lastRecord.break = this.calculateBreakTime(lastRecord.checkIn, lastRecord.checkOut);
+
+      // Post updated attendance record
+      this.apiService.postAttendance(lastRecord).subscribe(
+        (response) => {
+          console.log('Updated attendance record posted successfully:', response);
+        },
+        (error) => {
+          console.error('Error posting updated attendance record:', error);
+        }
+      );
+
       this.saveAttendanceRecords();
     }
   }
@@ -113,7 +137,7 @@ export class AttendanceComponent implements OnInit {
     // Check session storage for the punch-in status for this session
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
     this.hasPunchedIn = hasPunchedInSession === 'true';
-    
+
     if (!this.hasPunchedIn) {
       // Show the punch-in dialog only if the user hasn't punched in this session
       this.showPunchInDialog();

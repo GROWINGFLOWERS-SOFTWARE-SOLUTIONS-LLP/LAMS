@@ -25,7 +25,7 @@ export const routes: Routes = [
         path: '',
         component: NavbarComponent,
         children: [
-            { path: 'dashboard', component:DashboardComponent },
+            { path: 'dashboard', component:DashboardComponent, },
             { path: 'profile', component: ProfileComponent }, 
             { path: 'profile-form', component: ProfileFormComponent },
             { path: 'attendance', component: AttendanceComponent },

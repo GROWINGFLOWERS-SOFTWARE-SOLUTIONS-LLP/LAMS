@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule],
+  imports: [AvatarModule, ButtonModule,CardModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
 export class ProfileComponent {
+
+  constructor(private route:Router){}
+
   employee = {
     email: 'shubham.sonje@growingflowers-solutions.com',
     phoneNumber: '9890628672',
@@ -18,6 +22,11 @@ export class ProfileComponent {
     joiningDate: new Date('2022-01-15'),
     department: 'Engineering',
     address: 'Nashik'
+  }
+
+
+  updateProfile(){
+    this.route.navigateByUrl('profile-form');
   }
 
 }
