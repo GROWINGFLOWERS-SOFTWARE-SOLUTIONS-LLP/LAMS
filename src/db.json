@@ -1,118 +1,238 @@
 {
-    "users": [
-      {
-        "username": "admin@gfss.com",
-        "password": "admin"
-      },
-      {
-        "username": "employee@gfss.com",
-        "password": "employee"
-      }
-    ],
-    "employees": [
-      {
-        "employeeId": 101,
-        "firstName": "Bhushan",
-        "lastName": "Malpure",
-        "email": "bhushanmalpure@gfss.com",
-        "mobileNumber": "7741903359",
-        "department": "Development",
-        "role": "Software Developer",
-        "joiningDate": "2021-01-15",
-        "address": "Nashik"
-      },
-      {
-        "employeeId": 102,
-        "firstName": "prajakta",
-        "lastName": "Badhan",
-        "email": "prajaktabadhan@gfss.com",
-        "mobileNumber": "88888888888",
-        "department": "Development",
-        "role": "Software Developer",
-        "joiningDate": "2019-03-23",
-        "address": "Pune"
-      }
-    ],
-    "attendance": [
-      {
-        "employeeId": 101,
-        "attendanceDate": "2024-09-10",
-        "punchInTime": "09:00",
-        "punchOutTime": "17:00",
-        "status": "Present"
-      },
-      {
-        "employeeId": 102,
-        "attendanceDate": "2024-09-10",
-        "punchInTime": "09:15",
-        "punchOutTime": "16:45",
-        "status": "Present"
-      }
-    ],
-    "leaveApplications": [
-      {
-        "employeeId": 101,
-        "employeeName": "Shubham Sonje",
-        "leaveType": "Paid Leave",
-        "startDate": "2024-09-15",
-        "endDate": "2024-09-20",
-        "status": "Pending",
-        "reason": "Vacation",
-        "approvedBy": "Abhishek Joshi",
-        "totalLeaves": 30
-      },
-      {
-        "employeeId": 102,
-        "employeeName": "Sahil Mhatre",
-        "leaveType": "Sick Leave",
-        "startDate": "2024-09-05",
-        "endDate": "2024-09-07",
-        "status": "Approved",
-        "reason": "Medical reasons",
-        "approvedBy": "HR",
-        "totalLeaves": 30
-      }
-    ],
-    "leaveBalance": [
-      {
-        "employeeId": 101,
-        "leaveType": "Paid Leave",
-        "totalLeaves": 30,
-        "leavesTaken": 5,
-        "leavesRemaining": 25
-      },
-      {
-        "employeeId": 102,
-        "leaveType": "Sick Leave",
-        "totalLeaves": 10,
-        "leavesTaken": 2,
-        "leavesRemaining": 8
-      }
-    ],
-    "publicHolidays": [
-       
-            {  "holidayName": "Republic Day", "holidayDate": "2024-01-26" },
-            {  "holidayName": "Chhatrapati Shivaji Maharaj Jayanti", "holidayDate": "2024-02-19" },
-            {  "holidayName": "Mahashivratri", "holidayDate": "2024-03-08" },
-            {  "holidayName": "Holi (Second Day)", "holidayDate": "2024-03-25" },
-            {  "holidayName": "Good Friday", "holidayDate": "2024-03-29" },
-            {  "holidayName": "Gudhi Padwa", "holidayDate": "2024-04-09" },
-            {  "holidayName": "Ramzan-Id (Id-UL-Fitr)", "holidayDate": "2024-04-11" },
-            {  "holidayName": "Dr.Babasaheb Ambedkar Jayanti", "holidayDate": "2024-04-14" },
-            {  "holidayName": "Ram Navami", "holidayDate": "2024-04-17" },
-            {  "holidayName": "Maharashtra Din", "holidayDate": "2024-05-01" },
-            {  "holidayName": "Buddha Pournima", "holidayDate": "2024-05-23" },
-            {  "holidayName": "Bakri Id (Id-Uz-Zuha)", "holidayDate": "2024-06-17" },
-            {  "holidayName": "Moharum", "holidayDate": "2024-07-17" },
-            {  "holidayName": "Independence Day / Parsi New Year (Shahenshahi)", "holidayDate": "2024-08-15" },
-            {  "holidayName": "Ganesh Chaturthi", "holidayDate": "2024-09-07" },
-            {  "holidayName": "Id-E-Milad", "holidayDate": "2024-09-16" },
-            {  "holidayName": "Mahatma Gandhi Jayanti", "holidayDate": "2024-10-02" },
-            {  "holidayName": "Dasara", "holidayDate": "2024-10-12" },
-            {  "holidayName": "Diwali Amavasaya (Laxmi Pujan)", "holidayDate": "2024-11-01" },
-            {  "holidayName": "Diwali (Bali Pratipada)", "holidayDate": "2024-11-02" },
-            {  "holidayName": "Guru Nanak Jayanti", "holidayDate": "2024-11-15" },
-            {  "holidayName": "Christmas", "holidayDate": "2024-12-25" }
-        
-    ]
-  }
+  "users": [
+    {
+      "username": "admin@gfss.com",
+      "password": "admin",
+      "id": "2220"
+    },
+    {
+      "username": "employee@gfss.com",
+      "password": "employee",
+      "id": "47e1"
+    }
+  ],
+  "employees": [
+    {
+      "employeeId": 101,
+      "firstName": "Bhushan",
+      "lastName": "Malpure",
+      "email": "bhushanmalpure@gfss.com",
+      "mobileNumber": "7741903359",
+      "department": "Development",
+      "role": "Software Developer",
+      "joiningDate": "2021-01-15",
+      "address": "Nashik",
+      "id": "093a"
+    },
+    {
+      "employeeId": 102,
+      "firstName": "prajakta",
+      "lastName": "Badhan",
+      "email": "prajaktabadhan@gfss.com",
+      "mobileNumber": "88888888888",
+      "department": "Development",
+      "role": "Software Developer",
+      "joiningDate": "2019-03-23",
+      "address": "Pune",
+      "id": "6fdf"
+    }
+  ],
+  "attendance": [
+    {
+      "attendance_date": "2024-09-10",
+      "punchInTime": "09:00",
+      "punchOutTime": "17:00",
+      "id": "86e5"
+    },
+    {
+      "attendanceDate": "2024-09-10",
+      "Punch_in_time": "09:15",
+      "Punch_out_time": "16:45",
+      "id": "ad7a"
+    },
+    {
+      "id": "402a",
+      "date": "9/10/2024",
+      "checkIn": "12:31:15 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "55f1",
+      "date": "9/10/2024",
+      "checkIn": "12:31:15 PM",
+      "checkOut": "12:31:21 PM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "bcac",
+      "date": "9/10/2024",
+      "checkIn": "12:32:26 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "fb94",
+      "date": "9/10/2024",
+      "checkIn": "12:32:26 PM",
+      "checkOut": "12:32:46 PM",
+      "break": "0h 0m 20s"
+    }
+  ],
+  "leaveApplications": [
+    {
+      "employeeId": 101,
+      "employeeName": "Shubham Sonje",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-15",
+      "endDate": "2024-09-20",
+      "status": "Pending",
+      "reason": "Vacation",
+      "approvedBy": "Abhishek Joshi",
+      "totalLeaves": 30,
+      "id": "4291"
+    },
+    {
+      "employeeId": 102,
+      "employeeName": "Sahil Mhatre",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-05",
+      "endDate": "2024-09-07",
+      "status": "Approved",
+      "reason": "Medical reasons",
+      "approvedBy": "HR",
+      "totalLeaves": 30,
+      "id": "91c2"
+    }
+  ],
+  "leaveBalance": [
+    {
+      "employeeId": 101,
+      "leaveType": "Paid Leave",
+      "totalLeaves": 30,
+      "leavesTaken": 5,
+      "leavesRemaining": 25,
+      "id": "2ad2"
+    },
+    {
+      "employeeId": 102,
+      "leaveType": "Sick Leave",
+      "totalLeaves": 10,
+      "leavesTaken": 2,
+      "leavesRemaining": 8,
+      "id": "dbe4"
+    }
+  ],
+  "publicHolidays": [
+    {
+      "holidayName": "Republic Day",
+      "holidayDate": "2024-01-26",
+      "id": "815b"
+    },
+    {
+      "holidayName": "Chhatrapati Shivaji Maharaj Jayanti",
+      "holidayDate": "2024-02-19",
+      "id": "71bf"
+    },
+    {
+      "holidayName": "Mahashivratri",
+      "holidayDate": "2024-03-08",
+      "id": "e56a"
+    },
+    {
+      "holidayName": "Holi (Second Day)",
+      "holidayDate": "2024-03-25",
+      "id": "188c"
+    },
+    {
+      "holidayName": "Good Friday",
+      "holidayDate": "2024-03-29",
+      "id": "fef4"
+    },
+    {
+      "holidayName": "Gudhi Padwa",
+      "holidayDate": "2024-04-09",
+      "id": "824b"
+    },
+    {
+      "holidayName": "Ramzan-Id (Id-UL-Fitr)",
+      "holidayDate": "2024-04-11",
+      "id": "acb6"
+    },
+    {
+      "holidayName": "Dr.Babasaheb Ambedkar Jayanti",
+      "holidayDate": "2024-04-14",
+      "id": "0389"
+    },
+    {
+      "holidayName": "Ram Navami",
+      "holidayDate": "2024-04-17",
+      "id": "964c"
+    },
+    {
+      "holidayName": "Maharashtra Din",
+      "holidayDate": "2024-05-01",
+      "id": "2fde"
+    },
+    {
+      "holidayName": "Buddha Pournima",
+      "holidayDate": "2024-05-23",
+      "id": "d782"
+    },
+    {
+      "holidayName": "Bakri Id (Id-Uz-Zuha)",
+      "holidayDate": "2024-06-17",
+      "id": "ccbd"
+    },
+    {
+      "holidayName": "Moharum",
+      "holidayDate": "2024-07-17",
+      "id": "195b"
+    },
+    {
+      "holidayName": "Independence Day / Parsi New Year (Shahenshahi)",
+      "holidayDate": "2024-08-15",
+      "id": "f809"
+    },
+    {
+      "holidayName": "Ganesh Chaturthi",
+      "holidayDate": "2024-09-07",
+      "id": "cdad"
+    },
+    {
+      "holidayName": "Id-E-Milad",
+      "holidayDate": "2024-09-16",
+      "id": "c265"
+    },
+    {
+      "holidayName": "Mahatma Gandhi Jayanti",
+      "holidayDate": "2024-10-02",
+      "id": "31bb"
+    },
+    {
+      "holidayName": "Dasara",
+      "holidayDate": "2024-10-12",
+      "id": "bbf3"
+    },
+    {
+      "holidayName": "Diwali Amavasaya (Laxmi Pujan)",
+      "holidayDate": "2024-11-01",
+      "id": "fe4f"
+    },
+    {
+      "holidayName": "Diwali (Bali Pratipada)",
+      "holidayDate": "2024-11-02",
+      "id": "fc18"
+    },
+    {
+      "holidayName": "Guru Nanak Jayanti",
+      "holidayDate": "2024-11-15",
+      "id": "28a3"
+    },
+    {
+      "holidayName": "Christmas",
+      "holidayDate": "2024-12-25",
+      "id": "5c01"
+    }
+  ]
+}
