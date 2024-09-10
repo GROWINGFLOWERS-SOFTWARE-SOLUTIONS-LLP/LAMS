@@ -91,6 +91,48 @@
       "checkIn": "1:49:58 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "e113",
+      "date": "9/10/2024",
+      "checkIn": "2:15:29 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ce63",
+      "date": "9/10/2024",
+      "checkIn": "2:24:00 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f74c",
+      "date": "9/10/2024",
+      "checkIn": "2:28:13 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "77d2",
+      "date": "9/10/2024",
+      "checkIn": "2:47:05 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bc78",
+      "date": "9/10/2024",
+      "checkIn": "3:12:56 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "a4a0",
+      "date": "9/10/2024",
+      "checkIn": "3:31:15 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
@@ -151,113 +193,135 @@
   ],
   "publicHolidays": [
     {
-      "holidayName": "Republic Day",
-      "holidayDate": "2024-01-26",
+      "color": "#3cb371",
+      "title": "Republic Day",
+      "start": "2024-01-26",
       "id": "815b"
     },
     {
-      "holidayName": "Chhatrapati Shivaji Maharaj Jayanti",
-      "holidayDate": "2024-02-19",
+      "color": "#3cb371",
+      "title": "Chhatrapati Shivaji Maharaj Jayanti",
+      "start": "2024-02-19",
       "id": "71bf"
     },
     {
-      "holidayName": "Mahashivratri",
-      "holidayDate": "2024-03-08",
+      "color": "#3cb371",
+      "title": "Mahashivratri",
+      "start": "2024-03-08",
       "id": "e56a"
     },
     {
-      "holidayName": "Holi (Second Day)",
-      "holidayDate": "2024-03-25",
+      "color": "#3cb371",
+      "title": "Holi (Second Day)",
+      "start": "2024-03-25",
       "id": "188c"
     },
     {
-      "holidayName": "Good Friday",
-      "holidayDate": "2024-03-29",
+      "color": "#3cb371",
+      "title": "Good Friday",
+      "start": "2024-03-29",
       "id": "fef4"
     },
     {
-      "holidayName": "Gudhi Padwa",
-      "holidayDate": "2024-04-09",
+      "color": "#3cb371",
+      "title": "Gudhi Padwa",
+      "start": "2024-04-09",
       "id": "824b"
     },
     {
-      "holidayName": "Ramzan-Id (Id-UL-Fitr)",
-      "holidayDate": "2024-04-11",
+      "color": "#3cb371",
+      "title": "Ramzan-Id (Id-UL-Fitr)",
+      "start": "2024-04-11",
       "id": "acb6"
     },
     {
-      "holidayName": "Dr.Babasaheb Ambedkar Jayanti",
-      "holidayDate": "2024-04-14",
+      "color": "#3cb371",
+      "title": "Dr.Babasaheb Ambedkar Jayanti",
+      "start": "2024-04-14",
       "id": "0389"
     },
     {
-      "holidayName": "Ram Navami",
-      "holidayDate": "2024-04-17",
+      "color": "#3cb371",
+      "title": "Ram Navami",
+      "start": "2024-04-17",
       "id": "964c"
     },
     {
-      "holidayName": "Maharashtra Din",
-      "holidayDate": "2024-05-01",
+      "color": "#3cb371",
+      "title": "Maharashtra Din",
+      "start": "2024-05-01",
       "id": "2fde"
     },
     {
-      "holidayName": "Buddha Pournima",
-      "holidayDate": "2024-05-23",
+      "color": "#3cb371",
+      "title": "Buddha Pournima",
+      "start": "2024-05-23",
       "id": "d782"
     },
     {
-      "holidayName": "Bakri Id (Id-Uz-Zuha)",
-      "holidayDate": "2024-06-17",
+      "color": "#3cb371",
+      "title": "Bakri Id (Id-Uz-Zuha)",
+      "start": "2024-06-17",
       "id": "ccbd"
     },
     {
-      "holidayName": "Moharum",
-      "holidayDate": "2024-07-17",
+      "color": "#3cb371",
+      "title": "Moharum",
+      "start": "2024-07-17",
       "id": "195b"
     },
     {
-      "holidayName": "Independence Day / Parsi New Year (Shahenshahi)",
-      "holidayDate": "2024-08-15",
+      "color": "#3cb371",
+      "title": "Independence Day / Parsi New Year (Shahenshahi)",
+      "start": "2024-08-15",
       "id": "f809"
     },
     {
-      "holidayName": "Ganesh Chaturthi",
-      "holidayDate": "2024-09-07",
+      "color": "#3cb371",
+      "title": "Ganesh Chaturthi",
+      "start": "2024-09-07",
       "id": "cdad"
     },
     {
-      "holidayName": "Id-E-Milad",
-      "holidayDate": "2024-09-16",
+      "color": "#3cb371",
+      "title": "Id-E-Milad",
+      "start": "2024-09-16",
       "id": "c265"
     },
     {
-      "holidayName": "Mahatma Gandhi Jayanti",
-      "holidayDate": "2024-10-02",
+      "color": "#3cb371",
+      "title": "Mahatma Gandhi Jayanti",
+      "start": "2024-10-02",
       "id": "31bb"
     },
     {
-      "holidayName": "Dasara",
-      "holidayDate": "2024-10-12",
+      "color": "#3cb371",
+      "title": "Dasara",
+      "start": "2024-10-12",
       "id": "bbf3"
     },
     {
-      "holidayName": "Diwali Amavasaya (Laxmi Pujan)",
-      "holidayDate": "2024-11-01",
+      "color": "#3cb371",
+      "title": "Diwali Amavasaya (Laxmi Pujan)",
+      "start": "2024-11-01",
       "id": "fe4f"
     },
     {
-      "holidayName": "Diwali (Bali Pratipada)",
-      "holidayDate": "2024-11-02",
+      "color": "#3cb371",
+      "title": "Diwali (Bali Pratipada)",
+      "start": "2024-11-02",
       "id": "fc18"
     },
     {
-      "holidayName": "Guru Nanak Jayanti",
-      "holidayDate": "2024-11-15",
+      "color": "#3cb371",
+      "title": "Guru Nanak Jayanti",
+      "start": "2024-11-15",
       "id": "28a3"
     },
     {
-      "holidayName": "Christmas",
-      "holidayDate": "2024-12-25",
+      "color": "#3cb371",
+      "title": "Christmas",
+      "start": "2024-12-25",
       "id": "5c01"
     }
   ]
