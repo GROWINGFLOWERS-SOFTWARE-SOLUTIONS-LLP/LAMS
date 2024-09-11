@@ -205,6 +205,13 @@
       "checkIn": "4:38:05 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "badd",
+      "date": "9/11/2024",
+      "checkIn": "5:02:01 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
@@ -256,6 +263,15 @@
       "endDate": "2024-09-11T18:30:00.000Z",
       "status": "Pending",
       "reason": "injured\n",
+      "totalLeaves": 2
+    },
+    {
+      "id": "b172",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-12T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "",
       "totalLeaves": 2
     }
   ],
