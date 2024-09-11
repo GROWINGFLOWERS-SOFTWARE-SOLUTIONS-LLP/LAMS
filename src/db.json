@@ -79,27 +79,13 @@
       "break": "0h 0m 20s"
     },
     {
-<<<<<<< HEAD
       "id": "7957",
       "date": "9/11/2024",
       "checkIn": "10:04:48 AM",
-=======
-      "id": "2541",
-      "date": "9/10/2024",
-      "checkIn": "1:33:12 PM",
-      "checkOut": "1:46:54 PM",
-      "break": "0h 13m 42s"
-    },
-    {
-      "id": "22e6",
-      "date": "9/10/2024",
-      "checkIn": "1:49:58 PM",
->>>>>>> e61c85921d74ebf0841cb86dc39ba4b997c9a7d7
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "e125",
       "date": "9/11/2024",
       "checkIn": "10:04:48 AM",
@@ -110,16 +96,10 @@
       "id": "498c",
       "date": "9/11/2024",
       "checkIn": "10:06:44 AM",
-=======
-      "id": "e113",
-      "date": "9/10/2024",
-      "checkIn": "2:15:29 PM",
->>>>>>> e61c85921d74ebf0841cb86dc39ba4b997c9a7d7
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "b6ca",
       "date": "9/11/2024",
       "checkIn": "10:06:44 AM",
@@ -130,16 +110,10 @@
       "id": "7003",
       "date": "9/11/2024",
       "checkIn": "10:09:31 AM",
-=======
-      "id": "ce63",
-      "date": "9/10/2024",
-      "checkIn": "2:24:00 PM",
->>>>>>> e61c85921d74ebf0841cb86dc39ba4b997c9a7d7
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "8d4f",
       "date": "9/11/2024",
       "checkIn": "10:09:31 AM",
@@ -150,16 +124,10 @@
       "id": "e16a",
       "date": "9/11/2024",
       "checkIn": "10:12:01 AM",
-=======
-      "id": "f74c",
-      "date": "9/10/2024",
-      "checkIn": "2:28:13 PM",
->>>>>>> e61c85921d74ebf0841cb86dc39ba4b997c9a7d7
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "d0b8",
       "date": "9/11/2024",
       "checkIn": "10:12:01 AM",
@@ -172,79 +140,32 @@
       "checkIn": "10:26:00 AM",
       "checkOut": "",
       "break": ""
-=======
-      "id": "77d2",
-      "date": "9/10/2024",
-      "checkIn": "2:47:05 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "bc78",
-      "date": "9/10/2024",
-      "checkIn": "3:12:56 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "a4a0",
-      "date": "9/10/2024",
-      "checkIn": "3:31:15 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "2289",
-      "date": "9/11/2024",
-      "checkIn": "10:06:29 AM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "18da",
-      "date": "9/11/2024",
-      "checkIn": "10:06:29 AM",
-      "checkOut": "10:07:39 AM",
-      "break": "0h 1m 10s"
->>>>>>> e61c85921d74ebf0841cb86dc39ba4b997c9a7d7
     }
   ],
   "leaveApplications": [
     {
-      "id": "1cc1",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-12T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "",
-      "totalLeaves": 2
-    },
-    {
-      "id": "7cb8",
-      "leaveType": "Unpaid Leave",
-      "startDate": "2024-09-15T18:30:00.000Z",
-      "endDate": "2024-09-19T18:30:00.000Z",
-      "status": "Approved",
-      "reason": "Vacation",
-      "totalLeaves": 5
-    },
-    {
-      "id": "1490",
+      "employeeId": 101,
+      "employeeName": "Shubham Sonje",
       "leaveType": "Paid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-13T18:30:00.000Z",
-      "status": "Rejected",
-      "reason": "enjoy",
-      "totalLeaves": 4
+      "startDate": "2024-09-15",
+      "endDate": "2024-09-20",
+      "status": "Pending",
+      "reason": "Vacation",
+      "approvedBy": "Abhishek Joshi",
+      "totalLeaves": 30,
+      "id": "4291"
     },
     {
-      "id": "727d",
-      "leaveType": "Unpaid Leave",
-      "startDate": "2024-09-03T18:30:00.000Z",
-      "endDate": "2024-09-11T04:39:26.058Z",
-      "status": "Pending",
-      "reason": "leaved",
-      "totalLeaves": 1
+      "employeeId": 102,
+      "employeeName": "Sahil Mhatre",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-05",
+      "endDate": "2024-09-07",
+      "status": "Approved",
+      "reason": "Medical reasons",
+      "approvedBy": "HR",
+      "totalLeaves": 30,
+      "id": "91c2"
     }
   ],
   "leaveBalance": [
@@ -267,135 +188,113 @@
   ],
   "publicHolidays": [
     {
-      "color": "#3cb371",
-      "title": "Republic Day",
-      "start": "2024-01-26",
+      "holidayName": "Republic Day",
+      "holidayDate": "2024-01-26",
       "id": "815b"
     },
     {
-      "color": "#3cb371",
-      "title": "Chhatrapati Shivaji Maharaj Jayanti",
-      "start": "2024-02-19",
+      "holidayName": "Chhatrapati Shivaji Maharaj Jayanti",
+      "holidayDate": "2024-02-19",
       "id": "71bf"
     },
     {
-      "color": "#3cb371",
-      "title": "Mahashivratri",
-      "start": "2024-03-08",
+      "holidayName": "Mahashivratri",
+      "holidayDate": "2024-03-08",
       "id": "e56a"
     },
     {
-      "color": "#3cb371",
-      "title": "Holi (Second Day)",
-      "start": "2024-03-25",
+      "holidayName": "Holi (Second Day)",
+      "holidayDate": "2024-03-25",
       "id": "188c"
     },
     {
-      "color": "#3cb371",
-      "title": "Good Friday",
-      "start": "2024-03-29",
+      "holidayName": "Good Friday",
+      "holidayDate": "2024-03-29",
       "id": "fef4"
     },
     {
-      "color": "#3cb371",
-      "title": "Gudhi Padwa",
-      "start": "2024-04-09",
+      "holidayName": "Gudhi Padwa",
+      "holidayDate": "2024-04-09",
       "id": "824b"
     },
     {
-      "color": "#3cb371",
-      "title": "Ramzan-Id (Id-UL-Fitr)",
-      "start": "2024-04-11",
+      "holidayName": "Ramzan-Id (Id-UL-Fitr)",
+      "holidayDate": "2024-04-11",
       "id": "acb6"
     },
     {
-      "color": "#3cb371",
-      "title": "Dr.Babasaheb Ambedkar Jayanti",
-      "start": "2024-04-14",
+      "holidayName": "Dr.Babasaheb Ambedkar Jayanti",
+      "holidayDate": "2024-04-14",
       "id": "0389"
     },
     {
-      "color": "#3cb371",
-      "title": "Ram Navami",
-      "start": "2024-04-17",
+      "holidayName": "Ram Navami",
+      "holidayDate": "2024-04-17",
       "id": "964c"
     },
     {
-      "color": "#3cb371",
-      "title": "Maharashtra Din",
-      "start": "2024-05-01",
+      "holidayName": "Maharashtra Din",
+      "holidayDate": "2024-05-01",
       "id": "2fde"
     },
     {
-      "color": "#3cb371",
-      "title": "Buddha Pournima",
-      "start": "2024-05-23",
+      "holidayName": "Buddha Pournima",
+      "holidayDate": "2024-05-23",
       "id": "d782"
     },
     {
-      "color": "#3cb371",
-      "title": "Bakri Id (Id-Uz-Zuha)",
-      "start": "2024-06-17",
+      "holidayName": "Bakri Id (Id-Uz-Zuha)",
+      "holidayDate": "2024-06-17",
       "id": "ccbd"
     },
     {
-      "color": "#3cb371",
-      "title": "Moharum",
-      "start": "2024-07-17",
+      "holidayName": "Moharum",
+      "holidayDate": "2024-07-17",
       "id": "195b"
     },
     {
-      "color": "#3cb371",
-      "title": "Independence Day / Parsi New Year (Shahenshahi)",
-      "start": "2024-08-15",
+      "holidayName": "Independence Day / Parsi New Year (Shahenshahi)",
+      "holidayDate": "2024-08-15",
       "id": "f809"
     },
     {
-      "color": "#3cb371",
-      "title": "Ganesh Chaturthi",
-      "start": "2024-09-07",
+      "holidayName": "Ganesh Chaturthi",
+      "holidayDate": "2024-09-07",
       "id": "cdad"
     },
     {
-      "color": "#3cb371",
-      "title": "Id-E-Milad",
-      "start": "2024-09-16",
+      "holidayName": "Id-E-Milad",
+      "holidayDate": "2024-09-16",
       "id": "c265"
     },
     {
-      "color": "#3cb371",
-      "title": "Mahatma Gandhi Jayanti",
-      "start": "2024-10-02",
+      "holidayName": "Mahatma Gandhi Jayanti",
+      "holidayDate": "2024-10-02",
       "id": "31bb"
     },
     {
-      "color": "#3cb371",
-      "title": "Dasara",
-      "start": "2024-10-12",
+      "holidayName": "Dasara",
+      "holidayDate": "2024-10-12",
       "id": "bbf3"
     },
     {
-      "color": "#3cb371",
-      "title": "Diwali Amavasaya (Laxmi Pujan)",
-      "start": "2024-11-01",
+      "holidayName": "Diwali Amavasaya (Laxmi Pujan)",
+      "holidayDate": "2024-11-01",
       "id": "fe4f"
     },
     {
-      "color": "#3cb371",
-      "title": "Diwali (Bali Pratipada)",
-      "start": "2024-11-02",
+      "holidayName": "Diwali (Bali Pratipada)",
+      "holidayDate": "2024-11-02",
       "id": "fc18"
     },
     {
-      "color": "#3cb371",
-      "title": "Guru Nanak Jayanti",
-      "start": "2024-11-15",
+      "holidayName": "Guru Nanak Jayanti",
+      "holidayDate": "2024-11-15",
       "id": "28a3"
     },
     {
-      "color": "#3cb371",
-      "title": "Christmas",
-      "start": "2024-12-25",
+      "holidayName": "Christmas",
+      "holidayDate": "2024-12-25",
       "id": "5c01"
     }
   ]
