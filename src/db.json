@@ -133,6 +133,20 @@
       "checkIn": "3:31:15 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "2289",
+      "date": "9/11/2024",
+      "checkIn": "10:06:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "18da",
+      "date": "9/11/2024",
+      "checkIn": "10:06:29 AM",
+      "checkOut": "10:07:39 AM",
+      "break": "0h 1m 10s"
     }
   ],
   "leaveApplications": [
@@ -162,6 +176,15 @@
       "status": "Rejected",
       "reason": "enjoy",
       "totalLeaves": 4
+    },
+    {
+      "id": "727d",
+      "leaveType": "Unpaid Leave",
+      "startDate": "2024-09-03T18:30:00.000Z",
+      "endDate": "2024-09-11T04:39:26.058Z",
+      "status": "Pending",
+      "reason": "leaved",
+      "totalLeaves": 1
     }
   ],
   "leaveBalance": [

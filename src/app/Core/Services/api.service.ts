@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { catchError, map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +31,13 @@ export class ApiService {
   getHolidaysList(): Observable<any> {
     return this.http.get(`${this.apiUrl}/publicHolidays`);
   }
-  
+
+  getTotalEmployees(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/count`);
+  }
+  getEmployees(): Observable<any> {
+    return this.http.get<any>(this.apiUrl);
+  }
+
 }
+
