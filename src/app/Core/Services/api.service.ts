@@ -28,7 +28,8 @@ export class ApiService {
   submitLeaveRequest(leaveRequest: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
-
-  
+  getHolidaysList(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/publicHolidays`);
+  }
   
 }
