@@ -79,16 +79,65 @@
       "break": "0h 0m 20s"
     },
     {
-      "id": "2541",
-      "date": "9/10/2024",
-      "checkIn": "1:33:12 PM",
-      "checkOut": "1:46:54 PM",
-      "break": "0h 13m 42s"
+      "id": "7957",
+      "date": "9/11/2024",
+      "checkIn": "10:04:48 AM",
+      "checkOut": "",
+      "break": ""
     },
     {
-      "id": "22e6",
-      "date": "9/10/2024",
-      "checkIn": "1:49:58 PM",
+      "id": "e125",
+      "date": "9/11/2024",
+      "checkIn": "10:04:48 AM",
+      "checkOut": "10:04:57 AM",
+      "break": "0h 0m 9s"
+    },
+    {
+      "id": "498c",
+      "date": "9/11/2024",
+      "checkIn": "10:06:44 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b6ca",
+      "date": "9/11/2024",
+      "checkIn": "10:06:44 AM",
+      "checkOut": "10:06:50 AM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "7003",
+      "date": "9/11/2024",
+      "checkIn": "10:09:31 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8d4f",
+      "date": "9/11/2024",
+      "checkIn": "10:09:31 AM",
+      "checkOut": "10:09:37 AM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "e16a",
+      "date": "9/11/2024",
+      "checkIn": "10:12:01 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d0b8",
+      "date": "9/11/2024",
+      "checkIn": "10:12:01 AM",
+      "checkOut": "10:12:07 AM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "14b1",
+      "date": "9/11/2024",
+      "checkIn": "10:26:00 AM",
       "checkOut": "",
       "break": ""
     },
@@ -116,19 +165,23 @@
   ],
   "leaveApplications": [
     {
-      "id": "1cc1",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-12T18:30:00.000Z",
+      "employeeId": 101,
+      "employeeName": "Shubham Sonje",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-15",
+      "endDate": "2024-09-20",
       "status": "Pending",
-      "reason": "",
-      "totalLeaves": 2
+      "reason": "Vacation",
+      "approvedBy": "Abhishek Joshi",
+      "totalLeaves": 30,
+      "id": "4291"
     },
     {
-      "id": "7cb8",
-      "leaveType": "Unpaid Leave",
-      "startDate": "2024-09-15T18:30:00.000Z",
-      "endDate": "2024-09-19T18:30:00.000Z",
+      "employeeId": 102,
+      "employeeName": "Sahil Mhatre",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-05",
+      "endDate": "2024-09-07",
       "status": "Approved",
       "reason": "Vacation",
       "totalLeaves": 5
@@ -141,15 +194,6 @@
       "status": "Rejected",
       "reason": "enjoy",
       "totalLeaves": 4
-    },
-    {
-      "id": "bf7a",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-10T18:30:00.000Z",
-      "endDate": "2024-09-11T18:30:00.000Z",
-      "status": "Rejected",
-      "reason": "",
-      "totalLeaves": 2
     }
   ],
   "leaveBalance": [

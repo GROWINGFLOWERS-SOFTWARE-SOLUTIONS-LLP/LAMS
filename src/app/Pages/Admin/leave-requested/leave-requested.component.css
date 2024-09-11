@@ -1,0 +1,14 @@
+/* Styling for the Leave Management page */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  p-table {
+    width: 100%;
+  }
+  
+  .p-button {
+    margin-right: 10px;
+  }
+  
