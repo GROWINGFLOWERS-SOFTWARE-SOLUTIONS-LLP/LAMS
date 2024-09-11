@@ -10,6 +10,10 @@ import { LoginComponent } from './Pages/Auth/login/login.component';
 import { ProfileComponent } from './Pages/Components/profile/profile.component';
 import { ProfileFormComponent } from './Pages/Components/profile-form/profile-form.component';
 
+import { AllAttendenceComponent } from './Pages/Admin/all-attendence/all-attendence.component';
+import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profiles/all-employee-profiles.component';
+import { LeaveRequestedComponent } from './Pages/Admin/leave-requested/leave-requested.component';
+
 export const routes: Routes = [
     {
         path:'',
@@ -20,7 +24,7 @@ export const routes: Routes = [
         path:'login',
         component:LoginComponent,
       },
-    
+  
     {
         path: '',
         component: NavbarComponent,
@@ -33,6 +37,9 @@ export const routes: Routes = [
             { path: 'holidays', component: HolidaysComponent }, 
             { path: 'history', component: HistoryComponent }, 
             { path: 'help', component: HelpComponent }, 
+            { path: 'allattendance', component:AllAttendenceComponent, },
+            { path: 'employeeprofile', component: AllEmployeeProfilesComponent }, 
+            { path: 'leaverequest', component: LeaveRequestedComponent },
 
         ]
     }

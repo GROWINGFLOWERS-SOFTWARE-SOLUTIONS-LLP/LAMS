@@ -1,1 +1,34 @@
-<p>leave-requested works!</p>
+<div class="p-grid p-justify-center p-align-center p-m-3">
+    <div class="p-col-12 p-md-10 p-lg-8">
+      <h2>Leave Management</h2>
+  
+      <p-table [value]="leaveRequests" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Employee Name</th>
+            <th>Role</th>
+            <th>Leave Request</th>
+            <th>Reason</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Actions</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-request>
+          <tr>
+            <td>{{ request.employeeName }}</td>
+            <td>{{ request.employeeRole }}</td>
+            <td>{{ request.leaveRequest }}</td>
+            <td>{{ request.leaveReason }}</td>
+            <td>{{ request.startDate }}</td>
+            <td>{{ request.endDate  }}</td>
+            <td>
+              <button pButton type="button" icon="pi pi-check" class="p-button-success p-mr-2" (click)="approveLeave(request)"></button>
+              <button pButton type="button" icon="pi pi-times" class="p-button-danger" (click)="rejectLeave(request)"></button>
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+  
