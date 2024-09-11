@@ -3,11 +3,11 @@ import { CardModule } from 'primeng/card';
 import { MeterGroupModule } from 'primeng/metergroup';
 
 // Define interfaces for better type safety
-interface MeterValue {
-  label: string;
-  color: string;
-  value: number;
-}
+// interface MeterValue {
+//   label: string;
+//   color: string;
+//   value: number;
+// }
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -52,9 +52,6 @@ ngOnInit(): void {
     { id: 15, name: 'John' },
     { id: 16, name: 'Jane Smith' },
     { id: 17, name: 'John Doe' },
-    { id: 18, name: 'Jane Smith' },
-    { id: 19, name: 'John Doe' },
-    { id: 20, name: 'Jane Smith' },
     
     // Add more employee data as needed
   ];
