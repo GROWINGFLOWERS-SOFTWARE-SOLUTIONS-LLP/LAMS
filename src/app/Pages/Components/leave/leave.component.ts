@@ -41,7 +41,7 @@ export class LeaveComponent implements OnInit {
   visible: boolean = false;
   leaveRequests: LeaveRequest[] = [];
   leaveRequest: LeaveRequest = {
-    leaveType: '',
+    leaveType: 'Pending',
     startDate: new Date(),
     endDate: new Date(),
     status: '',
@@ -57,8 +57,8 @@ export class LeaveComponent implements OnInit {
 
   statusOptions = [
     { label: 'Pending', value: 'Pending' },
-    { label: 'Approved', value: 'Approved' },
-    { label: 'Rejected', value: 'Rejected' }
+    // { label: 'Approved', value: 'Approved' },
+    // { label: 'Rejected', value: 'Rejected' }
   ];
 
   constructor(private apiService: ApiService, private router: Router) {}
@@ -82,7 +82,7 @@ export class LeaveComponent implements OnInit {
       this.apiService.submitLeaveRequest(this.leaveRequest).subscribe(() => {
         this.leaveRequests.push({ ...this.leaveRequest });
         this.leaveRequest = {
-          leaveType: '',
+          leaveType: 'Pending',
           startDate: new Date(),
           endDate: new Date(),
           status: '',

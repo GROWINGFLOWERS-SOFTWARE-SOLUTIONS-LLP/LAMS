@@ -3,11 +3,13 @@
     {
       "username": "admin@gfss.com",
       "password": "admin",
+      "role": "Admin",
       "id": "2220"
     },
     {
       "username": "employee@gfss.com",
       "password": "employee",
+      "role": "Employee",
       "id": "47e1"
     }
   ],
@@ -161,6 +163,48 @@
       "checkIn": "2:46:23 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "7467",
+      "date": "9/11/2024",
+      "checkIn": "1:06:27 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8604",
+      "date": "9/11/2024",
+      "checkIn": "1:42:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1513",
+      "date": "9/11/2024",
+      "checkIn": "2:37:48 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0430",
+      "date": "9/11/2024",
+      "checkIn": "3:48:24 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bd2f",
+      "date": "9/11/2024",
+      "checkIn": "4:04:20 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "cb92",
+      "date": "9/11/2024",
+      "checkIn": "4:38:05 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
@@ -184,7 +228,8 @@
       "endDate": "2024-09-07",
       "status": "Approved",
       "reason": "Vacation",
-      "totalLeaves": 5
+      "totalLeaves": 5,
+      "id": "8e31"
     },
     {
       "id": "1490",
@@ -194,6 +239,24 @@
       "status": "Rejected",
       "reason": "enjoy",
       "totalLeaves": 4
+    },
+    {
+      "id": "f6e6",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-12T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "",
+      "totalLeaves": 2
+    },
+    {
+      "id": "beb2",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-11T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "injured\n",
+      "totalLeaves": 2
     }
   ],
   "leaveBalance": [

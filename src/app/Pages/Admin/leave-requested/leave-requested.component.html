@@ -1,7 +1,8 @@
-<div class="p-grid p-justify-center p-align-center p-m-3">
+<div class="container">
+  <div class="p-grid p-justify-center p-align-center p-m-3">
     <div class="p-col-12 p-md-10 p-lg-8">
-      <h2>Leave Management</h2>
-  
+      <h2>Leave Request</h2>
+
       <p-table [value]="leaveRequests" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
@@ -20,15 +21,27 @@
             <td>{{ request.employeeRole }}</td>
             <td>{{ request.leaveRequest }}</td>
             <td>{{ request.leaveReason }}</td>
-            <td>{{ request.startDate }}</td>
-            <td>{{ request.endDate  }}</td>
+            <!-- Apply date pipe here to format the date -->
+            <td>{{ request.startDate | date:'dd/MM/yyyy' }}</td>
+            <td>{{ request.endDate | date:'dd/MM/yyyy' }}</td>
             <td>
-              <button pButton type="button" icon="pi pi-check" class="p-button-success p-mr-2" (click)="approveLeave(request)"></button>
-              <button pButton type="button" icon="pi pi-times" class="p-button-danger" (click)="rejectLeave(request)"></button>
+              <div class="flex align-items-center justify-content-start">
+                <!-- Approve Button -->
+                <div class="flex align-items-center justify-content-center p-1 border-round mr-1">
+                  <button pButton type="button" label="Approve" class="p-button-success" [outlined]="true"
+                    (click)="approveLeave(request)"></button>
+                </div>
+
+                <!-- Reject Button -->
+                <div class="flex align-items-center justify-content-center p-1 border-round">
+                  <button pButton type="button" label="Reject" class="p-button-danger" [outlined]="true"
+                    (click)="rejectLeave(request)"></button>
+                </div>
+              </div>
             </td>
           </tr>
         </ng-template>
       </p-table>
     </div>
   </div>
-  
+</div>
