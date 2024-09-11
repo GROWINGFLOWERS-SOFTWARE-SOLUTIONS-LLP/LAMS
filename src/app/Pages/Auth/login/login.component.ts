@@ -29,13 +29,18 @@ export class LoginComponent {
    }
   
      loginFun(){  
-        if(this.loginObj.email == 'admin@gfss.com' && this.loginObj.password == 'admin'){
+        if(this.loginObj.email == 'employee@gfss.com' && this.loginObj.password == 'employee'){
          alert('login successfully')
          localStorage.setItem('logincredentials',JSON.stringify(this.loginObj));
          this.route.navigateByUrl('attendance');
-        }else{
-         alert('please check details ... and try again');
         }
+        if(this.loginObj.email == 'admin@gfss.com' && this.loginObj.password == 'admin'){
+          alert('login successfully')
+          localStorage.setItem('logincredentials',JSON.stringify(this.loginObj));
+          this.route.navigateByUrl('leaverequest');}
+        // else{
+        //  alert('please check details ... and try again');
+        // }
        
     }
 
