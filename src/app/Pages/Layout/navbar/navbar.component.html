@@ -8,37 +8,33 @@
 
     <ng-template pTemplate="center">
         <div class="flex align-items-center gap-2 flex-wrap justify-content-center md:gap-3">
-            <button
-                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
-                routerLink="dashboard">
+            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="dashboard">
                 Dashboard
             </button>
-           
-        
-            <button
-                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
-                routerLink="attendance">
+            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="attendance">
                 Attendance
             </button>
-            <button
-                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
-                routerLink="leave">
+            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="leave">
                 Leave
             </button>
-            <button
-                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
-                routerLink="holidays">
+            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="holidays">
                 Holidays
             </button>
-            <button
-                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
-                routerLink="history">
+            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="history">
                 History
             </button>
-            <button
-                class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
-                routerLink="help">
+            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="help">
                 Help
+            </button>
+
+            <button *ngIf="isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-8rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 mx-3 p-2 sm:w-5rem md:w-6rem" routerLink="allattendance">
+               Attendance
+            </button>
+            <button *ngIf="isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 mx-3  p-2 sm:w-5rem md:w-6rem" routerLink="employeeprofile">
+               Profile
+            </button>
+            <button *ngIf="isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 mx-3  p-2 sm:w-5rem md:w-6rem" routerLink="leaverequest">
+                Leave Request
             </button>
         </div>
     </ng-template>

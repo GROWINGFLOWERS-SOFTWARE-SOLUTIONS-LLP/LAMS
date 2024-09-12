@@ -45,6 +45,16 @@
             </div>
           </div>
 
+           <!-- Total Leaves -->
+           <div class="col-12 lg:col-6">
+            <div class="p-field">
+              <label for="totalLeaves">Total Leaves <span style="color: red;">*</span></label>
+              <input pInputText [(ngModel)]="leaveRequest.totalLeaves" type="number" />
+            </div>
+          </div>
+        </div>
+          
+
           <!-- Reason -->
           <div class="col-12">
             <div class="p-field">
@@ -53,15 +63,7 @@
             </div>
           </div>
 
-          <!-- Total Leaves -->
-          <div class="col-12 lg:col-6">
-            <div class="p-field">
-              <label for="totalLeaves">Total Leaves <span style="color: red;">*</span></label>
-              <input pInputText [(ngModel)]="leaveRequest.totalLeaves" type="number" />
-            </div>
-          </div>
-        </div>
-
+         
         <!-- Dialog Footer -->
         <div class="p-dialog-footer">
           <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
