@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 /* General Styles */
 section {
   display: flex;
@@ -13,7 +12,8 @@ section {
 }
 
 .center-container .p-avatar {
-  margin-bottom: 20px; /* Adjust spacing as needed */
+  margin-bottom: 20px;
+  /* Adjust spacing as needed */
 }
 
 /* Container Styles */
@@ -43,12 +43,15 @@ section {
 .column {
   display: flex;
   flex-wrap: wrap;
-  gap: 15px; /* Adjust gap as needed */
+  gap: 15px;
+  /* Adjust gap as needed */
 }
 
 .input-box {
-  flex: 1 1 45%; /* Adjust width as needed */
-  margin-top: 10px; /* Adjust spacing */
+  flex: 1 1 45%;
+  /* Adjust width as needed */
+  margin-top: 10px;
+  /* Adjust spacing */
 }
 
 .input-box label {
@@ -61,7 +64,7 @@ section {
   font-size: 1rem;
   color: #707070;
   border: 0.8px solid #ddd;
-  border-radius: 8%;
+  border-radius: 0%;
   padding: 10px;
 }
 
@@ -69,11 +72,12 @@ section {
   display: flex;
   align-items: center;
   width: 100%;
+  height: 80;
   font-size: 1rem;
   color: #707070;
   border: 0.8px solid #ddd;
-  border-radius: 8%;
-  padding: 10px;
+  border-radius: 0%;
+  padding: 0px;
 }
 
 .select-box select {
@@ -101,28 +105,6 @@ section {
 @media (max-width: 375px) {
   .input-box {
     flex: 1 1 100%;
-=======
-/* Import Google font - Poppins */
-/* * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    
-  } */
-  .center-container {
-      display: flex;
-      justify-content: center;
-      margin-top: 30px;
-      /* flex-direction: column; */
->>>>>>> 1441b1391ad1077f2c2fadb56148f0c4cf19dbee
   }
 
   .input-box input,
@@ -139,6 +121,7 @@ section {
 
 /* Responsive Styles for Very Small Mobile Devices (320px and below) */
 @media (max-width: 320px) {
+
   .input-box input,
   .select-box select {
     font-size: 12px;
@@ -158,7 +141,8 @@ section {
   }
 
   .form .column {
-    gap: 20px; /* Increase spacing for larger screens */
+    gap: 20px;
+    /* Increase spacing for larger screens */
   }
 
   .input-box input,
@@ -184,21 +168,8 @@ section {
   }
 
   .form button {
-<<<<<<< HEAD
     padding: 15px;
     font-size: 16px;
-=======
-    height: 55px;
-    width: 100%;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 400;
-    margin-top: 30px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    background-color: blueviolet;
->>>>>>> 1441b1391ad1077f2c2fadb56148f0c4cf19dbee
   }
 }
 
@@ -208,7 +179,6 @@ section {
     width: 50%;
     padding: 30px;
   }
-<<<<<<< HEAD
 
   .container header {
     font-size: 1.75rem;
@@ -218,14 +188,3 @@ section {
     font-size: 18px;
   }
 }
-=======
-  /*Responsive*/
-  @media screen and (max-width: 500px) {
-    .form .column {
-      flex-wrap: wrap;
-    }
-    .form :where(.gender-option, .gender) {
-      row-gap: 15px;
-    }
-  }
->>>>>>> 1441b1391ad1077f2c2fadb56148f0c4cf19dbee
