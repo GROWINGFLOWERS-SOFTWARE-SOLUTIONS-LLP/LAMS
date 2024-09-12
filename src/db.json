@@ -219,6 +219,34 @@
       "checkIn": "9:51:11 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "eeec",
+      "date": "9/12/2024",
+      "checkIn": "12:47:34 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e311",
+      "date": "9/12/2024",
+      "checkIn": "1:07:35 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7563",
+      "date": "9/12/2024",
+      "checkIn": "1:28:25 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7ef1",
+      "date": "9/12/2024",
+      "checkIn": "1:47:19 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
