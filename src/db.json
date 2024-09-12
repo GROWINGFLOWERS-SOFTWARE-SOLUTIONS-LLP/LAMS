@@ -212,6 +212,13 @@
       "checkIn": "5:02:01 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "44ba",
+      "date": "9/12/2024",
+      "checkIn": "9:51:11 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
@@ -273,6 +280,24 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
+    },
+    {
+      "id": "250e",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-13T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Dengue",
+      "totalLeaves": 3
+    },
+    {
+      "id": "ff2b",
+      "leaveType": "Unpaid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-10-11T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Frustrated ",
+      "totalLeaves": 31
     }
   ],
   "leaveBalance": [
