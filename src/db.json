@@ -214,13 +214,20 @@
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "a0e9",
       "date": "9/13/2024",
       "checkIn": "12:16:11 AM",
+=======
+      "id": "44ba",
+      "date": "9/12/2024",
+      "checkIn": "9:51:11 AM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "6d4c",
       "date": "9/13/2024",
       "checkIn": "12:16:11 AM",
@@ -231,17 +238,29 @@
       "id": "62e1",
       "date": "9/13/2024",
       "checkIn": "12:17:42 AM",
+=======
+      "id": "85f2",
+      "date": "9/12/2024",
+      "checkIn": "12:59:48 PM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "1bc9",
       "date": "9/13/2024",
       "checkIn": "12:18:50 AM",
+=======
+      "id": "9355",
+      "date": "9/12/2024",
+      "checkIn": "1:01:29 PM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "f9a8",
       "date": "9/13/2024",
       "checkIn": "12:18:50 AM",
@@ -252,15 +271,49 @@
       "id": "0a98",
       "date": "9/13/2024",
       "checkIn": "12:27:29 AM",
+=======
+      "id": "f581",
+      "date": "9/12/2024",
+      "checkIn": "1:06:25 PM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "96e5",
       "date": "9/13/2024",
       "checkIn": "12:27:29 AM",
       "checkOut": "12:27:34 AM",
       "break": "0h 0m 5s"
+=======
+      "id": "0c45",
+      "date": "9/12/2024",
+      "checkIn": "2:00:43 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c633",
+      "date": "9/12/2024",
+      "checkIn": "2:07:48 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "49ab",
+      "date": "9/12/2024",
+      "checkIn": "2:38:30 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "04a9",
+      "date": "9/12/2024",
+      "checkIn": "2:56:03 PM",
+      "checkOut": "",
+      "break": ""
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
     }
   ],
   "leaveApplications": [
@@ -322,6 +375,33 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
+    },
+    {
+      "id": "250e",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-13T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Dengue",
+      "totalLeaves": 3
+    },
+    {
+      "id": "ff2b",
+      "leaveType": "Unpaid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-10-11T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Frustrated ",
+      "totalLeaves": 31
+    },
+    {
+      "id": "cf06",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-16T18:30:00.000Z",
+      "endDate": "2024-09-16T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Ganesh Visarjan",
+      "totalLeaves": 1
     }
   ],
   "leaveBalance": [
