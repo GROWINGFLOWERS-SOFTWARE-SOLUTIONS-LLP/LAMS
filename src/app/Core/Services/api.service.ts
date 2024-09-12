@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, map, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -32,13 +34,27 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/publicHolidays`);
   }
 
-  getTotalEmployees(): Observable<number> {
-    return this.http.get<number>(`${this.apiUrl}/count`);
+  // getTotalEmployees(): Observable<number> {
+  //   return this.http.get<number>(`${this.apiUrl}/count`);
+  // }
+  // getEmployees(): Observable<any> {
+  //   return this.http.get<any>(this.apiUrl);
+  // }
+  // getEmployees(): Observable<any[]> {
+  //   return this.http.get<any[]>(this.apiUrl);
+  // }
+  // Get all employees
+  getEmployees(): Observable<any[]> {
+    return this.http.get<any[]>(this.apiUrl);
   }
-  getEmployees(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
+
+  // Update an employee's status or other details
+  updateEmployee(id: number, updates: any): Observable<any> {
+    return this.http.patch<any>(`${this.apiUrl}/${id}`, updates);
   }
-  
+
+
+ 
 
 }
 
