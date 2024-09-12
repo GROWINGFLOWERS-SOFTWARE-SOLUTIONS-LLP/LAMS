@@ -19,7 +19,7 @@ export class ProfileComponent {
     email: 'shubham.sonje@growingflowers-solutions.com',
     phoneNumber: '9890628672',
     // departmentId: '6', // Example ObjectId
-    joiningDate: new Date('2022-01-15'),
+    joiningDate: new Date('2022-02-16'),
     department: 'Engineering',
     address: 'Nashik'
   }
