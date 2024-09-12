@@ -273,6 +273,15 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
+    },
+    {
+      "id": "7a73",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-11T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Just Enjoy ",
+      "totalLeaves": 1
     }
   ],
   "leaveBalance": [
