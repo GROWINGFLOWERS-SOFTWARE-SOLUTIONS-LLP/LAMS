@@ -1,1 +1,24 @@
-<p>all-attendence works!</p>
+<div class="container">
+    
+    <h2>Admin Attendance Records</h2>
+  
+  
+    <p-table [value]="record" class="mt-4">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Employee Name</th>
+          <th>Employee Role</th>
+          <th>Attendance Ratio (Month)</th>
+          <th>Leaves Taken (Month)</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-record>
+        <tr>
+          <td>{{ record.employeeName }}</td>
+          <td>{{ record.employeeRole }}</td>
+          <td>{{ record.attendanceRatio }}</td>
+          <td>{{ record.leavestaken }}</td>
+        </tr>
+      </ng-template>
+    </p-table>
+</div>

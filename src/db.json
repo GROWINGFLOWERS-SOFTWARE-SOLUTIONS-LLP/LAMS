@@ -212,6 +212,55 @@
       "checkIn": "5:02:01 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "a0e9",
+      "date": "9/13/2024",
+      "checkIn": "12:16:11 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6d4c",
+      "date": "9/13/2024",
+      "checkIn": "12:16:11 AM",
+      "checkOut": "12:16:57 AM",
+      "break": "0h 0m 46s"
+    },
+    {
+      "id": "62e1",
+      "date": "9/13/2024",
+      "checkIn": "12:17:42 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1bc9",
+      "date": "9/13/2024",
+      "checkIn": "12:18:50 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f9a8",
+      "date": "9/13/2024",
+      "checkIn": "12:18:50 AM",
+      "checkOut": "12:19:58 AM",
+      "break": "0h 1m 8s"
+    },
+    {
+      "id": "0a98",
+      "date": "9/13/2024",
+      "checkIn": "12:27:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "96e5",
+      "date": "9/13/2024",
+      "checkIn": "12:27:29 AM",
+      "checkOut": "12:27:34 AM",
+      "break": "0h 0m 5s"
     }
   ],
   "leaveApplications": [
