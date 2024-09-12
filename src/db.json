@@ -221,30 +221,23 @@
       "break": ""
     },
     {
-      "id": "eeec",
+      "id": "85f2",
       "date": "9/12/2024",
-      "checkIn": "12:47:34 PM",
+      "checkIn": "12:59:48 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "e311",
+      "id": "9355",
       "date": "9/12/2024",
-      "checkIn": "1:07:35 PM",
+      "checkIn": "1:01:29 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "7563",
+      "id": "f581",
       "date": "9/12/2024",
-      "checkIn": "1:28:25 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "7ef1",
-      "date": "9/12/2024",
-      "checkIn": "1:47:19 PM",
+      "checkIn": "1:06:25 PM",
       "checkOut": "",
       "break": ""
     }
@@ -326,6 +319,15 @@
       "status": "Pending",
       "reason": "Frustrated ",
       "totalLeaves": 31
+    },
+    {
+      "id": "cf06",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-16T18:30:00.000Z",
+      "endDate": "2024-09-16T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "Ganesh Visarjan",
+      "totalLeaves": 1
     }
   ],
   "leaveBalance": [
