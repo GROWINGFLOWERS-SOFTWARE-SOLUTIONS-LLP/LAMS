@@ -39,12 +39,13 @@ interface LeaveRequest {
 })
 export class LeaveComponent implements OnInit {
   visible: boolean = false;
+  
   leaveRequests: LeaveRequest[] = [];
   leaveRequest: LeaveRequest = {
-    leaveType: 'Pending',
+    leaveType: '',
     startDate: new Date(),
     endDate: new Date(),
-    status: '',
+    status: 'Pending', // Default status
     reason: '',
     totalLeaves: 0
   };
@@ -53,12 +54,6 @@ export class LeaveComponent implements OnInit {
     { label: 'Sick Leave', value: 'Sick Leave' },
     { label: 'Paid Leave', value: 'Paid Leave' },
     { label: 'Unpaid Leave', value: 'Unpaid Leave' }
-  ];
-
-  statusOptions = [
-    { label: 'Pending', value: 'Pending' },
-    // { label: 'Approved', value: 'Approved' },
-    // { label: 'Rejected', value: 'Rejected' }
   ];
 
   constructor(private apiService: ApiService, private router: Router) {}
@@ -79,13 +74,14 @@ export class LeaveComponent implements OnInit {
 
   saveLeaveRequest(): void {
     if (this.isFormValid()) {
+      this.leaveRequest.status = 'Pending'; // Ensure status is set to "Pending"
       this.apiService.submitLeaveRequest(this.leaveRequest).subscribe(() => {
         this.leaveRequests.push({ ...this.leaveRequest });
         this.leaveRequest = {
-          leaveType: 'Pending',
+          leaveType: '',
           startDate: new Date(),
           endDate: new Date(),
-          status: '',
+          status: 'Pending', // Default status
           reason: '',
           totalLeaves: 0
         };
@@ -98,7 +94,6 @@ export class LeaveComponent implements OnInit {
     return this.leaveRequest.leaveType.trim() !== '' &&
            !!this.leaveRequest.startDate &&
            !!this.leaveRequest.endDate &&
-           this.leaveRequest.status.trim() !== '' &&
            this.leaveRequest.totalLeaves > 0;
   }
 }
