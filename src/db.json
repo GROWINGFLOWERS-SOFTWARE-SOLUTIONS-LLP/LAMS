@@ -249,23 +249,41 @@
       "break": ""
     },
     {
+<<<<<<< HEAD
+      "id": "813b",
+      "date": "9/13/2024",
+      "checkIn": "9:58:43 AM",
+=======
       "id": "c633",
       "date": "9/12/2024",
       "checkIn": "2:07:48 PM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
+      "id": "0a90",
+      "date": "9/13/2024",
+      "checkIn": "10:21:48 AM",
+=======
       "id": "49ab",
       "date": "9/12/2024",
       "checkIn": "2:38:30 PM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
+      "id": "2902",
+      "date": "9/13/2024",
+      "checkIn": "10:26:46 AM",
+=======
       "id": "04a9",
       "date": "9/12/2024",
       "checkIn": "2:56:03 PM",
+>>>>>>> e777b6c2dd4cac86a54b2a3439a94fa640aab83c
       "checkOut": "",
       "break": ""
     },
@@ -370,6 +388,15 @@
       "status": "Pending",
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
+    },
+    {
+      "id": "1fb9",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-09-11T18:30:00.000Z",
+      "endDate": "2024-09-18T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "",
+      "totalLeaves": 8
     }
   ],
   "leaveBalance": [
