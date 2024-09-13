@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../Core/Services/api.service';
 import { TableModule } from 'primeng/table';
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
 @Component({
   selector: 'app-all-attendence',
   standalone: true,
@@ -26,40 +22,24 @@ export class AllAttendenceComponent  {
       employeeRole: 'Software Engineer',
       attendanceRatio : '28/30',
       leavestaken : '2'
-<<<<<<< HEAD
-      
-=======
      
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
     },
     {
       employeeName: 'Bhushan',
       employeeRole: 'Software Engineer',
       attendanceRatio : '02/30',
       leavestaken : '16'
-<<<<<<< HEAD
-      
-    },]
-  attendanceRecords: any[] = [];
-  
-
-=======
      
     },]
   attendanceRecords: any[] = [];
  
  
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
   constructor(private apiService: ApiService) {}
   }
 //   ngOnInit(): void {
 //     this.loadAttendanceRecords();
 //   }
-<<<<<<< HEAD
-
-=======
  
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
 //   loadAttendanceRecords() {
 //     this.apiService.getAttendanceRecords().subscribe(
 //       (records: any[]) => {

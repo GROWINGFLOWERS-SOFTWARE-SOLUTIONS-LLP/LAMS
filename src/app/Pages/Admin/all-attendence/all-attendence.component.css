@@ -2,12 +2,6 @@
     width: 100%;
     height: 100vh;
     box-sizing: border-box;
-<<<<<<< HEAD
-  }
-  p-table {
-    width: 100%;
-  }
-=======
     padding: 10px;
   }
   
@@ -15,7 +9,6 @@
     width: 100%;
   }
   
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
   h2 {
     text-align: center;
     font-size: 24px;
@@ -25,27 +18,6 @@
   
   .p-table {
     width: 100%;
-<<<<<<< HEAD
-    max-width: 800px;
-  }
-  
-  .p-table table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .p-table th, .p-table td {
-    text-align: left;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-  }
-  
-  .p-table th {
-    background-color: #f4f4f4;
-    color: #333;
-  }
-  
-=======
     max-width: 100%; /* Remove the fixed max-width */
   }
   
@@ -95,7 +67,6 @@
   }
   
   /* For alternating row background and hover effect */
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
   .p-table tr:nth-child(even) {
     background-color: #f9f9f9;
   }
@@ -107,11 +78,4 @@
   .p-table td {
     color: #555;
   }
-<<<<<<< HEAD
   
-  .mt-4 {
-    margin-top: 20px;
-  }
-=======
-  
->>>>>>> 938312788694c0be44154956fc6e5aea73a6d096
