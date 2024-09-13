@@ -43,16 +43,21 @@ export class ApiService {
   // getEmployees(): Observable<any[]> {
   //   return this.http.get<any[]>(this.apiUrl);
   // }
+
   // Get all employees
+  // getEmployees(): Observable<any[]> {
+  //   return this.http.get<any[]>(this.apiUrl);
+  // }
+
+  // // Update an employee's status or other details
+  // updateEmployee(id: number, updates: any): Observable<any> {
+  //   return this.http.patch<any>(`${this.apiUrl}/${id}`, updates);
+  // }
+
+  
   getEmployees(): Observable<any[]> {
-    return this.http.get<any[]>(this.apiUrl);
+    return this.http.get<any[]>(`${this.apiUrl}/employees`);
   }
-
-  // Update an employee's status or other details
-  updateEmployee(id: number, updates: any): Observable<any> {
-    return this.http.patch<any>(`${this.apiUrl}/${id}`, updates);
-  }
-
 
  
 
