@@ -1,4 +1,3 @@
-
 import { Component, HostListener, OnInit } from '@angular/core';
 import { CalendarOptions } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -6,6 +5,12 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { ApiService } from '../../../Core/Services/api.service';
+
+interface Holiday {
+  holidayName: string;
+  holidayDate: string;
+  id: string;
+}
 
 @Component({
   selector: 'app-holidays',
@@ -81,8 +86,12 @@ export class HolidaysComponent implements OnInit {
 
   async loadFixedEvents(): Promise<void> {
     // Fetch the holidays list and assign to fixedEvents
-    const value = await this.apiservice.getHolidaysList().toPromise();
-    this.fixedEvents = value;
+    const holidays: Holiday[] = await this.apiservice.getHolidaysList().toPromise();
+    this.fixedEvents = holidays.map(holiday => ({
+      title: holiday.holidayName,
+      start: holiday.holidayDate,
+      color: '#90EE90' // You can adjust the color as needed
+    }));
   }
 
   getWeeklyOffEvents() {
@@ -111,10 +120,12 @@ export class HolidaysComponent implements OnInit {
   }
 
   getAllHolidaysList() {
-    this.apiservice.getHolidaysList().subscribe((value) => {  
-     value.push("color: #FFCCCB");
-     console.log(value);
-      this.fixedEvents = value;
+    this.apiservice.getHolidaysList().subscribe((holidays: Holiday[]) => {  
+      this.fixedEvents = holidays.map(holiday => ({
+        title: holiday.holidayName,
+        start: holiday.holidayDate,
+        color: '#90EE90' // You can adjust the color as needed
+      }));
       this.updateLayout();
     });
   }
