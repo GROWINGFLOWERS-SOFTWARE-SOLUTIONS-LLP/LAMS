@@ -29,11 +29,10 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
 
- 
   getHolidaysList(): Observable<any> {
     return this.http.get(`${this.apiUrl}/publicHolidays`);
   }
-  
+
   addEmployee(employee: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/employees`, employee);
   }
@@ -50,4 +49,6 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/employees`);
   }
 
+  
 }
+
