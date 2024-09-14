@@ -15,28 +15,40 @@
   ],
   "employees": [
     {
-      "employeeId": 101,
-      "firstName": "Bhushan",
-      "lastName": "Malpure",
-      "email": "bhushanmalpure@gfss.com",
-      "mobileNumber": "7741903359",
-      "department": "Development",
-      "role": "Software Developer",
-      "joiningDate": "2021-01-15",
-      "address": "Nashik",
-      "id": "093a"
+      "id": "25d7",
+      "firstName": "Prajakta",
+      "lastName": "Badhan",
+      "email": "prajakta24@gmail.com",
+      "password": "prajakta123",
+      "mobileNumber": "9800129089",
+      "department": "Engineering",
+      "role": "Eng",
+      "joiningDate": "2024-01-15",
+      "address": "Pune"
     },
     {
-      "employeeId": 102,
-      "firstName": "prajakta",
-      "lastName": "Badhan",
-      "email": "prajaktabadhan@gfss.com",
-      "mobileNumber": "88888888888",
-      "department": "Development",
-      "role": "Software Developer",
-      "joiningDate": "2019-03-23",
+      "id": "e21b",
+      "firstName": "Bhushan",
+      "lastName": "Malpure",
+      "email": "bhushan17@gmail.com",
+      "mobileNumber": 9800129089,
+      "department": "QA Testing",
+      "role": "Eng",
+      "joiningDate": "2024-09-19",
       "address": "Pune",
-      "id": "6fdf"
+      "password": "bhushan"
+    },
+    {
+      "id": "4ca1",
+      "firstName": "Sahil",
+      "lastName": "Mhatre",
+      "email": "sahil12@gmail.com",
+      "mobileNumber": 7896321456,
+      "department": "Engineering",
+      "role": "Dev",
+      "joiningDate": "2024-09-20",
+      "address": "Pune",
+      "password": "sahil@123"
     }
   ],
   "attendance": [
@@ -270,37 +282,20 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "a59a",
-      "date": "9/13/2024",
-      "checkIn": "10:35:45 AM",
-=======
       "id": "ed72",
       "date": "9/12/2024",
       "checkIn": "3:03:03 PM",
->>>>>>> a08fff051c2366520fa3d26cd8b281abcdadf0c0
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "f261",
-      "date": "9/13/2024",
-      "checkIn": "11:01:07 AM",
-=======
       "id": "7462",
       "date": "9/13/2024",
       "checkIn": "9:31:57 AM",
->>>>>>> a08fff051c2366520fa3d26cd8b281abcdadf0c0
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "b407",
-      "date": "9/13/2024",
-      "checkIn": "11:07:45 AM",
-=======
       "id": "fb15",
       "date": "9/13/2024",
       "checkIn": "10:50:36 AM",
@@ -318,7 +313,20 @@
       "id": "d310",
       "date": "9/13/2024",
       "checkIn": "11:09:08 AM",
->>>>>>> a08fff051c2366520fa3d26cd8b281abcdadf0c0
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5b9b",
+      "date": "9/13/2024",
+      "checkIn": "11:19:18 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "10d5",
+      "date": "9/14/2024",
+      "checkIn": "12:05:53 PM",
       "checkOut": "",
       "break": ""
     }

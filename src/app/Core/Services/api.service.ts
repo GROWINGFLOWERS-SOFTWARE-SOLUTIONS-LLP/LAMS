@@ -34,4 +34,20 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/publicHolidays`);
   }
   
+  addEmployee(employee: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/employees`, employee);
+  }
+
+  updateEmployee(employee: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
+  }
+
+  deleteEmployee(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/employees/${id}`);
+  }
+
+  getEmployees(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/employees`);
+  }
+
 }

@@ -1,57 +1,111 @@
 <div class="container">
     <h1>Employees</h1>
+
     <div class="card flex justify-content-end">
-        <p-button label="Add Employee" (click)="addProfile()" />
-    </div>
-    <table>
-    <thead>
-        
-    <tr>
-        
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email Id</th>
-    <th>Password</th>
-    <th>Phone Number</th>
-    <th>Address</th>
-    <th>Department</th>
-    <th>Designation</th>
-    <th>Joining Date</th>
-    
-    </tr>
-    </thead>
-    <!-- <tbody>
-    <tr>
-    <td>1</td>
-    <td>John Doe</td>
-    <td>Software Engineer</td>
-    <td>IT</td>
-    <td>$80,000</td>
-    </tr>
-    <tr>
-    <td>2</td>
-    <td>Jane Smith</td>
-    <td>Marketing Manager</td>
-    <td>Marketing</td>
-    <td>$75,000</td>
-    </tr>
-    <tr>
-    <td>3</td>
-    <td>Emily Johnson</td>
-    <td>Product Designer</td>
-    <td>Design</td>
-    <td>$70,000</td>
-    </tr>
-    <tr>
-    <td>4</td>
-    <td>Michael Brown</td>
-    <td>Sales Executive</td>
-    <td>Sales</td>
-    <td>$65,000</td>
-    </tr>
-    </tbody> -->
-    </table>
+        <p-button label="Add Employee" icon="pi pi-plus" (click)="showDialog = true; prepareEmployee()"></p-button>
     </div>
 
+    <table>
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Phone Number</th>
+                <th>Address</th>
+                <th>Department</th>
+                <th>Role</th>
+                <th>Joining Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let employee of employees">
+                <td>{{ employee.firstName }}</td>
+                <td>{{ employee.lastName }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.password }}</td> <!-- Added Password Column -->
+                <td>{{ employee.mobileNumber }}</td>
+                <td>{{ employee.address }}</td>
+                <td>{{ employee.department }}</td>
+                <td>{{ employee.role }}</td>
+                <td>{{ employee.joiningDate }}</td>
+                <td>
+                    <p-button icon="pi pi-pencil" class="p-button-rounded mx-2" (click)="editEmployee(employee)"></p-button>
+                    <p-button icon="pi pi-trash" class="p-button-rounded" (click)="deleteEmployee(employee.id)"></p-button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     
     
+    <!-- PrimeNG Dialog -->
+    <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal"
+        [style]="{'width': '50vw'}" [responsive]="true" [closable]="true">
+        <form action="#" class="form">
+            <div class="column">
+                <div class="input-box">
+                    <label>First Name</label>
+                    <input type="text" [(ngModel)]="employee.firstName" name="firstName" placeholder="Enter first name"
+                        required />
+                </div>
+                <div class="input-box">
+                    <label>Last Name</label>
+                    <input type="text" [(ngModel)]="employee.lastName" name="lastName" placeholder="Enter last name"
+                        required />
+                </div>
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Email Address</label>
+                    <input type="text" [(ngModel)]="employee.email" name="email" placeholder="Enter email address"
+                        required />
+                </div>
+                <div class="input-box">
+                    <label>Password</label>
+                    <input type="password" [(ngModel)]="employee.password" name="password" placeholder="Enter password"
+                        required /> <!-- Added Password Field -->
+                </div>
+            </div>
+            <div class="column">
+                <div class="input-box">
+                    <label>Phone Number</label>
+                    <input type="number" [(ngModel)]="employee.mobileNumber" name="mobileNumber"
+                        placeholder="Enter phone number" required />
+                </div>
+                <div class="input-box">
+                    <label>Department</label>
+                    <div class="select-box">
+                        <select [(ngModel)]="employee.department" name="department">
+                            <option hidden>Department</option>
+                            <option>Engineering</option>
+                            <option>QA Testing</option>
+                            <option>Admin</option>
+                            <option>Human Resources</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label>Designation</label>
+                    <input type="text" [(ngModel)]="employee.role" name="role" placeholder="Enter Designation"
+                        required />
+                </div>
+                <div class="input-box">
+                    <label>Joining Date</label>
+                    <input type="date" [(ngModel)]="employee.joiningDate" name="joiningDate"
+                        placeholder="Enter Joining Date" required />
+                </div>
+            </div>
+            <div class="input-box address">
+                <label>Address</label>
+                <input type="text" [(ngModel)]="employee.address" name="address" placeholder="Enter street address"
+                    required />
+            </div>
+            <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+                <p-button [label]="isEditing ? 'Update' : 'Save'"
+                    (click)="isEditing ? updateEmployee() : addEmployee()"></p-button>
+            </div>
+        </form>
+    </p-dialog>
+</div>
