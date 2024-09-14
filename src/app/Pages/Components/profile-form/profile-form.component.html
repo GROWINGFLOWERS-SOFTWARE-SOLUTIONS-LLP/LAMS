@@ -1,61 +1,104 @@
 
-  <section>
-    <div class="center-container">
-      <!-- <header>Employee Details form </header> -->
-      <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle" />
-    </div>
-    <div class="container">
-      <form action="#" class="form">
-        <div class="column">
-          <div class="input-box">
-            <label>First Name</label>
-            <input type="text" placeholder="Enter first name" required />
-          </div>
-          <div class="input-box">
-            <label>Last Name</label>
-            <input type="text" placeholder="Enter last name" required />
-          </div>
+<!-- <section>
+  <div class="center-container"> -->
+    <!-- <header>Employee Details form </header>
+    <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle" />
+  </div>
+  <div class="container">
+    <form action="#" class="form">
+      <div class="column">
+        <div class="input-box">
+          <label>First Name</label>
+          <input type="text" placeholder="Enter first name" [(ngModel)]="employeeObj.firstname" required />
         </div>
-        <div class="column">
-          <div class="input-box">
-            <label>Email Address</label>
-            <input type="text" placeholder="Enter email address" required />
-          </div>
-          <div class="input-box">
-            <label>Phone Number</label>
-            <input type="number" placeholder="Enter phone number" required />
-          </div>
+        <div class="input-box">
+          <label>Last Name</label>
+          <input type="text" placeholder="Enter last name" [(ngModel)]="employeeObj.lastname" required />
         </div>
-        <div class="column">
-          <div class="input-box">
-            <label>Department</label>
-            <div class="select-box">
-              <select>
-                <option hidden>Department</option>
-                <option>engineering</option>
-                <option>Qa Testing</option>
-                <option>Admin</option>
-                <option>Human Resources</option>
-              </select>
-            </div>
-          </div>
-          <div class="input-box">
-            <label>Designation</label>
-            <input type="text" placeholder="Enter Designation" required />
-          </div>
-          <div class="input-box">
-            <label>Joining Date</label>
-            <input type="date" placeholder="Enter Joining date" required />
-          </div>
+      </div>
+      <div class="column">
+        <div class="input-box">
+          <label>Email Address</label>
+          <input type="text" placeholder="Enter email address" [(ngModel)]="employeeObj.emailaddress" required />
         </div>
-        <div class="input-box address">
-          <label>Address</label>
-          <input type="text" placeholder="Enter street address" required />
+        <div class="input-box">
+          <label>Phone Number</label>
+          <input type="number" placeholder="Enter phone number" [(ngModel)]="employeeObj.phonenumber" required />
         </div>
-        <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-          <p-button label="Update"></p-button>
-        </div>
+      </div>
+      <div class="column">
+        <div class="input-box">
+          <label>Department</label>
+          <div class="select-box">
+            <select [(ngModel)]="employeeObj.department">
 
-      </form>
+              <option hidden>Department</option>
+              <option>engineering</option>
+              <option>Qa Testing</option>
+              <option>Admin</option>
+              <option>Human Resources</option>
+            </select>
+          </div>
+        </div>
+        <div class="input-box">
+          <label>Designation</label>
+          <input type="text" placeholder="Enter Designation" [(ngModel)]="employeeObj.designation" required />
+        </div>
+        <div class="input-box">
+          <label>Joining Date</label>
+          <input type="date" placeholder="Enter Joining date" [(ngModel)]="employeeObj.joiningdate" required />
+        </div>
+      </div>
+      <div class="input-box address">
+        <label>Address</label>
+        <input type="text" placeholder="Enter street address" [(ngModel)]="employeeObj.address" required />
+      </div>
+      <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
+        <p-button label="Update" (onclick)="update()"></p-button>
+      </div>
+
+    </form>
+  </div>
+</section> -->
+
+
+
+  <div class="container">
+    <h2>Registration Form</h2>
+    <!-- <form (ngUpdate)="onUpdate()" #profileForm='ngform'> -->
+    <div class="form-group">
+    <label for="firstName">First Name:</label>
+    <input type="text"  name="firstName" [(ngModel)]="employees.firstName" required />
     </div>
-  </section>
+    <div class="form-group">
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName" [(ngModel)]="employees.lastName" required />
+    </div>
+    <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email"  name="email" [(ngModel)]="employees.email" required />
+    </div>
+    <div class="form-group">
+    <label for="mobileNumber">Mobile Number:</label>
+    <input type="text"  name="mobileNumber" [(ngModel)]="employees.mobileNumber" required />
+    </div>
+    <div class="form-group">
+    <label for="department">Department:</label>
+    <input type="text" name="department" [(ngModel)]="employees.department" required />
+    </div>
+    <div class="form-group">
+    <label for="ROLE">Role:</label>
+    <input type="text"  name="role" [(ngModel)]="employees.role" required />
+    </div>
+    <div class="form-group">
+    <label for="joiningDate">Joining Date:</label>
+    <input type="date"  name="joiningDate" [(ngModel)]="employees.joiningDate" required />
+    </div>
+    <div class="form-group">
+    <label for="address">Address:</label>
+    <textarea  name="address" [(ngModel)]="employees.address" required></textarea>
+    </div>
+    <!-- <button type="update" [disabled]='!profile-form.form.valid'>Update</button>
+    <button type="delete" [disabled]='!profile-form.form.valid'>Delete</button> -->
+    
+    </div>

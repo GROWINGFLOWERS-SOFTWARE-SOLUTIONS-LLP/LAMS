@@ -37,8 +37,21 @@
       "joiningDate": "2019-03-23",
       "address": "Pune",
       "id": "6fdf"
+    },
+    {
+      "employeeId": 103,
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shwetasonje@gfss.com",
+      "mobileNumber": "9255489234",
+      "department": "Development",
+      "role": "Software Developer",
+      "joiningDate": "2019-02-12",
+      "address": "Pune",
+      "id": "6fds"
     }
   ],
+
   "attendance": [
     {
       "attendance_date": "2024-09-10",
@@ -214,30 +227,44 @@
       "break": ""
     },
     {
-      "id": "44ba",
-      "date": "9/12/2024",
-      "checkIn": "9:51:11 AM",
+      "id": "40ba",
+      "date": "9/11/2024",
+      "checkIn": "10:38:44 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "85f2",
-      "date": "9/12/2024",
-      "checkIn": "12:59:48 PM",
+      "id": "e50d",
+      "date": "9/11/2024",
+      "checkIn": "11:22:28 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "9355",
+      "id": "0538",
       "date": "9/12/2024",
-      "checkIn": "1:01:29 PM",
+      "checkIn": "9:58:06 AM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "f581",
+      "id": "abf6",
       "date": "9/12/2024",
-      "checkIn": "1:06:25 PM",
+      "checkIn": "1:03:52 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e8df",
+      "date": "9/12/2024",
+      "checkIn": "2:19:16 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5664",
+      "date": "9/12/2024",
+      "checkIn": "2:26:36 PM",
       "checkOut": "",
       "break": ""
     },
@@ -282,6 +309,37 @@
       "checkIn": "9:31:57 AM",
       "checkOut": "",
       "break": ""
+<<<<<<< HEAD
+=======
+    },
+    {
+      "id": "fb15",
+      "date": "9/13/2024",
+      "checkIn": "10:50:36 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8d84",
+      "date": "9/13/2024",
+      "checkIn": "11:06:17 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d310",
+      "date": "9/13/2024",
+      "checkIn": "11:09:08 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d7da",
+      "date": "9/12/2024",
+      "checkIn": "4:58:12 PM",
+      "checkOut": "",
+      "break": ""
+>>>>>>> a8b90d6f6e836c553876a4d74e996051d44783c2
     }
   ],
   "leaveApplications": [
@@ -501,5 +559,6 @@
       "holidayDate": "2024-12-25",
       "id": "5c01"
     }
+    
   ]
 }
