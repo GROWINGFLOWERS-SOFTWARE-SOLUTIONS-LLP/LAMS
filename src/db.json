@@ -27,7 +27,7 @@
       "address": "Pune"
     },
     {
-      "id": "e21b",
+      "id": "6fdf",
       "firstName": "Bhushan",
       "lastName": "Malpure",
       "email": "bhushan17@gmail.com",
@@ -36,22 +36,9 @@
       "role": "Eng",
       "joiningDate": "2024-09-19",
       "address": "Pune",
-      "id": "6fdf"
-    },
-    {
-      "employeeId": 103,
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shwetasonje@gfss.com",
-      "mobileNumber": "9255489234",
-      "department": "Development",
-      "role": "Software Developer",
-      "joiningDate": "2019-02-12",
-      "address": "Pune",
-      "id": "6fds"
+      "password": "bhushan@123"
     }
   ],
-
   "attendance": [
     {
       "attendance_date": "2024-09-10",
@@ -556,6 +543,5 @@
       "holidayDate": "2024-12-25",
       "id": "5c01"
     }
-    
   ]
 }
