@@ -36,21 +36,6 @@
       "role": "Eng",
       "joiningDate": "2024-09-19",
       "address": "Pune",
-<<<<<<< HEAD
-      "password": "bhushan"
-    },
-    {
-      "id": "4ca1",
-      "firstName": "Sahil",
-      "lastName": "Mhatre",
-      "email": "sahil12@gmail.com",
-      "mobileNumber": 7896321456,
-      "department": "Engineering",
-      "role": "Dev",
-      "joiningDate": "2024-09-20",
-      "address": "Pune",
-      "password": "sahil@123"
-=======
       "id": "6fdf"
     },
     {
@@ -64,7 +49,6 @@
       "joiningDate": "2019-02-12",
       "address": "Pune",
       "id": "6fds"
->>>>>>> a8b90d6f6e836c553876a4d74e996051d44783c2
     }
   ],
 
@@ -348,22 +332,9 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "5b9b",
-      "date": "9/13/2024",
-      "checkIn": "11:19:18 AM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "10d5",
-      "date": "9/14/2024",
-      "checkIn": "12:05:53 PM",
-=======
       "id": "d7da",
       "date": "9/12/2024",
       "checkIn": "4:58:12 PM",
->>>>>>> a8b90d6f6e836c553876a4d74e996051d44783c2
       "checkOut": "",
       "break": ""
     }
