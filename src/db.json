@@ -296,8 +296,6 @@
       "checkIn": "9:31:57 AM",
       "checkOut": "",
       "break": ""
-<<<<<<< HEAD
-=======
     },
     {
       "id": "fb15",
@@ -326,7 +324,6 @@
       "checkIn": "4:58:12 PM",
       "checkOut": "",
       "break": ""
->>>>>>> a8b90d6f6e836c553876a4d74e996051d44783c2
     }
   ],
   "leaveApplications": [
