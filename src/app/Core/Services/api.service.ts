@@ -2,8 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -30,22 +28,27 @@ export class ApiService {
   submitLeaveRequest(leaveRequest: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
+
   getHolidaysList(): Observable<any> {
     return this.http.get(`${this.apiUrl}/publicHolidays`);
   }
-<<<<<<< HEAD
-  getemployee(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/employee`);
+
+  addEmployee(employee: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/employees`, employee);
   }
+
+  updateEmployee(employee: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
+  }
+
+  deleteEmployee(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/employees/${id}`);
+  }
+
+  getEmployees(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/employees`);
+  }
+
   
-=======
-
-  getEmployees(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/employees`);
-  }
-
- 
-
->>>>>>> 4f9671fdfad5985ef3178055a080aa11cf3cf6e5
 }
 
