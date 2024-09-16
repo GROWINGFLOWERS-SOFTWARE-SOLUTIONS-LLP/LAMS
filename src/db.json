@@ -23,20 +23,32 @@
       "mobileNumber": "9800129089",
       "department": "Engineering",
       "role": "Eng",
-      "joiningDate": "2024-01-15",
+      "joiningDate": "2024-01-16",
       "address": "Pune"
     },
     {
-      "id": "6fdf",
+      "id": "a5f9",
       "firstName": "Bhushan",
       "lastName": "Malpure",
       "email": "bhushan17@gmail.com",
-      "mobileNumber": 9800129089,
-      "department": "QA Testing",
+      "mobileNumber": 8975091234,
+      "department": "Admin",
       "role": "Eng",
-      "joiningDate": "2024-09-19",
+      "joiningDate": "2024-09-11",
       "address": "Pune",
-      "password": "bhushan@123"
+      "password": "bhushan17"
+    },
+    {
+      "id": "270a",
+      "firstName": "Sahil",
+      "lastName": "Mhatre",
+      "email": "sahil12@gmail.com",
+      "mobileNumber": "7760984512",
+      "department": "QA Testing",
+      "role": "dev",
+      "joiningDate": "2024-09-17",
+      "address": "Pune",
+      "password": "Sahil@123"
     }
   ],
   "attendance": [
@@ -319,6 +331,119 @@
       "break": ""
     },
     {
+
+      "id": "9c89",
+      "date": "9/13/2024",
+      "checkIn": "12:32:57 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7a81",
+      "date": "9/13/2024",
+      "checkIn": "12:32:57 AM",
+      "checkOut": "12:34:29 AM",
+      "break": "0h 1m 32s"
+    },
+    {
+      "id": "03bc",
+      "date": "9/13/2024",
+      "checkIn": "10:45:08 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "93af",
+      "date": "9/13/2024",
+      "checkIn": "10:45:08 AM",
+      "checkOut": "10:45:14 AM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "5bb2",
+      "date": "9/14/2024",
+      "checkIn": "1:38:51 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9092",
+      "date": "9/14/2024",
+      "checkIn": "1:38:51 PM",
+      "checkOut": "1:39:03 PM",
+      "break": "0h 0m 12s"
+    },
+    {
+      "id": "299b",
+      "date": "9/14/2024",
+      "checkIn": "1:38:51 PM",
+      "checkOut": "1:39:03 PM",
+      "break": "0h 0m 12s"
+    },
+    {
+      "id": "4d93",
+      "date": "9/14/2024",
+      "checkIn": "1:40:13 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0e0e",
+      "date": "9/14/2024",
+      "checkIn": "1:40:13 PM",
+      "checkOut": "1:40:21 PM",
+      "break": "0h 0m 8s"
+    },
+    {
+      "id": "a605",
+      "date": "9/14/2024",
+      "checkIn": "1:40:13 PM",
+      "checkOut": "1:40:21 PM",
+      "break": "0h 0m 8s"
+    },
+    {
+      "id": "f875",
+      "date": "9/14/2024",
+      "checkIn": "1:40:50 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "3581",
+      "date": "9/14/2024",
+      "checkIn": "1:40:50 PM",
+      "checkOut": "1:41:02 PM",
+      "break": "0h 0m 12s"
+    },
+    {
+      "id": "df59",
+      "date": "14/09/2024",
+      "checkIn": "1:45:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0ed4",
+      "date": "14/09/2024",
+      "checkIn": "1:45:37 PM",
+      "checkOut": "1:45:52 PM",
+      "break": "0h 0m 15s"
+    },
+    {
+      "id": "e91a",
+      "date": "14/09/2024",
+      "checkIn": "1:45:37 PM",
+      "checkOut": "1:45:52 PM",
+      "break": "0h 0m 15s"
+    },
+    {
+      "id": "5ff1",
+      "date": "9/14/2024",
+      "checkIn": "1:37:26 PM",
+      "checkOut": "1:46:39 PM",
+      "break": "0h 9m 13s"
+    },
+    {
       "id": "d7da",
       "date": "9/12/2024",
       "checkIn": "4:58:12 PM",
@@ -326,6 +451,7 @@
       "break": ""
     }
   ],
+  
   "leaveApplications": [
     {
       "employeeId": 101,
