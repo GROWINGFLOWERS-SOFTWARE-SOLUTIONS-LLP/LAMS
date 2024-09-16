@@ -53,7 +53,7 @@ export class AttendanceComponent implements OnInit {
     this.Punch_in_time = this.currentTime;
     const attendance_date = new Date();
     const newRecord = {
-      date: attendance_date.toLocaleDateString(),
+      date: attendance_date.toLocaleDateString('en-GB'),
       checkIn: this.Punch_in_time,
       checkOut: '',
       break: ''
@@ -101,7 +101,7 @@ export class AttendanceComponent implements OnInit {
 
   updateCurrentTime() {
     const currentDate = new Date();
-    this.attendance_date = currentDate.toDateString();
+    this.attendance_date = currentDate.toLocaleDateString('en-GB'); // Format: day/month/year
     this.currentTime = currentDate.toLocaleTimeString();
   }
 
