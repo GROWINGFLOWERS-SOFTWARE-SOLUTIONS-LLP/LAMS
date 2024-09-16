@@ -39,45 +39,66 @@
         </tbody>
     </table>
     
-    
     <!-- PrimeNG Dialog -->
     <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal"
         [style]="{'width': '50vw'}" [responsive]="true" [closable]="true">
-        <form action="#" class="form">
+        <form #employeeForm="ngForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()">
             <div class="column">
                 <div class="input-box">
                     <label>First Name</label>
                     <input type="text" [(ngModel)]="employee.firstName" name="firstName" placeholder="Enter first name"
-                        required />
+                        #firstName="ngModel" required pattern="[A-Za-z]+" />
+                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="error-message">
+                        <div *ngIf="firstName.errors?.['required']">First name is required.</div>
+                        <div *ngIf="firstName.errors?.['pattern']">First name must contain only letters.</div>
+                    </div>
                 </div>
                 <div class="input-box">
                     <label>Last Name</label>
                     <input type="text" [(ngModel)]="employee.lastName" name="lastName" placeholder="Enter last name"
-                        required />
+                        #lastName="ngModel" required pattern="[A-Za-z]+" />
+                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error-message">
+                        <div *ngIf="lastName.errors?.['required']">Last name is required.</div>
+                        <div *ngIf="lastName.errors?.['pattern']">Last name must contain only letters.</div>
+                    </div>
                 </div>
             </div>
             <div class="column">
                 <div class="input-box">
                     <label>Email Address</label>
                     <input type="text" [(ngModel)]="employee.email" name="email" placeholder="Enter email address"
-                        required />
+                        #email="ngModel" required 
+                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
+                        <div *ngIf="email.errors?.['required']">Email address is required.</div>
+                        <div *ngIf="email.errors?.['pattern']">Invalid email address format.</div>
+                    </div>
                 </div>
                 <div class="input-box">
                     <label>Password</label>
                     <input type="password" [(ngModel)]="employee.password" name="password" placeholder="Enter password"
-                        required /> <!-- Added Password Field -->
+                        #password="ngModel" required 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
+                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                        <div *ngIf="password.errors?.['pattern']">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</div>
+                    </div>
                 </div>
             </div>
             <div class="column">
                 <div class="input-box">
                     <label>Phone Number</label>
-                    <input type="number" [(ngModel)]="employee.mobileNumber" name="mobileNumber"
-                        placeholder="Enter phone number" required />
+                    <input type="tel" [(ngModel)]="employee.mobileNumber" name="mobileNumber"
+                        placeholder="Enter phone number" #mobileNumber="ngModel" required pattern="[0-9]{10}" />
+                    <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)" class="error-message">
+                        <div *ngIf="mobileNumber.errors?.['required']">Phone number is required.</div>
+                        <div *ngIf="mobileNumber.errors?.['pattern']">Phone number must be 10 digits long.</div>
+                    </div>
                 </div>
                 <div class="input-box">
                     <label>Department</label>
                     <div class="select-box">
-                        <select [(ngModel)]="employee.department" name="department">
+                        <select [(ngModel)]="employee.department" name="department" #department="ngModel" required>
                             <option hidden>Department</option>
                             <option>Engineering</option>
                             <option>QA Testing</option>
@@ -85,25 +106,37 @@
                             <option>Human Resources</option>
                         </select>
                     </div>
+                    <div *ngIf="department.invalid && (department.dirty || department.touched)" class="error-message">
+                        <div *ngIf="department.errors?.['required']">Department is required.</div>
+                    </div>
                 </div>
                 <div class="input-box">
                     <label>Designation</label>
                     <input type="text" [(ngModel)]="employee.role" name="role" placeholder="Enter Designation"
-                        required />
+                        #role="ngModel" required />
+                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
+                        <div *ngIf="role.errors?.['required']">Designation is required.</div>
+                    </div>
                 </div>
                 <div class="input-box">
                     <label>Joining Date</label>
                     <input type="date" [(ngModel)]="employee.joiningDate" name="joiningDate"
-                        placeholder="Enter Joining Date" required />
+                        placeholder="Enter Joining Date" #joiningDate="ngModel" required />
+                    <div *ngIf="joiningDate.invalid && (joiningDate.dirty || joiningDate.touched)" class="error-message">
+                        <div *ngIf="joiningDate.errors?.['required']">Joining date is required.</div>
+                    </div>
                 </div>
             </div>
             <div class="input-box address">
                 <label>Address</label>
                 <input type="text" [(ngModel)]="employee.address" name="address" placeholder="Enter street address"
-                    required />
+                    #address="ngModel" required />
+                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-message">
+                    <div *ngIf="address.errors?.['required']">Address is required.</div>
+                </div>
             </div>
             <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-                <p-button [label]="isEditing ? 'Update' : 'Save'"
+                <p-button [label]="isEditing ? 'Update' : 'Save'" [disabled]="employeeForm.invalid"
                     (click)="isEditing ? updateEmployee() : addEmployee()"></p-button>
             </div>
         </form>

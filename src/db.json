@@ -23,20 +23,32 @@
       "mobileNumber": "9800129089",
       "department": "Engineering",
       "role": "Eng",
-      "joiningDate": "2024-01-15",
+      "joiningDate": "2024-01-16",
       "address": "Pune"
     },
     {
-      "id": "6fdf",
+      "id": "a5f9",
       "firstName": "Bhushan",
       "lastName": "Malpure",
       "email": "bhushan17@gmail.com",
-      "mobileNumber": 9800129089,
-      "department": "QA Testing",
+      "mobileNumber": 8975091234,
+      "department": "Admin",
       "role": "Eng",
-      "joiningDate": "2024-09-19",
+      "joiningDate": "2024-09-11",
       "address": "Pune",
-      "password": "bhushan@123"
+      "password": "bhushan17"
+    },
+    {
+      "id": "270a",
+      "firstName": "Sahil",
+      "lastName": "Mhatre",
+      "email": "sahil12@gmail.com",
+      "mobileNumber": "7760984512",
+      "department": "QA Testing",
+      "role": "dev",
+      "joiningDate": "2024-09-17",
+      "address": "Pune",
+      "password": "Sahil@123"
     }
   ],
   "attendance": [
@@ -322,6 +334,13 @@
       "id": "d7da",
       "date": "9/12/2024",
       "checkIn": "4:58:12 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6cd5",
+      "date": "9/16/2024",
+      "checkIn": "10:15:39 AM",
       "checkOut": "",
       "break": ""
     }
