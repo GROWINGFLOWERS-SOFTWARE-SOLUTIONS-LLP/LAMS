@@ -331,7 +331,6 @@
       "break": ""
     },
     {
-
       "id": "9c89",
       "date": "9/13/2024",
       "checkIn": "12:32:57 AM",
@@ -449,9 +448,15 @@
       "checkIn": "4:58:12 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "5111",
+      "date": "17/09/2024",
+      "checkIn": "10:46:55 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
-  
   "leaveApplications": [
     {
       "employeeId": 101,
@@ -538,6 +543,15 @@
       "status": "Pending",
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
+    },
+    {
+      "id": "9b1d",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-17T05:30:58.269Z",
+      "endDate": "2024-09-17T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "",
+      "totalLeaves": 2
     }
   ],
   "leaveBalance": [
