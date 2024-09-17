@@ -36,7 +36,7 @@
       "role": "Eng",
       "joiningDate": "2024-09-11",
       "address": "Pune",
-      "password": "bhushan17"
+      "password": "Bhushan@1707"
     },
     {
       "id": "270a",
@@ -450,11 +450,25 @@
       "break": ""
     },
     {
-      "id": "5111",
+      "id": "216a",
       "date": "17/09/2024",
-      "checkIn": "10:46:55 AM",
+      "checkIn": "10:17:40 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "ba39",
+      "date": "17/09/2024",
+      "checkIn": "10:25:14 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2e18",
+      "date": "17/09/2024",
+      "checkIn": "10:25:14 AM",
+      "checkOut": "10:26:43 AM",
+      "break": "0h 1m 29s"
     },
     {
       "id": "dbf2",
@@ -462,14 +476,8 @@
       "checkIn": "11:47:25 AM",
       "checkOut": "",
       "break": ""
-    },
-    {
-      "id": "ca44",
-      "date": "17/09/2024",
-      "checkIn": "11:49:43 AM",
-      "checkOut": "",
-      "break": ""
     }
+   
   ],
   "leaveApplications": [
     {
