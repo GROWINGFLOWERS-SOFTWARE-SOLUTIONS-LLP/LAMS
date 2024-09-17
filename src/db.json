@@ -37,6 +37,66 @@
       "joiningDate": "2024-09-19",
       "address": "Pune",
       "password": "bhushan@123"
+    },
+    {
+      "id": "6shd",
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shwetasonje@gmail.com",
+      "mobileNumber": 9876543210,
+      "department": "Software Testing",
+      "role": "Eng",
+      "joiningDate": "2024-08-12",
+      "address": "Pune",
+      "password": "shweta@123"
+    },
+    {
+      "id": "6thf",
+      "firstName": "Sahil",
+      "lastName": "Mhatre",
+      "email": "sahil@gmail.com",
+      "mobileNumber": 9835475930,
+      "department": "Software Developer",
+      "role": "Eng",
+      "joiningDate": "2024-07-19",
+      "address": "Pune",
+      "password": "sahil@123"
+    },
+    {
+      "id": "7rhd",
+      "firstName": "Shubham",
+      "lastName": "Sonje",
+      "email": "shubham@gmail.com",
+      "mobileNumber": 9589263713,
+      "department": "QA Testing",
+      "role": "Eng",
+      "joiningDate": "2024-05-14",
+      "address": "Nashik",
+      "password": "shubham@123"
+    },
+    {
+      "id": "7hft",
+      "firstName": "Aditya",
+      "lastName": "Bhise",
+      "email": "aditya@gmail.com",
+      "mobileNumber": 8308468356,
+      "department": "Software Developer",
+      "role": "Eng",
+      "joiningDate": "2024-07-08",
+      "address": "Nashik",
+      "password": "aditya@123"
+    },
+    {
+      "id": "7gyf",
+      "firstName": "Abhishek",
+      "lastName": "Bagad",
+      "email": "abhishek@gmail.com",
+      "mobileNumber": 8378465280,
+      "department": "Software Developer",
+      "role": "Eng",
+      "joiningDate": "2024-07-25",
+      "address": "Nashik",
+      "password": "abhishek@123"
     }
   ],
   "attendance": [
@@ -319,7 +379,6 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "9c89",
       "date": "9/13/2024",
       "checkIn": "12:32:57 AM",
@@ -430,13 +489,27 @@
       "checkIn": "1:37:26 PM",
       "checkOut": "1:46:39 PM",
       "break": "0h 9m 13s"
-=======
-      "id": "d7da",
-      "date": "9/12/2024",
-      "checkIn": "4:58:12 PM",
+    },
+    {
+      "id": "a722",
+      "date": "15/09/2024",
+      "checkIn": "5:16:39 PM",
       "checkOut": "",
       "break": ""
->>>>>>> e481fc256198e6d243564a38e9ee7ac3136a4a33
+    },
+    {
+      "id": "55a4",
+      "date": "15/09/2024",
+      "checkIn": "5:27:33 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9bdb",
+      "date": "17/09/2024",
+      "checkIn": "12:36:36 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [

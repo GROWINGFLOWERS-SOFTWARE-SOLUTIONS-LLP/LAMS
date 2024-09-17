@@ -34,8 +34,8 @@ export class DashboardComponent implements OnInit{
 ];
 
 ngOnInit(): void {
-  this.apiService.getEmployees().subscribe(employees => {
-    this.totalEmployees = employees.length;
+  this.apiService.getEmployee().subscribe(employee => {
+    this.totalEmployees = employee.length;
     console.log(this.totalEmployees)
     this.checkinsValue[0].value = this.totalEmployees;
     console.log(this.checkinsValue[0].value)
