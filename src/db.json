@@ -23,18 +23,18 @@
       "mobileNumber": "9800129089",
       "department": "Engineering",
       "role": "Eng",
-      "joiningDate": "2024-01-15",
+      "joiningDate": "2024-01-16",
       "address": "Pune"
     },
     {
-      "id": "6fdf",
+      "id": "a5f9",
       "firstName": "Bhushan",
       "lastName": "Malpure",
       "email": "bhushan17@gmail.com",
-      "mobileNumber": 9800129089,
-      "department": "QA Testing",
+      "mobileNumber": 8975091234,
+      "department": "Admin",
       "role": "Eng",
-      "joiningDate": "2024-09-19",
+      "joiningDate": "2024-09-11",
       "address": "Pune",
       "password": "bhushan@123"
     },
@@ -491,26 +491,41 @@
       "break": "0h 9m 13s"
     },
     {
-      "id": "a722",
-      "date": "15/09/2024",
-      "checkIn": "5:16:39 PM",
+      "id": "d7da",
+      "date": "9/12/2024",
+      "checkIn": "4:58:12 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "55a4",
-      "date": "15/09/2024",
-      "checkIn": "5:27:33 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "9bdb",
+      "id": "216a",
       "date": "17/09/2024",
-      "checkIn": "12:36:36 PM",
+      "checkIn": "10:17:40 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ba39",
+      "date": "17/09/2024",
+      "checkIn": "10:25:14 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2e18",
+      "date": "17/09/2024",
+      "checkIn": "10:25:14 AM",
+      "checkOut": "10:26:43 AM",
+      "break": "0h 1m 29s"
+    },
+    {
+      "id": "dbf2",
+      "date": "17/09/2024",
+      "checkIn": "11:47:25 AM",
       "checkOut": "",
       "break": ""
     }
+   
   ],
   "leaveApplications": [
     {
@@ -537,15 +552,6 @@
       "id": "8e31"
     },
     {
-      "id": "1490",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-13T18:30:00.000Z",
-      "status": "Rejected",
-      "reason": "enjoy",
-      "totalLeaves": 4
-    },
-    {
       "id": "f6e6",
       "leaveType": "Paid Leave",
       "startDate": "2024-09-11T18:30:00.000Z",
@@ -564,15 +570,6 @@
       "totalLeaves": 2
     },
     {
-      "id": "b172",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-12T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "",
-      "totalLeaves": 2
-    },
-    {
       "id": "250e",
       "leaveType": "Sick Leave",
       "startDate": "2024-09-11T18:30:00.000Z",
@@ -580,15 +577,6 @@
       "status": "Pending",
       "reason": "Dengue",
       "totalLeaves": 3
-    },
-    {
-      "id": "ff2b",
-      "leaveType": "Unpaid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-10-11T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "Frustrated ",
-      "totalLeaves": 31
     },
     {
       "id": "cf06",
@@ -599,6 +587,7 @@
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
     }
+    
   ],
   "leaveBalance": [
     {

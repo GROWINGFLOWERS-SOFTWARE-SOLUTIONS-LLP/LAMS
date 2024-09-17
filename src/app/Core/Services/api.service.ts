@@ -52,7 +52,6 @@ export class ApiService {
 // dashboard - get employees number
   getEmployee(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/employees`);
-
   }
 }
 
