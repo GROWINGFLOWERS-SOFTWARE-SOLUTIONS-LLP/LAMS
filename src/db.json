@@ -455,6 +455,20 @@
       "checkIn": "10:46:55 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "dbf2",
+      "date": "17/09/2024",
+      "checkIn": "11:47:25 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ca44",
+      "date": "17/09/2024",
+      "checkIn": "11:49:43 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
@@ -482,15 +496,6 @@
       "id": "8e31"
     },
     {
-      "id": "1490",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-13T18:30:00.000Z",
-      "status": "Rejected",
-      "reason": "enjoy",
-      "totalLeaves": 4
-    },
-    {
       "id": "f6e6",
       "leaveType": "Paid Leave",
       "startDate": "2024-09-11T18:30:00.000Z",
@@ -509,15 +514,6 @@
       "totalLeaves": 2
     },
     {
-      "id": "b172",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-09-12T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "",
-      "totalLeaves": 2
-    },
-    {
       "id": "250e",
       "leaveType": "Sick Leave",
       "startDate": "2024-09-11T18:30:00.000Z",
@@ -527,15 +523,6 @@
       "totalLeaves": 3
     },
     {
-      "id": "ff2b",
-      "leaveType": "Unpaid Leave",
-      "startDate": "2024-09-11T18:30:00.000Z",
-      "endDate": "2024-10-11T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "Frustrated ",
-      "totalLeaves": 31
-    },
-    {
       "id": "cf06",
       "leaveType": "Paid Leave",
       "startDate": "2024-09-16T18:30:00.000Z",
@@ -543,16 +530,8 @@
       "status": "Pending",
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
-    },
-    {
-      "id": "9b1d",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-17T05:30:58.269Z",
-      "endDate": "2024-09-17T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "",
-      "totalLeaves": 2
     }
+    
   ],
   "leaveBalance": [
     {
