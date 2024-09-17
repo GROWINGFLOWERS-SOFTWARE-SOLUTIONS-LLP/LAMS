@@ -39,6 +39,9 @@ interface LeaveRequest {
 })
 export class LeaveComponent implements OnInit {
   visible: boolean = false;
+  today: Date = new Date();
+  submitted: boolean = false;
+
   leaveRequests: LeaveRequest[] = [];
   leaveRequest: LeaveRequest = {
     leaveType: '',
