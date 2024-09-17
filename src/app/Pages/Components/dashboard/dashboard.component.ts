@@ -1,16 +1,20 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { MeterGroupModule } from 'primeng/metergroup';
+import { ApiService } from '../../../Core/Services/api.service';
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [CardModule,MeterGroupModule,],
-  templateUrl: './dashboard.component.html',
+  templateUrl: './dashboard.component.html', 
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
+ 
+
+
   value = [
     { label: 'Total Employees', color:'Green', value: 45 },
     { label: 'On Time', color: '#34d399', value: 18 },
@@ -25,4 +29,8 @@ value1 = [
   { label: 'Weekly Off', color: '#60a5fa', value: 115 },
   { label: 'Check Out', color: 'red', value: 65 },
 ];
+
+constructor(private apiService: ApiService) { }
+
+
 }
