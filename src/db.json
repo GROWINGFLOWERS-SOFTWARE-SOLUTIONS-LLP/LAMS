@@ -39,18 +39,6 @@
       "password": "bhushan@123"
     },
     {
-      "id": "6shd",
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shwetasonje@gmail.com",
-      "mobileNumber": 9876543210,
-      "department": "Software Testing",
-      "role": "Eng",
-      "joiningDate": "2024-08-12",
-      "address": "Pune",
-      "password": "shweta@123"
-    },
-    {
       "id": "6thf",
       "firstName": "Sahil",
       "lastName": "Mhatre",
@@ -61,18 +49,6 @@
       "joiningDate": "2024-07-19",
       "address": "Pune",
       "password": "sahil@123"
-    },
-    {
-      "id": "7rhd",
-      "firstName": "Shubham",
-      "lastName": "Sonje",
-      "email": "shubham@gmail.com",
-      "mobileNumber": 9589263713,
-      "department": "QA Testing",
-      "role": "Eng",
-      "joiningDate": "2024-05-14",
-      "address": "Nashik",
-      "password": "shubham@123"
     },
     {
       "id": "7hft",
@@ -97,6 +73,18 @@
       "joiningDate": "2024-07-25",
       "address": "Nashik",
       "password": "abhishek@123"
+    },
+    {
+      "id": "abe3",
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shweta12@gmail.com",
+      "mobileNumber": "7710235678",
+      "department": "Human Resources",
+      "role": "HR",
+      "joiningDate": "2024-04-01",
+      "address": "Pune",
+      "password": "Shweta@123"
     }
   ],
   "attendance": [
@@ -300,6 +288,13 @@
       "checkIn": "10:35:54 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "a638",
+      "date": "18/09/2024",
+      "checkIn": "10:39:33 AM",
+      "checkOut": "11:07:23 AM",
+      "break": "0h 27m 50s"
     }
   ],
   "leaveApplications": [
@@ -361,6 +356,15 @@
       "status": "Pending",
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
+    },
+    {
+      "id": "d798",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-18T05:26:32.400Z",
+      "endDate": "2024-09-18T18:30:00.000Z",
+      "status": "Pending",
+      "reason": "",
+      "totalLeaves": 2
     }
   ],
   "leaveBalance": [
