@@ -1,3 +1,4 @@
+
 /* General Styles */
 section {
   display: flex;
@@ -19,12 +20,11 @@ section {
 /* Container Styles */
 .container {
   width: 100%;
-  max-width: 700px;
+  height: 70vh;
+  box-sizing: border-box;
   background: #fff;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-  margin: 0 auto;
+  border: 0.1px solid #ddd;
+  box-shadow: 0 0 px rgba(0, 0, 0, 0.1);
 }
 
 .container header {
@@ -38,6 +38,7 @@ section {
 .form {
   display: flex;
   flex-direction: column;
+  height: 60vh;
 }
 
 .column {
