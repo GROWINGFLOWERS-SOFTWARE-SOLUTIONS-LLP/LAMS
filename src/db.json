@@ -524,8 +524,49 @@
       "checkIn": "11:47:25 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "008f",
+      "date": "18/09/2024",
+      "checkIn": "10:10:38 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5151",
+      "date": "9/18/2024",
+      "checkIn": "10:21:22 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "3c11",
+      "date": "18/09/2024",
+      "checkIn": "10:25:41 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d9c5",
+      "date": "18/09/2024",
+      "checkIn": "10:31:45 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5b5d",
+      "date": "9/18/2024",
+      "checkIn": "10:32:53 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "95d3",
+      "date": "18/09/2024",
+      "checkIn": "10:35:54 AM",
+      "checkOut": "",
+      "break": ""
     }
-   
   ],
   "leaveApplications": [
     {
@@ -587,7 +628,6 @@
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
     }
-    
   ],
   "leaveBalance": [
     {
