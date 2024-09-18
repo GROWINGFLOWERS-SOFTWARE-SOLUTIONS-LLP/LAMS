@@ -36,19 +36,67 @@
       "role": "Eng",
       "joiningDate": "2024-09-11",
       "address": "Pune",
-      "password": "Bhushan@1707"
+      "password": "bhushan@123"
     },
     {
-      "id": "270a",
+      "id": "6shd",
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shwetasonje@gmail.com",
+      "mobileNumber": 9876543210,
+      "department": "Software Testing",
+      "role": "Eng",
+      "joiningDate": "2024-08-12",
+      "address": "Pune",
+      "password": "shweta@123"
+    },
+    {
+      "id": "6thf",
       "firstName": "Sahil",
       "lastName": "Mhatre",
-      "email": "sahil12@gmail.com",
-      "mobileNumber": "7760984512",
-      "department": "QA Testing",
-      "role": "dev",
-      "joiningDate": "2024-09-17",
+      "email": "sahil@gmail.com",
+      "mobileNumber": 9835475930,
+      "department": "Software Developer",
+      "role": "Eng",
+      "joiningDate": "2024-07-19",
       "address": "Pune",
-      "password": "Sahil@123"
+      "password": "sahil@123"
+    },
+    {
+      "id": "7rhd",
+      "firstName": "Shubham",
+      "lastName": "Sonje",
+      "email": "shubham@gmail.com",
+      "mobileNumber": 9589263713,
+      "department": "QA Testing",
+      "role": "Eng",
+      "joiningDate": "2024-05-14",
+      "address": "Nashik",
+      "password": "shubham@123"
+    },
+    {
+      "id": "7hft",
+      "firstName": "Aditya",
+      "lastName": "Bhise",
+      "email": "aditya@gmail.com",
+      "mobileNumber": 8308468356,
+      "department": "Software Developer",
+      "role": "Eng",
+      "joiningDate": "2024-07-08",
+      "address": "Nashik",
+      "password": "aditya@123"
+    },
+    {
+      "id": "7gyf",
+      "firstName": "Abhishek",
+      "lastName": "Bagad",
+      "email": "abhishek@gmail.com",
+      "mobileNumber": 8378465280,
+      "department": "Software Developer",
+      "role": "Eng",
+      "joiningDate": "2024-07-25",
+      "address": "Nashik",
+      "password": "abhishek@123"
     }
   ],
   "attendance": [
