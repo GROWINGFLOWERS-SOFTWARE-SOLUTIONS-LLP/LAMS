@@ -251,6 +251,13 @@
       "checkIn": "12:45:44 PM",
       "checkOut": "12:45:54 PM",
       "break": "0h 0m 10s"
+    },
+    {
+      "id": "fada",
+      "date": "18/09/2024",
+      "checkIn": "10:14:45 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
