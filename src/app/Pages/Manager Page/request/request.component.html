@@ -1,0 +1,52 @@
+<div class="container">
+    <div class="p-grid p-justify-center p-align-center p-m-3">
+      <div class="p-col-12 p-md-10 p-lg-8">
+        <h2>Leave Request    </h2>
+ 
+        <p-table [value]="leaveRequests" responsiveLayout="scroll">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>Employee Name</th>
+              <th>Role</th>
+              <th>Leave Request</th>
+              <th>Reason</th>
+              <th>Total Leaves</th>
+              <th>Leaves Taken</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Actions</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-request>
+            <tr>
+              <td>{{ request.employeeName }}</td>
+              <td>{{ request.employeeRole }}</td>
+              <td>{{ request.leaveRequest }}</td>
+              <td>{{ request.leaveReason }}</td>
+              <td>{{ request.totalLeaves }}</td>
+              <td>{{ request.leavesTaken }}</td>
+       
+              <!-- Apply date pipe here to format the date -->
+              <td>{{ request.startDate | date:'dd/MM/yyyy' }}</td>
+              <td>{{ request.endDate | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <div class="flex align-items-center justify-content-start">
+                  <!-- Approve Button -->
+                  <div class="flex align-items-center justify-content-center p-1 border-round mr-1">
+                    <button pButton type="button" label="Approve" class="p-button-success" [outlined]="true"
+                      (click)="approveLeave(request)"></button>
+                  </div>
+ 
+                  <!-- Reject Button -->
+                  <div class="flex align-items-center justify-content-center p-1 border-round">
+                    <button pButton type="button" label="Reject" class="p-button-danger" [outlined]="true"
+                      (click)="rejectLeave(request)"></button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+  </div>
