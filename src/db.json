@@ -85,6 +85,30 @@
       "joiningDate": "2024-04-01",
       "address": "Pune",
       "password": "Shweta@123"
+    },
+    {
+      "id": "a4fa",
+      "firstName": "Shubham",
+      "lastName": "Sonje",
+      "email": "shubham@gmail.com",
+      "mobileNumber": "9876543210",
+      "department": "Engineering",
+      "role": "Developer",
+      "joiningDate": "2024-09-12",
+      "address": "Nashik",
+      "password": "Shubham@123"
+    },
+    {
+      "id": "f189",
+      "firstName": "riya",
+      "lastName": "abs",
+      "email": "riya@gmail.com",
+      "mobileNumber": "9678352719",
+      "department": "QA Testing",
+      "role": "Manager",
+      "joiningDate": "2024-09-13",
+      "address": "pune",
+      "password": "Riya@123"
     }
   ],
   "attendance": [
@@ -344,6 +368,55 @@
       "checkIn": "10:59:31 AM",
       "checkOut": "10:59:41 AM",
       "break": "0h 0m 10s"
+    },
+    {
+      "id": "e68b",
+      "date": "18/09/2024",
+      "checkIn": "4:37:49 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "a3c0",
+      "date": "19/09/2024",
+      "checkIn": "10:14:32 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8339",
+      "date": "19/09/2024",
+      "checkIn": "10:14:32 AM",
+      "checkOut": "10:15:56 AM",
+      "break": "0h 1m 24s"
+    },
+    {
+      "id": "82e2",
+      "date": "19/09/2024",
+      "checkIn": "10:14:32 AM",
+      "checkOut": "10:16:01 AM",
+      "break": "0h 1m 29s"
+    },
+    {
+      "id": "d794",
+      "date": "19/09/2024",
+      "checkIn": "10:16:18 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "223c",
+      "date": "19/09/2024",
+      "checkIn": "10:16:18 AM",
+      "checkOut": "10:32:06 AM",
+      "break": "0h 15m 48s"
+    },
+    {
+      "id": "5f0e",
+      "date": "19/09/2024",
+      "checkIn": "10:44:45 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [

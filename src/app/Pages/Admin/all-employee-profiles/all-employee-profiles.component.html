@@ -111,11 +111,19 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <label>Designation</label>
-                    <input type="text" [(ngModel)]="employee.role" name="role" placeholder="Enter Designation"
-                        #role="ngModel" required />
+                    <label>Role</label>
+                    <div class="select-box">
+                        <select [(ngModel)]="employee.role" name="role" #role="ngModel" required>
+                            <option hidden>Role</option>
+                            <option>Manager</option>
+                            <option>HR</option>
+                            <option>Admin</option>
+                            <option>Developer</option>
+                            <option>Tester</option>
+                        </select>
+                    </div>
                     <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
-                        <div *ngIf="role.errors?.['required']">Designation is required.</div>
+                        <div *ngIf="role.errors?.['required']">Role is required.</div>
                     </div>
                 </div>
                 <div class="input-box">
