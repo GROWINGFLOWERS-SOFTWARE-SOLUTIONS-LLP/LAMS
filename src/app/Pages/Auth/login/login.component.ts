@@ -46,6 +46,10 @@ export class LoginComponent {
       alert('Login successful');
       localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
       this.route.navigateByUrl('leaverequest');
+    } else if (this.loginObj.email === 'manager@gfss.com' && this.loginObj.password === 'manager') {
+      alert('Login successful');
+      localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
+      this.route.navigateByUrl('leaverequest2');
     } else {
       alert('Please check details and try again');
     }
