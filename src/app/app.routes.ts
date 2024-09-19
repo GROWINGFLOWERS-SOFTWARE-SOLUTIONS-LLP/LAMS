@@ -12,7 +12,8 @@ import { ProfileFormComponent } from './Pages/Components/profile-form/profile-fo
 
 import { AllAttendenceComponent } from './Pages/Admin/all-attendence/all-attendence.component';
 import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profiles/all-employee-profiles.component';
-import { LeaveRequestComponent } from './Pages/Manager/leave-request/leave-request.component';
+import { RequestComponent } from './Pages/Manager Page/request/request.component';
+
 
 export const routes: Routes = [
     {
@@ -39,7 +40,7 @@ export const routes: Routes = [
             { path: 'help', component: HelpComponent }, 
             { path: 'allattendance', component:AllAttendenceComponent, },
             { path: 'employeeprofile', component: AllEmployeeProfilesComponent }, 
-            { path: 'leaverequest2', component: LeaveRequestComponent }
+            { path: 'managerRequest', component: RequestComponent }
 
         ]
     }

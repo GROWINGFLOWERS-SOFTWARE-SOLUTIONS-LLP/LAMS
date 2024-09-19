@@ -100,7 +100,7 @@
                 <div class="input-box">
                     <label>Department</label>
                     <div class="select-box">
-                        <select [(ngModel)]="employee.department" name="department" #department="ngModel" required>
+                        <select [(ngModel)]="employee.department" name="department" placeholder="Select Department" #department="ngModel" required>
                             <option hidden>Department</option>
                             <option>Engineering</option>
                             <option>QA Testing</option>
@@ -121,9 +121,18 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <label>Employee Role</label>
-                    <input type="text" [(ngModel)]="employee.role" name="role" placeholder="Enter Designation"
-                        #role="ngModel" required />
+
+                    <label>Role</label>
+                    <div class="select-box">
+                        <select [(ngModel)]="employee.role" name="role"  placeholder="Enter Role" #role="ngModel" required>
+                            <option hidden>Role</option>
+                            <option>Manager</option>
+                            <option>HR</option>
+                            <option>Admin</option>
+                            <option>Developer</option>
+                            <option>Tester</option>
+                        </select>
+                    </div>
                     <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
                         <div *ngIf="role.errors?.['required']">Role is required.</div>
                     </div>
