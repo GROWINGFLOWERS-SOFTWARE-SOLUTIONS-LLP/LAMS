@@ -8,22 +8,22 @@
 
     <ng-template pTemplate="center">
         <div class="flex align-items-center gap-2 flex-wrap justify-content-center md:gap-3">
-            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="dashboard">
+            <button *ngIf="isEmployee" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="dashboard">
                 Dashboard
             </button>
-            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="attendance">
+            <button *ngIf="isEmployee" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="attendance">
                 Attendance
             </button>
-            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="leave">
+            <button *ngIf="isEmployee" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="leave">
                 Leave
             </button>
-            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="holidays">
+            <button *ngIf="isEmployee" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="holidays">
                 Holidays
             </button>
-            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="history">
+            <button *ngIf="isEmployee" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="history">
                 History
             </button>
-            <button *ngIf="!isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="help">
+            <button *ngIf="isEmployee" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem" routerLink="help">
                 Help
             </button>
 
@@ -33,8 +33,8 @@
             <button *ngIf="isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 mx-3  p-2 sm:w-5rem md:w-6rem" routerLink="employeeprofile">
                Profile
             </button>
-            <button *ngIf="isAdmin" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 mx-3  p-2 sm:w-5rem md:w-6rem" routerLink="leaverequest">
-                Leave Request
+            <button *ngIf="isManager" class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-8rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 mx-3  p-2 sm:w-5rem md:w-6rem" routerLink="leaverequest2">
+                Leave Request 
             </button>
         </div>
     </ng-template>
@@ -52,9 +52,9 @@
             <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body" styleClass="card-overlay">
                 <div class="p-card-body">
                     <div class="mt-2">
-                        <button pButton label="My Profile" class="p-button-text profile-button"
+                        <button *ngIf="isEmployee" pButton label="My Profile" class="p-button-text profile-button"
                            routerLink="profile"></button>
-                        <br />
+                        <br>
                         <button pButton label="Logout" class="p-button-text profile-button"
                             (click)="navigateTo('logout')"></button>
 

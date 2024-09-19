@@ -21,9 +21,10 @@ export class AllEmployeeProfilesComponent implements OnInit {
     password: '',
     mobileNumber: '',
     department: '',
+    manager: '',
     role: '',
     joiningDate: '',
-    address: ''
+    address: '',
   };
 
   employees: any[] = [];
@@ -36,7 +37,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     this.loadEmployees();
   }
 
-  prepareEmployee(employee: any = { firstName: '', lastName: '', email: '', mobileNumber: '', department: '', role: '', joiningDate: '', address: '' }) {
+  prepareEmployee(employee: any = { firstName: '', lastName: '', email: '', mobileNumber: '', department: '', manager: '', role: '', joiningDate: '', address: '' }) {
     this.employee = { ...employee };
     this.isEditing = !!employee.id; // Determine if we are editing or adding
   }
