@@ -25,7 +25,7 @@ export class LoginComponent {
   loginForm;
 
 
-  constructor(private route: Router, private apiService:ApiService,private fb: FormBuilder) {
+  constructor(private router: Router, private apiService:ApiService,private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -41,15 +41,15 @@ export class LoginComponent {
     if (this.loginObj.email === 'employee@gfss.com' && this.loginObj.password === 'employee') {
       alert('Login successful');
       localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
-      this.route.navigateByUrl('attendance');
+      this.router.navigate(['/attendance']);
     } else if (this.loginObj.email === 'admin@gfss.com' && this.loginObj.password === 'admin') {
       alert('Login successful');
       localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
-      this.route.navigateByUrl('leaverequest');
+      this.router.navigate(['/employeeprofile']);
     } else if (this.loginObj.email === 'manager@gfss.com' && this.loginObj.password === 'manager') {
       alert('Login successful');
       localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
-      this.route.navigateByUrl('leaverequest2');
+      this.router.navigate(['/managerRequest']);
     } else {
       alert('Please check details and try again');
     }
