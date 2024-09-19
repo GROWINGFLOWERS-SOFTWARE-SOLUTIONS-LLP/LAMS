@@ -15,7 +15,8 @@
                 <th>Phone Number</th>
                 <th>Address</th>
                 <th>Department</th>
-                <th>Role</th>
+                <th>Manager</th>
+                <th>Employee Role</th>
                 <th>Joining Date</th>
                 <th>Actions</th>
             </tr>
@@ -29,6 +30,7 @@
                 <td>{{ employee.mobileNumber }}</td>
                 <td>{{ employee.address }}</td>
                 <td>{{ employee.department }}</td>
+                <td>{{ employee.manager }}</td>
                 <td>{{ employee.role }}</td>
                 <td>{{ employee.joiningDate }}</td>
                 <td>
@@ -111,7 +113,15 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <label>Designation</label>
+                    <label>Manager</label>
+                    <input type="text" [(ngModel)]="employee.manager" name="role" placeholder="Enter Manager Name"
+                        #role="ngModel" required />
+                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
+                        <div *ngIf="role.errors?.['required']">Manager Name is required.</div>
+                    </div>
+                </div>
+                <div class="input-box">
+                    <label>Employee Role</label>
                     <input type="text" [(ngModel)]="employee.role" name="role" placeholder="Enter Designation"
                         #role="ngModel" required />
                     <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">

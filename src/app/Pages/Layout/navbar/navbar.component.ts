@@ -18,6 +18,8 @@ import { AuthService } from '../../../Core/Services/auth.service';
 })
 export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
+  isManager: boolean = false;
+  isEmployee: boolean = false;
 
   loginCredentials: any = {};
 
@@ -34,6 +36,8 @@ export class NavbarComponent implements OnInit {
       this.loginCredentials = user;
       console.log(this.loginCredentials);
       this.isAdmin = user.email === 'admin@gfss.com';
+      this.isEmployee = user.email === 'employee@gfss.com';
+      this.isManager = user.email === 'manager@gfss.com';
     }
   }
 
