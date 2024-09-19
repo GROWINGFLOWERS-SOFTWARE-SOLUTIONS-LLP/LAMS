@@ -12,8 +12,8 @@ import { ProfileFormComponent } from './Pages/Components/profile-form/profile-fo
 
 import { AllAttendenceComponent } from './Pages/Admin/all-attendence/all-attendence.component';
 import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profiles/all-employee-profiles.component';
+import { RequestComponent } from './Pages/Manager Page/request/request.component';
 
-import { RequestComponent } from './Pages/Manager/request/request.component';
 
 export const routes: Routes = [
     {
