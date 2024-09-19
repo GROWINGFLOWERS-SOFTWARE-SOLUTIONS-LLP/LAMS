@@ -9,15 +9,15 @@ import { FooterComponent } from './Pages/Layout/footer/footer.component';
 import { HolidaysComponent } from './Pages/Components/holidays/holidays.component';
 import { DashboardComponent } from './Pages/Components/dashboard/dashboard.component';
 import { LoginComponent } from './Pages/Auth/login/login.component';
-import { LeaveRequestedComponent } from './Pages/Admin/leave-requested/leave-requested.component';
 import { AllAttendenceComponent } from './Pages/Admin/all-attendence/all-attendence.component';
 import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profiles/all-employee-profiles.component';
+import { LeaveRequestComponent } from './Pages/Manager/leave-request/leave-request.component';
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent,DashboardComponent,FooterComponent,LoginComponent,LeaveRequestedComponent,AllAttendenceComponent,AllEmployeeProfilesComponent],
+  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent,DashboardComponent,FooterComponent,LoginComponent,AllAttendenceComponent,AllEmployeeProfilesComponent,LeaveRequestComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
