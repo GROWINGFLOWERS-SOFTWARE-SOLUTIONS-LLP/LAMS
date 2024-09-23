@@ -19,7 +19,7 @@ export class DashboardComponent implements OnInit{
 
   totalEmp: any[] = [];
   checkinsValue = [
-    { label: 'Total Employees', color:'Green', value: 0},
+    { label: 'Total Employees', color:'Green', value: 3},
     { label: 'On Time', color: '#34d399', value: 18 },
     { label: 'Late In', color: '#fbbf24', value: 5 },
     { label: 'Early Exit', color: '#60a5fa', value: 6 },
