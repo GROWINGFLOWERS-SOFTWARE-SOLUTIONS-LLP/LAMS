@@ -713,23 +713,65 @@
       "break": ""
     },
     {
-      "id": "64d8",
+      "id": "621f",
       "date": "19/09/2024",
-      "checkIn": "12:26:34 PM",
+      "checkIn": "2:29:38 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "9fa2",
+      "id": "7cb6",
       "date": "19/09/2024",
-      "checkIn": "12:26:34 PM",
-      "checkOut": "12:26:43 PM",
-      "break": "0h 0m 9s"
+      "checkIn": "2:53:34 PM",
+      "checkOut": "",
+      "break": ""
     },
     {
-      "id": "cac4",
+      "id": "78da",
       "date": "19/09/2024",
-      "checkIn": "4:04:02 PM",
+      "checkIn": "3:19:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1673",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f754",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "d2b4",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "6cf3",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "cfd4",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "46fa",
+      "date": "23/09/2024",
+      "checkIn": "10:33:49 AM",
       "checkOut": "",
       "break": ""
     }
@@ -941,6 +983,11 @@
       "holidayName": "Christmas",
       "holidayDate": "2024-12-25",
       "id": "5c01"
+    },
+    {
+      "id": "2473",
+      "holidayName": "General Holiday ",
+      "holidayDate": "2024-09-23"
     }
   ]
 }

@@ -1,0 +1,64 @@
+<div class="container">
+  <div class="flex justify-content-center p-4">
+    <div class="p-fluid p-4 max-w-lg">
+      <div class="border-1 border-round p-4 shadow-2 bg-white">
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-center mb-4">Add Holiday</h2>
+   
+        <!-- Holiday Form -->
+        <div class="grid formgrid p-fluid">
+          <!-- Holiday Name Field -->
+          <div class="col-12 lg:col-6">
+            <div class="field">
+              <label for="holidayName" class="font-semibold">Holiday Name</label>
+              <input
+                id="holidayName"
+                type="text"
+                class="p-inputtext p-component w-full border-1 border-round"
+                placeholder="Enter Holiday Name"
+                [(ngModel)]="holidayName"
+                name="holidayName"
+                required
+              />
+            </div>
+          </div>
+   
+          <!-- Holiday Date Field -->
+          <div class="col-12 lg:col-6">
+            <div class="field">
+              <label for="holidayDate" class="font-semibold">Holiday Date</label>
+              <input
+                id="holidayDate"
+                type="date"
+                class="p-inputtext p-component w-full border-1 border-round"
+                placeholder="dd-mm-yyyy"
+                [(ngModel)]="holidayDate"
+                name="holidayDate"
+                required
+              />
+            </div>
+          </div>
+   
+          <!-- Centered Add Holiday Button -->
+          <div class="col-12 flex justify-content-center mt-4">
+            <button
+              type="button"
+              class="p-button p-component bg-primary"
+              (click)="addHoliday()"
+              [disabled]="!holidayName || !holidayDate">
+              <span class="p-button-label">Add Holiday</span>
+            </button>
+          </div>
+   
+          <!-- Success Message -->
+          <div *ngIf="successMessage" class="col-12 mt-4">
+            <div class="p-message p-message-success">
+              {{ successMessage }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
