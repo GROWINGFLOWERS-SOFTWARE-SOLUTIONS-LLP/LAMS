@@ -711,6 +711,27 @@
       "checkIn": "11:09:11 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "64d8",
+      "date": "19/09/2024",
+      "checkIn": "12:26:34 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9fa2",
+      "date": "19/09/2024",
+      "checkIn": "12:26:34 PM",
+      "checkOut": "12:26:43 PM",
+      "break": "0h 0m 9s"
+    },
+    {
+      "id": "cac4",
+      "date": "19/09/2024",
+      "checkIn": "4:04:02 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
