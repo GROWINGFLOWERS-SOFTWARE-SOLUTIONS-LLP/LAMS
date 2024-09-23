@@ -713,9 +713,72 @@
       "break": ""
     },
     {
-      "id": "ddb4",
-      "date": "20/09/2024",
-      "checkIn": "10:05:14 AM",
+      "id": "621f",
+      "date": "19/09/2024",
+      "checkIn": "2:29:38 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7cb6",
+      "date": "19/09/2024",
+      "checkIn": "2:53:34 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "78da",
+      "date": "19/09/2024",
+      "checkIn": "3:19:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1673",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f754",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "d2b4",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "6cf3",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "cfd4",
+      "date": "19/09/2024",
+      "checkIn": "4:15:12 PM",
+      "checkOut": "4:16:16 PM",
+      "break": "0h 1m 4s"
+    },
+    {
+      "id": "46fa",
+      "date": "23/09/2024",
+      "checkIn": "10:33:49 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d9a9",
+      "date": "23/09/2024",
+      "checkIn": "10:43:45 AM",
       "checkOut": "",
       "break": ""
     }
@@ -788,15 +851,6 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
-    },
-    {
-      "id": "e1ed",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-19T18:30:00.000Z",
-      "endDate": "2024-09-19T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "sdv",
-      "totalLeaves": 1
     }
   ],
   "leaveBalance": [
@@ -927,6 +981,16 @@
       "holidayName": "Christmas",
       "holidayDate": "2024-12-25",
       "id": "5c01"
+    },
+    {
+      "id": "2473",
+      "holidayName": "General Holiday ",
+      "holidayDate": "2024-09-23"
+    },
+    {
+      "id": "2ee4",
+      "holidayName": "Hol",
+      "holidayDate": "2024-09-25"
     }
   ]
 }

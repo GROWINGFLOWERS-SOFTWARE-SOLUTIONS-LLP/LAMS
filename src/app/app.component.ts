@@ -11,13 +11,14 @@ import { DashboardComponent } from './Pages/Components/dashboard/dashboard.compo
 import { LoginComponent } from './Pages/Auth/login/login.component';
 import { AllAttendenceComponent } from './Pages/Admin/all-attendence/all-attendence.component';
 import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profiles/all-employee-profiles.component';
+import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-holidays.component';
 
 
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent,DashboardComponent,FooterComponent,LoginComponent,AllAttendenceComponent,AllEmployeeProfilesComponent],
+  imports: [RouterOutlet, LeaveComponent,HolidaysComponent,AttendanceComponent,NavbarComponent, HelpComponent,HistoryComponent,DashboardComponent,FooterComponent,LoginComponent,AllAttendenceComponent,AllEmployeeProfilesComponent,ManageHolidaysComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
