@@ -774,6 +774,13 @@
       "checkIn": "10:33:49 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "d9a9",
+      "date": "23/09/2024",
+      "checkIn": "10:43:45 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "leaveApplications": [
@@ -844,15 +851,6 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
-    },
-    {
-      "id": "e1ed",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-19T18:30:00.000Z",
-      "endDate": "2024-09-19T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "sdv",
-      "totalLeaves": 1
     }
   ],
   "leaveBalance": [
@@ -988,6 +986,11 @@
       "id": "2473",
       "holidayName": "General Holiday ",
       "holidayDate": "2024-09-23"
+    },
+    {
+      "id": "2ee4",
+      "holidayName": "Hol",
+      "holidayDate": "2024-09-25"
     }
   ]
 }
