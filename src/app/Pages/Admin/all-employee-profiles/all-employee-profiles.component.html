@@ -34,8 +34,8 @@
                 <td>{{ employee.role }}</td>
                 <td>{{ employee.joiningDate }}</td>
                 <td>
-                    <p-button icon="pi pi-pencil" class="p-button-rounded mx-2" (click)="editEmployee(employee)"></p-button>
-                    <p-button icon="pi pi-trash" class="p-button-rounded" (click)="deleteEmployee(employee.id)"></p-button>
+                    <p-button icon="pi pi-pencil" class="p-button-rounded mx-2" severity="success" (click)="editEmployee(employee)"></p-button>
+                    <p-button icon="pi pi-trash" class="p-button-rounded" severity="danger" (click)="deleteEmployee(employee.id)"></p-button>
                 </td>
             </tr>
         </tbody>
