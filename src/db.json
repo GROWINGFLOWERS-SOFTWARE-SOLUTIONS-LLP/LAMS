@@ -110,19 +110,6 @@
       "joiningDate": "2024-04-01",
       "address": "Pune",
       "password": "Shweta@123"
-    },
-    {
-      "id": "8279",
-      "firstName": "Akansha",
-      "lastName": "Khose",
-      "email": "akansha@gmail.com",
-      "mobileNumber": "9800129089",
-      "department": "Engineering",
-      "manager": "Rupesh Shirode",
-      "role": "Backend Developer",
-      "joiningDate": "2024-09-04",
-      "address": "Mumbai",
-      "password": "Akansha@123"
     }
   ],
   "attendance": [
