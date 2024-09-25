@@ -30,14 +30,18 @@ export class NavbarComponent implements OnInit {
   }
 
   checkUserRole() {
-    const loginData = localStorage.getItem('logincredentials');
+    const loginData = localStorage.getItem('users');
     if (loginData) {
       const user = JSON.parse(loginData);
       this.loginCredentials = user;
       console.log(this.loginCredentials);
-      this.isAdmin = user.email === 'admin@gfss.com';
-      this.isEmployee = user.email === 'employee@gfss.com';
-      this.isManager = user.email === 'manager@gfss.com';
+      if (this.loginCredentials.role === 'Admin') {
+        this.isAdmin = true;
+      } else if (this.loginCredentials.role === 'Manager') {
+        this.isManager = true;
+      } else if (this.loginCredentials.role === 'Employee') {
+        this.isEmployee = true; 
+      }    
     }
   }
 
@@ -50,7 +54,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/profile']);
     } else if (route === 'logout') {
       this.authService.logout();
-      localStorage.removeItem('logincredentials');
+      localStorage.removeItem('users');
       this.router.navigate(['/login']);
     }
   }

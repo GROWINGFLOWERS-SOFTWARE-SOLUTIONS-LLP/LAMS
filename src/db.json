@@ -11,6 +11,12 @@
       "password": "employee",
       "role": "Employee",
       "id": "47e1"
+    },
+    {
+      "username": "manager@gfss.com",
+      "password": "manager",
+      "role": "Manager",
+      "id": "55g2"
     }
   ],
   "employees": [
@@ -824,6 +830,55 @@
       "checkIn": "2:23:52 PM",
       "checkOut": "2:24:05 PM",
       "break": "0h 0m 13s"
+    },
+    {
+      "id": "da33",
+      "date": "24/09/2024",
+      "checkIn": "9:54:25 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bca2",
+      "date": "25/09/2024",
+      "checkIn": "2:18:10 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6029",
+      "date": "25/09/2024",
+      "checkIn": "2:18:10 PM",
+      "checkOut": "2:29:14 PM",
+      "break": "0h 11m 4s"
+    },
+    {
+      "id": "a0fb",
+      "date": "25/09/2024",
+      "checkIn": "2:33:06 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1186",
+      "date": "25/09/2024",
+      "checkIn": "2:33:06 PM",
+      "checkOut": "2:33:26 PM",
+      "break": "0h 0m 20s"
+    },
+    {
+      "id": "eb83",
+      "date": "25/09/2024",
+      "checkIn": "2:36:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4723",
+      "date": "25/09/2024",
+      "checkIn": "2:36:08 PM",
+      "checkOut": "2:36:13 PM",
+      "break": "0h 0m 5s"
     }
   ],
   "leaveApplications": [

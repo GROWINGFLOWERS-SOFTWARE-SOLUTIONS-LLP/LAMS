@@ -57,5 +57,12 @@ export class ApiService {
   addHoliday(holiday: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/publicHolidays`, holiday);
   }
- 
+
+  getUsers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/users`);
+  } 
+
+  postUser(user: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/users`, user);
+  }
 }
