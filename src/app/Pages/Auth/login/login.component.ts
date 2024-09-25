@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormGroup, FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../../Core/Services/api.service';
-import { FormBuilder, Validators,ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -10,22 +10,15 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule, RouterModule,ReactiveFormsModule,CommonModule],
+  imports: [FormsModule, RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginObj: any = {
-    email: '',
-    password: '',
-    role: ''
-  };
+  loginForm: FormGroup;
 
 
-  loginForm;
-
-
-  constructor(private router: Router, private apiService:ApiService,private fb: FormBuilder) {
+  constructor(private router: Router, private apiService: ApiService, private fb: FormBuilder) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
@@ -37,23 +30,26 @@ export class LoginComponent {
   }
   get password() { return this.loginForm.controls['password']; }
 
-  loginFun() {  
-    if (this.loginObj.email === 'employee@gfss.com' && this.loginObj.password === 'employee') {
-      alert('Login successful');
-      localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
-      this.router.navigate(['/attendance']);
-    } else if (this.loginObj.email === 'admin@gfss.com' && this.loginObj.password === 'admin') {
-      alert('Login successful');
-      localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
+  loginFun() {
+    this.apiService.getUsers().subscribe((data) => {
+     
+      let users = data.find((user: any) => user.username === this.loginForm.value.email && user.password === this.loginForm.value.password);
+      localStorage.setItem('users', JSON.stringify(users));
+      this.roleBasedRouting(users);
+    });
+  }
+
+  roleBasedRouting(users: any) {
+    debugger;
+    if (users.role === 'Admin') {
       this.router.navigate(['/employeeprofile']);
-    } else if (this.loginObj.email === 'manager@gfss.com' && this.loginObj.password === 'manager') {
-      alert('Login successful');
-      localStorage.setItem('logincredentials', JSON.stringify(this.loginObj));
+    } else if (users.role === 'Employee') {
+      this.router.navigate(['/attendance']);
+    } else if (users.role === 'Manager') {
       this.router.navigate(['/managerRequest']);
-    } else {
-      alert('Please check details and try again');
+    }
+    else{
+      this.router.navigate(['/login']);
     }
   }
- 
-    
 }

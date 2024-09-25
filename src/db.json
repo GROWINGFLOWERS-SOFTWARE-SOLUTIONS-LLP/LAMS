@@ -11,6 +11,12 @@
       "password": "employee",
       "role": "Employee",
       "id": "47e1"
+    },
+    {
+      "username": "manager@gfss.com",
+      "password": "manager",
+      "role": "Manager",
+      "id": "55g2"
     }
   ],
   "employees": [
@@ -110,19 +116,6 @@
       "joiningDate": "2024-04-01",
       "address": "Pune",
       "password": "Shweta@123"
-    },
-    {
-      "id": "8279",
-      "firstName": "Akansha",
-      "lastName": "Khose",
-      "email": "akansha@gmail.com",
-      "mobileNumber": "9800129089",
-      "department": "Engineering",
-      "manager": "Rupesh Shirode",
-      "role": "Backend Developer",
-      "joiningDate": "2024-09-04",
-      "address": "Mumbai",
-      "password": "Akansha@123"
     }
   ],
   "attendance": [
@@ -825,13 +818,20 @@
       "break": "0h 6m 55s"
     },
     {
+<<<<<<< HEAD
       "id": "2721",
       "date": "23/09/2024",
       "checkIn": "2:24:15 PM",
+=======
+      "id": "6241",
+      "date": "23/09/2024",
+      "checkIn": "2:23:52 PM",
+>>>>>>> a430e375262d0445ed11db9f18956a38238a93a1
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "5640",
       "date": "23/09/2024",
       "checkIn": "2:24:15 PM",
@@ -851,6 +851,62 @@
       "checkIn": "2:24:15 PM",
       "checkOut": "2:53:39 PM",
       "break": "0h 29m 24s"
+=======
+      "id": "2110",
+      "date": "23/09/2024",
+      "checkIn": "2:23:52 PM",
+      "checkOut": "2:24:05 PM",
+      "break": "0h 0m 13s"
+    },
+    {
+      "id": "da33",
+      "date": "24/09/2024",
+      "checkIn": "9:54:25 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bca2",
+      "date": "25/09/2024",
+      "checkIn": "2:18:10 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6029",
+      "date": "25/09/2024",
+      "checkIn": "2:18:10 PM",
+      "checkOut": "2:29:14 PM",
+      "break": "0h 11m 4s"
+    },
+    {
+      "id": "a0fb",
+      "date": "25/09/2024",
+      "checkIn": "2:33:06 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1186",
+      "date": "25/09/2024",
+      "checkIn": "2:33:06 PM",
+      "checkOut": "2:33:26 PM",
+      "break": "0h 0m 20s"
+    },
+    {
+      "id": "eb83",
+      "date": "25/09/2024",
+      "checkIn": "2:36:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4723",
+      "date": "25/09/2024",
+      "checkIn": "2:36:08 PM",
+      "checkOut": "2:36:13 PM",
+      "break": "0h 0m 5s"
+>>>>>>> a430e375262d0445ed11db9f18956a38238a93a1
     }
   ],
   "leaveApplications": [
