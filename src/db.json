@@ -823,6 +823,34 @@
       "checkIn": "11:09:18 AM",
       "checkOut": "11:16:13 AM",
       "break": "0h 6m 55s"
+    },
+    {
+      "id": "2721",
+      "date": "23/09/2024",
+      "checkIn": "2:24:15 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5640",
+      "date": "23/09/2024",
+      "checkIn": "2:24:15 PM",
+      "checkOut": "2:53:39 PM",
+      "break": "0h 29m 24s"
+    },
+    {
+      "id": "3755",
+      "date": "23/09/2024",
+      "checkIn": "2:24:15 PM",
+      "checkOut": "2:53:39 PM",
+      "break": "0h 29m 24s"
+    },
+    {
+      "id": "7c44",
+      "date": "23/09/2024",
+      "checkIn": "2:24:15 PM",
+      "checkOut": "2:53:39 PM",
+      "break": "0h 29m 24s"
     }
   ],
   "leaveApplications": [
