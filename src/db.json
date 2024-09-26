@@ -935,6 +935,13 @@
       "checkIn": "12:15:06 PM",
       "checkOut": "12:15:41 PM",
       "break": "0h 0m 35s"
+    },
+    {
+      "id": "3ac4",
+      "date": "26/09/2024",
+      "checkIn": "12:32:15 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   
