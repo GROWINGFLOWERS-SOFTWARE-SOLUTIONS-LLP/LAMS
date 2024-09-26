@@ -4,12 +4,12 @@
  <br>
 <!-- Card -->
     <div class="container mx-3">
-        <div class="grid justify-content-center">
+        <div class="grid justify-content-around">
         <div class="col-12 md:col-6 lg:col-3">
             <div class="card max-w-22rem shadow-3">
                 <p-card header="Employees">
                         <div class="flex justify-content-between ">
-                            <p class="m-0">{{ totalEmployees }} Employees</p>
+                            <p class="m-0">{{totalEmployees}} Employees</p>
                             <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
                             </div> 
                     </p-card>
@@ -40,17 +40,28 @@
     </div>
  </div>
  
-<!--Employee Check-in Cards -->
-<div class="container mx-4">
+<!--Leave Summary Cards -->
+<div class="container mx-8">
         <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
-                <div class="cards max-w-42rem shadow-3 p-1">
+                <div class="cards max-w-32rem shadow-3 p-1">
                 <div>
-                    <h2>Employee Check-ins</h2>
+                    <h2>Leave Summary</h2>
                 </div>
                     <div class="container ml-3 p-5">
+                        <tr>
+                            <td>Total Leaves - 20</td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td>Pending Leaves - {{ pendingLeaves }}</td>
+                        </tr>
+                         <br>
+                         <br>
+
                     <!-- Placeholder for p-meterGroup -->
-                <p-meterGroup [value]="checkinsValue" labelPosition="start" labelOrientation="vertical"/>
+                <!-- <p-meterGroup [value]="checkinsValue" labelPosition="start" labelOrientation="vertical"/> -->
+                <p-meterGroup [value]="leaveSummary" />
             </div>
         </div>
     </div>
@@ -62,8 +73,19 @@
                     <h2>Attendance Summary</h2>
                 </div>
                 <div class="container ml-3 p-5">
+                    <tr>
+                        <td>Total Attendance - {{ totalAttendance }}</td>
+                    </tr>
+                    <br>
+                    <tr>
+                    <tr>
+                        <td>Absent - {{ absent }}  </td>
+                    </tr>
+                    <br>
+                    <br>
                     <!-- Placeholder for p-meterGroup -->
-                <p-meterGroup [value]="summaryValue" labelPosition="start" labelOrientation="vertical" />
+                <!-- <p-meterGroup [value]="summaryValue" labelPosition="start" labelOrientation="vertical" /> -->
+                <p-meterGroup [value]="attendanceSummary" />
                 </div>
             </div>
         </div>
@@ -71,9 +93,9 @@
     </div>
     
 <!-- Card -->
-<div class="container mx-3">
-        <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3">
+ <div class="container mx-3">
+        <div class="grid justify-content-around"> 
+            <!-- <div class="col-12 md:col-6 lg:col-3">
             <div class="card max-w-22rem shadow-3">
                 <p-card header="Attendance">
                 <div class="flex justify-content-between">
@@ -93,7 +115,7 @@
                     </div>
                 </p-card>
             </div>
-        </div>
+        </div>  -->
 
          <div class="col-12 md:col-6 lg:col-3">
     <div class="card max-w-22rem shadow-3">

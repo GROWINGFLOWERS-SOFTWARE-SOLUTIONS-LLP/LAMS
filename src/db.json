@@ -781,6 +781,72 @@
       "checkIn": "10:43:45 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "9404",
+      "date": "24/09/2024",
+      "checkIn": "10:11:58 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "dd54",
+      "date": "24/09/2024",
+      "checkIn": "1:47:50 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0dc8",
+      "date": "25/09/2024",
+      "checkIn": "9:41:09 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b174",
+      "date": "25/09/2024",
+      "checkIn": "10:50:36 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "17a5",
+      "date": "25/09/2024",
+      "checkIn": "10:50:36 PM",
+      "checkOut": "10:52:01 PM",
+      "break": "0h 1m 25s"
+    },
+    {
+      "id": "b969",
+      "date": "25/09/2024",
+      "checkIn": "10:53:22 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4cbc",
+      "date": "26/09/2024",
+      "checkIn": "12:19:43 PM",
+      "checkOut": "",
+      "break": ""
+    }
+  ],
+  "absent": [
+    {
+      "employeeId": 101,
+      "employeeName": "Shubham Sonje",
+      "id": "b6b4"
+    },
+    {
+      "employeeId": 103,
+      "employeeName": "Abhishek Bagad",
+      "id": "f331"
+    },
+    {
+      "employeeId": 107,
+      "employeeName": "Sahil Mhatre",
+      "id": "0009"
     }
   ],
   "leaveApplications": [

@@ -57,5 +57,16 @@ export class ApiService {
   addHoliday(holiday: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/publicHolidays`, holiday);
   }
- 
+ // dashboard - Pending Leaves
+  getLeaves(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
+  }
+// dashboard - Total Attendance
+  getAttendance(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/attendance`);
+  }
+// dashboard - Total Absent
+  getAbsent(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/absent`);
+  }
 }
