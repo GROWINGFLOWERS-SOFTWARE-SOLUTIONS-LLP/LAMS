@@ -5,14 +5,14 @@ import { AvatarModule } from 'primeng/avatar';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // Import RouterModule
+import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { AuthService } from '../../../Core/Services/auth.service';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule, FooterComponent], // Include RouterModule here
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule, FooterComponent],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
@@ -21,23 +21,59 @@ export class NavbarComponent implements OnInit {
   isManager: boolean = false;
   isEmployee: boolean = false;
 
+  // Define nav items for each role
+  adminItems: any[] = [
+    { label: 'Attendance', link: 'allattendance' },
+    { label: 'Profile', link: 'employeeprofile' },
+    { label: 'Manage Holidays', link: 'manageHolidays' }
+  ];
+
+  employeeItems: any[] = [
+    { label: 'Dashboard', link: 'dashboard' },
+    { label: 'Attendance', link: 'attendance' },
+    { label: 'Leave', link: 'leave' },
+    { label: 'Holidays', link: 'holidays' },
+    { label: 'History', link: 'history' },
+    { label: 'Help', link: 'help' }
+  ];
+
+  managerItems: any[] = [
+    { label: 'Leave Request', link: 'managerRequest' }
+  ];
+
+  // Initialize navItems as an empty array
+  navItems: any[] = [];
+
   loginCredentials: any = {};
 
-  constructor(private router: Router, private authService:AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
     this.checkUserRole();
   }
 
   checkUserRole() {
-    const loginData = localStorage.getItem('logincredentials');
+    const loginData = localStorage.getItem('users');
     if (loginData) {
       const user = JSON.parse(loginData);
       this.loginCredentials = user;
-      console.log(this.loginCredentials);
-      this.isAdmin = user.email === 'admin@gfss.com';
-      this.isEmployee = user.email === 'employee@gfss.com';
-      this.isManager = user.email === 'manager@gfss.com';
+
+      switch (this.loginCredentials.role) {
+        case 'Admin':
+          this.isAdmin = true;
+          this.navItems = [...this.adminItems];
+          break;
+        case 'Manager':
+          this.isManager = true;
+          this.navItems = [...this.managerItems];
+          break;
+        case 'Employee':
+          this.isEmployee = true;
+          this.navItems = [...this.employeeItems];
+          break;
+        default:
+          this.navItems = [];
+      }
     }
   }
 
@@ -50,7 +86,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/profile']);
     } else if (route === 'logout') {
       this.authService.logout();
-      localStorage.removeItem('logincredentials');
+      localStorage.removeItem('users');
       this.router.navigate(['/login']);
     }
   }
