@@ -928,6 +928,27 @@
       "checkIn": "1:59:12 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "8752",
+      "date": "26/09/2024",
+      "checkIn": "9:51:17 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c215",
+      "date": "26/09/2024",
+      "checkIn": "12:15:06 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bbe8",
+      "date": "26/09/2024",
+      "checkIn": "12:15:06 PM",
+      "checkOut": "12:15:41 PM",
+      "break": "0h 0m 35s"
     }
   ],
   "leaveApplications": [

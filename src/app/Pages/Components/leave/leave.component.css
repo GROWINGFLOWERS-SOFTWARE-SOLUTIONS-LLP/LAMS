@@ -15,63 +15,11 @@
 
 /* Footer styling */
 .p-dialog-footer {
-  display: flex;
-  justify-content: center; /* Center align items horizontally */
-  gap: 1rem; /* Add spacing between buttons */
-  padding: 1rem;
-  width: 100%;
-  background-color: #f0f0f0; /* Optional: change footer background color */
+  background-color: #f0f0f0;
   box-sizing: border-box;
 }
 
 /* Full-width buttons inside the footer for consistency */
 .p-dialog-footer .p-button {
-  flex: 1; /* Make buttons take up equal space */
-}
-
-/* Mobile and tablet-specific media queries */
-@media (max-width: 767px) {
-  .custom-dialog {
-    width: 90vw !important; /* Adjust width to 90% of the viewport */
-  }
-
-  .p-dialog-content {
-    padding: 1rem !important; /* Ensure proper padding */
-  }
-
-  .p-field, textarea, input, .p-button {
-    width: 100% !important; /* Ensure form fields are full-width */
-  }
-
-  /* Add margin to the table for mobile view */
-  .p-table {
-    margin-bottom: 2rem; /* Ensure the table has enough space from the footer */
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .custom-dialog {
-    width: 60vw !important; /* Adjust width for tablet */
-  }
-
-  .p-table {
-    margin-bottom: 2rem; /* Add margin to avoid overlap with footer */
-  }
-}
-
-/* Extra small devices */
-@media (max-width: 320px) {
-  .custom-dialog {
-    width: 100vw !important; /* Full-width for very small screens */
-    padding: 0.75rem !important; /* Reduce padding */
-  }
-
-  .p-card {
-    padding: 0.75rem !important; /* Ensure the card content is not too close to the edges */
-  }
-
-  /* Ensure margin to prevent overlap with footer */
-  .p-table {
-    margin-bottom: 4rem;
-  }
+  flex: 1;
 }
