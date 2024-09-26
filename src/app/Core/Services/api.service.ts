@@ -57,19 +57,6 @@ export class ApiService {
   addHoliday(holiday: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/publicHolidays`, holiday);
   }
-<<<<<<< HEAD
- // dashboard - Pending Leaves
-  getLeaves(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
-  }
-// dashboard - Total Attendance
-  getAttendance(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/attendance`);
-  }
-// dashboard - Total Absent
-  getAbsent(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/absent`);
-=======
 
   getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/users`);
@@ -77,6 +64,19 @@ export class ApiService {
 
   postUser(user: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/users`, user);
->>>>>>> 9e4a915068f3a0f2e1f0ecb3163c555ee61fa5d1
   }
+
+  //dashboard - Pending Leaves
+  getLeaves(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
+  }
+ //dashboard - Total Attendance
+  getAttendance(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/attendance`);
+  }
+ //dashboard - Total Absent
+  getAbsent(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/absent`);
+  }
+  
 }
