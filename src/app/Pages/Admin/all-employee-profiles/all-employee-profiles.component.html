@@ -15,7 +15,8 @@
                 <th>Phone Number</th>
                 <th>Address</th>
                 <th>Department</th>
-                <th>Role</th>
+                <th>Manager</th>
+                <th>Employee Role</th>
                 <th>Joining Date</th>
                 <th>Actions</th>
             </tr>
@@ -29,11 +30,12 @@
                 <td>{{ employee.mobileNumber }}</td>
                 <td>{{ employee.address }}</td>
                 <td>{{ employee.department }}</td>
+                <td>{{ employee.manager }}</td>
                 <td>{{ employee.role }}</td>
                 <td>{{ employee.joiningDate }}</td>
                 <td>
-                    <p-button icon="pi pi-pencil" class="p-button-rounded mx-2" (click)="editEmployee(employee)"></p-button>
-                    <p-button icon="pi pi-trash" class="p-button-rounded" (click)="deleteEmployee(employee.id)"></p-button>
+                    <p-button icon="pi pi-pencil" class="p-button-rounded mx-2" severity="success" (click)="editEmployee(employee)"></p-button>
+                    <p-button icon="pi pi-trash" class="p-button-rounded" severity="danger" (click)="deleteEmployee(employee.id)"></p-button>
                 </td>
             </tr>
         </tbody>
@@ -98,7 +100,7 @@
                 <div class="input-box">
                     <label>Department</label>
                     <div class="select-box">
-                        <select [(ngModel)]="employee.department" name="department" #department="ngModel" required>
+                        <select [(ngModel)]="employee.department" name="department" placeholder="Select Department" #department="ngModel" required>
                             <option hidden>Department</option>
                             <option>Engineering</option>
                             <option>QA Testing</option>
@@ -111,11 +113,28 @@
                     </div>
                 </div>
                 <div class="input-box">
-                    <label>Designation</label>
-                    <input type="text" [(ngModel)]="employee.role" name="role" placeholder="Enter Designation"
+                    <label>Manager</label>
+                    <input type="text" [(ngModel)]="employee.manager" name="role" placeholder="Enter Manager Name"
                         #role="ngModel" required />
                     <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
-                        <div *ngIf="role.errors?.['required']">Designation is required.</div>
+                        <div *ngIf="role.errors?.['required']">Manager Name is required.</div>
+                    </div>
+                </div>
+                <div class="input-box">
+
+                    <label>Role</label>
+                    <div class="select-box">
+                        <select [(ngModel)]="employee.role" name="role"  placeholder="Enter Role" #role="ngModel" required>
+                            <option hidden>Role</option>
+                            <option>Manager</option>
+                            <option>HR</option>
+                            <option>Admin</option>
+                            <option>Developer</option>
+                            <option>Tester</option>
+                        </select>
+                    </div>
+                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
+                        <div *ngIf="role.errors?.['required']">Role is required.</div>
                     </div>
                 </div>
                 <div class="input-box">

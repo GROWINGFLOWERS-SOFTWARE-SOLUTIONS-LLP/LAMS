@@ -1,24 +1,24 @@
 
-<div class="text-xl p-2"> 
-<b text-3xl>Welcome,</b>Admin</div>
+<div class="text-xl p-2">
+<b text-3xl>Welcome,</b></div>
  <br>
 <!-- Card -->
     <div class="container mx-3">
-        <div class="grid">
+        <div class="grid justify-content-around">
         <div class="col-12 md:col-6 lg:col-3">
             <div class="card max-w-22rem shadow-3">
                 <p-card header="Employees">
                         <div class="flex justify-content-between ">
-                            <p class="m-0">{{ totalEmployees }} Employees</p>
+                            <p class="m-0">{{totalEmployees}} Employees</p>
                             <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
                             </div> 
                     </p-card>
                 </div>
-             </div>
+            </div>
 
              <div class="col-12 md:col-6 lg:col-3">
             <div class="card max-w-22rem shadow-3">
-                <p-card header="Company">
+                <p-card header="Department">
                     <div class="flex justify-content-between">
                     <p class="m-0">4 Department</p>
                     <i class=" pi pi-building" style="color: #82f784;  font-size:45px;"></i>
@@ -26,17 +26,6 @@
                 </p-card>
             </div>
         </div>
-
-        <div class="col-12 md:col-6 lg:col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="Users">
-                    <div class="flex justify-content-between">
-                        <p class="m-0">15 Users</p>
-                        <i class="pi pi-user-plus" style="color: #fe9862;  font-size: 45px;"></i>
-                        </div>
-                    </p-card>
-                </div>
-            </div>
             
             <div class="col-12 md:col-6 lg:col-3">
             <div class="card max-w-22rem shadow-3">
@@ -51,20 +40,26 @@
     </div>
  </div>
  
-<!--Employee Check-in Cards -->
-<div class="container mx-4">
+<!--Leave Summary Cards -->
+<div class="container mx-8">
         <div class="grid">
             <div class="col-12 md:col-6 lg:col-6">
-                <div class="cards max-w-42rem shadow-3 p-1">
+                <div class="cards max-w-32rem shadow-3 p-1">
                 <div>
-                    <h2>Employee Check-ins</h2>
+                    <h2>Leave Summary</h2>
                 </div>
                     <div class="container ml-3 p-5">
-                    <!-- Placeholder for p-meterGroup -->
-                <p-meterGroup [value]="checkinsValue" labelPosition="start" labelOrientation="vertical"/>
-            </div>
-        </div>
-        </div>
+                        <tr>
+                            <td><li>Total Leaves - 20</li></td>
+                        </tr>
+                        <br>
+                        <tr>
+                            <td><li>Pending Leaves - {{ pendingLeaves }}</li></td>
+                        </tr>
+                         <br>
+                    </div>
+                 </div>
+             </div>
 
 <!-- Attendance Summary Cards -->
 <div class="col-12 md:col-6 lg:col-6">
@@ -73,8 +68,15 @@
                     <h2>Attendance Summary</h2>
                 </div>
                 <div class="container ml-3 p-5">
-                    <!-- Placeholder for p-meterGroup -->
-                <p-meterGroup [value]="summaryValue" labelPosition="start" labelOrientation="vertical" />
+                    <tr>
+                        <td><li>Total Attendance - {{ totalAttendance }}</li></td>
+                    </tr>
+                    <br>
+                    <tr>
+                    <tr>
+                        <td><li>Absent - {{ absent }}</li></td>
+                    </tr>
+                    <br>
                 </div>
             </div>
         </div>
@@ -82,31 +84,9 @@
     </div>
     
 <!-- Card -->
-<div class="container mx-3">
-        <div class="grid">
-            <div class="col-12 md:col-6 lg:col-3">
-            <div class="card max-w-22rem shadow-3">
-                <p-card header="Attendance">
-                <div class="flex justify-content-between">
-                    <p class="m-0">2 Entrys Last Week</p>
-                    <i class=" pi pi-clock" style="color: #886fd3; font-size: 45px;" ></i>
-                </div>
-                </p-card>
-                </div>
-            </div>
-    
-        <div class="col-12 md:col-6 lg:col-3">
-            <div class="card max-w-22rem shadow-3">
-        <p-card header="Leave">
-            <div class="flex justify-content-between">
-                <p class="m-0">1 Upcoming</p>
-                <i class=" pi pi-calendar" style="color: #ffd952; font-size: 45px;"></i>
-                    </div>
-                </p-card>
-            </div>
-        </div>
-
-         <div class="col-12 md:col-6 lg:col-3">
+ <div class="container mx-3">
+        <div class="grid justify-content-around"> 
+           <div class="col-12 md:col-6 lg:col-3">
     <div class="card max-w-22rem shadow-3">
         <p-card header="Reports">
             <div class="flex justify-content-between">

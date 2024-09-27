@@ -1,34 +1,13 @@
 <div class="container">
   <div class="main-container">
-    <!-- <div id="sign-up" class="left-container sign-up hidden">
-      <h1>let's sign up</h1>
-      <div style="width: 100%;">
-        <form class="signup-form">
-          <input type="text" id="first-name" placeholder="First Name">
-          <input type="text" id="last-name" placeholder="Last Name">
-          <input type="email" id="email" placeholder="E-mail">
-          <input type="password" id="password" placeholder="Password">
-          <div class="check">
-            <input type="checkbox" onclick="checkTerms()" id="agree-terms">
-            <label for="agree-terms">Agree to
-              <a href="#">Terms &amp; Conditions</a>
-            </label>
-          </div>
-          <button type="submit" id="signup_submit" class="button sign-up-btn disabled" disabled>Sign Up</button>
-        </form>
-      </div>
-      <div class="signin-link-container">
-        <p onclick="changeToLogin()" class="signin-link">ALready have an account? Click here!</p>
-      </div>
-    </div> -->
-
+   
     <div id="log-in" class="left-container log-in">
       <img
         src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95">
       <h1>Let's log in</h1>
       <div style="width: 100%;">
         <form class="signup-form" [formGroup]="loginForm">
-          <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="E-mail" formControlName="email">
+          <input type="email" name="email"  placeholder="E-mail" formControlName="email">
           <small
           *ngIf="email.invalid && (email.dirty || email.touched)"
           class="block p-error"
@@ -36,7 +15,7 @@
           <div *ngIf="email.errors?.['required']">Email is required.</div>
           <div *ngIf="email.errors?.['email']">Email should be valid</div>
         </small>
-          <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" formControlName="password">
+          <input type="password" name="password"  placeholder="Password" formControlName="password">
 
           <small
           *ngIf="password.invalid && (password.dirty || password.touched)"

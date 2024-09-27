@@ -5,11 +5,11 @@ import { ApiService } from '../../../Core/Services/api.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
-
+import { TableModule } from 'primeng/table';
 @Component({
   selector: 'app-all-employee-profiles',
   standalone: true,
-  imports: [ButtonModule, FormsModule, CommonModule, DialogModule],
+  imports: [ButtonModule, FormsModule, CommonModule, DialogModule, TableModule],
   templateUrl: './all-employee-profiles.component.html',
   styleUrls: ['./all-employee-profiles.component.css']
 })
@@ -21,9 +21,10 @@ export class AllEmployeeProfilesComponent implements OnInit {
     password: '',
     mobileNumber: '',
     department: '',
+    manager: '',
     role: '',
     joiningDate: '',
-    address: ''
+    address: '',
   };
 
   employees: any[] = [];
@@ -36,7 +37,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     this.loadEmployees();
   }
 
-  prepareEmployee(employee: any = { firstName: '', lastName: '', email: '', mobileNumber: '', department: '', role: '', joiningDate: '', address: '' }) {
+  prepareEmployee(employee: any = { firstName: '', lastName: '', email: '', mobileNumber: '', department: '', manager: '', role: '', joiningDate: '', address: '' }) {
     this.employee = { ...employee };
     this.isEditing = !!employee.id; // Determine if we are editing or adding
   }

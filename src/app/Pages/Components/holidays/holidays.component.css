@@ -9,43 +9,43 @@
   height: 100vh; /* Adjust height as needed */
   box-sizing: border-box; /* Include padding in width and height calculations */
 }
-
+ 
 /* General font size adjustments for calendar */
 .fc {
   font-size: 1rem; /* Default font size for large screens */
 }
-
+ 
 @media (max-width: 320px) {
   /* Adjust for very small screens */
   .fc {
     font-size: 0.7rem; /* Smaller font size for very small screens */
   }
-
+ 
   .fc-daygrid-day-number {
     font-size: 0.6em; /* Smaller font size for day numbers */
   }
 }
-
+ 
 @media (min-width: 321px) and (max-width: 768px) {
   /* Adjust for small screens */
   .fc {
     font-size: 0.8rem; /* Slightly larger font size for small screens */
   }
 }
-
+ 
 @media (min-width: 769px) and (max-width: 992px) {
   /* Adjust for medium screens */
   .fc {
     font-size: 0.9rem;
   }
 }
-
+ 
 @media (min-width: 993px) {
   /* Adjust for large screens */
   .fc {
     font-size: 1rem;
   }
-
+ 
   .fc-daygrid-day-number {
     font-size: 0.8em; /* Adjust day number font size */
   }
