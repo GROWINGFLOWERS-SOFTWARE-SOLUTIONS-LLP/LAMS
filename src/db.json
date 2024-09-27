@@ -942,27 +942,46 @@
       "checkIn": "12:32:15 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "1a87",
+      "date": "27/09/2024",
+      "checkIn": "10:03:04 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8ab5",
+      "date": "27/09/2024",
+      "checkIn": "11:44:16 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f12c",
+      "date": "27/09/2024",
+      "checkIn": "2:47:47 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
-  
   "absent": [
     {
       "employeeId": 101,
-      "employeeName":"Shubham Sonje",
+      "employeeName": "Shubham Sonje",
       "id": "b6b4"
     },
     {
       "employeeId": 103,
-      "employeeName":"Abhishek Bagad",
+      "employeeName": "Abhishek Bagad",
       "id": "f331"
     },
     {
       "employeeId": 107,
-      "employeeName":"Sahil Mhatre",
+      "employeeName": "Sahil Mhatre",
       "id": "0009"
     }
   ],
-
   "leaveApplications": [
     {
       "employeeId": 101,
@@ -1049,6 +1068,47 @@
       "leavesTaken": 2,
       "leavesRemaining": 8,
       "id": "dbe4"
+    }
+  ],
+  "leavesTaken": [
+    {
+      "id": "101",
+      "employeeName": "Sahil Mhatre",
+      "designation": "Software Engineer",
+      "leavesTaken": {
+        "employeeId": 101,
+        "leaveType": "Vacation Leave",
+        "startDate": "2024-09-05",
+        "endDate": "2024-09-010",
+        "leavesTaken": 6,
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "101",
+      "employeeName": "Bhushan Malpure",
+      "designation": "Software Developer",
+      "leavesTaken": {
+        "employeeId": 102,
+        "leaveType": "Sick Leave",
+        "startDate": "2024-09-15",
+        "endDate": "2024-09-18",
+        "leavesTaken": 4,
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "107",
+      "employeeName": "Zaid Saboowala",
+      "designation": "Software Developer",
+      "leavesTaken": {
+        "employeeId": 109,
+        "leaveType": "Paid Leave",
+        "startDate": "2024-08-6",
+        "endDate": "2024-08-8",
+        "leavesTaken": 3,
+        "status": "Approved"
+      }
     }
   ],
   "publicHolidays": [

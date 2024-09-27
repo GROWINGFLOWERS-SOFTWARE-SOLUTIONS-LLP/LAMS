@@ -1,38 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
-import { MeterGroupModule } from 'primeng/metergroup';
 import { ApiService } from '../../../Core/Services/api.service';
-import { BadgeModule } from 'primeng/badge';
-
 
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CardModule,MeterGroupModule,BadgeModule],
+  imports: [CardModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })
+
 export class DashboardComponent implements OnInit{
 
   totalEmployees: number = 0;
-  pendingLeaves: number = 0;
+  remainingLeaves: number = 0;
   totalAttendance: number = 0;
   absent: number = 0;
+  leavesTaken: number = 0;
 
   constructor(private apiService: ApiService) {}
 
-  totalEmp: any[] = [];
-  leaveSummary = [
-    { color:'#34d399'},
-    { color:'#fbbf24'},
-    
-];
-   attendanceSummary = [
-    { label: 'Total Attendance', color:'#60a5fa', value: 97 },
-    { label: 'Absent', color: '#34d399', value: 0 },
-    
-];
+  // totalEmp: any[] = [];
 
 ngOnInit(): void {
   // Total Employee
@@ -40,9 +29,9 @@ ngOnInit(): void {
     this.totalEmployees = employee.length;
     console.log(this.totalEmployees)
   });
-// Pending Leaves 
+// Remaining Leaves 
   this.apiService.getLeaves().subscribe((leaves) => {
-      this.pendingLeaves = leaves.length;
+      this.remainingLeaves = leaves.length;
     }
   );
 // Total Attendace
@@ -53,6 +42,11 @@ ngOnInit(): void {
 // Total Absent
 this.apiService.getAbsent().subscribe((absent) => {
   this.absent = absent.length;
+}
+);
+// Leaves taken
+this.apiService.getLeavesTaken().subscribe((leavesTaken) => {
+  this.leavesTaken = leavesTaken.length;
 }
 );
 }
