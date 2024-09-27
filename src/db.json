@@ -944,7 +944,6 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "da89",
       "date": "26/09/2024",
       "checkIn": "2:20:30 PM",
@@ -955,11 +954,6 @@
       "id": "3f23",
       "date": "27/09/2024",
       "checkIn": "1:09:16 PM",
-=======
-      "id": "c5fd",
-      "date": "27/09/2024",
-      "checkIn": "11:54:53 AM",
->>>>>>> 33cd49cd0f58f07772f359aa413e79df0b95b2ef
       "checkOut": "",
       "break": ""
     },
@@ -978,9 +972,8 @@
       "break": "0h 0m 17s"
     },
     {
-      "id": "3310",
+      "id": "2a1e",
       "date": "27/09/2024",
-<<<<<<< HEAD
       "checkIn": "1:09:16 PM",
       "checkOut": "1:09:33 PM",
       "break": "0h 0m 17s"
@@ -989,14 +982,10 @@
       "id": "c90d",
       "date": "27/09/2024",
       "checkIn": "1:37:00 PM",
-=======
-      "checkIn": "1:33:52 PM",
->>>>>>> 33cd49cd0f58f07772f359aa413e79df0b95b2ef
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "343c",
       "date": "27/09/2024",
       "checkIn": "1:37:00 PM",
@@ -1007,39 +996,13 @@
       "id": "80f8",
       "date": "27/09/2024",
       "checkIn": "1:44:08 PM",
-=======
-      "id": "649e",
-      "date": "27/09/2024",
-      "checkIn": "1:33:52 PM",
-      "checkOut": "1:35:04 PM",
-      "break": "0h 1m 12s"
-    },
-    {
-      "id": "4a6a",
-      "date": "27/09/2024",
-      "checkIn": "1:35:45 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "4285",
+      "id": "1242",
       "date": "27/09/2024",
-      "checkIn": "1:41:21 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "c4eb",
-      "date": "27/09/2024",
-      "checkIn": "1:52:42 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "b3a4",
-      "date": "27/09/2024",
-      "checkIn": "1:54:45 PM",
->>>>>>> 33cd49cd0f58f07772f359aa413e79df0b95b2ef
+      "checkIn": "2:10:36 PM",
       "checkOut": "",
       "break": ""
     }
@@ -1129,15 +1092,6 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
-    },
-    {
-      "id": "cbea",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-27T08:03:57.221Z",
-      "endDate": "2024-09-27T08:03:57.221Z",
-      "reason": "Viral ",
-      "totalLeaves": 1,
-      "status": "Pending"
     }
   ],
   "leaveBalance": [
