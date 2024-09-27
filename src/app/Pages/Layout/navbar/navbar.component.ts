@@ -17,8 +17,6 @@ import { AuthService } from '../../../Core/Services/auth.service';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-  isAdmin: boolean = false;
-  isManager: boolean = false;
   isEmployee: boolean = false;
 
   // Define nav items for each role
@@ -60,11 +58,9 @@ export class NavbarComponent implements OnInit {
 
       switch (this.loginCredentials.role) {
         case 'Admin':
-          this.isAdmin = true;
           this.navItems = [...this.adminItems];
           break;
         case 'Manager':
-          this.isManager = true;
           this.navItems = [...this.managerItems];
           break;
         case 'Employee':
