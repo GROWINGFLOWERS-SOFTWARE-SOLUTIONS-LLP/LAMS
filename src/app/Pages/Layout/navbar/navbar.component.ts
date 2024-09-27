@@ -7,6 +7,7 @@ import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router'; // Import RouterModule
 import { FooterComponent } from '../footer/footer.component';
+import { AuthService } from '../../../Core/Services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -20,7 +21,7 @@ export class NavbarComponent implements OnInit {
 
   loginCredentials: any = {};
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private authService:AuthService) {}
 
   ngOnInit() {
     this.checkUserRole();
@@ -44,6 +45,7 @@ export class NavbarComponent implements OnInit {
     if (route === 'profile') {
       this.router.navigate(['/profile']);
     } else if (route === 'logout') {
+      this.authService.logout();
       localStorage.removeItem('logincredentials');
       this.router.navigate(['/login']);
     }

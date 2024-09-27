@@ -18,7 +18,7 @@ export class ApiService {
   postAttendance(attendanceRecord: any){
     return this.http.post(this.apiUrl + "/attendance", attendanceRecord);
   }
-  
+
   // Method to get leave requests from the backend API
   getLeaveRequests(): Observable<any> {
     return this.http.get(`${this.apiUrl}/leaveApplications`);
@@ -29,12 +29,29 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
 
- 
   getHolidaysList(): Observable<any> {
     return this.http.get(`${this.apiUrl}/publicHolidays`);
   }
 
+  addEmployee(employee: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/employees`, employee);
+  }
+
+  updateEmployee(employee: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
+  }
+
+  deleteEmployee(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/employees/${id}`);
+  }
+
+  getEmployees(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/employees`);
+  }
   
-  
-  
+// dashboard - get employees number
+  getEmployee(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/employees`);
+  }
 }
+

@@ -27,9 +27,23 @@
         src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95">
       <h1>Let's log in</h1>
       <div style="width: 100%;">
-        <form class="signup-form">
-          <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="E-mail">
-          <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password">
+        <form class="signup-form" [formGroup]="loginForm">
+          <input type="email" name="email" [(ngModel)]="loginObj.email" placeholder="E-mail" formControlName="email">
+          <small
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="email.errors?.['required']">Email is required.</div>
+          <div *ngIf="email.errors?.['email']">Email should be valid</div>
+        </small>
+          <input type="password" name="password" [(ngModel)]="loginObj.password" placeholder="Password" formControlName="password">
+
+          <small
+          *ngIf="password.invalid && (password.dirty || password.touched)"
+          class="block p-error"
+        >
+          <div *ngIf="password.errors?.['required']">Password is required.</div>
+        </small>
           <button type="submit" class="button log-in-btn" (click)="loginFun()"><i class="pi  pi-sign-in"></i>
             Login</button>
         </form>

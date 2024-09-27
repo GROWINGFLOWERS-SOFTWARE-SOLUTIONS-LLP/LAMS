@@ -9,13 +9,14 @@
       <!-- Dialog for the leave application form -->
       <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false"
         [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-
         <div class="p-fluid grid">
           <!-- Start Date -->
           <div class="col-12 lg:col-6">
             <div class="p-field">
               <label for="startDate">Start Date <span style="color: red;">*</span></label>
-              <p-calendar [(ngModel)]="leaveRequest.startDate" dateFormat="yy-mm-dd"></p-calendar>
+              <p-calendar [(ngModel)]="leaveRequest.startDate" (ngModelChange)="calculateTotalLeaves()"
+                [minDate]="today" [showIcon]="true" dateFormat="yy-mm-dd" required></p-calendar>
+              <small *ngIf="!leaveRequest.startDate && submitted" class="p-error">Start Date is required.</small>
             </div>
           </div>
 
@@ -23,7 +24,9 @@
           <div class="col-12 lg:col-6">
             <div class="p-field">
               <label for="endDate">End Date <span style="color: red;">*</span></label>
-              <p-calendar [(ngModel)]="leaveRequest.endDate" dateFormat="yy-mm-dd"></p-calendar>
+              <p-calendar [(ngModel)]="leaveRequest.endDate" (ngModelChange)="calculateTotalLeaves()"
+                [minDate]="leaveRequest.startDate || today" [showIcon]="true" dateFormat="yy-mm-dd" required></p-calendar>
+              <small *ngIf="!leaveRequest.endDate && submitted" class="p-error">End Date is required.</small>
             </div>
           </div>
 
@@ -32,7 +35,8 @@
             <div class="p-field">
               <label for="leaveType">Leave Type <span style="color: red;">*</span></label>
               <p-dropdown [options]="leaveTypes" [(ngModel)]="leaveRequest.leaveType"
-                placeholder="Select Leave Type"></p-dropdown>
+                placeholder="Select Leave Type" required></p-dropdown>
+              <small *ngIf="!leaveRequest.leaveType && submitted" class="p-error">Leave Type is required.</small>
             </div>
           </div>
 
@@ -40,7 +44,7 @@
           <div class="col-12 lg:col-6">
             <div class="p-field">
               <label for="totalLeaves">Total Leaves <span style="color: red;">*</span></label>
-              <input pInputText [(ngModel)]="leaveRequest.totalLeaves" type="number" />
+              <input pInputText [(ngModel)]="leaveRequest.totalLeaves" type="number" [readonly]="true" disabled />
             </div>
           </div>
         </div>
@@ -50,29 +54,28 @@
           <div class="p-field">
             <label for="reason">Reason</label>
             <textarea pInputTextarea [(ngModel)]="leaveRequest.reason" rows="3"></textarea>
+            <small *ngIf="!leaveRequest.reason && submitted" class="p-error">Reason is required.</small>
           </div>
         </div>
 
         <!-- Dialog Footer -->
         <div class="p-dialog-footer">
           <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
-          <p-button label="Save" icon="pi pi-check" (onClick)="saveLeaveRequest()"
-            [disabled]="!isFormValid()"></p-button>
+          <p-button label="Save" icon="pi pi-check" (onClick)="saveLeaveRequest()" [disabled]="!isFormValid()"></p-button>
         </div>
       </p-dialog>
 
-      <!-- Add Margin Using Inline Style -->
+      <!-- Table to display submitted leave requests -->
       <div style="margin-top: 2rem;">
-        <!-- Table to display submitted leave requests -->
         <p-table [value]="leaveRequests" responsiveLayout="scroll" class="responsive-table">
           <ng-template pTemplate="header">
             <tr>
               <th>Start Date</th>
               <th>End Date</th>
               <th>Leave Type</th>
+              <th>Total Leaves</th>
               <th>Status</th>
               <th>Reason</th>
-              <th>Total Leaves</th>
             </tr>
           </ng-template>
 
@@ -81,11 +84,9 @@
               <td>{{ request.startDate | date:'yyyy-MM-dd' }}</td>
               <td>{{ request.endDate | date:'yyyy-MM-dd' }}</td>
               <td>{{ request.leaveType }}</td>
-              <td>
-                <span class="p-tag p-tag-warning">Pending</span>
-              </td>
-              <td>{{ request.reason }}</td>
               <td>{{ request.totalLeaves }}</td>
+              <td><span class="p-tag p-tag-warning">Pending</span></td>
+              <td>{{ request.reason }}</td>
             </tr>
           </ng-template>
         </p-table>

@@ -15,7 +15,7 @@ export class ProfileComponent {
 
   constructor(private route:Router){}
 
-  employee = {
+  employeee = {
     email: 'shubham.sonje@growingflowers-solutions.com',
     phoneNumber: '9890628672',
     // departmentId: '6', // Example ObjectId
