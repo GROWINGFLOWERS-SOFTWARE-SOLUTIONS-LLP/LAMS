@@ -538,8 +538,14 @@
       "checkIn": "1:45:57 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "1442",
+      "date": "17/09/2024",
+      "checkIn": "3:39:47 PM",
+      "checkOut": "",
+      "break": ""
     }
-   
   ],
   "leaveApplications": [
     {
@@ -601,7 +607,6 @@
       "reason": "Ganesh Visarjan",
       "totalLeaves": 1
     }
-    
   ],
   "leaveBalance": [
     {
