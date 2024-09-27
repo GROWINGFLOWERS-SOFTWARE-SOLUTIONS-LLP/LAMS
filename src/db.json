@@ -1033,6 +1033,13 @@
       "checkIn": "3:24:40 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "76f2",
+      "date": "27/09/2024",
+      "checkIn": "3:27:40 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1263,7 +1270,7 @@
     },
     {
       "id": "6548",
-      "holidayName": "good fridaay",
+      "holidayName": "good friday",
       "holidayDate": "2024-09-27"
     }
   ]
