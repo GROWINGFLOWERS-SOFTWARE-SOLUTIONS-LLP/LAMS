@@ -944,9 +944,9 @@
       "break": ""
     },
     {
-      "id": "c5fd",
-      "date": "27/09/2024",
-      "checkIn": "11:54:53 AM",
+      "id": "da89",
+      "date": "26/09/2024",
+      "checkIn": "2:20:30 PM",
       "checkOut": "",
       "break": ""
     },
@@ -977,13 +977,27 @@
       "checkIn": "1:09:16 PM",
       "checkOut": "1:09:33 PM",
       "break": "0h 0m 17s"
-=======
-      "id": "4b48",
+    },
+    {
+      "id": "c90d",
       "date": "27/09/2024",
-      "checkIn": "12:04:07 PM",
+      "checkIn": "1:37:00 PM",
       "checkOut": "",
       "break": ""
->>>>>>> e2a20d8241defa863218e9a04aa012c7b68b3639
+    },
+    {
+      "id": "343c",
+      "date": "27/09/2024",
+      "checkIn": "1:37:00 PM",
+      "checkOut": "1:37:14 PM",
+      "break": "0h 0m 14s"
+    },
+    {
+      "id": "80f8",
+      "date": "27/09/2024",
+      "checkIn": "1:44:08 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1211,6 +1225,11 @@
       "id": "2ee4",
       "holidayName": "Hol",
       "holidayDate": "2024-09-25"
+    },
+    {
+      "id": "6548",
+      "holidayName": "good fridaay",
+      "holidayDate": "2024-09-27"
     }
   ]
 }
