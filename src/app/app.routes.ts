@@ -17,11 +17,6 @@ import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-ho
 
 
 export const routes: Routes = [
-    {
-        path:'',
-        redirectTo:'login',
-        pathMatch:'full'
-      },
       {
         path:'login',
         component:LoginComponent,
@@ -45,5 +40,10 @@ export const routes: Routes = [
             { path: 'manageHolidays', component: ManageHolidaysComponent }
 
         ]
+    },
+    {
+      path:'',
+      redirectTo:'login',
+      pathMatch:'full'
     }
 ];
