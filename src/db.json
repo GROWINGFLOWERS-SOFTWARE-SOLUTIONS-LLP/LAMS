@@ -942,27 +942,39 @@
       "checkIn": "12:32:15 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "c5fd",
+      "date": "27/09/2024",
+      "checkIn": "11:54:53 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4b48",
+      "date": "27/09/2024",
+      "checkIn": "12:04:07 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
-  
   "absent": [
     {
       "employeeId": 101,
-      "employeeName":"Shubham Sonje",
+      "employeeName": "Shubham Sonje",
       "id": "b6b4"
     },
     {
       "employeeId": 103,
-      "employeeName":"Abhishek Bagad",
+      "employeeName": "Abhishek Bagad",
       "id": "f331"
     },
     {
       "employeeId": 107,
-      "employeeName":"Sahil Mhatre",
+      "employeeName": "Sahil Mhatre",
       "id": "0009"
     }
   ],
-
   "leaveApplications": [
     {
       "employeeId": 101,
