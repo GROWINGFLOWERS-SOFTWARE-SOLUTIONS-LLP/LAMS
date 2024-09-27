@@ -956,6 +956,55 @@
       "checkIn": "12:04:07 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "3310",
+      "date": "27/09/2024",
+      "checkIn": "1:33:52 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "649e",
+      "date": "27/09/2024",
+      "checkIn": "1:33:52 PM",
+      "checkOut": "1:35:04 PM",
+      "break": "0h 1m 12s"
+    },
+    {
+      "id": "4a6a",
+      "date": "27/09/2024",
+      "checkIn": "1:35:45 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4285",
+      "date": "27/09/2024",
+      "checkIn": "1:41:21 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c4eb",
+      "date": "27/09/2024",
+      "checkIn": "1:52:42 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b3a4",
+      "date": "27/09/2024",
+      "checkIn": "1:54:45 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f156",
+      "date": "27/09/2024",
+      "checkIn": "1:56:04 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1043,6 +1092,15 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
+    },
+    {
+      "id": "cbea",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-27T08:03:57.221Z",
+      "endDate": "2024-09-27T08:03:57.221Z",
+      "reason": "Viral ",
+      "totalLeaves": 1,
+      "status": "Pending"
     }
   ],
   "leaveBalance": [
