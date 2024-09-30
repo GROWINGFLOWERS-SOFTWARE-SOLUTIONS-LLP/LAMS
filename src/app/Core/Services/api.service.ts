@@ -28,11 +28,12 @@ export class ApiService {
   submitLeaveRequest(leaveRequest: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
- 
+  // Method to get the list of holidays
   getHolidaysList(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/publicHolidays`);
+    return this.http.get<any[]>(`${this.apiUrl}/publicHolidays`);
   }
- 
+
+
   addEmployee(employee: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/employees`, employee);
   }
@@ -49,7 +50,7 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/employees`);
   }
  
-// dashboard - get employees number
+  // dashboard - get employees number
   getEmployee(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/employees`);
   }
@@ -70,11 +71,11 @@ export class ApiService {
   getLeaves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
- //dashboard - Total Attendance
+  //dashboard - Total Attendance
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
   }
- //dashboard - Total Absent
+  //dashboard - Total Absent
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
@@ -83,6 +84,13 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
   }
 
-   
-  
+   // Method to delete a holiday
+  deleteHoliday(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/publicHolidays/${id}`);
+  }
+
+  // Method to update a holiday (optional if needed for editing)
+  updateHoliday(holiday: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
+  }
 }

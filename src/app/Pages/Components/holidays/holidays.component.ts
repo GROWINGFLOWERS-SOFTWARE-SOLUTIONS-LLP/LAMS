@@ -56,9 +56,10 @@ export class HolidaysComponent implements OnInit {
   }
  
   updateLayout() {
+    // debugger
     const width = window.innerWidth;
-    this.isMobile = width <= 480;
- 
+    this.isMobile = width <= 600;
+    //  debugger
     if (this.isMobile) {
       this.calendarOptions.headerToolbar = {
         start: 'dayGridMonth',
