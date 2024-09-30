@@ -1070,35 +1070,30 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "3254",
       "date": "30/09/2024",
       "checkIn": "1:31:10 PM",
-=======
-      "id": "a3fc",
-      "date": "30/09/2024",
-      "checkIn": "12:03:03 PM",
->>>>>>> 2b94ee214341f7b3e033e0ca0573df97867460c6
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "74bb",
       "date": "30/09/2024",
       "checkIn": "1:38:18 PM",
-=======
-      "id": "4a71",
-      "date": "30/09/2024",
-      "checkIn": "12:55:15 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "9aaa",
+      "id": "64d0",
       "date": "30/09/2024",
-      "checkIn": "1:38:39 PM",
->>>>>>> 2b94ee214341f7b3e033e0ca0573df97867460c6
+      "checkIn": "1:48:50 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6eb6",
+      "date": "30/09/2024",
+      "checkIn": "1:57:38 PM",
       "checkOut": "",
       "break": ""
     }
