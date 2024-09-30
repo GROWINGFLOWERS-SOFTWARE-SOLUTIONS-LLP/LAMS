@@ -21,101 +21,56 @@
   ],
   "employees": [
     {
-      "id": "25d7",
-      "firstName": "Prajakta",
-      "lastName": "Badhan",
-      "email": "prajakta24@gmail.com",
-      "password": "Prajakta@123",
+      "id": "b52f",
+      "firstName": "Kshitija",
+      "lastName": "Gaikwad",
+      "email": "kshitija@gfss.com",
+      "password": "Kshitija@123",
       "mobileNumber": "9800129089",
       "department": "Engineering",
-      "role": "Eng",
-      "joiningDate": "2024-01-16",
-      "address": "Pune",
-      "manager": "Kshitija Gaikwad"
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-06-13",
+      "address": "Pune"
     },
     {
-      "id": "a5f9",
+      "id": "c19e",
+      "firstName": "Abhishek ",
+      "lastName": "Joshi",
+      "email": "abhishek@gfss.com",
+      "password": "Abhishek@890",
+      "mobileNumber": "8300129034",
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-05-29",
+      "address": "Pune"
+    },
+    {
+      "id": "992b",
+      "firstName": "Prajakta",
+      "lastName": "Badhan",
+      "email": "prajakta24@gfss.com",
+      "password": "Abhishek@666",
+      "mobileNumber": "7760984512",
+      "department": "Engineering",
+      "manager": "Kshitija Gaikwad",
+      "role": "Developer",
+      "joiningDate": "2024-01-15",
+      "address": "Pune"
+    },
+    {
       "firstName": "Bhushan",
       "lastName": "Malpure",
-      "email": "bhushan17@gmail.com",
-      "mobileNumber": 8975091234,
-      "department": "Admin",
-      "role": "Eng",
-      "joiningDate": "2024-09-11",
-      "address": "Pune",
-      "password": "bhushan@123"
-    },
-    {
-      "id": "6shd",
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shwetasonje@gmail.com",
-      "mobileNumber": 9876543210,
-      "department": "Software Testing",
-      "role": "Eng",
-      "joiningDate": "2024-08-12",
-      "address": "Pune",
-      "password": "shweta@123"
-    },
-    {
-      "id": "6thf",
-      "firstName": "Sahil",
-      "lastName": "Mhatre",
-      "email": "sahil@gmail.com",
-      "mobileNumber": 9835475930,
-      "department": "Software Developer",
-      "role": "Eng",
-      "joiningDate": "2024-07-19",
-      "address": "Pune",
-      "password": "sahil@123"
-    },
-    {
-      "id": "7rhd",
-      "firstName": "Shubham",
-      "lastName": "Sonje",
-      "email": "shubham@gmail.com",
-      "mobileNumber": 9589263713,
-      "department": "QA Testing",
-      "role": "Eng",
-      "joiningDate": "2024-05-14",
-      "address": "Nashik",
-      "password": "shubham@123"
-    },
-    {
-      "id": "7hft",
-      "firstName": "Aditya",
-      "lastName": "Bhise",
-      "email": "aditya@gmail.com",
-      "mobileNumber": 8308468356,
-      "department": "Software Developer",
-      "role": "Eng",
-      "joiningDate": "2024-07-08",
-      "address": "Nashik",
-      "password": "aditya@123"
-    },
-    {
-      "id": "7gyf",
-      "firstName": "Abhishek",
-      "lastName": "Bagad",
-      "email": "abhishek@gmail.com",
-      "mobileNumber": 8378465280,
-      "department": "Software Developer",
-      "role": "Eng",
-      "joiningDate": "2024-07-25",
-      "address": "Nashik",
-      "password": "abhishek@123"
-    },
-    {
-      "id": "abe3",
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shweta12@gmail.com",
+      "email": "bhushan17@gfss.com",
+      "password": "Bhushan@17",
       "mobileNumber": "7710235678",
-      "department": "Human Resources",
-      "role": "HR",
-      "joiningDate": "2024-04-01",
-      "address": "Pune",
-      "password": "Shweta@123"
+      "department": "QA Testing",
+      "manager": "Abhishek Joshi",
+      "role": "Tester",
+      "joiningDate": "2024-02-15",
+      "address": "Nashik",
+      "id": "edc8"
     }
   ],
   "attendance": [
@@ -1021,34 +976,6 @@
       "break": "0h 0m 8s"
     },
     {
-      "id": "8a42",
-      "date": "27/09/2024",
-      "checkIn": "3:18:16 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "094e",
-      "date": "27/09/2024",
-      "checkIn": "3:24:40 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "76f2",
-      "date": "27/09/2024",
-      "checkIn": "3:27:40 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "17b3",
-      "date": "30/09/2024",
-      "checkIn": "9:35:40 am",
-      "checkOut": "",
-      "break": ""
-    },
-    {
       "id": "1edc",
       "date": "30/09/2024",
       "checkIn": "9:35:40 am",
@@ -1068,6 +995,62 @@
       "checkIn": "11:17:51 am",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "a3fc",
+      "date": "30/09/2024",
+      "checkIn": "12:03:03 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4a71",
+      "date": "30/09/2024",
+      "checkIn": "12:55:15 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8e35",
+      "date": "30/09/2024",
+      "checkIn": "4:37:22 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7773",
+      "date": "30/09/2024",
+      "checkIn": "4:41:28 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2f2f",
+      "date": "30/09/2024",
+      "checkIn": "4:44:21 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8268",
+      "date": "30/09/2024",
+      "checkIn": "4:44:21 PM",
+      "checkOut": "4:44:34 PM",
+      "break": "0h 0m 13s"
+    },
+    {
+      "id": "2fa3",
+      "date": "30/09/2024",
+      "checkIn": "3:12:59 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9a87",
+      "date": "30/09/2024",
+      "checkIn": "3:12:59 PM",
+      "checkOut": "3:20:59 PM",
+      "break": "0h 8m 0s"
     }
   ],
   "absent": [
@@ -1157,6 +1140,12 @@
       "totalLeaves": 2
     }
   ],
+  "Total Leaves": [
+    {
+      "id": "101",
+      "total leaves": 20
+    }
+  ],
   "leaveBalance": [
     {
       "employeeId": 101,
@@ -1173,6 +1162,47 @@
       "leavesTaken": 2,
       "leavesRemaining": 8,
       "id": "dbe4"
+    }
+  ],
+  "leavesTaken": [
+    {
+      "id": "101",
+      "employeeName": "Sahil Mhatre",
+      "designation": "Software Engineer",
+      "leavesTaken": {
+        "employeeId": 101,
+        "leaveType": "Vacation Leave",
+        "startDate": "2024-09-05",
+        "endDate": "2024-09-010",
+        "leavesTaken": 6,
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "101",
+      "employeeName": "Bhushan Malpure",
+      "designation": "Software Developer",
+      "leavesTaken": {
+        "employeeId": 102,
+        "leaveType": "Sick Leave",
+        "startDate": "2024-09-15",
+        "endDate": "2024-09-18",
+        "leavesTaken": 4,
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "107",
+      "employeeName": "Zaid Saboowala",
+      "designation": "Software Developer",
+      "leavesTaken": {
+        "employeeId": 109,
+        "leaveType": "Paid Leave",
+        "startDate": "2024-08-6",
+        "endDate": "2024-08-8",
+        "leavesTaken": 3,
+        "status": "Approved"
+      }
     }
   ],
   "publicHolidays": [
@@ -1293,13 +1323,8 @@
     },
     {
       "id": "2ee4",
-      "holidayName": "Hol",
+      "holidayName": "State Holiday",
       "holidayDate": "2024-09-25"
-    },
-    {
-      "id": "6548",
-      "holidayName": "good friday",
-      "holidayDate": "2024-09-27"
     }
   ]
 }
