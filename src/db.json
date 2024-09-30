@@ -1042,32 +1042,6 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "8e6f",
-      "date": "27/09/2024",
-      "checkIn": "11:04:57 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "9dd5",
-      "date": "28/09/2024",
-      "checkIn": "10:54:53 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "75cf",
-      "date": "29/09/2024",
-      "checkIn": "11:07:37 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "1801",
-      "date": "30/09/2024",
-      "checkIn": "10:07:22 AM",
-=======
       "id": "17b3",
       "date": "30/09/2024",
       "checkIn": "9:35:40 am",
@@ -1092,7 +1066,6 @@
       "id": "a90a",
       "date": "30/09/2024",
       "checkIn": "11:17:51 am",
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
       "checkOut": "",
       "break": ""
     },
@@ -1100,6 +1073,13 @@
       "id": "3254",
       "date": "30/09/2024",
       "checkIn": "1:31:10 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "74bb",
+      "date": "30/09/2024",
+      "checkIn": "1:38:18 PM",
       "checkOut": "",
       "break": ""
     }
@@ -1191,12 +1171,6 @@
       "totalLeaves": 2
     }
   ],
-  "Total Leaves": [
-    {
-      "id": "101",
-      "total leaves": 20
-    }
-  ],
   "leaveBalance": [
     {
       "employeeId": 101,
@@ -1213,47 +1187,6 @@
       "leavesTaken": 2,
       "leavesRemaining": 8,
       "id": "dbe4"
-    }
-  ],
-  "leavesTaken": [
-    {
-      "id": "101",
-      "employeeName": "Sahil Mhatre",
-      "designation": "Software Engineer",
-      "leavesTaken": {
-        "employeeId": 101,
-        "leaveType": "Vacation Leave",
-        "startDate": "2024-09-05",
-        "endDate": "2024-09-010",
-        "leavesTaken": 6,
-        "status": "Approved"
-      }
-    },
-    {
-      "id": "101",
-      "employeeName": "Bhushan Malpure",
-      "designation": "Software Developer",
-      "leavesTaken": {
-        "employeeId": 102,
-        "leaveType": "Sick Leave",
-        "startDate": "2024-09-15",
-        "endDate": "2024-09-18",
-        "leavesTaken": 4,
-        "status": "Approved"
-      }
-    },
-    {
-      "id": "107",
-      "employeeName": "Zaid Saboowala",
-      "designation": "Software Developer",
-      "leavesTaken": {
-        "employeeId": 109,
-        "leaveType": "Paid Leave",
-        "startDate": "2024-08-6",
-        "endDate": "2024-08-8",
-        "leavesTaken": 3,
-        "status": "Approved"
-      }
     }
   ],
   "publicHolidays": [
