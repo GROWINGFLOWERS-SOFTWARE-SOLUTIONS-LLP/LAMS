@@ -1281,13 +1281,8 @@
     },
     {
       "id": "2ee4",
-      "holidayName": "Hol",
+      "holidayName": "State Holiday",
       "holidayDate": "2024-09-25"
-    },
-    {
-      "id": "6548",
-      "holidayName": "good friday",
-      "holidayDate": "2024-09-27"
     }
   ]
 }
