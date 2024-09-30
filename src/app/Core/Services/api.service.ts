@@ -49,7 +49,7 @@ export class ApiService {
     return this.http.get(`${this.apiUrl}/employees`);
   }
  
-// dashboard - get employees number
+  // dashboard - get employees number
   getEmployee(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/employees`);
   }
@@ -66,17 +66,20 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/users`, user);
   }
 
-  //dashboard - Pending Leaves
+  //dashboard - Remaining Leaves
   getLeaves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
- //dashboard - Total Attendance
+  //dashboard - Total Attendance
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
   }
- //dashboard - Total Absent
+  //dashboard - Total Absent
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
-  
+  //dashboard - Leaves Taken
+  getLeavesTaken(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
+  }
 }
