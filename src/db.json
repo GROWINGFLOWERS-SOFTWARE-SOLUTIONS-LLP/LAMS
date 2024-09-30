@@ -21,101 +21,56 @@
   ],
   "employees": [
     {
-      "id": "25d7",
-      "firstName": "Prajakta",
-      "lastName": "Badhan",
-      "email": "prajakta24@gmail.com",
-      "password": "Prajakta@123",
+      "id": "b52f",
+      "firstName": "Kshitija",
+      "lastName": "Gaikwad",
+      "email": "kshitija@gfss.com",
+      "password": "Kshitija@123",
       "mobileNumber": "9800129089",
       "department": "Engineering",
-      "role": "Eng",
-      "joiningDate": "2024-01-16",
-      "address": "Pune",
-      "manager": "Kshitija Gaikwad"
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-06-13",
+      "address": "Pune"
     },
     {
-      "id": "a5f9",
+      "id": "c19e",
+      "firstName": "Abhishek ",
+      "lastName": "Joshi",
+      "email": "abhishek@gfss.com",
+      "password": "Abhishek@890",
+      "mobileNumber": "8300129034",
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-05-29",
+      "address": "Pune"
+    },
+    {
+      "id": "992b",
+      "firstName": "Prajakta",
+      "lastName": "Badhan",
+      "email": "prajakta24@gfss.com",
+      "password": "Abhishek@666",
+      "mobileNumber": "7760984512",
+      "department": "Engineering",
+      "manager": "Kshitija Gaikwad",
+      "role": "Developer",
+      "joiningDate": "2024-01-15",
+      "address": "Pune"
+    },
+    {
       "firstName": "Bhushan",
       "lastName": "Malpure",
-      "email": "bhushan17@gmail.com",
-      "mobileNumber": 8975091234,
-      "department": "Admin",
-      "role": "Eng",
-      "joiningDate": "2024-09-11",
-      "address": "Pune",
-      "password": "bhushan@123"
-    },
-    {
-      "id": "6shd",
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shwetasonje@gmail.com",
-      "mobileNumber": 9876543210,
-      "department": "Software Testing",
-      "role": "Eng",
-      "joiningDate": "2024-08-12",
-      "address": "Pune",
-      "password": "shweta@123"
-    },
-    {
-      "id": "6thf",
-      "firstName": "Sahil",
-      "lastName": "Mhatre",
-      "email": "sahil@gmail.com",
-      "mobileNumber": 9835475930,
-      "department": "Software Developer",
-      "role": "Eng",
-      "joiningDate": "2024-07-19",
-      "address": "Pune",
-      "password": "sahil@123"
-    },
-    {
-      "id": "7rhd",
-      "firstName": "Shubham",
-      "lastName": "Sonje",
-      "email": "shubham@gmail.com",
-      "mobileNumber": 9589263713,
-      "department": "QA Testing",
-      "role": "Eng",
-      "joiningDate": "2024-05-14",
-      "address": "Nashik",
-      "password": "shubham@123"
-    },
-    {
-      "id": "7hft",
-      "firstName": "Aditya",
-      "lastName": "Bhise",
-      "email": "aditya@gmail.com",
-      "mobileNumber": 8308468356,
-      "department": "Software Developer",
-      "role": "Eng",
-      "joiningDate": "2024-07-08",
-      "address": "Nashik",
-      "password": "aditya@123"
-    },
-    {
-      "id": "7gyf",
-      "firstName": "Abhishek",
-      "lastName": "Bagad",
-      "email": "abhishek@gmail.com",
-      "mobileNumber": 8378465280,
-      "department": "Software Developer",
-      "role": "Eng",
-      "joiningDate": "2024-07-25",
-      "address": "Nashik",
-      "password": "abhishek@123"
-    },
-    {
-      "id": "abe3",
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shweta12@gmail.com",
+      "email": "bhushan17@gfss.com",
+      "password": "Bhushan@17",
       "mobileNumber": "7710235678",
-      "department": "Human Resources",
-      "role": "HR",
-      "joiningDate": "2024-04-01",
-      "address": "Pune",
-      "password": "Shweta@123"
+      "department": "QA Testing",
+      "manager": "Abhishek Joshi",
+      "role": "Tester",
+      "joiningDate": "2024-02-15",
+      "address": "Nashik",
+      "id": "edc8"
     }
   ],
   "attendance": [
@@ -944,22 +899,9 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "da89",
-      "date": "26/09/2024",
-      "checkIn": "2:20:30 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "3f23",
-      "date": "27/09/2024",
-      "checkIn": "1:09:16 PM",
-=======
       "id": "c5fd",
       "date": "27/09/2024",
       "checkIn": "11:54:53 AM",
->>>>>>> 33cd49cd0f58f07772f359aa413e79df0b95b2ef
       "checkOut": "",
       "break": ""
     },
@@ -973,34 +915,11 @@
     {
       "id": "3310",
       "date": "27/09/2024",
-<<<<<<< HEAD
-      "checkIn": "1:09:16 PM",
-      "checkOut": "1:09:33 PM",
-      "break": "0h 0m 17s"
-    },
-    {
-      "id": "c90d",
-      "date": "27/09/2024",
-      "checkIn": "1:37:00 PM",
-=======
       "checkIn": "1:33:52 PM",
->>>>>>> 33cd49cd0f58f07772f359aa413e79df0b95b2ef
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "343c",
-      "date": "27/09/2024",
-      "checkIn": "1:37:00 PM",
-      "checkOut": "1:37:14 PM",
-      "break": "0h 0m 14s"
-    },
-    {
-      "id": "80f8",
-      "date": "27/09/2024",
-      "checkIn": "1:44:08 PM",
-=======
       "id": "649e",
       "date": "27/09/2024",
       "checkIn": "1:33:52 PM",
@@ -1032,7 +951,6 @@
       "id": "b3a4",
       "date": "27/09/2024",
       "checkIn": "1:54:45 PM",
->>>>>>> 33cd49cd0f58f07772f359aa413e79df0b95b2ef
       "checkOut": "",
       "break": ""
     },
@@ -1056,6 +974,34 @@
       "checkIn": "2:06:04 PM",
       "checkOut": "2:06:12 PM",
       "break": "0h 0m 8s"
+    },
+    {
+      "id": "4c1c",
+      "date": "27/09/2024",
+      "checkIn": "3:06:03 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8dc1",
+      "date": "27/09/2024",
+      "checkIn": "3:06:03 PM",
+      "checkOut": "3:06:19 PM",
+      "break": "0h 0m 16s"
+    },
+    {
+      "id": "5e03",
+      "date": "30/09/2024",
+      "checkIn": "2:10:39 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f4a1",
+      "date": "30/09/2024",
+      "checkIn": "2:10:39 PM",
+      "checkOut": "2:10:54 PM",
+      "break": "0h 0m 15s"
     }
   ],
   "absent": [
@@ -1292,11 +1238,6 @@
       "id": "2ee4",
       "holidayName": "Hol",
       "holidayDate": "2024-09-25"
-    },
-    {
-      "id": "6548",
-      "holidayName": "good fridaay",
-      "holidayDate": "2024-09-27"
     }
   ]
 }

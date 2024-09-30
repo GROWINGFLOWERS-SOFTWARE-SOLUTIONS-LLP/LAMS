@@ -1,163 +1,136 @@
-<div class="container">
-    <h1>Employees</h1>
-
-    <div class="card flex justify-content-end">
-        <p-button label="Add Employee" icon="pi pi-plus" (click)="showDialog = true; prepareEmployee()"></p-button>
+<div class="container p-4">
+    <!-- Title -->
+    <div class="flex justify-content-center mb-4">
+        <h1 class="text-3xl font-bold text-blue-600">Employees</h1>
     </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>Phone Number</th>
-                <th>Address</th>
-                <th>Department</th>
-                <th>Manager</th>
-                <th>Employee Role</th>
-                <th>Joining Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let employee of employees">
-                <td>{{ employee.firstName }}</td>
-                <td>{{ employee.lastName }}</td>
-                <td>{{ employee.email }}</td>
-                <td>{{ employee.password }}</td> <!-- Added Password Column -->
-                <td>{{ employee.mobileNumber }}</td>
-                <td>{{ employee.address }}</td>
-                <td>{{ employee.department }}</td>
-                <td>{{ employee.manager }}</td>
-                <td>{{ employee.role }}</td>
-                <td>{{ employee.joiningDate }}</td>
-                <td>
-                    <p-button icon="pi pi-pencil" class="p-button-rounded mx-2" severity="success" (click)="editEmployee(employee)"></p-button>
-                    <p-button icon="pi pi-trash" class="p-button-rounded" severity="danger" (click)="deleteEmployee(employee.id)"></p-button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    
-    <!-- PrimeNG Dialog -->
-    <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal"
-        [style]="{'width': '50vw'}" [responsive]="true" [closable]="true">
-        <form #employeeForm="ngForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()">
-            <div class="column">
-                <div class="input-box">
-                    <label>First Name</label>
-                    <input type="text" [(ngModel)]="employee.firstName" name="firstName" placeholder="Enter first name"
-                        #firstName="ngModel" required pattern="[A-Za-z]+" />
-                    <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="error-message">
-                        <div *ngIf="firstName.errors?.['required']">First name is required.</div>
-                        <div *ngIf="firstName.errors?.['pattern']">First name must contain only letters.</div>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <label>Last Name</label>
-                    <input type="text" [(ngModel)]="employee.lastName" name="lastName" placeholder="Enter last name"
-                        #lastName="ngModel" required pattern="[A-Za-z]+" />
-                    <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)" class="error-message">
-                        <div *ngIf="lastName.errors?.['required']">Last name is required.</div>
-                        <div *ngIf="lastName.errors?.['pattern']">Last name must contain only letters.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="input-box">
-                    <label>Email Address</label>
-                    <input type="text" [(ngModel)]="employee.email" name="email" placeholder="Enter email address"
-                        #email="ngModel" required 
-                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
-                    <div *ngIf="email.invalid && (email.dirty || email.touched)" class="error-message">
-                        <div *ngIf="email.errors?.['required']">Email address is required.</div>
-                        <div *ngIf="email.errors?.['pattern']">Invalid email address format.</div>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <label>Password</label>
-                    <input type="password" [(ngModel)]="employee.password" name="password" placeholder="Enter password"
-                        #password="ngModel" required 
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
-                    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="error-message">
-                        <div *ngIf="password.errors?.['required']">Password is required.</div>
-                        <div *ngIf="password.errors?.['pattern']">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.</div>
-                    </div>
-                </div>
-            </div>
-            <div class="column">
-                <div class="input-box">
-                    <label>Phone Number</label>
-                    <input type="tel" [(ngModel)]="employee.mobileNumber" name="mobileNumber"
-                        placeholder="Enter phone number" #mobileNumber="ngModel" required pattern="[0-9]{10}" />
-                    <div *ngIf="mobileNumber.invalid && (mobileNumber.dirty || mobileNumber.touched)" class="error-message">
-                        <div *ngIf="mobileNumber.errors?.['required']">Phone number is required.</div>
-                        <div *ngIf="mobileNumber.errors?.['pattern']">Phone number must be 10 digits long.</div>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <label>Department</label>
-                    <div class="select-box">
-                        <select [(ngModel)]="employee.department" name="department" placeholder="Select Department" #department="ngModel" required>
-                            <option hidden>Department</option>
-                            <option>Engineering</option>
-                            <option>QA Testing</option>
-                            <option>Admin</option>
-                            <option>Human Resources</option>
-                        </select>
-                    </div>
-                    <div *ngIf="department.invalid && (department.dirty || department.touched)" class="error-message">
-                        <div *ngIf="department.errors?.['required']">Department is required.</div>
-                    </div>
-                </div>
-                <div class="input-box">
-                    <label>Manager</label>
-                    <input type="text" [(ngModel)]="employee.manager" name="role" placeholder="Enter Manager Name"
-                        #role="ngModel" required />
-                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
-                        <div *ngIf="role.errors?.['required']">Manager Name is required.</div>
-                    </div>
-                </div>
-                <div class="input-box">
+    <!-- Add Employee Button -->
+    <div class="flex justify-content-end mb-4">
+        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary" (click)="openDialog()"></p-button>
+    </div>
 
-                    <label>Role</label>
-                    <div class="select-box">
-                        <select [(ngModel)]="employee.role" name="role"  placeholder="Enter Role" #role="ngModel" required>
-                            <option hidden>Role</option>
-                            <option>Manager</option>
-                            <option>HR</option>
-                            <option>Admin</option>
-                            <option>Developer</option>
-                            <option>Tester</option>
+    <!-- Employee Table -->
+    <div class="p-grid">
+        <div class="p-col-12">
+            <p-table [value]="employees" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Phone Number</th>
+                        <th>Address</th>
+                        <th>Department</th>
+                        <th>Manager</th>
+                        <th>Employee Role</th>
+                        <th>Joining Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </ng-template>
+
+                <ng-template pTemplate="body" let-employee>
+                    <tr>
+                        <td>{{ employee.firstName }}</td>
+                        <td>{{ employee.lastName }}</td>
+                        <td>{{ employee.email }}</td>
+                        <td>{{ employee.password }}</td>
+                        <td>{{ employee.mobileNumber }}</td>
+                        <td>{{ employee.address }}</td>
+                        <td>{{ employee.department }}</td>
+                        <td>{{ employee.manager }}</td>
+                        <td>{{ employee.role }}</td>
+                        <td>{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
+                        <td>
+                            <div class="flex gap-2">
+                                <!-- Edit Button (Green) -->
+                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded" (click)="editEmployee(employee)"></p-button>
+                                <!-- Delete Button (Red) -->
+                                <p-button icon="pi pi-trash" severity="danger" class="p-button-rounded" (click)="deleteEmployee(employee.id)"></p-button>
+                            </div>
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+    </div>
+
+    <!-- PrimeNG Dialog for Add/Edit Employee -->
+    <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal" 
+    [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <!-- Form Structure -->
+        <div class="border-2 border-gray-300 rounded-lg p-4 bg-white">
+            <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()" class="p-fluid">
+                <div class="formgrid grid">
+                    <!-- First Name and Last Name -->
+                    <div class="field col-12 md:col-6">
+                        <label for="firstName" class="font-semibold">First Name</label>
+                        <input id="firstName" type="text" formControlName="firstName" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter first name" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="lastName" class="font-semibold">Last Name</label>
+                        <input id="lastName" type="text" formControlName="lastName" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter last name" />
+                    </div>
+
+                    <!-- Email and Password -->
+                    <div class="field col-12 md:col-6">
+                        <label for="email" class="font-semibold">Email Address</label>
+                        <input id="email" type="email" formControlName="email" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter email address" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="password" class="font-semibold">Password</label>
+                        <input id="password" type="password" formControlName="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter password" />
+                    </div>
+
+                    <!-- Phone Number and Department -->
+                    <div class="field col-12 md:col-6">
+                        <label for="mobileNumber" class="font-semibold">Phone Number</label>
+                        <input id="mobileNumber" type="tel" formControlName="mobileNumber" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter phone number" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="department" class="font-semibold">Department</label>
+                        <select id="department" formControlName="department" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <option value="">Select Department</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="QA Testing">QA Testing</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Human Resources">Human Resources</option>
                         </select>
                     </div>
-                    <div *ngIf="role.invalid && (role.dirty || role.touched)" class="error-message">
-                        <div *ngIf="role.errors?.['required']">Role is required.</div>
+
+                    <!-- Manager and Role -->
+                    <div class="field col-12 md:col-6">
+                        <label for="manager" class="font-semibold">Manager</label>
+                        <input id="manager" type="text" formControlName="manager" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter Manager Name" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="role" class="font-semibold">Role</label>
+                        <select id="role" formControlName="role" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                            <option value="">Select Role</option>
+                            <option value="Manager">Manager</option>
+                            <option value="HR">HR</option>
+                            <option value="Admin">Admin</option>
+                            <option value="Developer">Developer</option>
+                            <option value="Tester">Tester</option>
+                        </select>
+                    </div>
+
+                    <!-- Joining Date and Address -->
+                    <div class="field col-12 md:col-6">
+                        <label for="joiningDate" class="font-semibold">Joining Date</label>
+                        <input id="joiningDate" type="date" formControlName="joiningDate" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label for="address" class="font-semibold">Address</label>
+                        <input id="address" type="text" formControlName="address" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Enter street address" />
                     </div>
                 </div>
-                <div class="input-box">
-                    <label>Joining Date</label>
-                    <input type="date" [(ngModel)]="employee.joiningDate" name="joiningDate"
-                        placeholder="Enter Joining Date" #joiningDate="ngModel" required />
-                    <div *ngIf="joiningDate.invalid && (joiningDate.dirty || joiningDate.touched)" class="error-message">
-                        <div *ngIf="joiningDate.errors?.['required']">Joining date is required.</div>
-                    </div>
+
+                <!-- Form Submit Button -->
+                <div class="flex justify-content-end mt-4">
+                    <p-button label="{{ isEditing ? 'Update' : 'Save' }}" [disabled]="employeeForm.invalid" type="submit" class="p-button-primary"></p-button>
                 </div>
-            </div>
-            <div class="input-box address">
-                <label>Address</label>
-                <input type="text" [(ngModel)]="employee.address" name="address" placeholder="Enter street address"
-                    #address="ngModel" required />
-                <div *ngIf="address.invalid && (address.dirty || address.touched)" class="error-message">
-                    <div *ngIf="address.errors?.['required']">Address is required.</div>
-                </div>
-            </div>
-            <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-                <p-button [label]="isEditing ? 'Update' : 'Save'" [disabled]="employeeForm.invalid"
-                    (click)="isEditing ? updateEmployee() : addEmployee()"></p-button>
-            </div>
-        </form>
+            </form>
+        </div> <!-- End of form wrapper with border -->
     </p-dialog>
 </div>
