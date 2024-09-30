@@ -944,37 +944,20 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "1a87",
-      "date": "27/09/2024",
-      "checkIn": "10:03:04 AM",
-=======
       "id": "da89",
       "date": "26/09/2024",
       "checkIn": "2:20:30 PM",
->>>>>>> eb92c08cfa5508dd7fc805e07fac883c3f417478
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "8ab5",
-      "date": "27/09/2024",
-      "checkIn": "11:44:16 AM",
-=======
       "id": "3f23",
       "date": "27/09/2024",
       "checkIn": "1:09:16 PM",
->>>>>>> eb92c08cfa5508dd7fc805e07fac883c3f417478
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "f12c",
-      "date": "27/09/2024",
-      "checkIn": "2:47:47 PM",
-=======
       "id": "4b48",
       "date": "27/09/2024",
       "checkIn": "12:04:07 PM",
@@ -1055,7 +1038,34 @@
       "id": "76f2",
       "date": "27/09/2024",
       "checkIn": "3:27:40 PM",
->>>>>>> eb92c08cfa5508dd7fc805e07fac883c3f417478
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "8e6f",
+      "date": "27/09/2024",
+      "checkIn": "11:04:57 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9dd5",
+      "date": "28/09/2024",
+      "checkIn": "10:54:53 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "75cf",
+      "date": "29/09/2024",
+      "checkIn": "11:07:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1801",
+      "date": "30/09/2024",
+      "checkIn": "10:07:22 AM",
       "checkOut": "",
       "break": ""
     }
@@ -1145,6 +1155,12 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
+    }
+  ],
+  "Total Leaves": [
+    {
+      "id": "101",
+      "total leaves": 20
     }
   ],
   "leaveBalance": [

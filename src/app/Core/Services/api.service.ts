@@ -82,5 +82,7 @@ export class ApiService {
   getLeavesTaken(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
   }
+
+   
   
 }

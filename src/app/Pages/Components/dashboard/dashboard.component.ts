@@ -21,33 +21,31 @@ export class DashboardComponent implements OnInit{
 
   constructor(private apiService: ApiService) {}
 
-  // totalEmp: any[] = [];
+  ngOnInit(): void {
 
-ngOnInit(): void {
-  // Total Employee
-  this.apiService.getEmployee().subscribe(employee => {
+// Total Employee
+    this.apiService.getEmployee().subscribe(employee => {
     this.totalEmployees = employee.length;
-    console.log(this.totalEmployees)
-  });
+    });
 // Remaining Leaves 
-  this.apiService.getLeaves().subscribe((leaves) => {
-      this.remainingLeaves = leaves.length;
+    this.apiService.getLeaves().subscribe((leaves) => {
+    this.remainingLeaves = leaves.length;
     }
-  );
+    );
 // Total Attendace
-  this.apiService.getAttendance().subscribe((attendance) => {
+    this.apiService.getAttendance().subscribe((attendance) => {
     this.totalAttendance = attendance.length;
-  }
-);
+    }
+    );
 // Total Absent
-this.apiService.getAbsent().subscribe((absent) => {
-  this.absent = absent.length;
-}
-);
+    this.apiService.getAbsent().subscribe((absent) => {
+    this.absent = absent.length;
+    }
+    );
 // Leaves taken
-this.apiService.getLeavesTaken().subscribe((leavesTaken) => {
-  this.leavesTaken = leavesTaken.length;
-}
-);
-}
+    this.apiService.getLeavesTaken().subscribe((leavesTaken) => {
+    this.leavesTaken = leavesTaken.length;
+    }
+    );
+  }
 }
