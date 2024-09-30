@@ -899,9 +899,16 @@
       "break": ""
     },
     {
-      "id": "c5fd",
+      "id": "da89",
+      "date": "26/09/2024",
+      "checkIn": "2:20:30 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "3f23",
       "date": "27/09/2024",
-      "checkIn": "11:54:53 AM",
+      "checkIn": "1:09:16 PM",
       "checkOut": "",
       "break": ""
     },
@@ -913,44 +920,37 @@
       "break": ""
     },
     {
-      "id": "3310",
+      "id": "2a1e",
       "date": "27/09/2024",
-      "checkIn": "1:33:52 PM",
+      "checkIn": "1:09:16 PM",
+      "checkOut": "1:09:33 PM",
+      "break": "0h 0m 17s"
+    },
+    {
+      "id": "c90d",
+      "date": "27/09/2024",
+      "checkIn": "1:37:00 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "649e",
+      "id": "343c",
       "date": "27/09/2024",
-      "checkIn": "1:33:52 PM",
-      "checkOut": "1:35:04 PM",
-      "break": "0h 1m 12s"
+      "checkIn": "1:37:00 PM",
+      "checkOut": "1:37:14 PM",
+      "break": "0h 0m 14s"
     },
     {
-      "id": "4a6a",
+      "id": "80f8",
       "date": "27/09/2024",
-      "checkIn": "1:35:45 PM",
+      "checkIn": "1:44:08 PM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "4285",
+      "id": "1242",
       "date": "27/09/2024",
-      "checkIn": "1:41:21 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "c4eb",
-      "date": "27/09/2024",
-      "checkIn": "1:52:42 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "b3a4",
-      "date": "27/09/2024",
-      "checkIn": "1:54:45 PM",
+      "checkIn": "2:10:36 PM",
       "checkOut": "",
       "break": ""
     },
@@ -976,32 +976,39 @@
       "break": "0h 0m 8s"
     },
     {
-      "id": "4c1c",
-      "date": "27/09/2024",
-      "checkIn": "3:06:03 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "8dc1",
-      "date": "27/09/2024",
-      "checkIn": "3:06:03 PM",
-      "checkOut": "3:06:19 PM",
-      "break": "0h 0m 16s"
-    },
-    {
-      "id": "5e03",
+      "id": "1edc",
       "date": "30/09/2024",
-      "checkIn": "2:10:39 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "f4a1",
-      "date": "30/09/2024",
-      "checkIn": "2:10:39 PM",
-      "checkOut": "2:10:54 PM",
+      "checkIn": "9:35:40 am",
+      "checkOut": "9:35:55 am",
       "break": "0h 0m 15s"
+    },
+    {
+      "id": "437a",
+      "date": "30/09/2024",
+      "checkIn": "9:35:40 am",
+      "checkOut": "9:35:55 am",
+      "break": "0h 0m 15s"
+    },
+    {
+      "id": "a90a",
+      "date": "30/09/2024",
+      "checkIn": "11:17:51 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "a3fc",
+      "date": "30/09/2024",
+      "checkIn": "12:03:03 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4a71",
+      "date": "30/09/2024",
+      "checkIn": "12:55:15 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1089,15 +1096,12 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
-    },
+    }
+  ],
+  "Total Leaves": [
     {
-      "id": "cbea",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-27T08:03:57.221Z",
-      "endDate": "2024-09-27T08:03:57.221Z",
-      "reason": "Viral ",
-      "totalLeaves": 1,
-      "status": "Pending"
+      "id": "101",
+      "total leaves": 20
     }
   ],
   "leaveBalance": [
@@ -1116,6 +1120,47 @@
       "leavesTaken": 2,
       "leavesRemaining": 8,
       "id": "dbe4"
+    }
+  ],
+  "leavesTaken": [
+    {
+      "id": "101",
+      "employeeName": "Sahil Mhatre",
+      "designation": "Software Engineer",
+      "leavesTaken": {
+        "employeeId": 101,
+        "leaveType": "Vacation Leave",
+        "startDate": "2024-09-05",
+        "endDate": "2024-09-010",
+        "leavesTaken": 6,
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "101",
+      "employeeName": "Bhushan Malpure",
+      "designation": "Software Developer",
+      "leavesTaken": {
+        "employeeId": 102,
+        "leaveType": "Sick Leave",
+        "startDate": "2024-09-15",
+        "endDate": "2024-09-18",
+        "leavesTaken": 4,
+        "status": "Approved"
+      }
+    },
+    {
+      "id": "107",
+      "employeeName": "Zaid Saboowala",
+      "designation": "Software Developer",
+      "leavesTaken": {
+        "employeeId": 109,
+        "leaveType": "Paid Leave",
+        "startDate": "2024-08-6",
+        "endDate": "2024-08-8",
+        "leavesTaken": 3,
+        "status": "Approved"
+      }
     }
   ],
   "publicHolidays": [
@@ -1238,6 +1283,11 @@
       "id": "2ee4",
       "holidayName": "Hol",
       "holidayDate": "2024-09-25"
+    },
+    {
+      "id": "6548",
+      "holidayName": "good friday",
+      "holidayDate": "2024-09-27"
     }
   ]
 }
