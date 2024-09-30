@@ -1,10 +1,12 @@
 <div class="container">
+  <!-- Checkout Button Section -->
   <div class="flex justify-content-center gap-2 mt-4 mb-4">
     <p-button label="Checkout" icon="pi pi-times" (click)="checkout()"></p-button>
   </div>
+
   <!-- Punch In Dialog -->
-  <p-dialog [(visible)]="displayPunchInDialog" [modal]="true" [closable]="false" class="text-center">
-    <div class="dialog-content">
+  <p-dialog [(visible)]="displayPunchInDialog" [modal]="true" [closable]="false" class="flex flex-column align-items-center text-center">
+    <div class="dialog-content flex flex-column align-items-center">
       <h2>Attendance</h2>
       <p-avatar image="https://cdn-icons-png.flaticon.com/512/1869/1869397.png" shape="circle" size="xlarge" class="avatar-image"></p-avatar>
       <div class="attendance-panel">{{ attendance_date }}</div>
@@ -20,7 +22,7 @@
         <th>Date</th>
         <th>Check-In</th>
         <th>Check-Out</th>
-        <th>Time Spend</th>
+        <th>Time Spent</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-record>
@@ -32,7 +34,4 @@
       </tr>
     </ng-template>
   </p-table>
-
-  <!-- Checkout Button -->
-
 </div>

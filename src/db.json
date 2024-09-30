@@ -942,27 +942,95 @@
       "checkIn": "12:32:15 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "5a52",
+      "date": "27/09/2024",
+      "checkIn": "2:26:31 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1443",
+      "date": "27/09/2024",
+      "checkIn": "2:26:31 AM",
+      "checkOut": "2:27:56 AM",
+      "break": "0h 1m 25s"
+    },
+    {
+      "id": "ebb0",
+      "date": "27/09/2024",
+      "checkIn": "2:26:31 AM",
+      "checkOut": "2:27:56 AM",
+      "break": "0h 1m 25s"
+    },
+    {
+      "id": "98a4",
+      "date": "30/09/2024",
+      "checkIn": "10:43:17 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4ce8",
+      "date": "30/09/2024",
+      "checkIn": "10:43:17 AM",
+      "checkOut": "10:43:21 AM",
+      "break": "0h 0m 4s"
+    },
+    {
+      "id": "5951",
+      "date": "30/09/2024",
+      "checkIn": "10:43:17 AM",
+      "checkOut": "10:43:24 AM",
+      "break": "0h 0m 7s"
+    },
+    {
+      "id": "a698",
+      "date": "30/09/2024",
+      "checkIn": "10:51:17 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6526",
+      "date": "30/09/2024",
+      "checkIn": "10:51:17 AM",
+      "checkOut": "11:04:28 AM",
+      "break": "0h 13m 11s"
+    },
+    {
+      "id": "b590",
+      "date": "30/09/2024",
+      "checkIn": "11:31:03 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b73c",
+      "date": "30/09/2024",
+      "checkIn": "11:31:03 AM",
+      "checkOut": "11:31:07 AM",
+      "break": "0h 0m 4s"
     }
   ],
-  
   "absent": [
     {
       "employeeId": 101,
-      "employeeName":"Shubham Sonje",
+      "employeeName": "Shubham Sonje",
       "id": "b6b4"
     },
     {
       "employeeId": 103,
-      "employeeName":"Abhishek Bagad",
+      "employeeName": "Abhishek Bagad",
       "id": "f331"
     },
     {
       "employeeId": 107,
-      "employeeName":"Sahil Mhatre",
+      "employeeName": "Sahil Mhatre",
       "id": "0009"
     }
   ],
-
   "leaveApplications": [
     {
       "employeeId": 101,
