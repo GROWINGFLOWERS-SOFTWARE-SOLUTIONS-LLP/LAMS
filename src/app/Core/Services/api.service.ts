@@ -66,7 +66,7 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/users`, user);
   }
 
-  //dashboard - Pending Leaves
+  //dashboard - Remaining Leaves
   getLeaves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
@@ -78,5 +78,11 @@ export class ApiService {
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
+  //dashboard - Leaves Taken
+  getLeavesTaken(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
+  }
+
+   
   
 }

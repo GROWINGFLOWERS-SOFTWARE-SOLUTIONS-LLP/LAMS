@@ -1,81 +1,14 @@
 /* Responsive design */
-
-    /* Base styles */
-    .card {
-        margin: 0.5rem;
-        /* padding: 1rem; */
+.card {
+    margin: 0.5rem;
     }
 
-    .card-header {
-        font-size: 1.25rem;
-        font-weight: bold;
-        margin-bottom: 0.5rem;
-    }
 
-    .card-body {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
 
-    .max-w-22rem {
-        max-width: 22rem;
-    }
 
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .container {
-            margin: 0 1rem;
-        }
-
-        .text-xl {
-            font-size: 1.25rem;
-        }
-
-        .text-3xl {
-            font-size: 1.5rem;
-        }
-
-        .card {
-            margin: 0.25rem;
-        }
-
-        .card-body {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .card-body i {
-            margin-top: 0.5rem;
-        }
-    }
-
-    @media (max-width: 576px) {
-        .text-xl {
-            font-size: 1rem;
-        }
-
-        .text-3xl {
-            font-size: 1.25rem;
-        }
-
-        .card {
-            margin: 0.1rem;
-        }
-    }
-
-.container {
-    overflow: auto;
-    scrollbar-width: none; /* Hides scrollbar for Firefox */
-}
- 
-.container::-webkit-scrollbar {
-    display: none; /* Hides scrollbar for Chrome, Safari, Edge */
-}
-
- .cards{
+.cards{
     max-width: 715px;
     text-align: center;
     background-color:seashell;
-}
+    }
 
