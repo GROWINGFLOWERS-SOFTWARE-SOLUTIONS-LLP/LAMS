@@ -1,23 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ApiService } from '../../../Core/Services/api.service';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
-import { Table, TableModule } from 'primeng/table';
+import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-import { Observable } from 'rxjs';
 
 @Component({
     selector: 'app-all-employee-profiles',
     templateUrl: './all-employee-profiles.component.html',
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
-    imports: [CommonModule, ButtonModule, DialogModule, TableModule, FormsModule, ReactiveFormsModule, CalendarModule, InputTextModule, DropdownModule]
+    imports: [ReactiveFormsModule, CommonModule, ButtonModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule]
 })
 export class AllEmployeeProfilesComponent implements OnInit {
     employees: any[] = [];
@@ -32,8 +30,8 @@ export class AllEmployeeProfilesComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            password: ['', Validators.required],
-            mobileNumber: ['', Validators.required],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            mobileNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]], // Assumes 10-digit phone number
             department: ['', Validators.required],
             manager: ['', Validators.required],
             role: ['', Validators.required],
@@ -46,21 +44,18 @@ export class AllEmployeeProfilesComponent implements OnInit {
         this.loadEmployees();
     }
 
-    // Load Employees from API
     loadEmployees() {
         this.apiService.getEmployees().subscribe((data) => {
             this.employees = data;
         });
     }
 
-    // Open dialog for adding a new employee
     openDialog() {
         this.showDialog = true;
         this.isEditing = false;
         this.employeeForm.reset();
     }
 
-    // Add a new employee
     addEmployee() {
         if (this.employeeForm.valid) {
             this.apiService.addEmployee(this.employeeForm.value).subscribe(() => {
@@ -70,18 +65,16 @@ export class AllEmployeeProfilesComponent implements OnInit {
         }
     }
 
-    // Edit an existing employee
     editEmployee(employee: any) {
         this.employeeForm.patchValue(employee);
         this.isEditing = true;
         this.showDialog = true;
-        this.selectedEmployeeId = employee.id; // Capture the selected employee's ID
+        this.selectedEmployeeId = employee.id;
     }
 
-    // Update an existing employee
     updateEmployee() {
         if (this.employeeForm.valid) {
-            const employeeData = { ...this.employeeForm.value, id: this.selectedEmployeeId }; // Include the employee ID
+            const employeeData = { ...this.employeeForm.value, id: this.selectedEmployeeId };
             this.apiService.updateEmployee(employeeData).subscribe(() => {
                 this.loadEmployees();
                 this.showDialog = false;
@@ -89,15 +82,15 @@ export class AllEmployeeProfilesComponent implements OnInit {
         }
     }
 
-    // Delete an employee
     deleteEmployee(id: number) {
         this.apiService.deleteEmployee(id).subscribe(() => {
             this.loadEmployees();
         });
     }
+
+    // Helper function to check form field validity
+    isFieldInvalid(field: string): boolean {
+        const control = this.employeeForm.get(field);
+        return control ? control.invalid && (control.touched || control.dirty) : false;
+    }
 }
-
-
-
-
-
