@@ -944,11 +944,6 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "5a52",
-      "date": "27/09/2024",
-      "checkIn": "2:26:31 AM",
-=======
       "id": "da89",
       "date": "26/09/2024",
       "checkIn": "2:20:30 PM",
@@ -959,30 +954,10 @@
       "id": "3f23",
       "date": "27/09/2024",
       "checkIn": "1:09:16 PM",
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "1443",
-      "date": "27/09/2024",
-      "checkIn": "2:26:31 AM",
-      "checkOut": "2:27:56 AM",
-      "break": "0h 1m 25s"
-    },
-    {
-      "id": "ebb0",
-      "date": "27/09/2024",
-      "checkIn": "2:26:31 AM",
-      "checkOut": "2:27:56 AM",
-      "break": "0h 1m 25s"
-    },
-    {
-      "id": "98a4",
-      "date": "30/09/2024",
-      "checkIn": "10:43:17 AM",
-=======
       "id": "4b48",
       "date": "27/09/2024",
       "checkIn": "12:04:07 PM",
@@ -1000,30 +975,10 @@
       "id": "c90d",
       "date": "27/09/2024",
       "checkIn": "1:37:00 PM",
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "4ce8",
-      "date": "30/09/2024",
-      "checkIn": "10:43:17 AM",
-      "checkOut": "10:43:21 AM",
-      "break": "0h 0m 4s"
-    },
-    {
-      "id": "5951",
-      "date": "30/09/2024",
-      "checkIn": "10:43:17 AM",
-      "checkOut": "10:43:24 AM",
-      "break": "0h 0m 7s"
-    },
-    {
-      "id": "a698",
-      "date": "30/09/2024",
-      "checkIn": "10:51:17 AM",
-=======
       "id": "343c",
       "date": "27/09/2024",
       "checkIn": "1:37:00 PM",
@@ -1034,38 +989,17 @@
       "id": "80f8",
       "date": "27/09/2024",
       "checkIn": "1:44:08 PM",
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "6526",
-      "date": "30/09/2024",
-      "checkIn": "10:51:17 AM",
-      "checkOut": "11:04:28 AM",
-      "break": "0h 13m 11s"
-    },
-    {
-      "id": "b590",
-      "date": "30/09/2024",
-      "checkIn": "11:31:03 AM",
-=======
       "id": "1242",
       "date": "27/09/2024",
       "checkIn": "2:10:36 PM",
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "b73c",
-      "date": "30/09/2024",
-      "checkIn": "11:31:03 AM",
-      "checkOut": "11:31:07 AM",
-      "break": "0h 0m 4s"
-=======
       "id": "f156",
       "date": "27/09/2024",
       "checkIn": "1:56:04 PM",
@@ -1134,7 +1068,6 @@
       "checkIn": "11:17:51 am",
       "checkOut": "",
       "break": ""
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
     }
   ],
   "absent": [

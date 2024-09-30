@@ -28,18 +28,17 @@ export class AllAttendenceComponent  implements OnInit {
     ];
 
     employees.forEach(employee => {
-      // Fetch attendance records
+      // Fetch attendance 
       this.apiService.getAttendanceByEmployee(employee.employeeId, this.currentMonth, this.currentYear).subscribe(
         (attendanceRecords) => {
           const totalDaysInMonth = new Date(this.currentYear, this.currentMonth, 0).getDate();
           const daysPresent = attendanceRecords.filter(record => record.checkIn).length; // Count days with check-in
           const attendanceRatio = `${daysPresent}/${totalDaysInMonth}`;
 
-          // Fetch leave requests for the employee
+          // Fetch leave 
           this.apiService.getLeaveRequests().subscribe(
-            (leaveRequests: any[]) => { // Specify leaveRequests as an array of any
-              // Filter leaves for this employee in the current month
-              const employeeLeaves = leaveRequests.filter((request: any) => // Specify request as any
+            (leaveRequests: any[]) => { 
+              const employeeLeaves = leaveRequests.filter((request: any) => 
                 request.employeeId === employee.employeeId &&
                 new Date(request.leaveDate).getMonth() + 1 === this.currentMonth &&
                 new Date(request.leaveDate).getFullYear() === this.currentYear
@@ -47,7 +46,6 @@ export class AllAttendenceComponent  implements OnInit {
 
               const leavesTaken = employeeLeaves;
 
-              // Add the attendance and leave data to the record array
               this.record.push({
                 employeeName: employee.employeeName,
                 employeeRole: employee.employeeRole,
