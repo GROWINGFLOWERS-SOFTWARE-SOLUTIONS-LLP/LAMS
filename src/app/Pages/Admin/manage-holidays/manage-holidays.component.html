@@ -1,16 +1,16 @@
-<div class="container">
+<div class="p-fluid h-screen p-4 bg-gray-100">
   <!-- Show List of Holidays Button aligned to the right -->
-  <div class="flex justify-content-end p-4">
-    <button
-      type="button"
-      class="p-button p-component p-button-secondary"
+  <div class="flex justify-content-end mb-4">
+    <p-button 
+      label="{{ showHolidayList ? 'Hide List of Holidays' : 'Show List of Holidays' }}" 
+      class="p-button-secondary p-button-sm" 
+      severity="secondary"
       (click)="toggleHolidayList()">
-      <span class="p-button-label">{{ showHolidayList ? 'Hide List of Holidays' : 'Show List of Holidays' }}</span>
-    </button>
+    </p-button>
   </div>
-
+  
   <!-- Add Holiday Form (Visible when showHolidayList is false) -->
-  <div class="flex justify-content-center p-4" *ngIf="!showHolidayList">
+  <div class="flex justify-content-center mb-4" *ngIf="!showHolidayList">
     <div class="p-fluid w-full md:w-8 lg:w-6">
       <div class="border-1 border-round p-3 shadow-2 bg-white">
         <!-- Title -->
@@ -75,16 +75,18 @@
   <div *ngIf="showHolidayList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
     <h3 class="text-xl font-bold text-center mb-3">Holiday List</h3>
 
-    <p-table [value]="holidays" [paginator]="true" [rows]="5" responsiveLayout="scroll">
-      <ng-template pTemplate="header">
-        <tr>
-          <th>Holiday Name</th>
-          <th>Holiday Date</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </ng-template>
+    <div class="overflow-auto" style="max-height: 400px;">
+      <p-table [value]="holidays" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+        <ng-template pTemplate="header">
+          <tr>
+            <th>Holiday Name</th>
+            <th>Holiday Date</th>
+            <th>Edit</th>
+            <th>Delete</th>
+          </tr>
+        </ng-template>
 
+<<<<<<< HEAD
       <ng-template pTemplate="body" let-holiday>
         <tr>
           <td>{{ holiday.holidayName }}</td>
@@ -101,12 +103,31 @@
           </td>
         </tr>
       </ng-template>
+=======
+        <ng-template pTemplate="body" let-holiday>
+          <tr>
+            <td>{{ holiday.holidayName }}</td>
+            <td>{{ holiday.holidayDate }}</td>
+            <td>
+              <button type="button" class="p-button p-component p-button-success" (click)="editHoliday(holiday)">
+                <span class="p-button-label">Edit</span>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="p-button p-component p-button-danger" (click)="deleteHoliday(holiday.id)">
+                <span class="p-button-label">Delete</span>
+              </button>
+            </td>
+          </tr>
+        </ng-template>
+>>>>>>> 952fdda80204b830cdcbc1d620db26125f041c5f
 
-      <ng-template pTemplate="emptymessage">
-        <tr>
-          <td colspan="4">No holidays found.</td>
-        </tr>
-      </ng-template>
-    </p-table>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">No holidays found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>

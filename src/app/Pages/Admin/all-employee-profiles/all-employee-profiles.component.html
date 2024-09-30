@@ -44,9 +44,11 @@
                         <td>
                             <div class="flex gap-2">
                                 <!-- Edit Button (Green) -->
-                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded" (click)="editEmployee(employee)"></p-button>
+                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded"
+                                    (click)="editEmployee(employee)"></p-button>
                                 <!-- Delete Button (Red) -->
-                                <p-button icon="pi pi-trash" severity="danger" class="p-button-rounded" (click)="deleteEmployee(employee.id)"></p-button>
+                                <p-button icon="pi pi-trash" severity="danger" class="p-button-rounded"
+                                    (click)="deleteEmployee(employee.id)"></p-button>
                             </div>
                         </td>
                     </tr>
@@ -56,8 +58,8 @@
     </div>
 
     <!-- PrimeNG Dialog for Add/Edit Employee -->
-    <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal" 
-              [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+    <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal"
+        [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
         <!-- Form Structure -->
         <div class="border-2 border-gray-300 rounded-lg p-4 bg-white">
             <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()" class="p-fluid">
@@ -65,18 +67,18 @@
                     <!-- First Name and Last Name -->
                     <div class="field col-12 md:col-6">
                         <label for="firstName" class="font-semibold">First Name</label>
-                        <input id="firstName" type="text" formControlName="firstName" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter first name" required pattern="[A-Za-z]+" />
+                        <input id="firstName" type="text" formControlName="firstName"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter first name" required pattern="[A-Za-z]+" />
                         <div *ngIf="isFieldInvalid('firstName')" class="error-message text-red-600">
                             First Name is required and must contain only letters.
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="lastName" class="font-semibold">Last Name</label>
-                        <input id="lastName" type="text" formControlName="lastName" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter last name" required pattern="[A-Za-z]+"/>
+                        <input id="lastName" type="text" formControlName="lastName"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter last name" required pattern="[A-Za-z]+" />
                         <div *ngIf="isFieldInvalid('lastName')" class="error-message text-red-600">
                             Last Name is required and must contain only letters.
                         </div>
@@ -85,9 +87,10 @@
                     <!-- Email and Password -->
                     <div class="field col-12 md:col-6">
                         <label for="email" class="font-semibold">Email Address</label>
-                        <input id="email" type="email" formControlName="email" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter email address" required pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                        <input id="email" type="email" formControlName="email"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter email address" required
+                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
                         <div *ngIf="isFieldInvalid('email')" class="error-message text-red-600">
                             Valid Email is required.
                         </div>
@@ -95,29 +98,31 @@
 
                     <div class="field col-12 md:col-6">
                         <label for="password" class="font-semibold">Password</label>
-                        <input id="password" type="password" formControlName="password" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}"/>
+                        <input id="password" type="password" formControlName="password"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter password" required
+                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
                         <div *ngIf="isFieldInvalid('password')" class="error-message text-red-600">
-                            Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.
+                            Password must be at least 8 characters long, contain at least one uppercase letter, one
+                            lowercase letter, one digit, and one special character.
                         </div>
                     </div>
 
                     <!-- Phone Number and Department -->
                     <div class="field col-12 md:col-6">
                         <label for="mobileNumber" class="font-semibold">Phone Number</label>
-                        <input id="mobileNumber" type="tel" formControlName="mobileNumber" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter phone number" required pattern="[0-9]{10}" />
+                        <input id="mobileNumber" type="tel" formControlName="mobileNumber"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter phone number" required pattern="[0-9]{10}" />
                         <div *ngIf="isFieldInvalid('mobileNumber')" class="error-message text-red-600">
                             Phone Number is required and must be 10 digits.
                         </div>
                     </div>
-                    
+
                     <div class="field col-12 md:col-6">
                         <label for="department" class="font-semibold">Department</label>
-                        <select id="department" formControlName="department" 
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <select id="department" formControlName="department"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                             <option value="">Select Department</option>
                             <option value="Engineering">Engineering</option>
                             <option value="QA Testing">QA Testing</option>
@@ -132,17 +137,17 @@
                     <!-- Manager and Role -->
                     <div class="field col-12 md:col-6">
                         <label for="manager" class="font-semibold">Manager</label>
-                        <input id="manager" type="text" formControlName="manager" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter Manager Name" />
+                        <input id="manager" type="text" formControlName="manager"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter Manager Name" />
                         <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
                             Manager Name is required.
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="role" class="font-semibold">Role</label>
-                        <select id="role" formControlName="role" 
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                        <select id="role" formControlName="role"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                             <option value="">Select Role</option>
                             <option value="Manager">Manager</option>
                             <option value="HR">HR</option>
@@ -158,17 +163,17 @@
                     <!-- Joining Date and Address -->
                     <div class="field col-12 md:col-6">
                         <label for="joiningDate" class="font-semibold">Joining Date</label>
-                        <input id="joiningDate" type="date" formControlName="joiningDate" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+                        <input id="joiningDate" type="date" formControlName="joiningDate"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
                         <div *ngIf="isFieldInvalid('joiningDate')" class="error-message text-red-600">
                             Joining Date is required.
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
                         <label for="address" class="font-semibold">Address</label>
-                        <input id="address" type="text" formControlName="address" 
-                               class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" 
-                               placeholder="Enter address" />
+                        <input id="address" type="text" formControlName="address"
+                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            placeholder="Enter address" />
                         <div *ngIf="isFieldInvalid('address')" class="error-message text-red-600">
                             Address is required.
                         </div>
@@ -176,11 +181,13 @@
                 </div>
 
                 <!-- Submit Button -->
-                <div class="flex justify-content-end mt-4">
-                    <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check" 
-                              [disabled]="!employeeForm.valid"></p-button>
-                    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary ml-2" (click)="showDialog = false"></p-button>
+                <div class="flex justify-content-center mt-4 flex-wrap gap-2">
+                    <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
+                        [disabled]="!employeeForm.valid"></p-button>
+                    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary"
+                        (click)="showDialog = false"></p-button>
                 </div>
+
             </form>
         </div>
     </p-dialog>
