@@ -1042,32 +1042,6 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "8e6f",
-      "date": "27/09/2024",
-      "checkIn": "11:04:57 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "9dd5",
-      "date": "28/09/2024",
-      "checkIn": "10:54:53 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "75cf",
-      "date": "29/09/2024",
-      "checkIn": "11:07:37 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "1801",
-      "date": "30/09/2024",
-      "checkIn": "10:07:22 AM",
-=======
       "id": "17b3",
       "date": "30/09/2024",
       "checkIn": "9:35:40 am",
@@ -1092,7 +1066,27 @@
       "id": "a90a",
       "date": "30/09/2024",
       "checkIn": "11:17:51 am",
->>>>>>> 167c49fc33fa4f2efec33eed7f740244c483f658
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "a3fc",
+      "date": "30/09/2024",
+      "checkIn": "12:03:03 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4a71",
+      "date": "30/09/2024",
+      "checkIn": "12:55:15 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9aaa",
+      "date": "30/09/2024",
+      "checkIn": "1:38:39 PM",
       "checkOut": "",
       "break": ""
     }
