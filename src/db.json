@@ -1051,6 +1051,13 @@
       "checkIn": "3:12:59 PM",
       "checkOut": "3:20:59 PM",
       "break": "0h 8m 0s"
+    },
+    {
+      "id": "45db",
+      "date": "01/10/2024",
+      "checkIn": "10:08:49 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
