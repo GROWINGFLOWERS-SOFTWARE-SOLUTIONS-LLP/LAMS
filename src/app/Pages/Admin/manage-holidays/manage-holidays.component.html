@@ -16,99 +16,98 @@
         <!-- Title -->
         <h2 class="text-2xl font-bold text-center mb-3">{{ selectedHolidayId ? 'Edit Holiday' : 'Add Holiday' }}</h2>
 
-        <!-- Holiday Form -->
-        <div class="grid formgrid p-fluid">
-          <!-- Holiday Name Field -->
-          <div class="col-12 lg:col-6">
-            <div class="field">
-              <label for="holidayName" class="font-semibold">Holiday Name</label>
-              <input
-                id="holidayName"
-                type="text"
-                class="p-inputtext p-component w-full border-1 border-round"
-                placeholder="Enter Holiday Name"
-                [(ngModel)]="holidayName"
-                name="holidayName"
-                required
-              />
+        <!-- Reactive Form -->
+        <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
+          <div class="grid formgrid p-fluid">
+            <!-- Holiday Name Field -->
+            <div class="col-12 lg:col-6">
+              <div class="field">
+                <label for="holidayName" class="font-semibold">Holiday Name</label>
+                <input
+                  id="holidayName"
+                  type="text"
+                  class="p-inputtext p-component w-full border-1 border-round"
+                  placeholder="Enter Holiday Name"
+                  formControlName="holidayName"
+                />
+              </div>
+            </div>
+
+            <!-- Holiday Date Field -->
+            <div class="col-12 lg:col-6">
+              <div class="field">
+                <label for="holidayDate" class="font-semibold">Holiday Date</label>
+                <input
+                  id="holidayDate"
+                  type="date"
+                  class="p-inputtext p-component w-full border-1 border-round"
+                  formControlName="holidayDate"
+                />
+              </div>
+            </div>
+
+            <!-- Centered Add/Edit Holiday Button -->
+            <div class="col-12 flex justify-content-center mt-3">
+              <button
+                type="submit"
+                class="p-button p-component p-button-primary"
+                [disabled]="holidayForm.invalid">
+                <span class="p-button-label">{{ selectedHolidayId ? 'Update Holiday' : 'Add Holiday' }}</span>
+              </button>
+            </div>
+
+            <!-- Success Message -->
+            <div *ngIf="successMessage" class="col-12 mt-2">
+              <div class="p-message p-message-success">
+                {{ successMessage }}
+              </div>
             </div>
           </div>
-
-          <!-- Holiday Date Field -->
-          <div class="col-12 lg:col-6">
-            <div class="field">
-              <label for="holidayDate" class="font-semibold">Holiday Date</label>
-              <input
-                id="holidayDate"
-                type="date"
-                class="p-inputtext p-component w-full border-1 border-round"
-                [(ngModel)]="holidayDate"
-                name="holidayDate"
-                required
-              />
-            </div>
-          </div>
-
-          <!-- Centered Add/Edit Holiday Button -->
-          <div class="col-12 flex justify-content-center mt-3">
-            <button
-              type="button"
-              class="p-button p-component p-button-primary"
-              (click)="selectedHolidayId ? updateHoliday() : addHoliday()"
-              [disabled]="!holidayName || !holidayDate">
-              <span class="p-button-label">{{ selectedHolidayId ? 'Update Holiday' : 'Add Holiday' }}</span>
-            </button>
-          </div>
-
-          <!-- Success Message -->
-          <div *ngIf="successMessage" class="col-12 mt-2">
-            <div class="p-message p-message-success">
-              {{ successMessage }}
-            </div>
-          </div>
-        </div>
+        </form>
       </div>
     </div>
   </div>
 
   <!-- Holiday List Table (Visible when showHolidayList is true) -->
-  <div *ngIf="showHolidayList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
-    <h3 class="text-xl font-bold text-center mb-3">Holiday List</h3>
+ <!-- Holiday List Table (Visible when showHolidayList is true) -->
+<div *ngIf="showHolidayList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4" style="padding-bottom: 60px;">
+  <h3 class="text-xl font-bold text-center mb-3">Holiday List</h3>
 
-    <div class="overflow-auto" style="max-height: 400px;">
-      <p-table [value]="holidays" [paginator]="true" [rows]="5" responsiveLayout="scroll">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Holiday Name</th>
-            <th>Holiday Date</th>
-            <th>Edit</th>
-            <th>Delete</th>
-          </tr>
-        </ng-template>
+  <!-- Ensure that table container does not overlap with footer -->
+  <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
+    <p-table [value]="holidays" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Holiday Name</th>
+          <th>Holiday Date</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </ng-template>
 
-        <ng-template pTemplate="body" let-holiday>
-          <tr>
-            <td>{{ holiday.holidayName }}</td>
-            <td>{{ holiday.holidayDate }}</td>
-            <td>
-              <button type="button" class="p-button p-component p-button-success" (click)="editHoliday(holiday)">
-                <span class="p-button-label">Edit</span>
-              </button>
-            </td>
-            <td>
-              <button type="button" class="p-button p-component p-button-danger" (click)="deleteHoliday(holiday.id)">
-                <span class="p-button-label">Delete</span>
-              </button>
-            </td>
-          </tr>
-        </ng-template>
+      <ng-template pTemplate="body" let-holiday>
+        <tr>
+          <td>{{ holiday.holidayName }}</td>
+          <td>{{ holiday.holidayDate }}</td>
+          <td>
+            <button type="button" class="p-button p-component p-button-success" (click)="editHoliday(holiday)">
+              <span class="p-button-label">Edit</span>
+            </button>
+          </td>
+          <td>
+            <button type="button" class="p-button p-component p-button-danger" (click)="deleteHoliday(holiday.id)">
+              <span class="p-button-label">Delete</span>
+            </button>
+          </td>
+        </tr>
+      </ng-template>
 
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="4">No holidays found.</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </div>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No holidays found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
   </div>
 </div>
+

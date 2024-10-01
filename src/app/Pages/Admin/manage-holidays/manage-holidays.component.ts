@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../Core/Services/api.service';
 import { trigger, transition, style, animate } from '@angular/animations';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import Reactive form modules
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
@@ -9,7 +10,7 @@ import { TableModule } from 'primeng/table';
 @Component({
   selector: 'app-manage-holidays',
   standalone: true,
-  imports: [FormsModule, CommonModule, ButtonModule, TableModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule],
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
   animations: [
@@ -24,45 +25,48 @@ import { TableModule } from 'primeng/table';
     ])
   ]
 })
-export class ManageHolidaysComponent {
-  holidayName: string = '';
-  holidayDate: string = '';
+export class ManageHolidaysComponent implements OnInit {
+  holidayForm!: FormGroup; // Reactive Form Group
   successMessage: string = '';
   holidays: any[] = [];
   showHolidayList: boolean = false;
-  selectedHolidayId: string | null = null; // To store the ID of the holiday being edited
+  selectedHolidayId: string | null = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private fb: FormBuilder) {}
 
-  // Method to add a holiday
-  addHoliday() {
-    const holiday = {
-      holidayName: this.holidayName,
-      holidayDate: this.holidayDate
-    };
-
-    this.apiService.addHoliday(holiday).subscribe(() => {
-      this.successMessage = 'Holiday added successfully!';
-      this.clearForm();
-      this.getAllHolidaysList();
-      this.showSuccessMessage();
+  ngOnInit() {
+    // Initialize the reactive form
+    this.holidayForm = this.fb.group({
+      holidayName: ['', Validators.required],
+      holidayDate: ['', Validators.required],
     });
   }
 
-  // Method to update an existing holiday
-  updateHoliday() {
-    const holiday = {
-      id: this.selectedHolidayId, // Use the selectedHolidayId to identify which holiday to update
-      holidayName: this.holidayName,
-      holidayDate: this.holidayDate
-    };
+  // Method to add or update a holiday
+  onSubmit() {
+    if (this.holidayForm.invalid) {
+      return;
+    }
 
-    this.apiService.updateHoliday(holiday).subscribe(() => {
-      this.successMessage = 'Holiday updated successfully!';
-      this.clearForm();
-      this.getAllHolidaysList();
-      this.showSuccessMessage();
-    });
+    const holiday = this.holidayForm.value;
+
+    if (this.selectedHolidayId) {
+      // Update holiday
+      this.apiService.updateHoliday({ ...holiday, id: this.selectedHolidayId }).subscribe(() => {
+        this.successMessage = 'Holiday updated successfully!';
+        this.clearForm();
+        this.getAllHolidaysList();
+        this.showSuccessMessage();
+      });
+    } else {
+      // Add new holiday
+      this.apiService.addHoliday(holiday).subscribe(() => {
+        this.successMessage = 'Holiday added successfully!';
+        this.clearForm();
+        this.getAllHolidaysList();
+        this.showSuccessMessage();
+      });
+    }
   }
 
   // Method to fetch the list of holidays from the API
@@ -94,17 +98,18 @@ export class ManageHolidaysComponent {
 
   // Method to edit a holiday
   editHoliday(holiday: any) {
-    this.holidayName = holiday.holidayName;
-    this.holidayDate = holiday.holidayDate;
+    this.holidayForm.patchValue({
+      holidayName: holiday.holidayName,
+      holidayDate: holiday.holidayDate
+    });
     this.selectedHolidayId = holiday.id; // Store the ID of the holiday being edited
-    this.showHolidayList = false; // Redirect to add holiday form
+    this.showHolidayList = false; // Redirect to the form
   }
 
   // Method to clear the form fields
   clearForm() {
-    this.holidayName = '';
-    this.holidayDate = '';
-    this.selectedHolidayId = null; // Clear the selected holiday ID
+    this.holidayForm.reset();
+    this.selectedHolidayId = null;
   }
 
   // Method to show success messages
