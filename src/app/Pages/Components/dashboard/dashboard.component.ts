@@ -14,6 +14,7 @@ import { ApiService } from '../../../Core/Services/api.service';
 export class DashboardComponent implements OnInit{
 
   totalEmployees: number = 0;
+  totalLeaves:number = 20;
   remainingLeaves: number = 0;
   totalAttendance: number = 0;
   absent: number = 0;
@@ -28,8 +29,8 @@ export class DashboardComponent implements OnInit{
     this.totalEmployees = employee.length;
     });
 // Remaining Leaves 
-    this.apiService.getLeaves().subscribe((leaves) => {
-    this.remainingLeaves = leaves.length;
+    this.apiService.getLeaves().subscribe((leaveBalance) => {
+    this.remainingLeaves = this.totalLeaves-this.leavesTaken;
     }
     );
 // Total Attendace
