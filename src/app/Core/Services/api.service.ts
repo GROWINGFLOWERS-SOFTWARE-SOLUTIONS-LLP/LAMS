@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  
+  getLeaveBalance(id: any) {
+    throw new Error('Method not implemented.');
+  }
  
   apiUrl:string="http://localhost:3000";
  
@@ -87,7 +91,7 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
   }
 
-   // Method to delete a holiday
+  // Method to delete a holiday
   deleteHoliday(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/publicHolidays/${id}`);
   }
@@ -95,5 +99,10 @@ export class ApiService {
   // Method to update a holiday (optional if needed for editing)
   updateHoliday(holiday: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
+  }
+
+  // dashboard- Remaining Leaves
+  getLeavedata(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
 }

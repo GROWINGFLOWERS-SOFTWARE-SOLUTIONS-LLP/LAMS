@@ -1,53 +1,53 @@
-<div class="container p-4">
-    <!-- Title -->
+<div class="container p-4 bg-gray-50">
     <div class="flex justify-content-center mb-4">
-        <h1 class="text-3xl font-bold text-blue-600">Employees</h1>
+        <h1 class="text-4xl font-bold text-blue-700 border-b-4 border-blue-600 pb-2">Employees</h1>
     </div>
 
     <!-- Add Employee Button -->
     <div class="flex justify-content-end mb-4">
-        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary" (click)="openDialog()"></p-button>
+        <!-- Button for adding employees with padding and primary color -->
+        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-3" (click)="openDialog()"></p-button>
     </div>
 
-    <!-- Employee Table -->
+    <!-- Employee Table Section -->
     <div class="p-grid">
         <div class="p-col-12">
-            <p-table [value]="employees" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'">
+            <p-table [value]="employees" [paginator]="true" [rows]="10" [responsiveLayout]="'scroll'"
+                class="shadow-md rounded-lg border border-gray-300">
                 <ng-template pTemplate="header">
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Phone Number</th>
-                        <th>Address</th>
-                        <th>Department</th>
-                        <th>Manager</th>
-                        <th>Employee Role</th>
-                        <th>Joining Date</th>
-                        <th>Actions</th>
+                    <tr class="bg-gray-200 text-gray-700">
+                        <th class="p-3">First Name</th>
+                        <th class="p-3">Last Name</th>
+                        <th class="p-3">Email</th>
+                        <th class="p-3">Password</th>
+                        <th class="p-3">Phone Number</th>
+                        <th class="p-3">Address</th>
+                        <th class="p-3">Department</th>
+                        <th class="p-3">Manager</th>
+                        <th class="p-3">Employee Role</th>
+                        <th class="p-3">Joining Date</th>
+                        <th class="p-3">Actions</th>
                     </tr>
                 </ng-template>
 
+                <!-- Table Body -->
                 <ng-template pTemplate="body" let-employee>
-                    <tr>
-                        <td>{{ employee.firstName }}</td>
-                        <td>{{ employee.lastName }}</td>
-                        <td>{{ employee.email }}</td>
-                        <td>{{ employee.password }}</td>
-                        <td>{{ employee.mobileNumber }}</td>
-                        <td>{{ employee.address }}</td>
-                        <td>{{ employee.department }}</td>
-                        <td>{{ employee.manager }}</td>
-                        <td>{{ employee.role }}</td>
-                        <td>{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
-                        <td>
+                    <tr class="text-gray-600 hover:bg-gray-100 transition">
+                        <td class="p-3">{{ employee.firstName }}</td>
+                        <td class="p-3">{{ employee.lastName }}</td>
+                        <td class="p-3">{{ employee.email }}</td>
+                        <td class="p-3">{{ employee.password }}</td>
+                        <td class="p-3">{{ employee.mobileNumber }}</td>
+                        <td class="p-3">{{ employee.address }}</td>
+                        <td class="p-3">{{ employee.department }}</td>
+                        <td class="p-3">{{ employee.manager }}</td>
+                        <td class="p-3">{{ employee.role }}</td>
+                        <td class="p-3">{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
+                        <td class="p-3">
                             <div class="flex gap-2">
-                                <!-- Edit Button (Green) -->
-                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded"
+                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded p-button-sm"
                                     (click)="editEmployee(employee)"></p-button>
-                                <!-- Delete Button (Red) -->
-                                <p-button icon="pi pi-trash" severity="danger" class="p-button-rounded"
+                                <p-button icon="pi pi-trash" severity="danger" class="p-button-rounded p-button-sm"
                                     (click)="deleteEmployee(employee.id)"></p-button>
                             </div>
                         </td>
@@ -58,37 +58,41 @@
     </div>
 
     <!-- PrimeNG Dialog for Add/Edit Employee -->
-    <p-dialog header="{{ isEditing ? 'Edit Employee' : 'Add Employee' }}" [(visible)]="showDialog" modal="modal"
-        [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <!-- Form Structure -->
-        <div class="border-2 border-gray-300 rounded-lg p-4 bg-white">
+    <p-dialog [(visible)]="showDialog" modal="modal" [style]="{ width: '50rem' }"
+        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+        <ng-template pTemplate="header">
+            <div class="flex justify-content-center w-full">
+                <h3 class="m-0">{{ isEditing ? 'Edit Employee' : 'Add Employee' }}</h3>
+            </div>
+        </ng-template>
+        <div class="border-2 border-gray-300 rounded-lg p-4 bg-blue-50">
             <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()" class="p-fluid">
                 <div class="formgrid grid">
-                    <!-- First Name and Last Name -->
+                    <!-- First Name and Last Name Fields -->
                     <div class="field col-12 md:col-6">
-                        <label for="firstName" class="font-semibold">First Name</label>
+                        <label for="firstName" class="font-semibold text-gray-700">First Name</label>
                         <input id="firstName" type="text" formControlName="firstName"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
                             placeholder="Enter first name" required pattern="[A-Za-z]+" />
                         <div *ngIf="isFieldInvalid('firstName')" class="error-message text-red-600">
                             First Name is required and must contain only letters.
                         </div>
                     </div>
                     <div class="field col-12 md:col-6">
-                        <label for="lastName" class="font-semibold">Last Name</label>
+                        <label for="lastName" class="font-semibold text-gray-700">Last Name</label>
                         <input id="lastName" type="text" formControlName="lastName"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
                             placeholder="Enter last name" required pattern="[A-Za-z]+" />
                         <div *ngIf="isFieldInvalid('lastName')" class="error-message text-red-600">
                             Last Name is required and must contain only letters.
                         </div>
                     </div>
 
-                    <!-- Email and Password -->
+                    <!-- Email and Password Fields -->
                     <div class="field col-12 md:col-6">
-                        <label for="email" class="font-semibold">Email Address</label>
+                        <label for="email" class="font-semibold text-gray-700">Email Address</label>
                         <input id="email" type="email" formControlName="email"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
                             placeholder="Enter email address" required
                             pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
                         <div *ngIf="isFieldInvalid('email')" class="error-message text-red-600">
@@ -97,9 +101,9 @@
                     </div>
 
                     <div class="field col-12 md:col-6">
-                        <label for="password" class="font-semibold">Password</label>
+                        <label for="password" class="font-semibold text-gray-700">Password</label>
                         <input id="password" type="password" formControlName="password"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
                             placeholder="Enter password" required
                             pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
                         <div *ngIf="isFieldInvalid('password')" class="error-message text-red-600">
@@ -180,15 +184,18 @@
                     </div>
                 </div>
 
-                <!-- Submit Button -->
+                <!-- Submit and Cancel Buttons -->
                 <div class="flex justify-content-center mt-4 flex-wrap gap-2">
                     <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
                         [disabled]="!employeeForm.valid"></p-button>
                     <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary"
                         (click)="showDialog = false"></p-button>
                 </div>
-
             </form>
         </div>
     </p-dialog>
 </div>
+
+
+
+

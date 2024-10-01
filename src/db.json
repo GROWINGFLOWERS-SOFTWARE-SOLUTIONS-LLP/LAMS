@@ -1053,18 +1053,81 @@
       "break": "0h 8m 0s"
     },
     {
+<<<<<<< HEAD
       "id": "fb46",
       "date": "01/10/2024",
       "checkIn": "10:10:58 AM",
+=======
+      "id": "54d0",
+      "date": "30/09/2024",
+      "checkIn": "5:03:22 PM",
+>>>>>>> a231df88582e651810a842c4ca369bdd5e35b364
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "d177",
       "date": "01/10/2024",
       "checkIn": "10:10:58 AM",
       "checkOut": "10:11:04 AM",
       "break": "0h 0m 6s"
+=======
+      "id": "45db",
+      "date": "01/10/2024",
+      "checkIn": "10:08:49 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "70c5",
+      "date": "01/10/2024",
+      "checkIn": "10:11:39 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "58cc",
+      "date": "30/09/2024",
+      "checkIn": "2:31:34 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6a95",
+      "date": "30/09/2024",
+      "checkIn": "10:35:03 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5858",
+      "date": "01/10/2024",
+      "checkIn": "10:05:56 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "3c23",
+      "date": "01/10/2024",
+      "checkIn": "10:28:36 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e10f",
+      "date": "01/10/2024",
+      "checkIn": "1:01:23 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c85d",
+      "date": "01/10/2024",
+      "checkIn": "2:45:37 PM",
+      "checkOut": "",
+      "break": ""
+>>>>>>> a231df88582e651810a842c4ca369bdd5e35b364
     }
   ],
   "absent": [
@@ -1152,14 +1215,24 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
-    }
-  ],
-  "Total Leaves": [
+    },
     {
-      "id": "101",
-      "total leaves": 20
+      "id": "4e7f",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-30T11:43:52.565Z",
+      "endDate": "2024-09-30T11:43:52.565Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
     }
   ],
+  "Leavedata": 
+    {
+      "totalLeaves": 20,
+      "leavesTaken": 3,
+      "id": "4d77"
+    }
+  ,
   "leaveBalance": [
     {
       "employeeId": 101,
