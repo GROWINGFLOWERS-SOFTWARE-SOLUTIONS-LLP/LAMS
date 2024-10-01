@@ -32,7 +32,17 @@ export class AllAttendenceComponent  implements OnInit {
       this.apiService.getAttendanceByEmployee(employee.employeeId, this.currentMonth, this.currentYear).subscribe(
         (attendanceRecords) => {
           const totalDaysInMonth = new Date(this.currentYear, this.currentMonth, 0).getDate();
-          const daysPresent = attendanceRecords.filter(record => record.checkIn).length; // Count days with check-in
+  
+          // Group attendance records by date, and take only one check-in per day
+          const uniqueCheckIns = attendanceRecords.reduce((uniqueDays, record) => {
+            const checkInDate = new Date(record.checkIn).toDateString();
+            if (!uniqueDays.includes(checkInDate)) {
+              uniqueDays.push(checkInDate);
+            }
+            return uniqueDays;
+          }, []);
+  
+          const daysPresent = uniqueCheckIns.length; // Count unique days with check-in
           const attendanceRatio = `${daysPresent}/${totalDaysInMonth}`;
 
           // Fetch leave 

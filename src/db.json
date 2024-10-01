@@ -1051,6 +1051,20 @@
       "checkIn": "3:12:59 PM",
       "checkOut": "3:20:59 PM",
       "break": "0h 8m 0s"
+    },
+    {
+      "id": "fb46",
+      "date": "01/10/2024",
+      "checkIn": "10:10:58 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d177",
+      "date": "01/10/2024",
+      "checkIn": "10:10:58 AM",
+      "checkOut": "10:11:04 AM",
+      "break": "0h 0m 6s"
     }
   ],
   "absent": [

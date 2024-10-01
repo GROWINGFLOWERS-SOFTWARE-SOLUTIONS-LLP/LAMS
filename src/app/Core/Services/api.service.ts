@@ -75,14 +75,10 @@ export class ApiService {
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
   }
-<<<<<<< HEAD
   getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
   }
  //dashboard - Total Absent
-=======
-  //dashboard - Total Absent
->>>>>>> ea120ff39860c34d5b2c9f068478408fb802b7b8
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
