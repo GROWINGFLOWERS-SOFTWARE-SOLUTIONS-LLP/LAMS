@@ -1058,6 +1058,13 @@
       "checkIn": "5:03:22 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "45db",
+      "date": "01/10/2024",
+      "checkIn": "10:08:49 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1145,6 +1152,15 @@
       "status": "Pending",
       "reason": "",
       "totalLeaves": 2
+    },
+    {
+      "id": "4e7f",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-09-30T11:43:52.565Z",
+      "endDate": "2024-09-30T11:43:52.565Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
     }
   ],
   "Total Leaves": [
