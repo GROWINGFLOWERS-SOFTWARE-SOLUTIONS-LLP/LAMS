@@ -1089,6 +1089,34 @@
       "checkIn": "1:38:39 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "58cc",
+      "date": "30/09/2024",
+      "checkIn": "2:31:34 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6a95",
+      "date": "30/09/2024",
+      "checkIn": "10:35:03 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5858",
+      "date": "01/10/2024",
+      "checkIn": "10:05:56 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "3c23",
+      "date": "01/10/2024",
+      "checkIn": "10:28:36 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1181,7 +1209,9 @@
   "Total Leaves": [
     {
       "id": "101",
-      "total leaves": 20
+      "total leaves": 20,
+      "leavesTaken": 3,
+      "remainingLeaves": 17
     }
   ],
   "leaveBalance": [
