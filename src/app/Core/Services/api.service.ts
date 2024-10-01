@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  getLeaveBalance(id: any) {
+    throw new Error('Method not implemented.');
+  }
  
   apiUrl:string="http://localhost:3000";
  
