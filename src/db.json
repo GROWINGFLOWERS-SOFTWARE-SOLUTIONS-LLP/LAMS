@@ -1114,6 +1114,13 @@
       "checkIn": "2:45:37 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "f4f0",
+      "date": "02/10/2024",
+      "checkIn": "9:49:29 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1212,13 +1219,11 @@
       "status": "Pending"
     }
   ],
-  "Leavedata": 
-    {
-      "totalLeaves": 20,
-      "leavesTaken": 3,
-      "id": "4d77"
-    }
-  ,
+  "Leavedata": {
+    "totalLeaves": 20,
+    "leavesTaken": 3,
+    "id": "4d77"
+  },
   "leaveBalance": [
     {
       "employeeId": 101,
