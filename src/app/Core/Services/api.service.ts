@@ -71,13 +71,24 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/users`, user);
   }
 
+  //dashboard - Remaining Leaves
+  getLeaves(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
+  }
   //dashboard - Total Attendance
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
   }
-  //dashboard - Total Absent
+  getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
+  }
+ //dashboard - Total Absent
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
+  }
+  //dashboard - Leaves Taken
+  getLeavesTaken(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
   }
 
   // Method to delete a holiday
