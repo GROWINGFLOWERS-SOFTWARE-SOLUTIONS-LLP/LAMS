@@ -1,3 +1,5 @@
+<p-toast></p-toast>
+
 <div class="container">
   <div class="p-fluid">
     <div class="p-card">
@@ -13,7 +15,7 @@
           <div class="p-fluid grid">
              <!-- Start Date -->
              <div class="field col-12 lg:col-6">
-              <label for="startDate">Start Date <span style="color: red;">*</span></label>
+              <label for="startDate">Start Date <span class="text-red-500">*</span></label>
               <p-calendar formControlName="startDate" [minDate]="today" [showIcon]="true" appendTo="body"
                 dateFormat="yy-mm-dd"></p-calendar>
               <small *ngIf="leaveForm.get('startDate')?.invalid && leaveForm.get('startDate')?.touched" class="p-error">
@@ -23,7 +25,7 @@
 
             <!-- End Date -->
             <div class="field col-12 lg:col-6">
-              <label for="endDate">End Date <span style="color: red;">*</span></label>
+              <label for="endDate">End Date <span class="text-red-500">*</span></label>
               <p-calendar formControlName="endDate" [minDate]="leaveForm.get('startDate')?.value || today"
                 [showIcon]="true" appendTo="body" dateFormat="yy-mm-dd"></p-calendar>
               <small *ngIf="leaveForm.get('endDate')?.invalid && leaveForm.get('endDate')?.touched" class="p-error">
@@ -34,7 +36,7 @@
             <!-- Leave Type -->
             <div class="col-12 lg:col-6">
               <div class="p-field">
-                <label for="leaveType">Leave Type <span style="color: red;">*</span></label>
+                <label for="leaveType">Leave Type <span class="text-red-500">*</span></label>
                 <p-dropdown formControlName="leaveType" [options]="leaveTypes" placeholder="Select Leave Type"></p-dropdown>
                 <small *ngIf="leaveForm.get('leaveType')?.invalid && leaveForm.get('leaveType')?.touched" class="p-error">Leave Type is required.</small>
               </div>
@@ -43,7 +45,7 @@
             <!-- Total Leaves -->
             <div class="col-12 lg:col-6">
               <div class="p-field">
-                <label for="totalLeaves">Total Leaves <span style="color: red;">*</span></label>
+                <label for="totalLeaves">Total Leaves <span class="text-red-500">*</span></label>
                 <input pInputText formControlName="totalLeaves" type="number" [readonly]="true" />
               </div>
             </div>

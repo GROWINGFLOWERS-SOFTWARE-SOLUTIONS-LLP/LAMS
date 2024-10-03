@@ -57,8 +57,14 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
   }
 
+<<<<<<< HEAD
   deleteEmployee(id: number): Observable<any> {
     return this.http.delete(`${this.apiUrl}/employees/${id}`);
+=======
+  // In your ApiService
+  deleteEmployee(employeeId: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/employees/${employeeId}`);
+>>>>>>> c9f7f13f74756079b937d36b3b65036466d01adf
   }
 
   getEmployees(): Observable<any> {
