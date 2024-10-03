@@ -21,7 +21,7 @@ import { ToastModule } from 'primeng/toast';
   imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
-  providers: [MessageService] // Add this line
+  providers: [MessageService] 
 })
 export class AttendanceComponent implements OnInit {
   displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
@@ -40,7 +40,7 @@ export class AttendanceComponent implements OnInit {
 
     this.authService.logoutObservable.subscribe(() => {
       this.checkout();
-      sessionStorage.removeItem('hasPunchedIn'); // Clear session storage on logout
+      sessionStorage.removeItem('hasPunchedIn'); 
     });
   }
 

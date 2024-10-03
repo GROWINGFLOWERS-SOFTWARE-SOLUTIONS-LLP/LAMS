@@ -21,17 +21,56 @@
   ],
   "employees": [
     {
-      "id": "23db",
+      "id": "b52f",
+      "firstName": "Kshitija",
+      "lastName": "Gaikwad",
+      "email": "kshitija@gfss.com",
+      "password": "Kshitija@123",
+      "mobileNumber": "9800129089",
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-06-13",
+      "address": "Pune"
+    },
+    {
+      "id": "c19e",
+      "firstName": "Abhishek ",
+      "lastName": "Joshi",
+      "email": "abhishek@gfss.com",
+      "password": "Abhishek@890",
+      "mobileNumber": "8300129034",
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-05-29",
+      "address": "Pune"
+    },
+    {
+      "id": "992b",
       "firstName": "Prajakta",
       "lastName": "Badhan",
-      "email": "prajakta@gfss.com",
-      "password": "Prajakta@123",
+      "email": "prajakta24@gfss.com",
+      "password": "Abhishek@666",
       "mobileNumber": "7760984512",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Developer",
       "joiningDate": "2024-01-15",
       "address": "Pune"
+    },
+    {
+      "firstName": "Bhushan",
+      "lastName": "Malpure",
+      "email": "bhushan17@gfss.com",
+      "password": "Bhushan@17",
+      "mobileNumber": "7710235678",
+      "department": "QA Testing",
+      "manager": "Abhishek Joshi",
+      "role": "Tester",
+      "joiningDate": "2024-02-15",
+      "address": "Nashik",
+      "id": "edc8"
     }
   ],
   "attendance": [
@@ -1017,7 +1056,6 @@
       "id": "54d0",
       "date": "30/09/2024",
       "checkIn": "5:03:22 PM",
-<<<<<<< HEAD
       "checkOut": "",
       "break": ""
     },
@@ -1025,8 +1063,6 @@
       "id": "45db",
       "date": "01/10/2024",
       "checkIn": "10:08:49 AM",
-=======
->>>>>>> b7fba6eeacb4cf7c2b74050fd0c059b101e1894e
       "checkOut": "",
       "break": ""
     },
@@ -1071,7 +1107,6 @@
       "checkIn": "1:01:23 PM",
       "checkOut": "",
       "break": ""
-<<<<<<< HEAD
     },
     {
       "id": "c85d",
@@ -1184,10 +1219,28 @@
       "checkIn": "2:20:07 am",
       "checkOut": "2:20:11 am",
       "break": "0h 0m 4s"
-=======
->>>>>>> b7fba6eeacb4cf7c2b74050fd0c059b101e1894e
+    },
+    {
+      "id": "60a0",
+      "date": "04/10/2024",
+      "checkIn": "2:32:11 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ae23",
+      "date": "04/10/2024",
+      "checkIn": "2:32:11 am",
+      "checkOut": "2:34:34 am",
+      "break": "0h 2m 23s"
+    },
+    {
+      "id": "37b9",
+      "date": "04/10/2024",
+      "checkIn": "2:34:41 am",
+      "checkOut": "",
+      "break": ""
     }
-    
   ],
   "absent": [
     {
@@ -1285,21 +1338,12 @@
       "status": "Pending"
     },
     {
-      "id": "49d2",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-10-03T08:55:54.308Z",
-      "endDate": "2024-10-03T18:30:00.000Z",
-      "reason": "",
-      "totalLeaves": 2,
-      "status": "Pending"
-    },
-    {
-      "id": "660b",
+      "id": "e6d4",
       "leaveType": "Paid Leave",
-      "startDate": "2024-10-15T18:30:00.000Z",
-      "endDate": "2024-10-16T18:30:00.000Z",
-      "reason": "",
-      "totalLeaves": 2,
+      "startDate": "2024-10-09T18:30:00.000Z",
+      "endDate": "2024-10-14T18:30:00.000Z",
+      "reason": "pl",
+      "totalLeaves": 6,
       "status": "Pending"
     }
   ],
