@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  
   getLeaveBalance(id: any) {
     throw new Error('Method not implemented.');
   }
@@ -79,7 +80,10 @@ export class ApiService {
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
   }
-  //dashboard - Total Absent
+  getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
+  }
+ //dashboard - Total Absent
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
@@ -96,5 +100,10 @@ export class ApiService {
   // Method to update a holiday (optional if needed for editing)
   updateHoliday(holiday: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
+  }
+
+  // dashboard- Remaining Leaves
+  getLeavedata(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
 }
