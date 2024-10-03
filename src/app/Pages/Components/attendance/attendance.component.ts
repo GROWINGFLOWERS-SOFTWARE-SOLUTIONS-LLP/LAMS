@@ -12,13 +12,16 @@ import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
 import { ApiService } from '../../../Core/Services/api.service';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-attendance',
   standalone: true,
-  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule],
+  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule],
   templateUrl: './attendance.component.html',
-  styleUrls: ['./attendance.component.css']
+  styleUrls: ['./attendance.component.css'],
+  providers: [MessageService] // Add this line
 })
 export class AttendanceComponent implements OnInit {
   displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
@@ -28,14 +31,13 @@ export class AttendanceComponent implements OnInit {
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router) {}
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
     this.loadAttendanceRecords();
     this.checkPunchInStatus();
 
-   
     this.authService.logoutObservable.subscribe(() => {
       this.checkout();
       sessionStorage.removeItem('hasPunchedIn'); // Clear session storage on logout
@@ -62,13 +64,14 @@ export class AttendanceComponent implements OnInit {
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
 
-  
     this.apiService.postAttendance(newRecord).subscribe(
       (response) => {
         console.log('Attendance record posted successfully:', response);
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully punched in!' });
       },
       (error) => {
         console.error('Error posting attendance record:', error);
+        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to punch in. Please try again.' });
       }
     );
 
@@ -96,6 +99,9 @@ export class AttendanceComponent implements OnInit {
       );
 
       this.saveAttendanceRecords();
+    } else {
+      // If the user has already punched in, you can add any relevant action here
+      console.log("Error.");
     }
   }
 
@@ -130,6 +136,9 @@ export class AttendanceComponent implements OnInit {
     const savedRecords = localStorage.getItem('attendanceRecords');
     if (savedRecords) {
       this.attendanceRecords = JSON.parse(savedRecords);
+    } else {
+      // If the user has already punched in, you can add any relevant action here
+      console.log("Failed.");
     }
   }
 
@@ -141,6 +150,9 @@ export class AttendanceComponent implements OnInit {
     if (!this.hasPunchedIn) {
       // Show the punch-in dialog only if the user hasn't punched in this session
       this.showPunchInDialog();
+    } else {
+      // If the user has already punched in, you can add any relevant action here
+      console.log("You have already punched in for this session.");
     }
   }
 }
