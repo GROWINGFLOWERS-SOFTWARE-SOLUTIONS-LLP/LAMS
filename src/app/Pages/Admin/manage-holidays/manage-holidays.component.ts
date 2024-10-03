@@ -56,6 +56,7 @@ export class ManageHolidaysComponent implements OnInit {
         this.successMessage = 'Holiday updated successfully!';
         this.clearForm();
         this.getAllHolidaysList();
+        this.showHolidayList = true; // Show the holiday list after updating
         this.showSuccessMessage();
       });
     } else {
@@ -64,6 +65,7 @@ export class ManageHolidaysComponent implements OnInit {
         this.successMessage = 'Holiday added successfully!';
         this.clearForm();
         this.getAllHolidaysList();
+        this.showHolidayList = true; // Show the holiday list after adding
         this.showSuccessMessage();
       });
     }
@@ -91,6 +93,7 @@ export class ManageHolidaysComponent implements OnInit {
       this.apiService.deleteHoliday(id).subscribe(() => {
         this.successMessage = 'Holiday deleted successfully!';
         this.getAllHolidaysList(); // Refresh the list after deletion
+        this.showHolidayList = false; // Redirect to "Add Holiday" page after deletion
         this.showSuccessMessage();
       });
     }
@@ -103,7 +106,7 @@ export class ManageHolidaysComponent implements OnInit {
       holidayDate: holiday.holidayDate
     });
     this.selectedHolidayId = holiday.id; // Store the ID of the holiday being edited
-    this.showHolidayList = false; // Redirect to the form
+    this.showHolidayList = false; // Optionally redirect to the form
   }
 
   // Method to clear the form fields
