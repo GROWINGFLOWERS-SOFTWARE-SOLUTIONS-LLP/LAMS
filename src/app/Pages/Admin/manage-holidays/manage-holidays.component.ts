@@ -6,13 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { MessageService } from 'primeng/api';
+
+import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-manage-holidays',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule],
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
+  providers: [MessageService], // Add MessageService to providers
   animations: [
     trigger('fadeInOut', [
       transition('hidden => visible', [
@@ -27,12 +31,11 @@ import { TableModule } from 'primeng/table';
 })
 export class ManageHolidaysComponent implements OnInit {
   holidayForm!: FormGroup; // Reactive Form Group
-  successMessage: string = '';
   holidays: any[] = [];
   showHolidayList: boolean = false;
   selectedHolidayId: string | null = null;
 
-  constructor(private apiService: ApiService, private fb: FormBuilder) {}
+  constructor(private apiService: ApiService, private fb: FormBuilder, private messageService: MessageService) { }
 
   ngOnInit() {
     // Initialize the reactive form
@@ -44,30 +47,31 @@ export class ManageHolidaysComponent implements OnInit {
 
   // Method to add or update a holiday
   onSubmit() {
-    if (this.holidayForm.invalid) {
-      return;
-    }
+    // First, we check if the form is valid
+    if (this.holidayForm.valid) {
+      // Extract the form values (holiday name, date)
+      const holiday = this.holidayForm.value;
 
-    const holiday = this.holidayForm.value;
-
-    if (this.selectedHolidayId) {
-      // Update holiday
-      this.apiService.updateHoliday({ ...holiday, id: this.selectedHolidayId }).subscribe(() => {
-        this.successMessage = 'Holiday updated successfully!';
-        this.clearForm();
-        this.getAllHolidaysList();
-        this.showHolidayList = true; // Show the holiday list after updating
-        this.showSuccessMessage();
-      });
-    } else {
-      // Add new holiday
-      this.apiService.addHoliday(holiday).subscribe(() => {
-        this.successMessage = 'Holiday added successfully!';
-        this.clearForm();
-        this.getAllHolidaysList();
-        this.showHolidayList = true; // Show the holiday list after adding
-        this.showSuccessMessage();
-      });
+      // If we're editing an existing holiday (selectedHolidayId is set)
+      if (this.selectedHolidayId) {
+        // Call the API to update the holiday
+        this.apiService.updateHoliday({ ...holiday, id: this.selectedHolidayId }).subscribe(() => {
+          // Show success toast
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday updated successfully!' });
+          this.clearForm();
+          this.getAllHolidaysList();
+          this.showHolidayList = true; // Show the holiday list after updating
+        });
+      } else {
+        // If no selectedHolidayId, we are adding a new holiday
+        this.apiService.addHoliday(holiday).subscribe(() => {
+          // Show success toast
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday added successfully!' });
+          this.clearForm();
+          this.getAllHolidaysList();
+          this.showHolidayList = true; // Show the holiday list after adding
+        });
+      }
     }
   }
 
@@ -91,10 +95,9 @@ export class ManageHolidaysComponent implements OnInit {
     const confirmDelete = confirm('Are you sure you want to delete this holiday?');
     if (confirmDelete) {
       this.apiService.deleteHoliday(id).subscribe(() => {
-        this.successMessage = 'Holiday deleted successfully!';
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
         this.getAllHolidaysList(); // Refresh the list after deletion
         this.showHolidayList = false; // Redirect to "Add Holiday" page after deletion
-        this.showSuccessMessage();
       });
     }
   }
@@ -113,12 +116,5 @@ export class ManageHolidaysComponent implements OnInit {
   clearForm() {
     this.holidayForm.reset();
     this.selectedHolidayId = null;
-  }
-
-  // Method to show success messages
-  showSuccessMessage() {
-    setTimeout(() => {
-      this.successMessage = '';
-    }, 5000);
   }
 }
