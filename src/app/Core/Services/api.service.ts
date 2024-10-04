@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-<<<<<<< HEAD
  
   apiUrl:string="http://localhost:3000";
  
@@ -14,19 +13,6 @@ export class ApiService {
  
   loginValidation(data:any){
     return this.http.post(this.apiUrl+"/login",data);
-=======
-
-  getLeaveBalance(id: any) {
-    throw new Error('Method not implemented.');
-  }
-
-  apiUrl: string = "http://localhost:3000";
-
-  constructor(private http: HttpClient) { }
-
-  loginValidation(data: any) {
-    return this.http.post(this.apiUrl + "/login", data);
->>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
   }
 
   postAttendance(attendanceRecord: any) {
@@ -42,34 +28,30 @@ export class ApiService {
   submitLeaveRequest(leaveRequest: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/leaveApplications`, leaveRequest);
   }
+
   // Method to get the list of holidays
   getHolidaysList(): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/publicHolidays`);
   }
-<<<<<<< HEAD
-=======
+
   // Method to add the  holidays
   addHoliday(holiday: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/publicHolidays`, holiday);
   }
+
   // Method to delete a holiday
   deleteHoliday(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/publicHolidays/${id}`);
   }
+  
   // Method to update a holiday 
   updateHoliday(holiday: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
   }
->>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
 
   addEmployee(employee: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/employees`, employee);
   }
-<<<<<<< HEAD
-  
-=======
-
->>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
   updateEmployee(employee: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
   }
@@ -100,17 +82,21 @@ export class ApiService {
   getLeaves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
+
   //dashboard - Total Attendance
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
   }
+
   getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
   }
+
   //dashboard - Total Absent
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
+
   //dashboard - Leaves Taken
   getLeavesTaken(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
