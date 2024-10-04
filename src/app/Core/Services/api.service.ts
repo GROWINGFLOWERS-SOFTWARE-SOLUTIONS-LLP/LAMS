@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  
+
   getLeaveBalance(id: any) {
     throw new Error('Method not implemented.');
   }
@@ -36,7 +36,18 @@ export class ApiService {
   getHolidaysList(): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}/publicHolidays`);
   }
-
+  // Method to add the  holidays
+  addHoliday(holiday: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/publicHolidays`, holiday);
+  }
+  // Method to delete a holiday
+  deleteHoliday(id: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/publicHolidays/${id}`);
+  }
+  // Method to update a holiday 
+  updateHoliday(holiday: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
+  }
 
   addEmployee(employee: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/employees`, employee);
@@ -60,10 +71,6 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/employees`);
   }
 
-  addHoliday(holiday: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/publicHolidays`, holiday);
-  }
-
   getUsers(): Observable<any> {
     return this.http.get(`${this.apiUrl}/users`);
   }
@@ -83,23 +90,13 @@ export class ApiService {
   getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
   }
- //dashboard - Total Absent
+  //dashboard - Total Absent
   getAbsent(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/absent`);
   }
   //dashboard - Leaves Taken
   getLeavesTaken(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leavesTaken`);
-  }
-
-  // Method to delete a holiday
-  deleteHoliday(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/publicHolidays/${id}`);
-  }
-
-  // Method to update a holiday (optional if needed for editing)
-  updateHoliday(holiday: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
   }
 
   // dashboard- Remaining Leaves
