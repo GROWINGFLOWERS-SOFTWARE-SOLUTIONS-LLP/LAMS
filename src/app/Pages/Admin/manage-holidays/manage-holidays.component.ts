@@ -6,17 +6,19 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService,MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
 
 import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-manage-holidays',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule,ConfirmDialogModule],
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
-  providers: [MessageService], // Add MessageService to providers
+  providers: [ ConfirmationService,MessageService], // Add MessageService to providers
   animations: [
     trigger('fadeInOut', [
       transition('hidden => visible', [
@@ -35,7 +37,8 @@ export class ManageHolidaysComponent implements OnInit {
   showHolidayList: boolean = false;
   selectedHolidayId: string | null = null;
 
-  constructor(private apiService: ApiService, private fb: FormBuilder, private messageService: MessageService) { }
+  constructor(private apiService: ApiService, private fb: FormBuilder, private messageService: MessageService, 
+    private confirmationService: ConfirmationService,) { }
 
   ngOnInit() {
     // Initialize the reactive form
@@ -91,15 +94,28 @@ export class ManageHolidaysComponent implements OnInit {
   }
 
   // Method to delete a holiday with confirmation
-  deleteHoliday(id: string) {
-    const confirmDelete = confirm('Are you sure you want to delete this holiday?');
-    if (confirmDelete) {
-      this.apiService.deleteHoliday(id).subscribe(() => {
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
-        this.getAllHolidaysList(); // Refresh the list after deletion
-        this.showHolidayList = false; // Redirect to "Add Holiday" page after deletion
-      });
-    }
+  deleteHoliday(id: string, event: Event) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to delete this holiday?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      accept: () => {
+        // Call the API to delete the holiday
+        this.apiService.deleteHoliday(id).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
+          this.getAllHolidaysList(); // Refresh the holiday list after deletion
+          this.showHolidayList = false; // Optionally redirect to another view
+        });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: 'Holiday deletion cancelled!' });
+      }
+    });
   }
 
   // Method to edit a holiday

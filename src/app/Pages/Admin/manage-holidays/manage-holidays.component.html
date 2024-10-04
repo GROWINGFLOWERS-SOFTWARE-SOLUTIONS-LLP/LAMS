@@ -1,4 +1,5 @@
 <div class="p-fluid h-screen p-4 bg-gray-100">
+  <p-confirmDialog></p-confirmDialog>
 
   <!-- Show List of Holidays Button aligned to the right -->
   <div class="flex justify-content-end mb-4">
@@ -73,9 +74,7 @@
               </button>
             </td>
             <td>
-              <button type="button" class="p-button p-component p-button-danger" (click)="deleteHoliday(holiday.id)">
-                <span class="p-button-label">Delete</span>
-              </button>
+              <p-button label="Delete" severity="danger" [outlined]="true" (onClick)="deleteHoliday(holiday.id, $event)"></p-button>
             </td>
           </tr>
         </ng-template>
@@ -90,5 +89,6 @@
   </div>
   <!-- Toast Notification -->
   <p-toast></p-toast>
+  
 
 </div>
