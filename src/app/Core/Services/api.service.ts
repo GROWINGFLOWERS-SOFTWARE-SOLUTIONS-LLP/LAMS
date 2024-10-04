@@ -6,10 +6,6 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-  
-  getLeaveBalance(id: any) {
-    throw new Error('Method not implemented.');
-  }
  
   apiUrl:string="http://localhost:3000";
  
@@ -37,11 +33,10 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/publicHolidays`);
   }
 
-
   addEmployee(employee: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/employees`, employee);
   }
- 
+  
   updateEmployee(employee: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
   }
