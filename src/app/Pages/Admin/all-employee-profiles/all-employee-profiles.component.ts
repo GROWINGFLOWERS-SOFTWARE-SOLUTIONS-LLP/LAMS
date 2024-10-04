@@ -154,20 +154,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         }
         this.selectedEmployeeId = null; // Reset the selected ID
     }
-
-    onCancel() {
-        this.employeeForm.reset(); // Reset the form
-        this.showDialog = false;   // Hide the dialog
     
-        // Show cancellation message using p-toast
-        this.messageService.add({ 
-            severity: 'info', 
-            summary: 'Cancelled', 
-            detail: 'Employee form has been canceled.' 
-        });
-    }
-    
-
     isFieldInvalid(field: string): boolean {
         const control = this.employeeForm.get(field);
         return control ? control.invalid && (control.touched || control.dirty) : false;

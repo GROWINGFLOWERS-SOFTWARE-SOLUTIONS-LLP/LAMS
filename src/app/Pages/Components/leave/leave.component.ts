@@ -122,15 +122,6 @@ export class LeaveComponent implements OnInit {
     }
   }
 
-  // Cancel the leave request and show a success message
-  cancelLeaveRequest(): void {
-    this.resetLeaveRequestForm();  // Reset the form
-    this.visible = false;  // Hide the dialog
-
-    // Show success toast
-    this.messageService.add({ severity: 'success', summary: 'Cancelled', detail: 'Leave request cancelled successfully.' });
-  }
-
   // Reset the form after a leave request is saved or cancelled
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({

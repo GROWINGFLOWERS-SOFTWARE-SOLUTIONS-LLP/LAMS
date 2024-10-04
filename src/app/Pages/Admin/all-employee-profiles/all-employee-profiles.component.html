@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
-<div class="container p-4 bg-gray-50 h-screen">
+<div class="container p-4 bg-gray-50 h-full">
     
     <!-- Add Employee Button -->
     <div class="flex justify-content-end mb-4">
@@ -187,7 +187,8 @@
                 <div class="flex justify-content-center mt-4 flex-wrap gap-2">
                     <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
                         [disabled]="!employeeForm.valid"></p-button>
-                        <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (click)="onCancel()"></p-button>
+                    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary"
+                        (click)="showDialog = false"></p-button>
                 </div>
             </form>
         </div>
