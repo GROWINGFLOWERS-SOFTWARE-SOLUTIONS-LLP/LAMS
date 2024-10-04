@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="main-container">
    
     <div id="log-in" class="left-container log-in">
@@ -34,4 +34,181 @@
 
     <div class="right-container"></div>
   </div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+ <!-- <div class="container"> 
+  <div class="main-container">
+    <div id="log-in" class="left-container log-in">
+      <img
+        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95">
+      <h1>Let's log in</h1>
+      <div style="width: 100%;">
+        <form class="signup-form" [formGroup]="loginForm" (ngSubmit)="loginFun()">
+          <input type="email" name="email" placeholder="E-mail" formControlName="email">
+          <small
+            *ngIf="email.invalid && (email.dirty || email.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Email should be valid.</div>
+          </small>
+
+          <input type="password" name="password" placeholder="Password" formControlName="password">
+          <small
+            *ngIf="password.invalid && (password.dirty || password.touched)"
+            class="block p-error"
+          >
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+          </small>
+
+          <button type="submit" class="button log-in-btn" [disabled]="loginForm.invalid">
+            <i class="pi pi-sign-in"></i>
+            Login
+          </button>
+        </form>
+      </div>
+      <div class="login-link-container">
+        <p onclick="changeToSignup()" class="login-link"></p>
+      </div>
+    </div>
+
+    <div class="right-container"></div>
+  </div>
+</div>  -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <!-- using code -->
+<!-- <div class="container flex align-items-center justify-content-center">
+  <div class="main-container flex flex-wrap shadow-2 border-round p-3">
+    <div id="log-in" class="left-container flex flex-column align-items-center justify-content-around">
+      <img
+        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95"
+        alt="Logo"
+        class="mb-3"
+      >
+      <h1 class="m-0 text-center">Let's log in</h1>
+      <div class="w-full">
+        <form class="signup-form flex flex-column align-items-center" [formGroup]="loginForm" (ngSubmit)="loginFun()">
+          <input type="email" name="email" placeholder="E-mail" formControlName="email" class="p-inputtext p-component mb-2">
+          <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error mb-2">
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Email should be valid.</div>
+          </small>
+
+          <input type="password" name="password" placeholder="Password" formControlName="password" class="p-inputtext p-component mb-2">
+          <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+
+          </small>
+          
+          <label>
+            <input type="checkbox" (change)="showPassword = !showPassword" /> Show Password
+          </label>
+
+          <button type="submit" class="login-link text-blue-500 hover:text-gray-800 cursor-pointer  p-button p-component p-button-outlined p-fluid "  style="background-color: violet; color: white; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;"[disabled]="loginForm.invalid">
+            <i class="pi pi-sign-in"></i> Login
+          </button>
+        </form>
+      </div>
+      <div class="login-link-container">
+        <p class="login-link" ></p>
+      </div>
+    </div>
+
+<div class="right-container "></div>
+
+  </div>
+</div> -->
+
+
+
+
+<div class="container flex align-items-center justify-content-center">
+  <div class="main-container flex shadow-2 border-round">
+    <!-- Left Container (Login Section) -->
+    <div id="log-in" class="left-container flex flex-column align-items-center justify-content-around">
+      <img
+        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95"
+        alt="Logo"
+        class="mb-3"
+      >
+      <h1 class="m-0 text-center">Let's log in</h1>
+      <div class="w-full">
+        <form class="signup-form flex flex-column align-items-center" [formGroup]="loginForm" (ngSubmit)="loginFun()">
+          <!-- Email Input -->
+          <input type="email" name="email" placeholder="E-mail" formControlName="email" class="p-inputtext p-component mb-2">
+          <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error mb-2">
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Email should be valid.</div>
+          </small>
+
+          <!-- Password Input with toggle icon -->
+          <div class="password-wrapper mb-2">
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              name="password"
+              placeholder="Password"
+              formControlName="password"
+              class="p-inputtext p-component password-input"
+            />
+            <i class="toggle-password-icon" (click)="toggleShowPassword()" title="Show password">!</i>
+          </div>
+          <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+          </small>
+
+          <!-- Submit Button -->
+          <button type="submit" class="login-link text-blue-500 hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid" [disabled]="loginForm.invalid" style="background-color: violet; color: white; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;">
+            <i class="pi pi-sign-in"></i> Login
+          </button>
+        </form>
+      </div>
+      <div class="login-link-container">
+        <p class="login-link"></p>
+      </div>
+    </div>
+
+    <!-- Right Container (Image Section) -->
+    <div class="right-container"></div>
+  </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

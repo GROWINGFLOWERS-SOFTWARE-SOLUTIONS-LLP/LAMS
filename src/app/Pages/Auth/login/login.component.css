@@ -1,17 +1,10 @@
-.container {
+/* .container {
   width: 100%;
   height: 100vh;
   box-sizing: border-box;
 }
 
-body {
-  background-image: linear-gradient(to top right, #3f51b5, #e91e63);
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Secular One', sans-serif;
 
-
-}
 
 h1 {
   margin: 0;
@@ -242,3 +235,157 @@ button.disabled:hover {
     left: 5%;
   }
 }
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+ /* Main container that holds both left and right sections */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90.5vh; /* Full viewport height */
+  box-sizing: border-box;
+  padding: 2rem; /* Add padding for better spacing on small screens */
+}
+
+/* Main container that wraps both login section and image section */
+.main-container {
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap; /* Flex-wrap allows it to adjust for smaller screens */
+  width: 100%; /* Full width */
+  max-width: 1200px; /* Maximum width for larger screens */
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Left container that holds the login form */
+.left-container {
+  flex: 1 1 400px; /* Allows it to shrink and grow, with a minimum base size */
+  background-color: white;
+  border-radius: 12px 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Right container that shows the image */
+.right-container {
+  flex: 1 1 400px; /* Responsive with flexbox */
+  background-image: url('../../../../assets/images/flower-image.jpg');
+  background-position: center;
+  background-size: cover;
+  border-radius: 0 12px 12px 0;
+  min-height: 50vh; /* Make sure it has a minimum height */
+}
+
+/* Form inside the left container */
+.signup-form {
+  width: 50%; /* Full width */
+  max-width: 400px; /* Max width for responsiveness */
+  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Input fields styling */
+.signup-form input {
+  width: 100%; /* Full width for responsiveness */
+  border-radius: 200px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  background-color: #ddd;
+  color: #444;
+  border: none;
+  margin-bottom: 1rem;
+}
+
+/* Button styling */
+.signup-form button {
+  color: white;
+  background-color: violet;
+  border: none;
+  padding: 1rem;
+  font-size: 1.25rem;
+  width: 100%; /* Full width button */
+  max-width: 200px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+/* Error message */
+.p-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* Link styling */
+.login-link {
+  color: #777;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+
+
+
+
+
+
+/* Style for the wrapper around the password input */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Style for the password input */
+.password-input {
+  width: 100%;
+  padding-right: 2.5rem; /* Make space for the "!" icon */
+  padding-left: 1.5rem;
+  border-radius: 200px;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: #ddd;
+  color: #444;
+  border: none;
+}
+
+/* Style for the "!" icon */
+.toggle-password-icon {
+  position: absolute;
+  right: 15px;
+  top: 39%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #444;
+  user-select: none;
+}
+
+.toggle-password-icon:hover {
+  color: violet; /* Highlight effect on hover */
+}
+
+
+
