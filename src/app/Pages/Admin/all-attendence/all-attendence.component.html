@@ -1,22 +1,23 @@
 <div class="container">
-  <h2>Admin Attendance Records</h2>
-  
-  <p-table [value]="record" class="mt-4">
+    <h2>Admin Attendance Records</h2>
+    
+    <p-table [value]="record" class="mt-4">
       <ng-template pTemplate="header">
-          <tr>
-              <th class="p-3">Employee Name</th>
-              <th class="p-3">Employee Role</th>
-              <th class="p-3">Attendance Ratio (Month)</th>
-              <th class="p-3">Leaves Taken (Month)</th>
-          </tr>
+        <tr>
+          <th class="p-3">Employee Name</th>
+          <th class="p-3">Employee Role</th>
+          <th class="p-3">Attendance Ratio (Month)</th>
+          <th class="p-3">Leaves Taken (Month)</th>
+        </tr>
       </ng-template>
       <ng-template pTemplate="body" let-record>
-          <tr class="p-3">
-              <td class="p-3">{{ record.employeeName }}</td>
-              <td class="p-3">{{ record.employeeRole }}</td>
-              <td class="p-3">{{ record.attendanceRatio }}</td>
-              <td class="p-3">{{ record.leavesTaken }}</td>
-          </tr>
+        <tr class="p-3">
+          <td class="p-3">{{ record.employeeName }}</td>
+          <td class="p-3">{{ record.employeeRole }}</td>
+          <td class="p-3">{{ record.attendanceRatio }}</td>
+          <td class="p-3">{{ record.leavesTaken }}</td>
+        </tr>
       </ng-template>
-  </p-table>
-</div>
+    </p-table>
+  </div>
+  
