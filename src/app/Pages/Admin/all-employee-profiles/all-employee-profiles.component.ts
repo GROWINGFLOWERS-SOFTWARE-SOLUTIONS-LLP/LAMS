@@ -10,15 +10,16 @@ import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';  // Import ToastModule
-import { MessageService } from 'primeng/api'; // Import MessageService
+import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @Component({
     selector: 'app-all-employee-profiles',
     templateUrl: './all-employee-profiles.component.html',
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, ButtonModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule], // Add ToastModule here
-    providers: [MessageService] // Add MessageService here
+    imports: [ReactiveFormsModule, CommonModule, ButtonModule, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule], // Add ToastModule here
+    providers: [MessageService, ConfirmationService] // Add MessageService here
 })
 export class AllEmployeeProfilesComponent implements OnInit {
     employees: any[] = [];
@@ -31,7 +32,8 @@ export class AllEmployeeProfilesComponent implements OnInit {
         private apiService: ApiService,
         private formBuilder: FormBuilder,
         private router: Router,
-        private messageService: MessageService // Inject MessageService
+        private messageService: MessageService ,// Inject MessageService
+        private confirmationService: ConfirmationService,  
     ) {
         // Create the employee form
         this.employeeForm = this.formBuilder.group({
@@ -109,34 +111,62 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     // Method to confirm deletion with an alert
-    deleteEmployee(employeeId: number) {
-        const confirmDelete = confirm("Are you sure you want to delete this employee?");
-        if (confirmDelete) {
-            this.selectedEmployeeId = employeeId; // Store the selected employee ID
-            this.performDelete(); // Call the method to perform the delete
-        }
-        else {
-            alert('Deletion canceled.'); // Alert to indicate deletion was canceled
-        }
-        
+    deleteEmployee(employeeId: number, event: Event) {
+        this.confirmationService.confirm({
+            target: event.target as EventTarget,
+            message: 'Are you sure you want to delete this employee?',
+            header: 'Delete Confirmation',
+            icon: 'pi pi-info-circle',
+            acceptButtonStyleClass: "p-button-danger p-button-text",
+            rejectButtonStyleClass: "p-button-text",
+            acceptIcon: "none",
+            rejectIcon: "none",
+    
+            accept: () => {
+                this.selectedEmployeeId = employeeId;
+                this.performDelete(); // Call the method to perform the delete
+            },
+            reject: () => {
+                // Show cancellation message using p-toast
+                this.messageService.add({ severity: 'info', summary: 'Cancelled', detail: 'Deletion canceled.' });
+            }
+        });
     }
-
+    
+    
     // Method to perform the delete operation
     performDelete() {
         if (this.selectedEmployeeId !== null) {
             this.apiService.deleteEmployee(this.selectedEmployeeId).subscribe({
                 next: () => {
-                    this.loadEmployees();
-                    alert('Employee deleted successfully.'); // Alert for successful deletion
+                    this.loadEmployees(); // Reload employees after successful deletion
+                    
+                    // Show success message using p-toast
+                    this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Employee deleted successfully.' });
                 },
                 error: (err) => {
                     console.error('Error deleting employee:', err);
-                    alert('Failed to delete employee. Please try again.'); // Alert for error
+    
+                    // Show error message using p-toast
+                    this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete employee. Please try again.' });
                 }
             });
         }
         this.selectedEmployeeId = null; // Reset the selected ID
     }
+
+    onCancel() {
+        this.employeeForm.reset(); // Reset the form
+        this.showDialog = false;   // Hide the dialog
+    
+        // Show cancellation message using p-toast
+        this.messageService.add({ 
+            severity: 'info', 
+            summary: 'Cancelled', 
+            detail: 'Employee form has been canceled.' 
+        });
+    }
+    
 
     isFieldInvalid(field: string): boolean {
         const control = this.employeeForm.get(field);

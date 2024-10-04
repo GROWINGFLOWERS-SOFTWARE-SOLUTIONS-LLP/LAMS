@@ -1,5 +1,6 @@
 <p-toast></p-toast>
-<div class="container p-4 bg-gray-50">
+<p-confirmDialog></p-confirmDialog>
+<div class="container p-4 bg-gray-50 h-screen">
     
     <!-- Add Employee Button -->
     <div class="flex justify-content-end mb-4">
@@ -45,8 +46,8 @@
                             <div class="flex gap-2">
                                 <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded p-button-sm"
                                     (click)="editEmployee(employee)"></p-button>
-                                <p-button icon="pi pi-trash" severity="danger" class="p-button-rounded p-button-sm"
-                                    (click)="deleteEmployee(employee.id)"></p-button>
+                                    <p-button icon="pi pi-trash" (onClick)="deleteEmployee(employee.id, $event)" severity="danger" 
+                                   ></p-button>
                             </div>
                         </td>
                     </tr>
@@ -186,8 +187,7 @@
                 <div class="flex justify-content-center mt-4 flex-wrap gap-2">
                     <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
                         [disabled]="!employeeForm.valid"></p-button>
-                    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary"
-                        (click)="showDialog = false"></p-button>
+                        <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (click)="onCancel()"></p-button>
                 </div>
             </form>
         </div>

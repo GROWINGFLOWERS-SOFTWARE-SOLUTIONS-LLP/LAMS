@@ -21,38 +21,12 @@
   ],
   "employees": [
     {
-      "id": "b52f",
-      "firstName": "Kshitija",
-      "lastName": "Gaikwad",
-      "email": "kshitija@gfss.com",
-      "password": "Kshitija@123",
-      "mobileNumber": "9800129089",
-      "department": "Engineering",
-      "manager": "Rupesh Shirude",
-      "role": "Developer",
-      "joiningDate": "2024-06-13",
-      "address": "Pune"
-    },
-    {
-      "id": "c19e",
-      "firstName": "Abhishek ",
-      "lastName": "Joshi",
-      "email": "abhishek@gfss.com",
-      "password": "Abhishek@890",
-      "mobileNumber": "8300129034",
-      "department": "Engineering",
-      "manager": "Rupesh Shirude",
-      "role": "Developer",
-      "joiningDate": "2024-05-29",
-      "address": "Pune"
-    },
-    {
-      "id": "992b",
+      "id": "56d1",
       "firstName": "Prajakta",
       "lastName": "Badhan",
       "email": "prajakta24@gfss.com",
-      "password": "Abhishek@666",
-      "mobileNumber": "7760984512",
+      "password": "Prajakta@123",
+      "mobileNumber": "9800129089",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Developer",
@@ -60,17 +34,17 @@
       "address": "Pune"
     },
     {
-      "firstName": "Bhushan",
-      "lastName": "Malpure",
-      "email": "bhushan17@gfss.com",
-      "password": "Bhushan@17",
+      "id": "4faf",
+      "firstName": "Kshitija",
+      "lastName": "Gaikwad",
+      "email": "kshitija@gfss.com",
+      "password": "Kshitija@9090",
       "mobileNumber": "7710235678",
-      "department": "QA Testing",
-      "manager": "Abhishek Joshi",
-      "role": "Tester",
-      "joiningDate": "2024-02-15",
-      "address": "Nashik",
-      "id": "edc8"
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-06-19",
+      "address": "Pune"
     }
   ],
   "attendance": [
@@ -1268,6 +1242,34 @@
       "checkIn": "2:34:41 am",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "9f23",
+      "date": "04/10/2024",
+      "checkIn": "9:58:22 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0912",
+      "date": "04/10/2024",
+      "checkIn": "9:58:22 AM",
+      "checkOut": "10:02:34 AM",
+      "break": "0h 4m 12s"
+    },
+    {
+      "id": "6abe",
+      "date": "04/10/2024",
+      "checkIn": "11:30:43 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "eb87",
+      "date": "04/10/2024",
+      "checkIn": "11:30:43 AM",
+      "checkOut": "12:05:35 PM",
+      "break": "0h 34m 52s"
     }
   ],
   "absent": [
@@ -1348,39 +1350,30 @@
       "totalLeaves": 1
     },
     {
-      "id": "d798",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-18T05:26:32.400Z",
-      "endDate": "2024-09-18T18:30:00.000Z",
-      "status": "Pending",
-      "reason": "",
-      "totalLeaves": 2
-    },
-    {
-      "id": "4e7f",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-30T11:43:52.565Z",
-      "endDate": "2024-09-30T11:43:52.565Z",
-      "reason": "",
-      "totalLeaves": 1,
-      "status": "Pending"
-    },
-    {
-      "id": "e6d4",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-10-09T18:30:00.000Z",
-      "endDate": "2024-10-14T18:30:00.000Z",
-      "reason": "pl",
-      "totalLeaves": 6,
-      "status": "Pending"
-    },
-    {
       "id": "898a",
       "leaveType": "Sick Leave",
       "startDate": "2024-10-22T18:30:00.000Z",
       "endDate": "2024-10-23T18:30:00.000Z",
       "reason": "",
       "totalLeaves": 2,
+      "status": "Pending"
+    },
+    {
+      "id": "22b7",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-04T04:28:27.509Z",
+      "endDate": "2024-10-04T04:28:27.509Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "77d7",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-10T18:30:00.000Z",
+      "endDate": "2024-10-10T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 1,
       "status": "Pending"
     }
   ],

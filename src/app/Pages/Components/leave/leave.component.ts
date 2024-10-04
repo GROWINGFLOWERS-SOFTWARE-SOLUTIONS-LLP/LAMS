@@ -52,7 +52,7 @@ export class LeaveComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private messageService: MessageService  // Inject MessageService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.initLeaveForm();  // Initialize the form
@@ -102,10 +102,7 @@ export class LeaveComponent implements OnInit {
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Leave request saved successfully.' });
       });
     } else {
-      // Else part: Handle the invalid form scenario
       this.leaveForm.markAllAsTouched();
-
-      // Show error toast
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill out all required fields.' });
     }
   }
@@ -123,6 +120,15 @@ export class LeaveComponent implements OnInit {
     } else {
       this.leaveForm.get('totalLeaves')?.setValue(0);  // Reset total leaves if dates are invalid
     }
+  }
+
+  // Cancel the leave request and show a success message
+  cancelLeaveRequest(): void {
+    this.resetLeaveRequestForm();  // Reset the form
+    this.visible = false;  // Hide the dialog
+
+    // Show success toast
+    this.messageService.add({ severity: 'success', summary: 'Cancelled', detail: 'Leave request cancelled successfully.' });
   }
 
   // Reset the form after a leave request is saved or cancelled
