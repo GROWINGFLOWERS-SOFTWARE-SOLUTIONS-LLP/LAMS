@@ -21,7 +21,6 @@
   ],
   "employees": [
     {
-      "id": "23db",
       "firstName": "Prajakta",
       "lastName": "Badhan",
       "email": "prajakta@gfss.com",
@@ -31,7 +30,8 @@
       "manager": "Kshitija Gaikwad",
       "role": "Developer",
       "joiningDate": "2024-01-15",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "23db"
     }
   ],
   "attendance": [
@@ -1021,6 +1021,13 @@
       "break": ""
     },
     {
+      "id": "45db",
+      "date": "01/10/2024",
+      "checkIn": "10:08:49 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
       "id": "70c5",
       "date": "01/10/2024",
       "checkIn": "10:11:39 AM",
@@ -1056,13 +1063,40 @@
       "break": ""
     },
     {
-      "id": "e10f",
-      "date": "01/10/2024",
-      "checkIn": "1:01:23 PM",
+      "id": "77bb",
+      "date": "03/10/2024",
+      "checkIn": "11:47:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "de36",
+      "date": "03/10/2024",
+      "checkIn": "11:47:29 AM",
+      "checkOut": "11:47:35 AM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "0b41",
+      "date": "03/10/2024",
+      "checkIn": "2:23:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "703f",
+      "date": "03/10/2024",
+      "checkIn": "2:36:21 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e9ae",
+      "date": "03/10/2024",
+      "checkIn": "2:40:14 PM",
       "checkOut": "",
       "break": ""
     }
-    
   ],
   "absent": [
     {
@@ -1176,15 +1210,25 @@
       "reason": "",
       "totalLeaves": 2,
       "status": "Pending"
+    },
+    {
+      "id": "898a",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-22T18:30:00.000Z",
+      "endDate": "2024-10-23T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 2,
+      "status": "Pending"
     }
   ],
-  "Leavedata": 
+  "Total Leaves": [
     {
-      "totalLeaves": 20,
+      "id": "101",
+      "total leaves": 20,
       "leavesTaken": 3,
-      "id": "4d77"
+      "remainingLeaves": 17
     }
-  ,
+  ],
   "leaveBalance": [
     {
       "employeeId": 101,
