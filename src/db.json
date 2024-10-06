@@ -21,19 +21,6 @@
   ],
   "employees": [
     {
-      "id": "b52f",
-      "firstName": "Kshitija",
-      "lastName": "Gaikwad",
-      "email": "kshitija@gfss.com",
-      "password": "Kshitija@123",
-      "mobileNumber": "9800129089",
-      "department": "Engineering",
-      "manager": "Rupesh Shirude",
-      "role": "Developer",
-      "joiningDate": "2024-06-13",
-      "address": "Pune"
-    },
-    {
       "id": "c19e",
       "firstName": "Abhishek ",
       "lastName": "Joshi",
@@ -1011,22 +998,9 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "64d0",
-      "date": "30/09/2024",
-      "checkIn": "1:48:50 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "6eb6",
-      "date": "30/09/2024",
-      "checkIn": "1:57:38 PM",
-=======
       "id": "8e35",
       "date": "30/09/2024",
       "checkIn": "4:37:22 PM",
->>>>>>> ea120ff39860c34d5b2c9f068478408fb802b7b8
       "checkOut": "",
       "break": ""
     },
@@ -1064,6 +1038,90 @@
       "checkIn": "3:12:59 PM",
       "checkOut": "3:20:59 PM",
       "break": "0h 8m 0s"
+    },
+    {
+      "id": "e830",
+      "date": "01/10/2024",
+      "checkIn": "10:46:43 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "a146",
+      "date": "01/10/2024",
+      "checkIn": "10:46:43 AM",
+      "checkOut": "10:51:30 AM",
+      "break": "0h 4m 47s"
+    },
+    {
+      "id": "0d87",
+      "date": "01/10/2024",
+      "checkIn": "11:23:09 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7e60",
+      "date": "01/10/2024",
+      "checkIn": "4:29:48 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6b68",
+      "date": "01/10/2024",
+      "checkIn": "4:33:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "af6e",
+      "date": "01/10/2024",
+      "checkIn": "4:42:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "7764",
+      "date": "01/10/2024",
+      "checkIn": "5:08:38 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0179",
+      "date": "01/10/2024",
+      "checkIn": "5:16:23 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "3b28",
+      "date": "03/10/2024",
+      "checkIn": "9:46:35 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4507",
+      "date": "06/10/2024",
+      "checkIn": "7:32:19 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6528",
+      "date": "06/10/2024",
+      "checkIn": "7:32:19 PM",
+      "checkOut": "7:33:47 PM",
+      "break": "0h 1m 28s"
+    },
+    {
+      "id": "e0a8",
+      "date": "06/10/2024",
+      "checkIn": "7:32:19 PM",
+      "checkOut": "7:33:47 PM",
+      "break": "0h 1m 28s"
     }
   ],
   "absent": [

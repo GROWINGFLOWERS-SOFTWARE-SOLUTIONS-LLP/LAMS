@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-form',
@@ -17,4 +18,9 @@ export class ProfileFormComponent {
       this.visible = true;
   }
 
+  constructor(private route:Router){}
+
+  updateProfile(){
+    this.route.navigateByUrl('profile');
+  }
 }
