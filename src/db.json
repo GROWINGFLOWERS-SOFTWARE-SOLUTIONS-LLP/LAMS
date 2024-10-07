@@ -45,7 +45,38 @@
       "role": "Employee",
       "joiningDate": "2024-06-19",
       "address": "Pune"
+    },
+    {
+      "id": "5faf",
+      "firstName": "abhishek",
+      "lastName": "joshi",
+      "email": "abhishek@gfss.com",
+      "password": "abhishek@9090",
+      "mobileNumber": "7710235678",
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Admin",
+      "joiningDate": "2024-06-19",
+      "address": "Pune"
+    },
+    {
+      "id": "5faf",
+      "firstName": "sahil",
+      "lastName": "mhatre",
+      "email": "shail@gfss.com",
+      "password": "shahil@9090",
+      "mobileNumber": "7710235678",
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Manager",
+      "joiningDate": "2024-06-19",
+      "address": "Pune"
     }
+
+
+
+
+
   ],
   "attendance": [
     {
