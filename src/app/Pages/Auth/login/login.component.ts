@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
   loginForm! : FormGroup;
   showPassword: boolean = false; // Add this boolean to toggle the password visibility
 
-
   constructor(private router: Router, private apiService: ApiService, private fb: FormBuilder) {
     // Initial form creation moved to ngOnInit
   }
