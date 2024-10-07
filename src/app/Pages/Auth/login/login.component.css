@@ -1,244 +1,139 @@
+ /* Main container that holds both left and right sections */
 .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  height: 100vh;
+  height: 90.5vh; /* Full viewport height */
+  box-sizing: border-box;
+  padding: 2rem; /* Add padding for better spacing on small screens */
+}
+
+/* Main container that wraps both login section and image section */
+.main-container {
+  background-color: white;
+  border-radius: 12px;
+  display: flex;
+  flex-wrap: wrap; /* Flex-wrap allows it to adjust for smaller screens */
+  width: 100%; /* Full width */
+  max-width: 1200px; /* Maximum width for larger screens */
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Left container that holds the login form */
+.left-container {
+  flex: 1 1 400px; /* Allows it to shrink and grow, with a minimum base size */
+  background-color: white;
+  border-radius: 12px 0 0 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
   box-sizing: border-box;
 }
 
-body {
-  background-image: linear-gradient(to top right, #3f51b5, #e91e63);
-  min-height: 100vh;
-  margin: 0;
-  font-family: 'Secular One', sans-serif;
-
-
-}
-
-h1 {
-  margin: 0;
-  margin-top: 2rem;
-
-}
-
-a {
-  text-decoration: none;
-  color: #0d28c0;
-}
-
-a:hover {
-  color: #071561;
-}
-
-.main-container {
-  display: flex;
-  width: 1200px;
-  height: 500px;
-  min-height: 80vh;
-  background-color: white;
-  margin: 10vh auto;
-  border-radius: 12px;
-  box-shadow: 5px 5px 20px 0px rgba(0, 0, 0, 0.5);
-}
-
-.main-container .hidden {
-  display: none;
-}
-
-.login-link {
-  color: #777;
-}
-
-.login-link:hover {
-  color: #333;
-  cursor: pointer;
-}
-
-.left-container {
-  width: 60%;
-  height: 550px;
-  background-color: white;
-  border-radius: 100px 0 0 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-}
-
-left-container>* {
-  transition: all 0.3s;
-}
-
+/* Right container that shows the image */
 .right-container {
-  width: 100%;
-  height: 100%;
+  flex: 1 1 400px; /* Responsive with flexbox */
   background-image: url('../../../../assets/images/flower-image.jpg');
   background-position: center;
   background-size: cover;
-  border-radius: 0 10px 10px 0;
+  border-radius: 0 12px 12px 0;
+  min-height: 50vh; /* Make sure it has a minimum height */
 }
 
+/* Form inside the left container */
 .signup-form {
-  width: 50%;
-  margin: auto;
+  width: 50%; /* Full width */
+  max-width: 400px; /* Max width for responsiveness */
+  margin: 1rem auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 6 rem;
 }
 
+/* Input fields styling */
 .signup-form input {
+  width: 100%; /* Full width for responsiveness */
   border-radius: 200px;
-  padding: 5px 15px;
-  height: 3rem;
+  padding: 0.75rem 1.5rem;
   font-size: 1rem;
   background-color: #ddd;
   color: #444;
   border: none;
-
+  margin-bottom: 1rem;
 }
 
-.signup-form input {
-  display: block;
-  margin-top: 1rem;
-  width: 400px;
-  font-family: inherit;
-}
-
-.signup-form input.first-name,
-.signup-form input.last-name {
-  width: 80%;
-}
-
-.signup-form input:focus {
-  outline: none;
-}
-
-.signup-form input[type='checkbox'] {
-  margin: 1rem 0.5rem 1rem 0;
-}
-
-.signup-form input[type='checkbox'],
-.signup-form input[type='checkbox']+label {
-  display: inline-block;
-  width: auto;
-}
-
-.signup-form .check {
-  display: flex;
-  align-items: center;
-}
-
+/* Button styling */
 .signup-form button {
   color: white;
   background-color: violet;
   border: none;
   padding: 1rem;
-  font-family: inherit;
-
-  font-size: 1.5rem;
-  display: block;
-  width: 200px;
-  height: 60px;
-
-  margin-top: 5rem;
-}
-
-.signup-form button:hover {
-  background-color: skyblue;
+  font-size: 1.25rem;
+  width: 100%; /* Full width button */
+  max-width: 200px;
+  border-radius: 50px;
   cursor: pointer;
-  transform: translateY(-5px);
+  margin-top: 2rem;
 }
 
-button.disabled {
-  color: grey;
-  background-color: darkgrey;
+/* Error message */
+.p-error {
+  color: red;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
 }
 
-button.disabled:hover {
-  color: grey;
-  background-color: darkgrey;
-  cursor: unset;
-}
-
-.signin-link {
+/* Link styling */
+.login-link {
   color: #777;
+  margin-top: 1rem;
+  font-size: 0.9rem;
 }
 
-.signin-link:hover {
-  color: #333;
+
+
+
+
+
+
+/* Style for the wrapper around the password input */
+.password-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+}
+
+/* Style for the password input */
+.password-input {
+  width: 100%;
+  padding-right: 2.5rem; /* Make space for the "!" icon */
+  padding-left: 1.5rem;
+  border-radius: 200px;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: #ddd;
+  color: #444;
+  border: none;
+}
+
+/* Style for the "!" icon */
+.toggle-password-icon {
+  position: absolute;
+  right: 15px;
+  top: 39%;
+  transform: translateY(-50%);
+  font-size: 1.5rem;
   cursor: pointer;
+  color: #444;
+  user-select: none;
 }
 
-@media (max-width:320px) {
-  .left-container {
-    width: 50%;
-
-  }
-  .signup-form input {
-    width: 200px;
-  }
-  .right-container {
-    width: 50%;
-  }
-  .footer {
-    display: none;
-  }
+.toggle-password-icon:hover {
+  color: violet; /* Highlight effect on hover */
 }
 
 
-@media (min-width: 321px) and (max-width: 768px) {
-  .left-container {
-    width: 70%;
-  }
 
-  .signup-form input {
-    width: 300px;
-  }
-
-  .right-container {
-    width: 30%;
-  }
-}
-@media (min-width: 769px) and (max-width: 992px) {
-  .left-container {
-    width: 80%;
-  }
-
-  .signup-form input {
-    width: 350px;
-  }
-
-  .right-container {
-    width: 20%;
-  }
-.footer {
-    width: 100%;
-  }
-
-
-}
-@media (max-width:950px) {
-  .left-container {
-    width: 110%;
-    border-radius: 10px;
-  }
-
-  .main-container h1 {
-    font-size: 1.5rem;
-    margin-top: 0.5rem;
-  }
-
-  .signup-form input {
-    margin-top: 0.5rem;
-  }
-
-  .right-container {
-    display: none;
-  }
-}
-
-@media (max-width:1024px) {
-  .main-container {
-    width: 90%;
-    left: 5%;
-  }
-}
