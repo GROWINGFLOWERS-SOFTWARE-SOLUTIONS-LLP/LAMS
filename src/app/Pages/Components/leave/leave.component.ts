@@ -11,6 +11,8 @@ import { TableModule } from 'primeng/table';
 import { ApiService } from '../../../Core/Services/api.service';
 import { Router } from '@angular/router';
 import { Leave } from '../../../Core/Interfaces/leave'; // Importing the Leave interface
+import { ToastModule } from 'primeng/toast'; // Import ToastModule
+import { MessageService } from 'primeng/api'; // Import MessageService
 
 @Component({
   selector: 'app-leave',
@@ -24,8 +26,10 @@ import { Leave } from '../../../Core/Interfaces/leave'; // Importing the Leave i
     DropdownModule,
     CalendarModule,
     InputTextareaModule,
-    TableModule
+    TableModule,
+    ToastModule // Add ToastModule
   ],
+  providers: [MessageService], // Provide MessageService
   templateUrl: './leave.component.html',
   styleUrls: ['./leave.component.css']
 })
@@ -42,8 +46,13 @@ export class LeaveComponent implements OnInit {
     { label: 'Unpaid Leave', value: 'Unpaid Leave' }
   ];
 
-  // Injecting required services
-  constructor(private apiService: ApiService, private router: Router, private fb: FormBuilder) {}
+  // Injecting required services including MessageService
+  constructor(
+    private apiService: ApiService,
+    private router: Router,
+    private fb: FormBuilder,
+    private messageService: MessageService  // Inject MessageService
+  ) { }
 
   ngOnInit(): void {
     this.initLeaveForm();  // Initialize the form
@@ -88,7 +97,13 @@ export class LeaveComponent implements OnInit {
         this.leaveRequests.push({ ...leaveRequest });  // Add the new leave request to the list
         this.resetLeaveRequestForm();  // Reset the form
         this.visible = false;  // Hide the dialog
+
+        // Show success toast
+        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Leave request saved successfully.' });
       });
+    } else {
+      this.leaveForm.markAllAsTouched();
+      this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill out all required fields.' });
     }
   }
 
