@@ -21,6 +21,7 @@
   ],
   "employees": [
     {
+<<<<<<< HEAD
       "id": "c19e",
       "firstName": "Abhishek ",
       "lastName": "Joshi",
@@ -35,11 +36,14 @@
     },
     {
       "id": "992b",
+=======
+      "id": "56d1",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "firstName": "Prajakta",
       "lastName": "Badhan",
       "email": "prajakta24@gfss.com",
-      "password": "Abhishek@666",
-      "mobileNumber": "7760984512",
+      "password": "Prajakta@123",
+      "mobileNumber": "9800129089",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Developer",
@@ -47,17 +51,17 @@
       "address": "Pune"
     },
     {
-      "firstName": "Bhushan",
-      "lastName": "Malpure",
-      "email": "bhushan17@gfss.com",
-      "password": "Bhushan@17",
+      "id": "4faf",
+      "firstName": "Kshitija",
+      "lastName": "Gaikwad",
+      "email": "kshitija@gfss.com",
+      "password": "Kshitija@9090",
       "mobileNumber": "7710235678",
-      "department": "QA Testing",
-      "manager": "Abhishek Joshi",
-      "role": "Tester",
-      "joiningDate": "2024-02-15",
-      "address": "Nashik",
-      "id": "edc8"
+      "department": "Engineering",
+      "manager": "Rupesh Shirude",
+      "role": "Developer",
+      "joiningDate": "2024-06-19",
+      "address": "Pune"
     }
   ],
   "attendance": [
@@ -1040,13 +1044,22 @@
       "break": "0h 8m 0s"
     },
     {
+<<<<<<< HEAD
       "id": "e830",
       "date": "01/10/2024",
       "checkIn": "10:46:43 AM",
+=======
+      "id": "54d0",
+      "date": "30/09/2024",
+      "checkIn": "5:03:22 PM",
+<<<<<<< HEAD
+=======
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "a146",
       "date": "01/10/2024",
       "checkIn": "10:46:43 AM",
@@ -1057,59 +1070,115 @@
       "id": "0d87",
       "date": "01/10/2024",
       "checkIn": "11:23:09 AM",
+=======
+      "id": "45db",
+      "date": "01/10/2024",
+      "checkIn": "10:08:49 AM",
+>>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "7e60",
       "date": "01/10/2024",
       "checkIn": "4:29:48 PM",
+=======
+      "id": "70c5",
+      "date": "01/10/2024",
+      "checkIn": "10:11:39 AM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "6b68",
       "date": "01/10/2024",
       "checkIn": "4:33:08 PM",
+=======
+      "id": "58cc",
+      "date": "30/09/2024",
+      "checkIn": "2:31:34 PM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "af6e",
       "date": "01/10/2024",
       "checkIn": "4:42:37 PM",
+=======
+      "id": "6a95",
+      "date": "30/09/2024",
+      "checkIn": "10:35:03 PM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "7764",
       "date": "01/10/2024",
       "checkIn": "5:08:38 PM",
+=======
+      "id": "5858",
+      "date": "01/10/2024",
+      "checkIn": "10:05:56 AM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "0179",
       "date": "01/10/2024",
       "checkIn": "5:16:23 PM",
+=======
+      "id": "3c23",
+      "date": "01/10/2024",
+      "checkIn": "10:28:36 AM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "3b28",
       "date": "03/10/2024",
       "checkIn": "9:46:35 AM",
+=======
+      "id": "77bb",
+      "date": "03/10/2024",
+      "checkIn": "11:47:29 AM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "4507",
       "date": "06/10/2024",
       "checkIn": "7:32:19 PM",
+=======
+      "id": "de36",
+      "date": "03/10/2024",
+      "checkIn": "11:47:29 AM",
+      "checkOut": "11:47:35 AM",
+      "break": "0h 0m 6s"
+    },
+    {
+      "id": "0b41",
+      "date": "03/10/2024",
+      "checkIn": "2:23:08 PM",
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
       "checkOut": "",
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "6528",
       "date": "06/10/2024",
       "checkIn": "7:32:19 PM",
@@ -1122,6 +1191,228 @@
       "checkIn": "7:32:19 PM",
       "checkOut": "7:33:47 PM",
       "break": "0h 1m 28s"
+=======
+      "id": "703f",
+      "date": "03/10/2024",
+      "checkIn": "2:36:21 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e9ae",
+      "date": "03/10/2024",
+      "checkIn": "2:40:14 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c85d",
+      "date": "01/10/2024",
+      "checkIn": "2:45:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+<<<<<<< HEAD
+      "id": "f4f0",
+      "date": "02/10/2024",
+      "checkIn": "9:49:29 PM",
+=======
+      "id": "8663",
+      "date": "02/10/2024",
+      "checkIn": "3:26:58 AM",
+>>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
+      "checkOut": "",
+      "break": ""
+    },
+    {
+<<<<<<< HEAD
+      "id": "750b",
+      "date": "03/10/2024",
+      "checkIn": "3:16:07 PM",
+=======
+      "id": "c644",
+      "date": "02/10/2024",
+      "checkIn": "3:26:58 AM",
+      "checkOut": "3:27:07 AM",
+      "break": "0h 0m 9s"
+    },
+    {
+      "id": "4c45",
+      "date": "03/10/2024",
+      "checkIn": "9:50:27 AM",
+>>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
+      "checkOut": "",
+      "break": ""
+    },
+    {
+<<<<<<< HEAD
+      "id": "f3aa",
+      "date": "04/10/2024",
+      "checkIn": "9:58:40 AM",
+=======
+      "id": "ba17",
+      "date": "03/10/2024",
+      "checkIn": "9:50:27 AM",
+      "checkOut": "9:50:32 AM",
+      "break": "0h 0m 5s"
+    },
+    {
+      "id": "4317",
+      "date": "03/10/2024",
+      "checkIn": "10:26:25 AM",
+>>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
+      "checkOut": "",
+      "break": ""
+    },
+    {
+<<<<<<< HEAD
+      "id": "fdea",
+      "date": "04/10/2024",
+      "checkIn": "1:43:29 PM",
+      "checkOut": "",
+      "break": ""
+=======
+      "id": "eba4",
+      "date": "03/10/2024",
+      "checkIn": "12:07:18 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "fcd8",
+      "date": "03/10/2024",
+      "checkIn": "12:07:18 PM",
+      "checkOut": "12:10:19 PM",
+      "break": "0h 3m 1s"
+    },
+    {
+      "id": "7154",
+      "date": "03/10/2024",
+      "checkIn": "12:10:23 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1cf6",
+      "date": "03/10/2024",
+      "checkIn": "12:10:23 PM",
+      "checkOut": "12:16:00 PM",
+      "break": "0h 5m 37s"
+    },
+    {
+      "id": "91d0",
+      "date": "03/10/2024",
+      "checkIn": "12:16:05 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d702",
+      "date": "04/10/2024",
+      "checkIn": "2:11:56 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6abf",
+      "date": "04/10/2024",
+      "checkIn": "2:11:56 am",
+      "checkOut": "2:12:01 am",
+      "break": "0h 0m 5s"
+    },
+    {
+      "id": "82a5",
+      "date": "04/10/2024",
+      "checkIn": "2:11:56 am",
+      "checkOut": "2:12:04 am",
+      "break": "0h 0m 8s"
+    },
+    {
+      "id": "0984",
+      "date": "04/10/2024",
+      "checkIn": "2:20:07 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "6bd2",
+      "date": "04/10/2024",
+      "checkIn": "2:20:07 am",
+      "checkOut": "2:20:11 am",
+      "break": "0h 0m 4s"
+    },
+    {
+      "id": "60a0",
+      "date": "04/10/2024",
+      "checkIn": "2:32:11 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ae23",
+      "date": "04/10/2024",
+      "checkIn": "2:32:11 am",
+      "checkOut": "2:34:34 am",
+      "break": "0h 2m 23s"
+    },
+    {
+      "id": "37b9",
+      "date": "04/10/2024",
+      "checkIn": "2:34:41 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9f23",
+      "date": "04/10/2024",
+      "checkIn": "9:58:22 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0912",
+      "date": "04/10/2024",
+      "checkIn": "9:58:22 AM",
+      "checkOut": "10:02:34 AM",
+      "break": "0h 4m 12s"
+    },
+    {
+      "id": "6abe",
+      "date": "04/10/2024",
+      "checkIn": "11:30:43 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "eb87",
+      "date": "04/10/2024",
+      "checkIn": "11:30:43 AM",
+      "checkOut": "12:05:35 PM",
+      "break": "0h 34m 52s"
+    },
+    {
+      "id": "23b8",
+      "date": "04/10/2024",
+      "checkIn": "12:14:25 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4b55",
+      "date": "04/10/2024",
+      "checkIn": "12:18:46 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bb4a",
+      "date": "04/10/2024",
+      "checkIn": "12:18:46 PM",
+      "checkOut": "12:19:03 PM",
+      "break": "0h 0m 17s"
+>>>>>>> e49e6cfee91f9d14aff3143c11d665bacae513a0
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
     }
   ],
   "absent": [
@@ -1202,15 +1493,44 @@
       "totalLeaves": 1
     },
     {
-      "id": "d798",
+      "id": "898a",
       "leaveType": "Sick Leave",
-      "startDate": "2024-09-18T05:26:32.400Z",
-      "endDate": "2024-09-18T18:30:00.000Z",
-      "status": "Pending",
+      "startDate": "2024-10-22T18:30:00.000Z",
+      "endDate": "2024-10-23T18:30:00.000Z",
       "reason": "",
+<<<<<<< HEAD
       "totalLeaves": 2
     }
   ],
+=======
+      "totalLeaves": 2,
+      "status": "Pending"
+    },
+    {
+      "id": "22b7",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-04T04:28:27.509Z",
+      "endDate": "2024-10-04T04:28:27.509Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "77d7",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-10T18:30:00.000Z",
+      "endDate": "2024-10-10T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    }
+  ],
+  "Leavedata": {
+    "totalLeaves": 20,
+    "leavesTaken": 3,
+    "id": "4d77"
+  },
+>>>>>>> 7bb43bcbce1ffdbacfa5c4966e92814b21fe538b
   "leaveBalance": [
     {
       "employeeId": 101,
@@ -1251,7 +1571,7 @@
       "id": "188c"
     },
     {
-      "holidayName": "Good Friday",
+      "holidayName": "Good Friday 1",
       "holidayDate": "2024-03-29",
       "id": "fef4"
     },

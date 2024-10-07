@@ -30,7 +30,7 @@
     <div class="card max-w-22rem shadow-3">
         <p-card header="Projects">
             <div class="flex justify-content-between">
-                <p class="m-0">4 Active Projects</p>
+                <p class="m-0">3 Active Projects</p>
                 <i class=" pi pi-chart-pie" style="color: #ffd952;  font-size: 45px;"></i>
             </div>
         </p-card>
@@ -49,15 +49,16 @@
                 </div>
                 <div class="container ml-3 p-5">
                 <tr>
-                    <td><li>Total Leaves - 20</li></td>
+                    <td><li>Total Leaves - {{totalLeaves}}</li></td>
                 </tr>
                 <br>
+                <tr>
                     <td><li>Leaves Taken - {{leavesTaken}}</li></td>
+                </tr>
                 <br>
                 <tr>
                     <td><li>Remaining Leaves - {{remainingLeaves}}</li></td>
                 </tr>
-                <br>
                 </div>
             </div>
         </div>
@@ -77,8 +78,7 @@
                 <td><li>Absent - {{absent}}</li></td>
             </tr>
             <br>
-             <br>
-             <br>
+            <br>
         </div>
     </div>
 </div>
