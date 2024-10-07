@@ -17,6 +17,12 @@ export class ProfileComponent  {
  
   constructor(private route:Router){}
 
+  visible: boolean = false;
+
+  showDialog() {
+      this.visible = true;
+  }
+
   employee = {
     email: '                ',
     phoneNumber: '    ',
