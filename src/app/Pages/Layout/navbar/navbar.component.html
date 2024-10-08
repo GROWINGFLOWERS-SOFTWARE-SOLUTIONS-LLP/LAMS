@@ -8,14 +8,13 @@
 
     <ng-template pTemplate="center">
         <div class="flex align-items-center gap-2 flex-wrap justify-content-center md:gap-3">
-            <!-- Loop through navItems and create buttons dynamically -->
             <button *ngFor="let item of navItems"
                 class="p-link inline-flex justify-content-center align-items-center text-white h-3rem w-6rem border-circle hover:bg-white-alpha-10 transition-all transition-duration-200 m-1 p-2 sm:w-5rem md:w-6rem"
                 [routerLink]="item.link">
                 {{ item.label }}
-            </button>
-        </div>
-    </ng-template>
+            </button> 
+        </div> 
+    </ng-template> 
 
     <ng-template pTemplate="end">
         <div class="flex align-items-center gap-2 flex-wrap justify-content-end"

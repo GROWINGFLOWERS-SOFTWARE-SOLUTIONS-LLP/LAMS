@@ -10,12 +10,12 @@ import { FooterComponent } from '../footer/footer.component';
 import { AuthService } from '../../../Core/Services/auth.service';
 
 @Component({
-  selector: 'app-navbar',
+  selector: 'app-navbar', 
   standalone: true,
   imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule, FooterComponent],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
-})
+  styleUrls: ['./navbar.component.css'] 
+}) 
 export class NavbarComponent implements OnInit {
   isAdmin: boolean = false;
   isManager: boolean = false;
@@ -41,7 +41,7 @@ export class NavbarComponent implements OnInit {
     { label: 'Leave Request', link: 'managerRequest' }
   ];
 
-  // Initialize navItems as an empty array
+  
   navItems: any[] = [];
 
   loginCredentials: any = {};
@@ -90,4 +90,4 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
-}
+} 
