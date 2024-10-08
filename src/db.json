@@ -71,12 +71,20 @@
       "role": "Manager",
       "joiningDate": "2024-06-19",
       "address": "Pune"
+    },
+    {
+      "id": "56d1",
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shweta@gfss.com",
+      "password": "Shweta@123",
+      "mobileNumber": "9865426783",
+      "department": "Engineering",
+      "manager": "Kshitija Gaikwad",
+      "role": "Employee",
+      "joiningDate": "2024-01-15",
+      "address": "Pune"
     }
-
-
-
-
-
   ],
   "attendance": [
     {
@@ -1324,13 +1332,6 @@
       "break": "0h 0m 17s"
     },
     {
-<<<<<<< HEAD
-      "id": "d271",
-      "date": "07/10/2024",
-      "checkIn": "11:40:37 AM",
-      "checkOut": "",
-      "break": ""
-=======
       "id": "026c",
       "date": "07/10/2024",
       "checkIn": "12:04:33 PM",
@@ -1357,7 +1358,20 @@
       "checkIn": "12:11:11 PM",
       "checkOut": "12:11:25 PM",
       "break": "0h 0m 14s"
->>>>>>> 14cf0207a89a45cd236b538e5e932f3680a40078
+    },
+    {
+      "id": "4490",
+      "date": "07/10/2024",
+      "checkIn": "12:57:07 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "cd4d",
+      "date": "08/10/2024",
+      "checkIn": "12:05:18 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
