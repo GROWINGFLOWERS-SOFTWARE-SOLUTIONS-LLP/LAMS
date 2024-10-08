@@ -1371,6 +1371,83 @@
       "checkIn": "12:11:11 PM",
       "checkOut": "12:11:25 PM",
       "break": "0h 0m 14s"
+    },
+    {
+      "id": "084b",
+      "date": "08/10/2024",
+      "checkIn": "1:52:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "cbfa",
+      "date": "08/10/2024",
+      "checkIn": "1:52:37 PM",
+      "checkOut": "1:52:42 PM",
+      "break": "0h 0m 5s"
+    },
+    {
+      "id": "183b",
+      "date": "08/10/2024",
+      "checkIn": "2:17:22 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e360",
+      "date": "08/10/2024",
+      "checkIn": "2:17:22 PM",
+      "checkOut": "2:18:20 PM",
+      "break": "0h 0m 58s"
+    },
+    {
+      "id": "0c1d",
+      "date": "08/10/2024",
+      "checkIn": "2:17:22 PM",
+      "checkOut": "2:18:20 PM",
+      "break": "0h 0m 58s"
+    },
+    {
+      "id": "1c9b",
+      "date": "08/10/2024",
+      "checkIn": "2:18:38 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2191",
+      "date": "08/10/2024",
+      "checkIn": "2:18:38 PM",
+      "checkOut": "2:19:17 PM",
+      "break": "0h 0m 39s"
+    },
+    {
+      "id": "5941",
+      "date": "08/10/2024",
+      "checkIn": "2:18:38 PM",
+      "checkOut": "2:19:17 PM",
+      "break": "0h 0m 39s"
+    },
+    {
+      "id": "56d1",
+      "date": "08/10/2024",
+      "checkIn": "2:32:00 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "88e8",
+      "date": "08/10/2024",
+      "checkIn": "2:32:00 PM",
+      "checkOut": "2:32:56 PM",
+      "break": "0h 0m 56s"
+    },
+    {
+      "id": "cb5a",
+      "date": "08/10/2024",
+      "checkIn": "2:32:00 PM",
+      "checkOut": "2:32:56 PM",
+      "break": "0h 0m 56s"
     }
   ],
   "absent": [

@@ -23,7 +23,7 @@ export class NavbarComponent implements OnInit {
   adminItems: any[] = [
     { label: 'Dashboard', link: 'dashboard' },
     { label: 'Attendance', link: 'allattendance' },
-    { label: 'Profile', link: 'employeeprofile' },
+    { label: 'Employee List', link: 'employeeprofile' },
     { label: 'Manage Holidays', link: 'manageHolidays' },
     { label: 'History', link: 'history' },
   ];
