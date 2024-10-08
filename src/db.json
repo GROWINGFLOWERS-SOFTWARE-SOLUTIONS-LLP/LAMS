@@ -34,42 +34,68 @@
       "address": "Pune"
     },
     {
-      "id": "4faf",
       "firstName": "Kshitija",
       "lastName": "Gaikwad",
       "email": "kshitija@gfss.com",
-      "password": "Kshitija@9090",
-      "mobileNumber": "7710235678",
-      "department": "Engineering",
-      "manager": "Rupesh Shirude",
-      "role": "Employee",
-      "joiningDate": "2024-06-19",
-      "address": "Pune"
-    },
-    {
-      "id": "5faf",
-      "firstName": "abhishek",
-      "lastName": "joshi",
-      "email": "abhishek@gfss.com",
-      "password": "abhishek@9090",
-      "mobileNumber": "7710235678",
-      "department": "Engineering",
-      "manager": "Rupesh Shirude",
-      "role": "Admin",
-      "joiningDate": "2024-06-19",
-      "address": "Pune"
-    },
-    {
-      "id": "5faf",
-      "firstName": "sahil",
-      "lastName": "mhatre",
-      "email": "shail@gfss.com",
-      "password": "shahil@9090",
+      "password": "Kshitija@123",
       "mobileNumber": "7710235678",
       "department": "Engineering",
       "manager": "Rupesh Shirude",
       "role": "Manager",
       "joiningDate": "2024-06-19",
+      "address": "Pune",
+      "id": "4faf"
+    },
+    {
+      "id": "a78a",
+      "firstName": "Bhushan",
+      "lastName": "Malpure",
+      "email": "bhushan@gfss.com",
+      "password": "Bhushan@123",
+      "mobileNumber": "7741903359",
+      "department": "Engineering",
+      "manager": "Abhishek Joshi",
+      "role": "Employee",
+      "joiningDate": "2024-02-20",
+      "address": "Nashik"
+    },
+    {
+      "id": "5552",
+      "firstName": "Abhishek",
+      "lastName": "Joshi",
+      "email": "Abhishek@gfss.com",
+      "password": "Abhishek@123",
+      "mobileNumber": "8975091234",
+      "department": "Admin",
+      "manager": "Rupesh Shirode",
+      "role": "Manager",
+      "joiningDate": "2024-05-06",
+      "address": "Pune"
+    },
+    {
+      "id": "29b5",
+      "firstName": "Sahil",
+      "lastName": "Mhatre",
+      "email": "Sahil@gfss.com",
+      "password": "Sahil@123",
+      "mobileNumber": "8378465280",
+      "department": "Engineering",
+      "manager": "Abhishek Joshi",
+      "role": "Employee",
+      "joiningDate": "2024-05-06",
+      "address": "Mumbai"
+    },
+    {
+      "id": "af3a",
+      "firstName": "Rupesh",
+      "lastName": "Shirode",
+      "email": "Rupesh@gfss.com",
+      "password": "Rupesh@123",
+      "mobileNumber": "8378465280",
+      "department": "Admin",
+      "manager": "Rupesh Shirode",
+      "role": "Admin",
+      "joiningDate": "2024-01-01",
       "address": "Pune"
     }
   ],
@@ -1319,6 +1345,13 @@
       "break": "0h 0m 17s"
     },
     {
+      "id": "026c",
+      "date": "07/10/2024",
+      "checkIn": "12:04:33 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
       "id": "aa8c",
       "date": "07/10/2024",
       "checkIn": "12:04:33 PM",
@@ -1333,11 +1366,11 @@
       "break": ""
     },
     {
-      "id": "e0a1",
-      "date": "08/10/2024",
-      "checkIn": "10:08:32 AM",
-      "checkOut": "",
-      "break": ""
+      "id": "b406",
+      "date": "07/10/2024",
+      "checkIn": "12:11:11 PM",
+      "checkOut": "12:11:25 PM",
+      "break": "0h 0m 14s"
     }
   ],
   "absent": [

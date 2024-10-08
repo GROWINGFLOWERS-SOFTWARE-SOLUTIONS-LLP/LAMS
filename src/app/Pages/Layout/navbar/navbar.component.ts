@@ -21,9 +21,11 @@ export class NavbarComponent implements OnInit {
 
   // Define nav items for each role
   adminItems: any[] = [
+    { label: 'Dashboard', link: 'dashboard' },
     { label: 'Attendance', link: 'allattendance' },
     { label: 'Profile', link: 'employeeprofile' },
-    { label: 'Manage Holidays', link: 'manageHolidays' }
+    { label: 'Manage Holidays', link: 'manageHolidays' },
+    { label: 'History', link: 'history' },
   ];
 
   employeeItems: any[] = [
@@ -32,11 +34,17 @@ export class NavbarComponent implements OnInit {
     { label: 'Leave', link: 'leave' },
     { label: 'Holidays', link: 'holidays' },
     { label: 'History', link: 'history' },
-    { label: 'Help', link: 'help' }
+    { label: 'Help', link: 'help' },
   ];
 
   managerItems: any[] = [
-    { label: 'Leave Request', link: 'managerRequest' }
+    { label: 'Dashboard', link: 'dashboard' },
+    { label: 'Attendance', link: 'attendance' },
+    { label: 'Leave Request', link: 'managerRequest' },
+    { label: 'Leave', link: 'leave' },
+    { label: 'Holidays', link: 'holidays' },
+    { label: 'History', link: 'history' },
+    { label: 'Help', link: 'help' }, 
   ];
 
   // Initialize navItems as an empty array
