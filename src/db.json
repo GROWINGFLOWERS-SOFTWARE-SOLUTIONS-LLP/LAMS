@@ -1371,34 +1371,6 @@
       "checkIn": "12:11:11 PM",
       "checkOut": "12:11:25 PM",
       "break": "0h 0m 14s"
-    },
-    {
-      "id": "7f39",
-      "date": "08/10/2024",
-      "checkIn": "11:13:57 AM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "10cf",
-      "date": "08/10/2024",
-      "checkIn": "11:13:57 AM",
-      "checkOut": "11:14:34 AM",
-      "break": "0h 0m 37s"
-    },
-    {
-      "id": "1501",
-      "date": "08/10/2024",
-      "checkIn": "1:43:06 PM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "1aaa",
-      "date": "08/10/2024",
-      "checkIn": "1:43:06 PM",
-      "checkOut": "1:43:28 PM",
-      "break": "0h 0m 22s"
     }
   ],
   "absent": [
