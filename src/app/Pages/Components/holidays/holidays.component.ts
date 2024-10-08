@@ -5,12 +5,9 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { ApiService } from '../../../Core/Services/api.service';
+import { Holiday } from '../../../Core/Interfaces/holiday';
  
-interface Holiday {
-  holidayName: string;
-  holidayDate: string;
-  id: string;
-}
+
  
 @Component({
   selector: 'app-holidays',
@@ -56,9 +53,10 @@ export class HolidaysComponent implements OnInit {
   }
  
   updateLayout() {
+    // debugger
     const width = window.innerWidth;
-    this.isMobile = width <= 480;
- 
+    this.isMobile = width <= 600;
+    //  debugger
     if (this.isMobile) {
       this.calendarOptions.headerToolbar = {
         start: 'dayGridMonth',

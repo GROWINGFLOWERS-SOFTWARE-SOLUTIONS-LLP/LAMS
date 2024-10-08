@@ -68,38 +68,4 @@
   font-size: 1rem;
 }
 
-@media (max-width: 320px) {
-  .attendance-panel {
-    font-size: 1.2em;
-  }
-  .font-size-lg {
-    font-size: 1em;
-  }
-}
 
-@media (min-width: 321px) and (max-width: 768px) {
-  .attendance-panel {
-    font-size: 1.3em;
-  }
-  .font-size-lg {
-    font-size: 1.2em;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 992px) {
-  .attendance-panel {
-    font-size: 1.4em;
-  }
-  .font-size-lg {
-    font-size: 1.5em;
-  }
-}
-
-@media (min-width: 993px) {
-  .attendance-panel {
-    font-size: 1.5em;
-  }
-  .font-size-lg {
-    font-size: 2em;
-  }
-}
