@@ -1331,6 +1331,13 @@
       "checkIn": "12:11:11 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "e0a1",
+      "date": "08/10/2024",
+      "checkIn": "10:08:32 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
