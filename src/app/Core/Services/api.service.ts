@@ -106,4 +106,8 @@ export class ApiService {
   getLeavedata(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
+
+  // getUserByEmail(email: string): Observable<any> {
+  //   return this.http.get(`/api/user?email=${email}`);
+  // }
 }

@@ -12,13 +12,18 @@ import { ApiService } from '../../../Core/Services/api.service';
 })
 
 export class DashboardComponent implements OnInit{
+  // username display
+  userData: any;
 
+ 
   totalEmployees!: number;
   totalLeaves!: number; 
   remainingLeaves!: number;
   totalAttendance!: number;
   absent!: number;
   leavesTaken!: number;
+
+  
  
   constructor(private apiService: ApiService) {}
 
@@ -28,8 +33,15 @@ export class DashboardComponent implements OnInit{
     this.loadTotalAttendance();
     this.loadTotalAbsent();
     this.loadLeaveData();
-    }
-  
+
+    // Simulating fetching JSON data
+    this.userData = {
+      user: {
+        name: 'Shweta Sonje',
+      },
+    };
+  }
+    
     private loadTotalEmployees(): void {
       this.apiService.getEmployee().subscribe(employee => {
       this.totalEmployees = employee.length;

@@ -19,6 +19,18 @@
       "id": "55g2"
     }
   ],
+  "user": [
+    {
+      "name": "Shweta Sonje",
+      "email": "shweta@gfss.com",
+      "id": "2e77"
+    },
+    {
+      "name": "Prajakta Badhan",
+      "email": "prajakta24@gfss.com",
+      "id": "2c83"
+    }
+  ],
   "employees": [
     {
       "id": "56d1",
@@ -1342,6 +1354,34 @@
       "id": "5095",
       "date": "07/10/2024",
       "checkIn": "12:11:11 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "04ac",
+      "date": "08/10/2024",
+      "checkIn": "12:21:53 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "892e",
+      "date": "08/10/2024",
+      "checkIn": "4:39:55 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5936",
+      "date": "08/10/2024",
+      "checkIn": "9:53:04 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e15a",
+      "date": "09/10/2024",
+      "checkIn": "12:59:43 PM",
       "checkOut": "",
       "break": ""
     }
