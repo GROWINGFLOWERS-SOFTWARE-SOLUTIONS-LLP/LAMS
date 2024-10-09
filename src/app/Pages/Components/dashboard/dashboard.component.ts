@@ -12,10 +12,9 @@ import { ApiService } from '../../../Core/Services/api.service';
 })
 
 export class DashboardComponent implements OnInit{
-  // username display
-  userData: any;
 
- 
+  loggedInUserName!: string;
+
   totalEmployees!: number;
   totalLeaves!: number; 
   remainingLeaves!: number;
@@ -24,7 +23,6 @@ export class DashboardComponent implements OnInit{
   leavesTaken!: number;
 
   
- 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
@@ -34,42 +32,46 @@ export class DashboardComponent implements OnInit{
     this.loadTotalAbsent();
     this.loadLeaveData();
 
-    // Simulating fetching JSON data
-    this.userData = {
-      user: {
-        name: 'Shweta Sonje',
-      },
-    };
+
+  // Fetch the logged-in user's name from apiService
+  const loggedInUser = this.apiService.getLoggedInUser();
+    if (loggedInUser) {
+      this.loggedInUserName = loggedInUser.firstName + ' ' + loggedInUser.lastName;
+    }
   }
-    
-    private loadTotalEmployees(): void {
-      this.apiService.getEmployee().subscribe(employee => {
+  
+  // Method to calculate total employees
+  private loadTotalEmployees(): void {
+    this.apiService.getEmployee().subscribe(employee => {
       this.totalEmployees = employee.length;
       });
       }
 
-    private loadTotalAttendance(): void {
-      this.apiService.getAttendance().subscribe((attendance) => {
+  // Method to calculate total attendance
+  private loadTotalAttendance(): void {
+    this.apiService.getAttendance().subscribe((attendance) => {
       this.totalAttendance = attendance.length;
       });
       }
 
-    private loadTotalAbsent(): void {
-      this.apiService.getAbsent().subscribe((absent) => {
+  // Method to calculate total absent
+  private loadTotalAbsent(): void {
+    this.apiService.getAbsent().subscribe((absent) => {
       this.absent = absent.length;
       });
       }
 
-    private loadLeaveData(): void {
-      this.apiService.getLeavedata().subscribe((Leavedata:any) => {
-      this.totalLeaves = Leavedata.totalLeaves;
-      this.leavesTaken = Leavedata.leavesTaken;
-      this.calculateRemainingLeaves();  // Calculate remaining leaves after fetching data
-      });
-      }
+  // Method to calculate leave data
+  private loadLeaveData(): void {
+    this.apiService.getLeavedata().subscribe((Leavedata:any) => {
+    this.totalLeaves = Leavedata.totalLeaves;
+    this.leavesTaken = Leavedata.leavesTaken;
+    this.calculateRemainingLeaves();  // Calculate remaining leaves after fetching data
+    });
+    }
 
-    // Method to calculate remaining leaves
-    private calculateRemainingLeaves(): void {
-      this.remainingLeaves = this.totalLeaves - this.leavesTaken;  // Calculate remaining leaves
+  // Method to calculate remaining leaves
+  private calculateRemainingLeaves(): void {
+    this.remainingLeaves = this.totalLeaves - this.leavesTaken;  // Calculate remaining leaves
   }
 }

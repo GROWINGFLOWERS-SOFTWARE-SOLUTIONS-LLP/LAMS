@@ -8,7 +8,9 @@ import { Observable } from 'rxjs';
 export class ApiService {
  
   apiUrl:string="http://localhost:3000";
- 
+
+  private loggedInUser: any = null;
+
   constructor(private http:HttpClient) { }
  
   loginValidation(data:any){
@@ -107,7 +109,18 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
 
-  // getUserByEmail(email: string): Observable<any> {
-  //   return this.http.get(`/api/user?email=${email}`);
-  // }
+  // Get the logged-in user details
+  getLoggedInUser() {
+    if (!this.loggedInUser) {
+      const user = localStorage.getItem('users');
+      this.loggedInUser = user ? JSON.parse(user) : null;
+    }
+    return this.loggedInUser;
+  }
+
+  // Simulate logout
+  logout() {
+    this.loggedInUser = null;
+    sessionStorage.removeItem('loggedInUser');
+  }
 }
