@@ -19,7 +19,6 @@
       "id": "55g2"
     }
   ],
- 
   "employees": [
     {
       "id": "56d1",
@@ -1231,6 +1230,13 @@
       "checkIn": "2:32:00 PM",
       "checkOut": "2:32:56 PM",
       "break": "0h 0m 56s"
+    },
+    {
+      "id": "015d",
+      "date": "10/10/2024",
+      "checkIn": "10:12:45 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
