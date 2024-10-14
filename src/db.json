@@ -21,11 +21,11 @@
   ],
   "employees": [
     {
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shweta@gfss.com",
-      "password": "Shweta@123",
-      "mobileNumber": "9865426783",
+      "firstName": "Prajakta",
+      "lastName": "Badhan",
+      "email": "prajakta24@gfss.com",
+      "password": "Prajakta@123",
+      "mobileNumber": "9200129089",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Employee",
@@ -1286,6 +1286,27 @@
       "checkIn": "11:58:27 AM",
       "checkOut": "12:03:26 PM",
       "break": "0h 4m 59s"
+    },
+    {
+      "id": "a257",
+      "date": "14/10/2024",
+      "checkIn": "12:31:11 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e750",
+      "date": "14/10/2024",
+      "checkIn": "2:35:39 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "bf43",
+      "date": "14/10/2024",
+      "checkIn": "2:35:39 PM",
+      "checkOut": "2:36:44 PM",
+      "break": "0h 1m 5s"
     }
   ],
   "absent": [
