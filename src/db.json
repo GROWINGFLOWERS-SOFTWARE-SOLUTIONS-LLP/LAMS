@@ -21,11 +21,11 @@
   ],
   "employees": [
     {
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shweta@gfss.com",
-      "password": "Shweta@123",
-      "mobileNumber": "9865426783",
+      "firstName": "Prajakta",
+      "lastName": "Badhan",
+      "email": "prajakta@gfss.com",
+      "password": "Prajakta@123",
+      "mobileNumber": "9200378962",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Employee",
