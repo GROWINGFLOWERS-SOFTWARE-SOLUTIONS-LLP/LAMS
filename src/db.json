@@ -1251,6 +1251,34 @@
       "checkIn": "9:55:29 AM",
       "checkOut": "9:55:55 AM",
       "break": "0h 0m 26s"
+    },
+    {
+      "id": "c104",
+      "date": "14/10/2024",
+      "checkIn": "10:11:43 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "47b4",
+      "date": "14/10/2024",
+      "checkIn": "10:43:55 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b716",
+      "date": "14/10/2024",
+      "checkIn": "11:46:16 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f322",
+      "date": "14/10/2024",
+      "checkIn": "11:58:27 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1271,29 +1299,6 @@
     }
   ],
   "leaveApplications": [
-    {
-      "employeeId": 101,
-      "employeeName": "Shubham Sonje",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-15",
-      "endDate": "2024-09-20",
-      "status": "Pending",
-      "reason": "Vacation",
-      "approvedBy": "Abhishek Joshi",
-      "totalLeaves": 30,
-      "id": "4291"
-    },
-    {
-      "employeeId": 102,
-      "employeeName": "Sahil Mhatre",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-05",
-      "endDate": "2024-09-07",
-      "status": "Approved",
-      "reason": "Vacation",
-      "totalLeaves": 5,
-      "id": "8e31"
-    },
     {
       "id": "f6e6",
       "leaveType": "Paid Leave",
@@ -1353,6 +1358,42 @@
       "leaveType": "Sick Leave",
       "startDate": "2024-10-10T18:30:00.000Z",
       "endDate": "2024-10-10T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "da87",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-14T05:33:21.672Z",
+      "endDate": "2024-10-14T05:33:21.672Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "e713",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-14T18:30:00.000Z",
+      "endDate": "2024-10-14T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "c54d",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-14T05:39:12.982Z",
+      "endDate": "2024-10-14T05:39:12.982Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "3e8f",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-14T05:50:37.511Z",
+      "endDate": "2024-10-14T05:50:37.511Z",
       "reason": "",
       "totalLeaves": 1,
       "status": "Pending"
