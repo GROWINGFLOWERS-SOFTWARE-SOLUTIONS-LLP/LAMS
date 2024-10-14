@@ -21,17 +21,17 @@
   ],
   "employees": [
     {
-      "id": "56d1",
-      "firstName": "Prajakta",
-      "lastName": "Badhan",
-      "email": "prajakta24@gfss.com",
-      "password": "Prajakta@123",
-      "mobileNumber": "9800129089",
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shweta@gfss.com",
+      "password": "Shweta@123",
+      "mobileNumber": "9865426783",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Employee",
       "joiningDate": "2024-01-15",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "56d1"
     },
     {
       "firstName": "Kshitija",
@@ -60,43 +60,43 @@
       "address": "Nashik"
     },
     {
-      "id": "5552",
       "firstName": "Abhishek",
       "lastName": "Joshi",
-      "email": "Abhishek@gfss.com",
+      "email": "abhishek@gfss.com",
       "password": "Abhishek@123",
       "mobileNumber": "8975091234",
       "department": "Admin",
       "manager": "Rupesh Shirode",
       "role": "Manager",
       "joiningDate": "2024-05-06",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "5552"
     },
     {
-      "id": "29b5",
       "firstName": "Sahil",
       "lastName": "Mhatre",
-      "email": "Sahil@gfss.com",
+      "email": "sahil@gfss.com",
       "password": "Sahil@123",
       "mobileNumber": "8378465280",
       "department": "Engineering",
       "manager": "Abhishek Joshi",
       "role": "Employee",
       "joiningDate": "2024-05-06",
-      "address": "Mumbai"
+      "address": "Mumbai",
+      "id": "29b5"
     },
     {
-      "id": "af3a",
       "firstName": "Rupesh",
       "lastName": "Shirode",
-      "email": "Rupesh@gfss.com",
+      "email": "rupesh@gfss.com",
       "password": "Rupesh@123",
       "mobileNumber": "8378465280",
       "department": "Admin",
       "manager": "Rupesh Shirode",
       "role": "Admin",
       "joiningDate": "2024-01-01",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "af3a"
     },
     {
       "id": "56d1",
@@ -1281,11 +1281,11 @@
       "break": ""
     },
     {
-      "id": "f9c1",
+      "id": "4a64",
       "date": "14/10/2024",
-      "checkIn": "12:07:15 PM",
-      "checkOut": "",
-      "break": ""
+      "checkIn": "11:58:27 AM",
+      "checkOut": "12:03:26 PM",
+      "break": "0h 4m 59s"
     }
   ],
   "absent": [
