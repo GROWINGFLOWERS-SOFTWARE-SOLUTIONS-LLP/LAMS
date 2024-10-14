@@ -1265,6 +1265,20 @@
       "checkIn": "10:43:55 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "b716",
+      "date": "14/10/2024",
+      "checkIn": "11:46:16 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f322",
+      "date": "14/10/2024",
+      "checkIn": "11:58:27 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
