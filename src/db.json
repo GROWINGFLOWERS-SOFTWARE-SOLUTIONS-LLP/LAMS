@@ -1318,6 +1318,37 @@
     {
       "id": "a464",
       "date": "14/10/2024",
+      "checkIn": "2:35:39 PM",
+      "checkOut": "2:36:44 PM",
+      "break": "0h 1m 5s"
+    },
+    {
+      "id": "ccf8",
+      "date": "14/10/2024",
+      "checkIn": "2:59:26 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c20e",
+      "date": "14/10/2024",
+      "checkIn": "2:59:26 PM",
+      "checkOut": "3:03:15 PM",
+      "break": "0h 3m 49s"
+    },
+    {
+      "id": "ec5a",
+      "date": "14/10/2024",
+      "checkIn": "2:59:26 PM",
+      "checkOut": "3:03:15 PM",
+      "break": "0h 3m 49s"
+    },
+    {
+      "id": "7501",
+      "date": "14/10/2024",
+      "checkIn": "3:03:32 PM",
+      "checkOut": "",
+      "break": ""
       "checkIn": "2:58:15 PM",
       "checkOut": "2:58:37 PM",
       "break": "0h 0m 22s"
