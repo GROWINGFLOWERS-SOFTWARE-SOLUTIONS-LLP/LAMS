@@ -1333,7 +1333,164 @@
       "checkIn": "12:18:46 PM",
       "checkOut": "12:19:03 PM",
       "break": "0h 0m 17s"
+<<<<<<< HEAD
 
+=======
+    },
+    {
+      "id": "026c",
+      "date": "07/10/2024",
+      "checkIn": "12:04:33 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "aa8c",
+      "date": "07/10/2024",
+      "checkIn": "12:04:33 PM",
+      "checkOut": "12:04:40 PM",
+      "break": "0h 0m 7s"
+    },
+    {
+      "id": "5095",
+      "date": "07/10/2024",
+      "checkIn": "12:11:11 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b406",
+      "date": "07/10/2024",
+      "checkIn": "12:11:11 PM",
+      "checkOut": "12:11:25 PM",
+      "break": "0h 0m 14s"
+    },
+    {
+      "id": "084b",
+      "date": "08/10/2024",
+      "checkIn": "1:52:37 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "cbfa",
+      "date": "08/10/2024",
+      "checkIn": "1:52:37 PM",
+      "checkOut": "1:52:42 PM",
+      "break": "0h 0m 5s"
+    },
+    {
+      "id": "183b",
+      "date": "08/10/2024",
+      "checkIn": "2:17:22 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "e360",
+      "date": "08/10/2024",
+      "checkIn": "2:17:22 PM",
+      "checkOut": "2:18:20 PM",
+      "break": "0h 0m 58s"
+    },
+    {
+      "id": "0c1d",
+      "date": "08/10/2024",
+      "checkIn": "2:17:22 PM",
+      "checkOut": "2:18:20 PM",
+      "break": "0h 0m 58s"
+    },
+    {
+      "id": "1c9b",
+      "date": "08/10/2024",
+      "checkIn": "2:18:38 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2191",
+      "date": "08/10/2024",
+      "checkIn": "2:18:38 PM",
+      "checkOut": "2:19:17 PM",
+      "break": "0h 0m 39s"
+    },
+    {
+      "id": "5941",
+      "date": "08/10/2024",
+      "checkIn": "2:18:38 PM",
+      "checkOut": "2:19:17 PM",
+      "break": "0h 0m 39s"
+    },
+    {
+      "id": "56d1",
+      "date": "08/10/2024",
+      "checkIn": "2:32:00 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "88e8",
+      "date": "08/10/2024",
+      "checkIn": "2:32:00 PM",
+      "checkOut": "2:32:56 PM",
+      "break": "0h 0m 56s"
+    },
+    {
+      "id": "cb5a",
+      "date": "08/10/2024",
+      "checkIn": "2:32:00 PM",
+      "checkOut": "2:32:56 PM",
+      "break": "0h 0m 56s"
+    },
+    {
+      "id": "015d",
+      "date": "10/10/2024",
+      "checkIn": "10:12:45 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2905",
+      "date": "14/10/2024",
+      "checkIn": "9:55:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9de2",
+      "date": "14/10/2024",
+      "checkIn": "9:55:29 AM",
+      "checkOut": "9:55:55 AM",
+      "break": "0h 0m 26s"
+    },
+    {
+      "id": "c104",
+      "date": "14/10/2024",
+      "checkIn": "10:11:43 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "47b4",
+      "date": "14/10/2024",
+      "checkIn": "10:43:55 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b716",
+      "date": "14/10/2024",
+      "checkIn": "11:46:16 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f322",
+      "date": "14/10/2024",
+      "checkIn": "11:58:27 AM",
+      "checkOut": "",
+      "break": ""
+>>>>>>> a01a5816b393219d7177170d1321e22a5a274522
     }
   ],
   "absent": [
@@ -1354,29 +1511,6 @@
     }
   ],
   "leaveApplications": [
-    {
-      "employeeId": 101,
-      "employeeName": "Shubham Sonje",
-      "leaveType": "Paid Leave",
-      "startDate": "2024-09-15",
-      "endDate": "2024-09-20",
-      "status": "Pending",
-      "reason": "Vacation",
-      "approvedBy": "Abhishek Joshi",
-      "totalLeaves": 30,
-      "id": "4291"
-    },
-    {
-      "employeeId": 102,
-      "employeeName": "Sahil Mhatre",
-      "leaveType": "Sick Leave",
-      "startDate": "2024-09-05",
-      "endDate": "2024-09-07",
-      "status": "Approved",
-      "reason": "Vacation",
-      "totalLeaves": 5,
-      "id": "8e31"
-    },
     {
       "id": "f6e6",
       "leaveType": "Paid Leave",
@@ -1436,6 +1570,42 @@
       "leaveType": "Sick Leave",
       "startDate": "2024-10-10T18:30:00.000Z",
       "endDate": "2024-10-10T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "da87",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-14T05:33:21.672Z",
+      "endDate": "2024-10-14T05:33:21.672Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "e713",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-14T18:30:00.000Z",
+      "endDate": "2024-10-14T18:30:00.000Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "c54d",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-14T05:39:12.982Z",
+      "endDate": "2024-10-14T05:39:12.982Z",
+      "reason": "",
+      "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "3e8f",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-14T05:50:37.511Z",
+      "endDate": "2024-10-14T05:50:37.511Z",
       "reason": "",
       "totalLeaves": 1,
       "status": "Pending"

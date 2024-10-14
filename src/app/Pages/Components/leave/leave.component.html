@@ -69,7 +69,8 @@
 
       <!-- Table to display submitted leave requests -->
       <div class="mt-3">
-        <p-table [value]="leaveRequests" responsiveLayout="scroll" class="responsive-table">
+        <p-table [value]="leaveRequests" [paginator]="true" [rows]="10" [scrollable]="true" 
+        responsiveLayout="scroll" class="responsive-table">
           <ng-template pTemplate="header">
             <tr>
               <th>Start Date</th>
