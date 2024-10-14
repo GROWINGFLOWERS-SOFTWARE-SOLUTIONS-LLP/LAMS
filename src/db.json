@@ -1239,6 +1239,7 @@
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "aa65",
       "date": "13/10/2024",
       "checkIn": "10:18:59 PM",
@@ -1293,6 +1294,20 @@
       "checkIn": "11:21:46 AM",
       "checkOut": "",
       "break": ""
+=======
+      "id": "2905",
+      "date": "14/10/2024",
+      "checkIn": "9:55:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9de2",
+      "date": "14/10/2024",
+      "checkIn": "9:55:29 AM",
+      "checkOut": "9:55:55 AM",
+      "break": "0h 0m 26s"
+>>>>>>> 4c6e0ac6f707fea34a93ee96ce35f7eb2852637f
     }
   ],
   "absent": [
