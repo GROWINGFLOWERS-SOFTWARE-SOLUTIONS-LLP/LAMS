@@ -1342,6 +1342,20 @@
       "checkIn": "2:59:26 PM",
       "checkOut": "3:03:15 PM",
       "break": "0h 3m 49s"
+    },
+    {
+      "id": "4aae",
+      "date": "15/10/2024",
+      "checkIn": "1:59:53 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b7cd",
+      "date": "15/10/2024",
+      "checkIn": "1:59:53 PM",
+      "checkOut": "3:24:47 PM",
+      "break": "1h 24m 54s"
     }
   ],
   "absent": [
