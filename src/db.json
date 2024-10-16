@@ -21,20 +21,10 @@
   ],
   "employees": [
     {
-<<<<<<< HEAD
-      "id": "23db",
-=======
->>>>>>> 13f400c0efa4111ea67a0a34761119c4ef296f4a
       "firstName": "Prajakta",
       "lastName": "Badhan",
       "email": "prajakta@gfss.com",
       "password": "Prajakta@123",
-<<<<<<< HEAD
-      "mobileNumber": "7760984512",
-      "department": "Engineering",
-      "manager": "Kshitija Gaikwad",
-      "role": "Developer",
-=======
       "mobileNumber": "9200378962",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
@@ -118,7 +108,6 @@
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Employee",
->>>>>>> 13f400c0efa4111ea67a0a34761119c4ef296f4a
       "joiningDate": "2024-01-15",
       "address": "Pune"
     }
@@ -1150,8 +1139,6 @@
       "checkIn": "1:01:23 PM",
       "checkOut": "",
       "break": ""
-<<<<<<< HEAD
-=======
     },
     {
       "id": "8663",
@@ -1544,7 +1531,6 @@
       "checkIn": "2:59:26 PM",
       "checkOut": "3:03:15 PM",
       "break": "0h 3m 49s"
->>>>>>> 13f400c0efa4111ea67a0a34761119c4ef296f4a
     }
     
   ],
