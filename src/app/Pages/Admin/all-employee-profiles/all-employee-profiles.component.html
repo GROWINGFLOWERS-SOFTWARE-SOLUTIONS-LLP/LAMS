@@ -1,18 +1,19 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
-<div class="container p-4 bg-gray-50 h-full">
+<div class="container flex flex-column p-4 bg-gray-50 h-screen">
 
     <!-- Add Employee Button -->
     <div class="flex justify-content-end mb-4">
         <!-- Button for adding employees with padding and primary color -->
-        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-3" (click)="openDialog()"></p-button>
+        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()"></p-button>
     </div>
 
     <!-- Employee Table Section -->
-    <div class="p-grid">
-        <div class="p-col-12">
-            <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true" 
-                class="shadow-md rounded-lg border border-gray-300">
+    <div class="flex-grow-1 overflow-auto p-4">
+        <div class="p-grid">
+            <div class="p-col-12">
+            <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true"
+                class="shadow-md rounded-lg border border-gray-300 mb-4">
                 <ng-template pTemplate="header">
                     <tr class="bg-gray-200 text-gray-700">
                         <th class="p-3">First Name</th>
@@ -53,8 +54,6 @@
                     </tr>
                 </ng-template>
             </p-table>
-
-
         </div>
     </div>
 

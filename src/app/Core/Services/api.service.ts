@@ -117,7 +117,7 @@ export class ApiService {
     }
     return this.loggedInUser;
   }
-
+  
   // Simulate logout
   logout() {
     this.loggedInUser = null;
