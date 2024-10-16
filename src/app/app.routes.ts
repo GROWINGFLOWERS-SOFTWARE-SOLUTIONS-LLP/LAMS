@@ -13,6 +13,7 @@ import { AllAttendenceComponent } from './Pages/Admin/all-attendence/all-attende
 import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profiles/all-employee-profiles.component';
 import { RequestComponent } from './Pages/Manager Page/request/request.component';
 import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-holidays.component';
+import { RolesListComponent } from './Pages/Admin/roles-list/roles-list.component';
 
 
 export const routes: Routes = [
@@ -41,7 +42,8 @@ export const routes: Routes = [
       { path: 'allattendance', component: AllAttendenceComponent, },
       { path: 'employeeprofile', component: AllEmployeeProfilesComponent },
       { path: 'managerRequest', component: RequestComponent },
-      { path: 'manageHolidays', component: ManageHolidaysComponent }
+      { path: 'manageHolidays', component: ManageHolidaysComponent },
+      { path: 'roleslist', component: RolesListComponent }
 
     ]
   },

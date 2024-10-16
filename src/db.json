@@ -30,7 +30,7 @@
       "manager": "Kshitija Gaikwad",
       "role": "Employee",
       "joiningDate": "2024-01-15",
-      "address": "Pune",
+      "address": "Nashik",
       "id": "56d1"
     },
     {
@@ -1531,6 +1531,27 @@
       "checkIn": "2:59:26 PM",
       "checkOut": "3:03:15 PM",
       "break": "0h 3m 49s"
+    },
+    {
+      "id": "4aae",
+      "date": "15/10/2024",
+      "checkIn": "1:59:53 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b7cd",
+      "date": "15/10/2024",
+      "checkIn": "1:59:53 PM",
+      "checkOut": "3:24:47 PM",
+      "break": "1h 24m 54s"
+    },
+    {
+      "id": "7444",
+      "date": "16/10/2024",
+      "checkIn": "10:55:17 AM",
+      "checkOut": "",
+      "break": ""
     }
     
   ],
@@ -1845,6 +1866,11 @@
       "id": "2ee4",
       "holidayName": "State Holiday",
       "holidayDate": "2024-09-25"
+    },
+    {
+      "id": "6013",
+      "holidayName": "general holiday",
+      "holidayDate": "2024-10-15"
     }
   ]
 }
