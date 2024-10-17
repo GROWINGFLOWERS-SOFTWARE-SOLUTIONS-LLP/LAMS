@@ -157,7 +157,6 @@ export class RolesListComponent implements OnInit {
     });
   }
 
-
   resetForm(): void {
     this.selectedManagerId = null;
     this.managerForm.reset();
