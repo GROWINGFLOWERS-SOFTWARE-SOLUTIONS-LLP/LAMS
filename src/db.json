@@ -99,7 +99,6 @@
       "id": "af3a"
     },
     {
-      
       "firstName": "Shubham",
       "lastName": "Sonje",
       "email": "shubham@gfss.com",
@@ -1602,20 +1601,13 @@
       "break": "0h 3m 49s"
     },
     {
-<<<<<<< HEAD
       "id": "9412",
       "date": "14/10/2024",
       "checkIn": "3:56:07 PM",
-=======
-      "id": "4aae",
-      "date": "15/10/2024",
-      "checkIn": "1:59:53 PM",
->>>>>>> 3cef37a144843e17142028ffcc27c6e2325858cb
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
       "id": "fe57",
       "date": "14/10/2024",
       "checkIn": "3:56:07 PM",
@@ -1642,13 +1634,41 @@
       "checkIn": "10:05:49 AM",
       "checkOut": "",
       "break": ""
-=======
-      "id": "b7cd",
-      "date": "15/10/2024",
-      "checkIn": "1:59:53 PM",
-      "checkOut": "3:24:47 PM",
-      "break": "1h 24m 54s"
->>>>>>> 3cef37a144843e17142028ffcc27c6e2325858cb
+    },
+    {
+      "id": "ee07",
+      "date": "16/10/2024",
+      "checkIn": "10:36:11 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4cb8",
+      "date": "16/10/2024",
+      "checkIn": "3:13:14 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "584d",
+      "date": "17/10/2024",
+      "checkIn": "9:54:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4328",
+      "date": "17/10/2024",
+      "checkIn": "3:10:53 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "14c9",
+      "date": "17/10/2024",
+      "checkIn": "3:31:32 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1766,6 +1786,15 @@
       "endDate": "2024-10-14T05:50:37.511Z",
       "reason": "",
       "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "ad32",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-16T10:12:55.203Z",
+      "endDate": "2024-10-20T18:30:00.000Z",
+      "reason": "festival",
+      "totalLeaves": 6,
       "status": "Pending"
     }
   ],

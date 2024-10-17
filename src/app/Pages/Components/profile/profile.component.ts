@@ -4,39 +4,108 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { PaginatorModule } from 'primeng/paginator';
+import { TableModule } from 'primeng/table';
+import { CommonModule } from '@angular/common';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
+
+
+
+interface Employee {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  mobileNumber: string;
+  address: string;
+  department: string;
+  role: string;
+  joiningDate: Date;
+}
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule,CardModule,ReactiveFormsModule],
+  imports: [AvatarModule, ButtonModule,CardModule,ReactiveFormsModule,PaginatorModule,TableModule,CommonModule,InputTextModule,CalendarModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
-export class ProfileComponent  {
- 
+export class ProfileComponent implements OnInit {
+
+  
+  employees: Employee[] = [
+    {
+      id: 1,
+      firstName: 'Shubham',
+      lastName: 'Sonje',
+      email: 'ssonje30@gmail.com',
+      mobileNumber: '9890628672',
+      address: 'Nashik',
+      department: 'IT',
+      role: 'Developer',
+      joiningDate: new Date('2024-01-02')
+    },
+    // Add more employee objects as needed
+  ];
+  employeeService: any;
+
+  // employees: any[] = [];
+  // employeeService: any;
+
   constructor(private route:Router){}
+  
 
-  visible: boolean = false;
-
-  showDialog() {
-      this.visible = true;
+  ngOnInit(): void {
+    this.loadEmployees();
   }
 
-  employee = {
-    email: '                ',
-    phoneNumber: '    ',
-    // departmentId: '6', // Example ObjectId
-    joiningDate: new Date('2022-02-16'),
-    department: '     ',
-    address: '   '
+  loadEmployees(): void {
+    this.employeeService.getEmployees().subscribe((data: any[]) => {
+      this.employees = data;
+    });
   }
 
+  editEmployee(employee: any): void {
+    // Implement your edit logic here, potentially using a modal
+  }
 
-  updateProfile(){
+  deleteEmployee(id: number, event: Event): void {
+    event.stopPropagation();
+    this.employeeService.deleteEmployee(id).subscribe(() => {
+      this.loadEmployees(); // Reload the employee list after deletion
+    });
+  }
+  updateProfile(...args: []) {
     this.route.navigateByUrl('profile-form');
   }
 }
+ 
+//   constructor(private route:Router){}
+
+//   visible: boolean = false;
+
+//   showDialog() {
+//       this.visible = true;
+//   }
+
+//   employee = {
+//     email: '                ',
+//     phoneNumber: '    ',
+//     // departmentId: '6', // Example ObjectId
+//     joiningDate: new Date('2022-02-16'),
+//     department: '     ',
+//     address: '   '
+//   }
+
+
+//   updateProfile(){
+//     this.route.navigateByUrl('profile-form');
+//   }
+// }
 
 
 

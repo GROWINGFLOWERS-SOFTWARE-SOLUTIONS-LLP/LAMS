@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Employee } from '../Interfaces/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -123,4 +124,6 @@ export class ApiService {
     this.loggedInUser = null;
     sessionStorage.removeItem('loggedInUser');
   }
+ 
+  
 }
