@@ -112,6 +112,13 @@
       "address": "Pune"
     }
   ],
+  "managers": [
+    {
+      "id": "2",
+      "managerName": "Rupesh Shirode",
+      "department": "Admin"
+    }
+  ],
   "attendance": [
     {
       "attendance_date": "2024-09-10",
@@ -1356,6 +1363,13 @@
       "checkIn": "1:59:53 PM",
       "checkOut": "3:24:47 PM",
       "break": "1h 24m 54s"
+    },
+    {
+      "id": "7444",
+      "date": "16/10/2024",
+      "checkIn": "10:55:17 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
