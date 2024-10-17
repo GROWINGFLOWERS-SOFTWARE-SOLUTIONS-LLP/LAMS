@@ -1342,6 +1342,76 @@
       "checkIn": "2:59:26 PM",
       "checkOut": "3:03:15 PM",
       "break": "0h 3m 49s"
+    },
+    {
+      "id": "2684",
+      "date": "14/10/2024",
+      "checkIn": "3:25:31 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ab16",
+      "date": "14/10/2024",
+      "checkIn": "3:25:31 PM",
+      "checkOut": "3:25:57 PM",
+      "break": "0h 0m 26s"
+    },
+    {
+      "id": "944c",
+      "date": "14/10/2024",
+      "checkIn": "3:25:31 PM",
+      "checkOut": "3:25:57 PM",
+      "break": "0h 0m 26s"
+    },
+    {
+      "id": "8deb",
+      "date": "14/10/2024",
+      "checkIn": "3:31:19 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "aee8",
+      "date": "14/10/2024",
+      "checkIn": "3:31:19 PM",
+      "checkOut": "3:43:19 PM",
+      "break": "0h 12m 0s"
+    },
+    {
+      "id": "4a52",
+      "date": "14/10/2024",
+      "checkIn": "3:31:19 PM",
+      "checkOut": "3:43:19 PM",
+      "break": "0h 12m 0s"
+    },
+    {
+      "id": "0fed",
+      "date": "15/10/2024",
+      "checkIn": "2:06:02 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "08c3",
+      "date": "15/10/2024",
+      "checkIn": "2:06:02 PM",
+      "checkOut": "2:10:45 PM",
+      "break": "0h 4m 43s"
+    },
+    {
+      "id": "cb85",
+      "date": "15/10/2024",
+      "checkIn": "2:53:28 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "279a",
+      "date": "15/10/2024",
+      "checkIn": "2:53:28 PM",
+      "checkOut": "2:56:55 PM",
+      "break": "0h 3m 27s"
     }
   ],
   "absent": [
@@ -1459,6 +1529,15 @@
       "endDate": "2024-10-14T05:50:37.511Z",
       "reason": "",
       "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "b34b",
+      "leaveType": "Unpaid Leave",
+      "startDate": "2024-10-15T08:36:07.027Z",
+      "endDate": "2024-10-22T18:30:00.000Z",
+      "reason": "na",
+      "totalLeaves": 9,
       "status": "Pending"
     }
   ],
