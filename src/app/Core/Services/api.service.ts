@@ -7,15 +7,15 @@ import { Employee } from '../Interfaces/employee';
   providedIn: 'root'
 })
 export class ApiService {
- 
-  apiUrl:string="http://localhost:3000";
+
+  apiUrl: string = "http://localhost:3000";
 
   private loggedInUser: any = null;
 
-  constructor(private http:HttpClient) { }
- 
-  loginValidation(data:any){
-    return this.http.post(this.apiUrl+"/login",data);
+  constructor(private http: HttpClient) { }
+
+  loginValidation(data: any) {
+    return this.http.post(this.apiUrl + "/login", data);
   }
 
   postAttendance(attendanceRecord: any) {
@@ -46,7 +46,7 @@ export class ApiService {
   deleteHoliday(id: string): Observable<any> {
     return this.http.delete(`${this.apiUrl}/publicHolidays/${id}`);
   }
-  
+
   // Method to update a holiday 
   updateHoliday(holiday: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
@@ -118,12 +118,34 @@ export class ApiService {
     }
     return this.loggedInUser;
   }
-  
+
   // Simulate logout
   logout() {
     this.loggedInUser = null;
     sessionStorage.removeItem('loggedInUser');
   }
+<<<<<<< HEAD
  
   
+=======
+
+  // ApiService
+
+  getManagers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/managers`);
+  }
+
+  addManager(manager: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/managers`, manager);
+  }
+
+  updateManager(manager: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/managers/${manager.id}`, manager);
+  }
+
+  deleteManager(managerId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
+  }
+
+>>>>>>> b986535933478baa42a84ef274b61873659e1fa0
 }
