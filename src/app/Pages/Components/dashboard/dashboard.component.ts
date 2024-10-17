@@ -11,7 +11,7 @@ import { ApiService } from '../../../Core/Services/api.service';
   styleUrl: './dashboard.component.css'
 })
 
-export class DashboardComponent implements OnInit{
+export class DashboardComponent implements OnInit{ 
 
   totalEmployees!: number;
   totalLeaves!: number; 

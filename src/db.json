@@ -1371,6 +1371,69 @@
       "checkIn": "12:11:11 PM",
       "checkOut": "12:11:25 PM",
       "break": "0h 0m 14s"
+    },
+    {
+      "id": "2424",
+      "date": "08/10/2024",
+      "checkIn": "2:07:07 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f127",
+      "date": "08/10/2024",
+      "checkIn": "2:07:07 PM",
+      "checkOut": "2:07:25 PM",
+      "break": "0h 0m 18s"
+    },
+    {
+      "id": "71bd",
+      "date": "08/10/2024",
+      "checkIn": "2:07:07 PM",
+      "checkOut": "2:07:25 PM",
+      "break": "0h 0m 18s"
+    },
+    {
+      "id": "bf9c",
+      "date": "08/10/2024",
+      "checkIn": "2:08:12 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ee2c",
+      "date": "08/10/2024",
+      "checkIn": "2:08:12 PM",
+      "checkOut": "2:08:51 PM",
+      "break": "0h 0m 39s"
+    },
+    {
+      "id": "8992",
+      "date": "15/10/2024",
+      "checkIn": "12:53:26 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c958",
+      "date": "15/10/2024",
+      "checkIn": "1:57:57 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "440f",
+      "date": "15/10/2024",
+      "checkIn": "1:57:57 PM",
+      "checkOut": "2:44:24 PM",
+      "break": "0h 46m 27s"
+    },
+    {
+      "id": "caf1",
+      "date": "15/10/2024",
+      "checkIn": "2:45:13 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -1475,6 +1538,24 @@
       "endDate": "2024-10-10T18:30:00.000Z",
       "reason": "",
       "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "7b6e",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-15T08:29:34.364Z",
+      "endDate": "2024-10-17T18:30:00.000Z",
+      "reason": "NA",
+      "totalLeaves": 4,
+      "status": "Pending"
+    },
+    {
+      "id": "e739",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-15T09:12:13.668Z",
+      "endDate": "2024-10-17T18:30:00.000Z",
+      "reason": "NA",
+      "totalLeaves": 4,
       "status": "Pending"
     }
   ],
