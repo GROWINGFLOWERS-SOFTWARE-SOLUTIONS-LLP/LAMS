@@ -12,13 +12,15 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';  // Import ToastModule
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { PaginatorModule } from 'primeng/paginator';
+
 
 @Component({
     selector: 'app-all-employee-profiles',
     templateUrl: './all-employee-profiles.component.html',
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, ButtonModule, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule], // Add ToastModule here
+    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule], // Add ToastModule here
     providers: [MessageService, ConfirmationService] // Add MessageService here
 })
 export class AllEmployeeProfilesComponent implements OnInit {
