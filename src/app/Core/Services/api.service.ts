@@ -124,10 +124,6 @@ export class ApiService {
     this.loggedInUser = null;
     sessionStorage.removeItem('loggedInUser');
   }
-<<<<<<< HEAD
- 
-  
-=======
 
   // ApiService
 
@@ -147,5 +143,4 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
   }
 
->>>>>>> b986535933478baa42a84ef274b61873659e1fa0
 }
