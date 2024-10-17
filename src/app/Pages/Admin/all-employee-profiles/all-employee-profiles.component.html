@@ -1,200 +1,198 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
-<div class="container p-4 bg-gray-50 h-full">
+<div class="container flex flex-column p-4 bg-gray-50 h-screen">
 
     <!-- Add Employee Button -->
     <div class="flex justify-content-end mb-4">
-        <!-- Button for adding employees with padding and primary color -->
-        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-3" (click)="openDialog()"></p-button>
+        <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()"></p-button>
     </div>
 
     <!-- Employee Table Section -->
-    <div class="p-grid">
-        <div class="p-col-12">
-            <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true" 
-                class="shadow-md rounded-lg border border-gray-300">
-                <ng-template pTemplate="header">
-                    <tr class="bg-gray-200 text-gray-700">
-                        <th class="p-3">First Name</th>
-                        <th class="p-3">Last Name</th>
-                        <th class="p-3">Email</th>
-                        <th class="p-3">Password</th>
-                        <th class="p-3">Phone Number</th>
-                        <th class="p-3">Address</th>
-                        <th class="p-3">Department</th>
-                        <th class="p-3">Manager</th>
-                        <th class="p-3">Employee Role</th>
-                        <th class="p-3">Joining Date</th>
-                        <th class="p-3">Actions</th>
-                    </tr>
-                </ng-template>
+    <div class="flex-grow-1 overflow-auto p-4">
+        <div class="p-grid">
+            <div class="p-col-12">
+                <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true"
+                    class="shadow-md rounded-lg border border-gray-300 mb-4">
+                    <ng-template pTemplate="header">
+                        <tr class="bg-gray-200 text-gray-700">
+                            <th class="p-3">First Name</th>
+                            <th class="p-3">Last Name</th>
+                            <th class="p-3">Email</th>
+                            <th class="p-3">Password</th>
+                            <th class="p-3">Phone Number</th>
+                            <th class="p-3">Address</th>
+                            <th class="p-3">Department</th>
+                            <th class="p-3">Manager</th>
+                            <th class="p-3">Employee Role</th>
+                            <th class="p-3">Joining Date</th>
+                            <th class="p-3">Actions</th>
+                        </tr>
+                    </ng-template>
 
-                <!-- Table Body -->
-                <ng-template pTemplate="body" let-employee>
-                    <tr class="text-gray-600 hover:bg-gray-100 transition">
-                        <td class="p-3">{{ employee.firstName }}</td>
-                        <td class="p-3">{{ employee.lastName }}</td>
-                        <td class="p-3">{{ employee.email }}</td>
-                        <td class="p-3">{{ employee.password }}</td>
-                        <td class="p-3">{{ employee.mobileNumber }}</td>
-                        <td class="p-3">{{ employee.address }}</td>
-                        <td class="p-3">{{ employee.department }}</td>
-                        <td class="p-3">{{ employee.manager }}</td>
-                        <td class="p-3">{{ employee.role }}</td>
-                        <td class="p-3">{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
-                        <td class="p-3">
-                            <div class="flex gap-2">
-                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded p-button-sm"
-                                    (click)="editEmployee(employee)"></p-button>
-                                <p-button icon="pi pi-trash" (onClick)="deleteEmployee(employee.id, $event)"
-                                    severity="danger"></p-button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-
-
-        </div>
-    </div>
-
-    <!-- PrimeNG Dialog for Add/Edit Employee -->
-    <p-dialog [(visible)]="showDialog" modal="modal" [style]="{ width: '50rem' }"
-        [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <ng-template pTemplate="header">
-            <div class="flex justify-content-center w-full">
-                <h3 class="m-0">{{ isEditing ? 'Edit Employee' : 'Add Employee' }}</h3>
+                    <ng-template pTemplate="body" let-employee>
+                        <tr class="text-gray-600 hover:bg-gray-100 transition">
+                            <td class="p-3">{{ employee.firstName }}</td>
+                            <td class="p-3">{{ employee.lastName }}</td>
+                            <td class="p-3">{{ employee.email }}</td>
+                            <td class="p-3">{{ employee.password }}</td>
+                            <td class="p-3">{{ employee.mobileNumber }}</td>
+                            <td class="p-3">{{ employee.address }}</td>
+                            <td class="p-3">{{ employee.department }}</td>
+                            <td class="p-3">{{ employee.manager }}</td>
+                            <td class="p-3">{{ employee.role }}</td>
+                            <td class="p-3">{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
+                            <td class="p-3">
+                                <div class="flex gap-2">
+                                    <p-button icon="pi pi-pencil" severity="success"
+                                        class="p-button-rounded p-button-sm"
+                                        (click)="editEmployee(employee)"></p-button>
+                                    <p-button icon="pi pi-trash" (onClick)="deleteEmployee(employee.id, $event)"
+                                        severity="danger"></p-button>
+                                </div>
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
             </div>
-        </ng-template>
-        <div class="border-2 border-gray-300 rounded-lg p-4 bg-blue-50">
-            <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()" class="p-fluid">
-                <div class="formgrid grid">
-                    <!-- First Name and Last Name Fields -->
-                    <div class="field col-12 md:col-6">
-                        <label for="firstName" class="font-semibold text-gray-700">First Name</label>
-                        <input id="firstName" type="text" formControlName="firstName"
-                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                            placeholder="Enter first name" required pattern="[A-Za-z]+" />
-                        <div *ngIf="isFieldInvalid('firstName')" class="error-message text-red-600">
-                            First Name is required and must contain only letters.
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="lastName" class="font-semibold text-gray-700">Last Name</label>
-                        <input id="lastName" type="text" formControlName="lastName"
-                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                            placeholder="Enter last name" required pattern="[A-Za-z]+" />
-                        <div *ngIf="isFieldInvalid('lastName')" class="error-message text-red-600">
-                            Last Name is required and must contain only letters.
-                        </div>
-                    </div>
-
-                    <!-- Email and Password Fields -->
-                    <div class="field col-12 md:col-6">
-                        <label for="email" class="font-semibold text-gray-700">Email Address</label>
-                        <input id="email" type="email" formControlName="email"
-                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                            placeholder="Enter email address" required
-                            pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
-                        <div *ngIf="isFieldInvalid('email')" class="error-message text-red-600">
-                            Valid Email is required.
-                        </div>
-                    </div>
-
-                    <div class="field col-12 md:col-6">
-                        <label for="password" class="font-semibold text-gray-700">Password</label>
-                        <input id="password" type="password" formControlName="password"
-                            class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                            placeholder="Enter password" required
-                            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
-                        <div *ngIf="isFieldInvalid('password')" class="error-message text-red-600">
-                            Password must be at least 8 characters long, contain at least one uppercase letter, one
-                            lowercase letter, one digit, and one special character.
-                        </div>
-                    </div>
-
-                    <!-- Phone Number and Department -->
-                    <div class="field col-12 md:col-6">
-                        <label for="mobileNumber" class="font-semibold">Phone Number</label>
-                        <input id="mobileNumber" type="tel" formControlName="mobileNumber"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                            placeholder="Enter phone number" required pattern="[0-9]{10}" />
-                        <div *ngIf="isFieldInvalid('mobileNumber')" class="error-message text-red-600">
-                            Phone Number is required and must be 10 digits.
-                        </div>
-                    </div>
-
-                    <div class="field col-12 md:col-6">
-                        <label for="department" class="font-semibold">Department</label>
-                        <select id="department" formControlName="department"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                            <option value="">Select Department</option>
-                            <option value="Engineering">Engineering</option>
-                            <option value="QA Testing">QA Testing</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Human Resources">Human Resources</option>
-                        </select>
-                        <div *ngIf="isFieldInvalid('department')" class="error-message text-red-600">
-                            Department is required.
-                        </div>
-                    </div>
-
-                    <!-- Manager and Role -->
-                    <div class="field col-12 md:col-6">
-                        <label for="manager" class="font-semibold">Manager</label>
-                        <input id="manager" type="text" formControlName="manager"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                            placeholder="Enter Manager Name" />
-                        <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
-                            Manager Name is required.
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="role" class="font-semibold">Role</label>
-                        <select id="role" formControlName="role"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                            <option value="">Select Role</option>
-                            <option value="Manager">Manager</option>
-                            <option value="HR">HR</option>
-                            <option value="Admin">Admin</option>
-                            <option value="Employee">Employee</option>
-                            <option value="Tester">Tester</option>
-                        </select>
-                        <div *ngIf="isFieldInvalid('role')" class="error-message text-red-600">
-                            Role is required.
-                        </div>
-                    </div>
-
-                    <!-- Joining Date and Address -->
-                    <div class="field col-12 md:col-6">
-                        <label for="joiningDate" class="font-semibold">Joining Date</label>
-                        <input id="joiningDate" type="date" formControlName="joiningDate"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
-                        <div *ngIf="isFieldInvalid('joiningDate')" class="error-message text-red-600">
-                            Joining Date is required.
-                        </div>
-                    </div>
-                    <div class="field col-12 md:col-6">
-                        <label for="address" class="font-semibold">Address</label>
-                        <input id="address" type="text" formControlName="address"
-                            class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                            placeholder="Enter address" />
-                        <div *ngIf="isFieldInvalid('address')" class="error-message text-red-600">
-                            Address is required.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Submit and Cancel Buttons -->
-                <div class="flex justify-content-center mt-4 flex-wrap gap-2">
-                    <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
-                        [disabled]="!employeeForm.valid"></p-button>
-                    <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary"
-                        (click)="showDialog = false"></p-button>
-                </div>
-            </form>
         </div>
-    </p-dialog>
 
+        <!-- PrimeNG Dialog for Add/Edit Employee -->
+        <p-dialog [(visible)]="showDialog" modal="modal" [style]="{ width: '50rem' }"
+            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
+            <ng-template pTemplate="header">
+                <div class="flex justify-content-center w-full">
+                    <h3 class="m-0">{{ isEditing ? 'Edit Employee' : 'Add Employee' }}</h3>
+                </div>
+            </ng-template>
+            <div class="border-2 border-gray-300 rounded-lg p-4 bg-blue-50">
+                <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()"
+                    class="p-fluid">
+                    <div class="formgrid grid">
+                        <!-- First Name and Last Name Fields -->
+                        <div class="field col-12 md:col-6">
+                            <label for="firstName" class="font-semibold text-gray-700">First Name</label>
+                            <input id="firstName" type="text" formControlName="firstName"
+                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
+                                placeholder="Enter first name" required pattern="[A-Za-z]+" />
+                            <div *ngIf="isFieldInvalid('firstName')" class="error-message text-red-600">
+                                First Name is required and must contain only letters.
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <label for="lastName" class="font-semibold text-gray-700">Last Name</label>
+                            <input id="lastName" type="text" formControlName="lastName"
+                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
+                                placeholder="Enter last name" required pattern="[A-Za-z]+" />
+                            <div *ngIf="isFieldInvalid('lastName')" class="error-message text-red-600">
+                                Last Name is required and must contain only letters.
+                            </div>
+                        </div>
 
+                        <!-- Email and Password Fields -->
+                        <div class="field col-12 md:col-6">
+                            <label for="email" class="font-semibold text-gray-700">Email Address</label>
+                            <input id="email" type="email" formControlName="email"
+                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
+                                placeholder="Enter email address" required
+                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
+                            <div *ngIf="isFieldInvalid('email')" class="error-message text-red-600">
+                                Valid Email is required.
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-6">
+                            <label for="password" class="font-semibold text-gray-700">Password</label>
+                            <input id="password" type="password" formControlName="password"
+                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
+                                placeholder="Enter password" required
+                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
+                            <div *ngIf="isFieldInvalid('password')" class="error-message text-red-600">
+                                Password must be at least 8 characters long, contain at least one uppercase letter, one
+                                lowercase letter, one digit, and one special character.
+                            </div>
+                        </div>
+
+                        <!-- Phone Number and Department -->
+                        <div class="field col-12 md:col-6">
+                            <label for="mobileNumber" class="font-semibold">Phone Number</label>
+                            <input id="mobileNumber" type="tel" formControlName="mobileNumber"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                placeholder="Enter phone number" required pattern="[0-9]{10}" />
+                            <div *ngIf="isFieldInvalid('mobileNumber')" class="error-message text-red-600">
+                                Phone Number is required and must be 10 digits.
+                            </div>
+                        </div>
+
+                        <div class="field col-12 md:col-6">
+                            <label for="department" class="font-semibold">Department</label>
+                            <select id="department" formControlName="department"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                                <option value="">Select Department</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="QA Testing">QA Testing</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Human Resources">Human Resources</option>
+                            </select>
+                            <div *ngIf="isFieldInvalid('department')" class="error-message text-red-600">
+                                Department is required.
+                            </div>
+                        </div>
+
+                        <!-- Manager and Role -->
+                        <div class="field col-12 md:col-6">
+                            <label for="manager" class="font-semibold">Manager</label>
+                            <input id="manager" type="text" formControlName="manager"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                placeholder="Enter Manager Name" />
+                            <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
+                                Manager Name is required.
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <label for="role" class="font-semibold">Role</label>
+                            <select id="role" formControlName="role"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
+                                <option value="">Select Role</option>
+                                <option value="Manager">Manager</option>
+                                <option value="HR">HR</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Employee">Employee</option>
+                                <option value="Tester">Tester</option>
+                            </select>
+                            <div *ngIf="isFieldInvalid('role')" class="error-message text-red-600">
+                                Role is required.
+                            </div>
+                        </div>
+
+                        <!-- Joining Date and Address -->
+                        <div class="field col-12 md:col-6">
+                            <label for="joiningDate" class="font-semibold">Joining Date</label>
+                            <input id="joiningDate" type="date" formControlName="joiningDate"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
+                            <div *ngIf="isFieldInvalid('joiningDate')" class="error-message text-red-600">
+                                Joining Date is required.
+                            </div>
+                        </div>
+                        <div class="field col-12 md:col-6">
+                            <label for="address" class="font-semibold">Address</label>
+                            <input id="address" type="text" formControlName="address"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                                placeholder="Enter address" />
+                            <div *ngIf="isFieldInvalid('address')" class="error-message text-red-600">
+                                Address is required.
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Submit and Cancel Buttons -->
+                    <div class="flex justify-content-center mt-4 flex-wrap gap-2">
+                        <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
+                            [disabled]="!employeeForm.valid"></p-button>
+                        <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary"
+                            (click)="showDialog = false"></p-button>
+                    </div>
+                </form>
+            </div>
+        </p-dialog>
+    </div>
 </div>

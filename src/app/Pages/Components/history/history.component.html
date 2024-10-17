@@ -1,18 +1,23 @@
 <div class="container">
-    
     <main class="p-4">
-        <div class="history-list">
-            <h2 class="text-center">History List</h2>
-            <ul>
-                <li class="p-3">
-                    <time class="text-sm">Date: 2024-09-30</time>
-                    <div class="event-details">
-                       <h3 class="text-lg">Event-title</h3>
-                       <p>Event Description</p>
-                    </div>
-                </li>
-            </ul>
-
-        </div>
+      <!-- Loader is shown when loading is true -->
+      <div class="flex justify-content-center align-items-center" *ngIf="loading">
+        <p-progressSpinner></p-progressSpinner> <!-- PrimeNG loader -->
+      </div>
+  
+      <!-- Content is shown when loading is false -->
+      <div *ngIf="!loading" class="history-list">
+        <h2 class="text-center">History List</h2>
+        <ul>
+          <li class="p-3">
+            <time class="text-sm">Date: 2024-09-30</time>
+            <div class="event-details">
+              <h3 class="text-lg">Event-title</h3>
+              <p>Event Description</p>
+            </div>
+          </li>
+        </ul>
+      </div>
     </main>
-        </div>
+  </div>
+  
