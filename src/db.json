@@ -112,6 +112,12 @@
       "address": "Pune"
     }
   ],
+  "managers": [
+    {
+      "id": "2",
+      "managerName": "Rupesh Shirode"
+    }
+  ],
   "attendance": [
     {
       "attendance_date": "2024-09-10",
