@@ -4,24 +4,99 @@
             <p-tabPanel header="Department">
                 <!-- Abhishek -->
                 <p>
-                    
+                    <!-- Department content can go here -->
                 </p>
             </p-tabPanel>
+
             <p-tabPanel header="Roles">
                 <!-- Shweta -->
                 <p>
-
-
+                    <!-- Roles content can go here -->
                 </p>
             </p-tabPanel>
-            <p-tabPanel header="Manager">
-                <!-- Prajakta, Bhushan -->
-                <p>
 
+              <p-tabPanel header="Manager">
+                <div class="p-fluid">
+                    <p-confirmDialog></p-confirmDialog>
 
+                    <div class="flex justify-content-end mb-4">
+                        <p-button label="{{ showManagerList ? 'Hide List of Managers' : 'Show List of Managers' }}"
+                            class="p-button-secondary p-button-sm" severity="secondary" (click)="toggleManagerList()">
+                        </p-button>
+                    </div>
 
+                    <div class="flex justify-content-center mb-4" *ngIf="!showManagerList">
+                        <div class="p-fluid w-full md:w-8 lg:w-6">
+                            <div class="border-1 border-round p-3 shadow-2 bg-white">
+                                <h2 class="text-2xl font-bold text-center mb-3">
+                                    {{ selectedManagerId ? 'Edit Manager' : 'Add Manager' }}
+                                </h2>
 
-                </p>
+                                <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
+                                    <div class="grid formgrid p-fluid">
+                                        <div class="col-12">
+                                            <div class="field">
+                                                <label for="managerName" class="font-semibold">Manager Name</label>
+                                                <input id="managerName" type="text"
+                                                    class="p-inputtext p-component w-full border-1 border-round"
+                                                    placeholder="Enter Manager Name" formControlName="managerName" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 flex justify-content-center mt-3">
+                                            <button type="submit" class="p-button p-component p-button-primary"
+                                                [disabled]="managerForm.invalid">
+                                                <span class="p-button-label">
+                                                    {{ selectedManagerId ? 'Update Manager' : 'Add Manager' }}
+                                                </span>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="showManagerList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
+                        <h3 class="text-xl font-bold text-center mb-3">Manager List</h3>
+
+                        <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
+                            <p-table [value]="managers" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Manager Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="body" let-manager>
+                                    <tr>
+                                        <td>{{ manager.managerName }}</td>
+                                        <td>
+                                            <button type="button" class="p-button p-component p-button-success"
+                                                (click)="editManager(manager)">
+                                                <span class="p-button-label">Edit</span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <p-button label="Delete" severity="danger" [outlined]="true"
+                                                (onClick)="deleteManager(manager.id, $event)"></p-button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="3">No managers found.</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                    <p-toast></p-toast>
+                </div>
             </p-tabPanel>
         </p-tabView>
     </div>
