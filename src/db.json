@@ -1552,8 +1552,105 @@
       "checkIn": "10:55:17 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "1726",
+      "date": "16/10/2024",
+      "checkIn": "1:06:44 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "a047",
+      "date": "17/10/2024",
+      "checkIn": "10:27:56 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d726",
+      "date": "17/10/2024",
+      "checkIn": "10:59:09 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2203",
+      "date": "17/10/2024",
+      "checkIn": "10:59:09 am",
+      "checkOut": "11:34:46 am",
+      "break": "0h 35m 37s"
+    },
+    {
+      "id": "9e03",
+      "date": "17/10/2024",
+      "checkIn": "11:37:23 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "fe74",
+      "date": "17/10/2024",
+      "checkIn": "11:37:23 am",
+      "checkOut": "11:37:32 am",
+      "break": "0h 0m 9s"
+    },
+    {
+      "id": "650a",
+      "date": "17/10/2024",
+      "checkIn": "11:39:11 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "1425",
+      "date": "17/10/2024",
+      "checkIn": "11:39:11 am",
+      "checkOut": "11:43:01 am",
+      "break": "0h 3m 50s"
+    },
+    {
+      "id": "02d7",
+      "date": "17/10/2024",
+      "checkIn": "11:45:04 am",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "79b6",
+      "date": "17/10/2024",
+      "checkIn": "3:07:02 pm",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b5c8",
+      "date": "17/10/2024",
+      "checkIn": "3:07:02 pm",
+      "checkOut": "3:07:45 pm",
+      "break": "0h 0m 43s"
+    },
+    {
+      "id": "d530",
+      "date": "17/10/2024",
+      "checkIn": "3:07:02 pm",
+      "checkOut": "3:07:45 pm",
+      "break": "0h 0m 43s"
+    },
+    {
+      "id": "8a84",
+      "date": "17/10/2024",
+      "checkIn": "3:07:02 pm",
+      "checkOut": "3:07:45 pm",
+      "break": "0h 0m 43s"
+    },
+    {
+      "id": "af5d",
+      "date": "17/10/2024",
+      "checkIn": "3:08:02 pm",
+      "checkOut": "",
+      "break": ""
     }
-    
   ],
   "absent": [
     {
