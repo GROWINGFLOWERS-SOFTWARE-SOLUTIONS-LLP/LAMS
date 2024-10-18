@@ -2,6 +2,7 @@
     <div class="card">
         <p-tabView>
             <p-tabPanel header="Department">
+
                 
                 <div class="p-fluid">
                     <p-confirmDialog></p-confirmDialog>
@@ -84,10 +85,18 @@
                     </div>
                 </div>
                 
-            </p-tabPanel>
+             </p-tabPanel>
 
             <p-tabPanel header="Roles">
                 <!-- Shweta -->
+           
+               
+                 
+           </p-tabPanel>
+
+            <p-tabPanel header="Manager">
+                <!-- Prajakta, Bhushan -->
+                <p>
                 <p>
                     <!-- Roles content can go here -->
                 </p>
@@ -110,6 +119,8 @@
                                     {{ selectedManagerId ? 'Edit Manager' : 'Add Manager' }}
                                 </h2>
 
+                 </p> 
+            </p-tabPanel> 
                                 <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
                                     <div class="grid formgrid p-fluid">
                                         <div class="col-12">
