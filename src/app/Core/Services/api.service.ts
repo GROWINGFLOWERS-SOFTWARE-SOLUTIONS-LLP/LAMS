@@ -7,9 +7,6 @@ import { Employee } from '../Interfaces/employee';
   providedIn: 'root'
 })
 export class ApiService {
-  getDepartment() {
-    throw new Error('Method not implemented.');
-  }
 
   apiUrl: string = "http://localhost:3000";
 
@@ -128,6 +125,8 @@ export class ApiService {
     sessionStorage.removeItem('loggedInUser');
   }
 
+  // ApiService
+
   getManagers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/managers`);
   }
@@ -145,26 +144,26 @@ export class ApiService {
   }
 
 
-// department
+  // getEmployees(): Observable<Employee[]> {
+  //   return this.http.get<Employee[]>(this.apiUrl);
+  // }
 
-  getdepartments(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/department`);
-  }
+  // addEmployee(employee: Employee): Observable<Employee> {
+  //   return this.http.post<Employee>(this.apiUrl, employee);
+  // }
 
-  addDepartments(department: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/department`, department);
-  }
+  // updateEmployee(employee: Employee): Observable<Employee> {
+  //   return this.http.put<Employee>(`${this.apiUrl}/${employee.id}`, employee);
+  // }
 
-  updateDepartments(department: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
-  }
+  // deleteEmployee
+  // (id: number): Observable<void> {
+  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
+  // }
 
-  deleteDepartments(departmentId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
+  updateEmployees(data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/update`, data);
   }
 }
- 
-
-
 
 
