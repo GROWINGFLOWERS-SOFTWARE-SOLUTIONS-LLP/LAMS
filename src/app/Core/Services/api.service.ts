@@ -142,6 +142,28 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
   }
 
+  // ApiService
+
+  getRoles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/roles`);
+  }
+
+  addRole(role: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/roles`, role);
+  }
+
+  updateRole(role: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/roles/${role.id}`, role);
+  }
+
+  deleteRole(roleId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/roles/${roleId}`);
+  }
+
+  
+
+
+
 }
  
 
