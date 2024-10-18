@@ -30,7 +30,19 @@ import { ApiService } from '../../../Core/Services/api.service';
   styleUrls: ['./roles-list.component.css'],
   providers: [ConfirmationService, MessageService],
 })
+
+
+
 export class RolesListComponent implements OnInit {
+
+//department related veriabls
+  departmentForm: FormGroup;
+  departments: any[] = [];
+   selectedDepartmentId: string | null = null;
+   showDepartmentList: boolean = false;
+
+  
+  // Manager-related variables
   managerForm: FormGroup;
   managers: any[] = [];
   selectedManagerId: string | null = null;
@@ -42,15 +54,142 @@ export class RolesListComponent implements OnInit {
     private messageService: MessageService,
     private apiService: ApiService
   ) {
+    // Initialize forms
+
+    this.departmentForm = this.fb.group({
+      departmentName: ['', Validators.required], // Only Department Name field
+
+});  
+    
     this.managerForm = this.fb.group({
-      managerName: ['', Validators.required], // Only Manager Name field
+      managerName: ['', Validators.required], // Manager Name field
+    });
+
+        
+  }
+     
+  ngOnInit(): void {
+    this.loadManagers();
+    this.loadDepartments();
+  }
+    toggleDepartmentList(): void {
+    this.showDepartmentList = !this.showDepartmentList;
+  }
+
+  loadDepartments(): void {
+    this.apiService.getdepartments().subscribe(
+      (data) => {
+        this.departments = data;
+      },
+      (error) => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to load departments',
+        });
+      }
+    );
+  }
+
+  onSubmit(): void {
+    if (this.departmentForm.invalid) {
+      return;
+    }
+
+    const departmentData = {
+      id: this.selectedDepartmentId ?? new Date().getTime().toString(),
+      departmentName: this.departmentForm.value.departmentName, // Only Department Name
+    };
+
+    if (this.selectedDepartmentId) {
+      this.apiService.updateDepartments(departmentData).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Department Updated',
+            detail: 'Department details have been updated successfully.',
+          });
+          this.loadDepartments();
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to update department',
+          });
+        }
+      );
+    } else {
+      this.apiService.addDepartments(departmentData).subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Department Added',
+            detail: 'New department has been added successfully.',
+          });
+          this.loadDepartments();
+        },
+        (error) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to add department',
+          });
+        }
+      );
+    }
+
+    this.resetForm();
+  }
+
+  editDepartment(department: any): void {
+    this.selectedDepartmentId = department.id;
+    this.departmentForm.patchValue({
+      departmentName: department.departmentName, // Only Department Name
+    });
+    this.showDepartmentList = false;
+  }
+
+  deleteDepartment(departmentId: string, event: Event): void {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to delete this department?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteDepartments(departmentId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Department Deleted',
+              detail: 'Department has been deleted successfully.',
+            });
+            this.loadDepartments(); // Reload the list after deletion
+          },
+          (error: any) => {
+            console.error('Delete error:', error); // Log the error
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete department: ' + error.status + ' ' + error.message,
+            });
+          }
+        );
+      },
     });
   }
 
-  ngOnInit(): void {
-    this.loadManagers();
+  resetForm(): void {
+    this.selectedDepartmentId = null;
+    this.departmentForm.reset();
+    this.showDepartmentList = true;
   }
 
+
+
+  
+  
+  
+  // Manager-related methods
   toggleManagerList(): void {
     this.showManagerList = !this.showManagerList;
   }
@@ -70,14 +209,14 @@ export class RolesListComponent implements OnInit {
     );
   }
 
-  onSubmit(): void {
+  submitManager(): void {
     if (this.managerForm.invalid) {
       return;
     }
 
     const managerData = {
       id: this.selectedManagerId ?? new Date().getTime().toString(),
-      managerName: this.managerForm.value.managerName, // Only Manager Name
+      managerName: this.managerForm.value.managerName,
     };
 
     if (this.selectedManagerId) {
@@ -118,13 +257,13 @@ export class RolesListComponent implements OnInit {
       );
     }
 
-    this.resetForm();
+    this.resetManagerForm();
   }
 
   editManager(manager: any): void {
     this.selectedManagerId = manager.id;
     this.managerForm.patchValue({
-      managerName: manager.managerName, // Only Manager Name
+      managerName: manager.managerName,
     });
     this.showManagerList = false;
   }
@@ -142,10 +281,10 @@ export class RolesListComponent implements OnInit {
               summary: 'Manager Deleted',
               detail: 'Manager has been deleted successfully.',
             });
-            this.loadManagers(); // Reload the list after deletion
+            this.loadManagers();
           },
           (error: any) => {
-            console.error('Delete error:', error); // Log the error
+            console.error('Delete error:', error);
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
@@ -157,9 +296,151 @@ export class RolesListComponent implements OnInit {
     });
   }
 
-  resetForm(): void {
+
+  resetManagerForm(): void {
     this.selectedManagerId = null;
     this.managerForm.reset();
     this.showManagerList = true;
   }
 }
+// export class RolesListComponent implements OnInit {
+//   departmentForm: FormGroup;
+//   departments: any[] = [];
+//   selectedDepartmentId: string | null = null;
+//   showDepartmentList: boolean = false;
+
+  
+
+//   constructor(
+//     private fb: FormBuilder,
+//     private confirmationService: ConfirmationService,
+//     private messageService: MessageService,
+//     private apiService: ApiService
+//   ) {
+//     this.departmentForm = this.fb.group({
+//       departmentName: ['', Validators.required], // Only Department Name field
+
+      
+//     });
+//   }
+
+//   ngOnInit(): void {
+//     this.loadDepartments();
+//   }
+
+//   toggleDepartmentList(): void {
+//     this.showDepartmentList = !this.showDepartmentList;
+//   }
+
+//   loadDepartments(): void {
+//     this.apiService.getdepartments().subscribe(
+//       (data) => {
+//         this.departments = data;
+//       },
+//       (error) => {
+//         this.messageService.add({
+//           severity: 'error',
+//           summary: 'Error',
+//           detail: 'Failed to load departments',
+//         });
+//       }
+//     );
+//   }
+
+//   onSubmit(): void {
+//     if (this.departmentForm.invalid) {
+//       return;
+//     }
+
+//     const departmentData = {
+//       id: this.selectedDepartmentId ?? new Date().getTime().toString(),
+//       departmentName: this.departmentForm.value.departmentName, // Only Department Name
+//     };
+
+//     if (this.selectedDepartmentId) {
+//       this.apiService.updateDepartments(departmentData).subscribe(
+//         () => {
+//           this.messageService.add({
+//             severity: 'success',
+//             summary: 'Department Updated',
+//             detail: 'Department details have been updated successfully.',
+//           });
+//           this.loadDepartments();
+//         },
+//         (error) => {
+//           this.messageService.add({
+//             severity: 'error',
+//             summary: 'Error',
+//             detail: 'Failed to update department',
+//           });
+//         }
+//       );
+//     } else {
+//       this.apiService.addDepartments(departmentData).subscribe(
+//         () => {
+//           this.messageService.add({
+//             severity: 'success',
+//             summary: 'Department Added',
+//             detail: 'New department has been added successfully.',
+//           });
+//           this.loadDepartments();
+//         },
+//         (error) => {
+//           this.messageService.add({
+//             severity: 'error',
+//             summary: 'Error',
+//             detail: 'Failed to add department',
+//           });
+//         }
+//       );
+//     }
+
+//     this.resetForm();
+//   }
+
+//   editDepartment(department: any): void {
+//     this.selectedDepartmentId = department.id;
+//     this.departmentForm.patchValue({
+//       departmentName: department.departmentName, // Only Department Name
+//     });
+//     this.showDepartmentList = false;
+//   }
+
+//   deleteDepartment(departmentId: string, event: Event): void {
+//     this.confirmationService.confirm({
+//       target: event.target as EventTarget,
+//       message: 'Are you sure you want to delete this department?',
+//       icon: 'pi pi-exclamation-triangle',
+//       accept: () => {
+//         this.apiService.deleteDepartments(departmentId).subscribe(
+//           () => {
+//             this.messageService.add({
+//               severity: 'success',
+//               summary: 'Department Deleted',
+//               detail: 'Department has been deleted successfully.',
+//             });
+//             this.loadDepartments(); // Reload the list after deletion
+//           },
+//           (error: any) => {
+//             console.error('Delete error:', error); // Log the error
+//             this.messageService.add({
+//               severity: 'error',
+//               summary: 'Error',
+//               detail: 'Failed to delete department: ' + error.status + ' ' + error.message,
+//             });
+//           }
+//         );
+//       },
+//     });
+//   }
+
+//   resetForm(): void {
+//     this.selectedDepartmentId = null;
+//     this.departmentForm.reset();
+//     this.showDepartmentList = true;
+//   }
+
+
+
+
+// }

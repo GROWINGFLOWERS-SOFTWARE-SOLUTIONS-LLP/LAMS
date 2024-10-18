@@ -2,10 +2,88 @@
     <div class="card">
         <p-tabView>
             <p-tabPanel header="Department">
-                <!-- Abhishek -->
-                <p>
-                    <!-- Department content can go here -->
-                </p>
+                
+                <div class="p-fluid">
+                    <p-confirmDialog></p-confirmDialog>
+
+                    <div class="flex justify-content-end mb-4">
+                        <p-button label="{{ showDepartmentList ? 'Add Department' : 'List of Department' }}"
+                            class="p-button-secondary p-button-sm" severity="secondary" (click)="toggleDepartmentList()">
+                        </p-button>
+                    </div>
+
+                    <div class="flex justify-content-center mb-4" *ngIf="!showDepartmentList">
+                        <div class="p-fluid w-full md:w-8 lg:w-6">
+                            <div class="border-1 border-round p-3 shadow-2 bg-white">
+                                <h2 class="text-2xl font-bold text-center mb-3">
+                                    {{ selectedDepartmentId  ? 'Edit Department' : 'Add Department' }}
+                                </h2>
+
+                                <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
+                                    <div class="grid formgrid p-fluid">
+                                        <div class="col-12">
+                                            <div class="field">
+                                                <label for="departmentName" class="font-semibold">Department Name</label>
+                                                <input id="departmentName" type="text"
+                                                    class="p-inputtext p-component w-full border-1 border-round"
+                                                    placeholder="Enter Department Name" formControlName="departmentName" />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 flex justify-content-center mt-3">
+                                            <button type="submit" class="p-button p-component p-button-primary"
+                                                [disabled]="departmentForm.invalid">
+                                                <span class="p-button-label">
+                                                    {{ selectedDepartmentId ? 'Update Department' : 'Add Department' }}
+                                                </span>
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div *ngIf="showDepartmentList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
+                        <h3 class="text-xl font-bold text-center mb-3">Department List</h3>
+
+                        <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
+                            <p-table [value]="departments" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+                                <ng-template pTemplate="header">
+                                    <tr>
+                                        <th>Department Name</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="body" let-department>
+                                    <tr>
+                                        <td>{{ department.departmentName }}</td>
+                                        <td>
+                                            <button type="button" class="p-button p-component p-button-success"
+                                                (click)="editDepartment(department)">
+                                                <span class="p-button-label">Edit</span>
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <p-button label="Delete" severity="danger" [outlined]="true"
+                                                (onClick)="deleteDepartment(department.id, $event)"></p-button>
+                                        </td>
+                                    </tr>
+                                </ng-template>
+
+                                <ng-template pTemplate="emptymessage">
+                                    <tr>
+                                        <td colspan="3">No department found.</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
+                        </div>
+                    </div>
+                </div>
+                
             </p-tabPanel>
 
             <p-tabPanel header="Roles">
