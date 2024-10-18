@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ApiService } from '../../../Core/Services/api.service';
 
 
 
@@ -60,7 +61,7 @@ export class ProfileComponent implements OnInit {
   // employees: any[] = [];
   // employeeService: any;
 
-  constructor(private route:Router){}
+  constructor(private route:Router,apiService:ApiService){}
 
   
 
