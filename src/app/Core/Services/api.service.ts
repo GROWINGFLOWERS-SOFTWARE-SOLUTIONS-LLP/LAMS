@@ -124,8 +124,6 @@ export class ApiService {
     sessionStorage.removeItem('loggedInUser');
   }
 
-  // ApiService
-
   getManagers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/managers`);
   }
