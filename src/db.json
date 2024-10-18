@@ -118,6 +118,7 @@
       "managerName": "Rupesh Shirode"
     }
   ],
+<<<<<<< HEAD
   "roles": [
     {
       "id": "1",
@@ -130,6 +131,16 @@
     {
       "id": "3",
       "roleName": "Employee"
+=======
+  "department": [
+    {
+      "id": "1",
+      "departmentName": " Developer"
+    },
+    {
+      "id": "1729159659088",
+      "departmentName": "software devloper"
+>>>>>>> a4ec64941c94c829a041bfc2d9206f1ff8d2fc16
     }
   ],
   "attendance": [
@@ -1668,6 +1679,7 @@
       "id": "af5d",
       "date": "17/10/2024",
       "checkIn": "3:08:02 pm",
+<<<<<<< HEAD
       "checkOut": "",
       "break": ""
     },
@@ -1675,6 +1687,8 @@
       "id": "28d8",
       "date": "18/10/2024",
       "checkIn": "10:28:43 AM",
+=======
+>>>>>>> a4ec64941c94c829a041bfc2d9206f1ff8d2fc16
       "checkOut": "",
       "break": ""
     }

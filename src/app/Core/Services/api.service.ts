@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  getDepartment() {
+    throw new Error('Method not implemented.');
+  }
 
   apiUrl: string = "http://localhost:3000";
 
@@ -157,10 +160,6 @@ export class ApiService {
   deleteRole(roleId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/roles/${roleId}`);
   }
-
-  
-
-
 
 }
  
