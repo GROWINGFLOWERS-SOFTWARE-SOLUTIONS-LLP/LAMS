@@ -112,6 +112,16 @@
       "id": "29b7"
     }
   ],
+  "department": [
+    {
+      "id": "1",
+      "departmentName": " Developer"
+    },
+    {
+      "id": "1729159659088",
+      "departmentName": "software devloper"
+    }
+  ],
   "attendance": [
     {
       "attendance_date": "2024-09-10",
