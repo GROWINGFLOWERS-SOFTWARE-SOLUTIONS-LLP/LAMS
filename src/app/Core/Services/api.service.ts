@@ -6,6 +6,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
+  getDepartment() {
+    throw new Error('Method not implemented.');
+  }
 
   apiUrl: string = "http://localhost:3000";
 
@@ -140,4 +143,27 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
   }
 
+
+// department
+
+  getdepartments(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/department`);
+  }
+
+  addDepartments(department: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/department`, department);
+  }
+
+  updateDepartments(department: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
+  }
+
+  deleteDepartments(departmentId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
+  }
 }
+ 
+
+
+
+
