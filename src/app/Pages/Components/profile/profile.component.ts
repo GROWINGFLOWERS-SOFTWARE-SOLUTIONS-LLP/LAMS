@@ -9,6 +9,8 @@ import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
+
+
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -38,47 +40,52 @@ export class ProfileComponent implements OnInit {
 
   
   employees: Employee[] = [
-    {
-      id: 1,
-      firstName: 'Shubham',
-      lastName: 'Sonje',
-      email: 'ssonje30@gmail.com',
-      mobileNumber: '9890628672',
-      address: 'Nashik',
-      department: 'IT',
-      role: 'Developer',
-      joiningDate: new Date('2024-01-02')
-    },
+    // {
+    //   id: 1,
+    //   firstName: 'Shubham',
+    //   lastName: 'Sonje',
+    //   email: 'ssonje30@gmail.com',
+    //   mobileNumber: '9890628672',
+    //   address: 'Nashik',
+    //   department: 'IT',
+    //   role: 'Developer',
+    //   joiningDate: new Date('2024-01-02')
+    // },
     // Add more employee objects as needed
   ];
   employeeService: any;
+  employeess: Employee[] | undefined;
+  // employeeService: any;
 
   // employees: any[] = [];
   // employeeService: any;
 
   constructor(private route:Router){}
+
   
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loadEmployees();
   }
 
-  loadEmployees(): void {
-    this.employeeService.getEmployees().subscribe((data: any[]) => {
+  loadEmployees() {
+    this.employeeService.getEmployees().subscribe((data: Employee[]) => {
       this.employees = data;
     });
   }
 
-  editEmployee(employee: any): void {
-    // Implement your edit logic here, potentially using a modal
+  editEmployee({ employee }: { employee: Employee; }): void {
+    // Logic for editing an employee
+    this.route.navigateByUrl('profile-form');
   }
 
-  deleteEmployee(id: number, event: Event): void {
+  deleteEmployee(id: number, event: Event) {
     event.stopPropagation();
     this.employeeService.deleteEmployee(id).subscribe(() => {
-      this.loadEmployees(); // Reload the employee list after deletion
+      this.loadEmployees();
     });
   }
+
   updateProfile(...args: []) {
     this.route.navigateByUrl('profile-form');
   }
