@@ -3,13 +3,14 @@
         <p-tabView>
             <p-tabPanel header="Department">
 
-                
+
                 <div class="p-fluid">
                     <p-confirmDialog></p-confirmDialog>
 
                     <div class="flex justify-content-end mb-4">
                         <p-button label="{{ showDepartmentList ? 'Add Department' : 'List of Department' }}"
-                            class="p-button-secondary p-button-sm" severity="secondary" (click)="toggleDepartmentList()">
+                            class="p-button-secondary p-button-sm" severity="secondary"
+                            (click)="toggleDepartmentList()">
                         </p-button>
                     </div>
 
@@ -17,17 +18,19 @@
                         <div class="p-fluid w-full md:w-8 lg:w-6">
                             <div class="border-1 border-round p-3 shadow-2 bg-white">
                                 <h2 class="text-2xl font-bold text-center mb-3">
-                                    {{ selectedDepartmentId  ? 'Edit Department' : 'Add Department' }}
+                                    {{ selectedDepartmentId ? 'Edit Department' : 'Add Department' }}
                                 </h2>
 
                                 <form [formGroup]="departmentForm" (ngSubmit)="onSubmit()">
                                     <div class="grid formgrid p-fluid">
                                         <div class="col-12">
                                             <div class="field">
-                                                <label for="departmentName" class="font-semibold">Department Name</label>
+                                                <label for="departmentName" class="font-semibold">Department
+                                                    Name</label>
                                                 <input id="departmentName" type="text"
                                                     class="p-inputtext p-component w-full border-1 border-round"
-                                                    placeholder="Enter Department Name" formControlName="departmentName" />
+                                                    placeholder="Enter Department Name"
+                                                    formControlName="departmentName" />
                                             </div>
                                         </div>
 
@@ -84,12 +87,11 @@
                         </div>
                     </div>
                 </div>
-                
-             </p-tabPanel>
+
+            </p-tabPanel>
 
 
             <p-tabPanel header="Roles">
-<<<<<<< HEAD
         
                 <div class="p-fluid">
                     <p-confirmDialog></p-confirmDialog>
@@ -174,14 +176,6 @@
                 </p-tabPanel>
             
             <!-- Manager -->
-=======
-                <!-- Shweta -->
-                <p>
-                    <!-- Roles content can go here -->
-                </p>
-            </p-tabPanel>
-
->>>>>>> cae10cca06530a5e6ed7623c2a4d96f0cb1992ad
               <p-tabPanel header="Manager">
                 <div class="p-fluid">
                     <p-confirmDialog></p-confirmDialog>
@@ -199,11 +193,7 @@
                                     {{ selectedManagerId ? 'Edit Manager' : 'Add Manager' }}
                                 </h2>
 
-<<<<<<< HEAD
                                 <form [formGroup]="managerForm" (ngSubmit)=" submitManager()">
-=======
-                                <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
->>>>>>> cae10cca06530a5e6ed7623c2a4d96f0cb1992ad
                                     <div class="grid formgrid p-fluid">
                                         <div class="col-12">
                                             <div class="field">

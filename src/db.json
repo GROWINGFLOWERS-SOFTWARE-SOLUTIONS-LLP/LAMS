@@ -112,6 +112,16 @@
       "address": "Pune"
     }
   ],
+  "department": [
+    {
+      "id": "2",
+      "departmentName": "Software "
+    },
+    {
+      "id": "1729489537224",
+      "departmentName": "Eng"
+    }
+  ],
   "managers": [
     {
       "id": "2",
