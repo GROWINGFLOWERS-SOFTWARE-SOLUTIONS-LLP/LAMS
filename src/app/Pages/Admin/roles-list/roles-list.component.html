@@ -9,6 +9,7 @@
             </p-tabPanel>
 
             <p-tabPanel header="Roles">
+<<<<<<< HEAD
         
                 <div class="p-fluid">
                     <p-confirmDialog></p-confirmDialog>
@@ -93,6 +94,14 @@
                 </p-tabPanel>
             
             <!-- Manager -->
+=======
+                <!-- Shweta -->
+                <p>
+                    <!-- Roles content can go here -->
+                </p>
+            </p-tabPanel>
+
+>>>>>>> cae10cca06530a5e6ed7623c2a4d96f0cb1992ad
               <p-tabPanel header="Manager">
                 <div class="p-fluid">
                     <p-confirmDialog></p-confirmDialog>
@@ -110,7 +119,11 @@
                                     {{ selectedManagerId ? 'Edit Manager' : 'Add Manager' }}
                                 </h2>
 
+<<<<<<< HEAD
                                 <form [formGroup]="managerForm" (ngSubmit)=" submitManager()">
+=======
+                                <form [formGroup]="managerForm" (ngSubmit)="onSubmit()">
+>>>>>>> cae10cca06530a5e6ed7623c2a4d96f0cb1992ad
                                     <div class="grid formgrid p-fluid">
                                         <div class="col-12">
                                             <div class="field">
