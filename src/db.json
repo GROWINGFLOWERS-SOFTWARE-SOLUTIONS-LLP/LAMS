@@ -112,24 +112,10 @@
       "address": "Pune"
     }
   ],
-  "department": [
-    {
-      "id": "2",
-      "departmentName": "Software "
-    },
-    {
-      "id": "1729489537224",
-      "departmentName": "Eng"
-    }
-  ],
   "managers": [
     {
       "id": "2",
       "managerName": "Rupesh Shirode"
-    },
-    {
-      "id": "1729486318355",
-      "managerName": "Abhishek J"
     }
   ],
   "roles": [
@@ -143,7 +129,7 @@
     },
     {
       "id": "3",
-      "roleName": "Emp"
+      "roleName": "Employee"
     }
   ],
   "attendance": [
