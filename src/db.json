@@ -118,14 +118,18 @@
       "managerName": "Rupesh Shirode"
     }
   ],
-  "department": [
+  "roles": [
     {
       "id": "1",
-      "departmentName": " Developer"
+      "roleName": "Admin"
     },
     {
-      "id": "1729159659088",
-      "departmentName": "software devloper"
+      "id": "2",
+      "roleName": "Manager"
+    },
+    {
+      "id": "3",
+      "roleName": "Employee"
     }
   ],
   "attendance": [
@@ -1664,6 +1668,13 @@
       "id": "af5d",
       "date": "17/10/2024",
       "checkIn": "3:08:02 pm",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "01eb",
+      "date": "18/10/2024",
+      "checkIn": "2:45:16 PM",
       "checkOut": "",
       "break": ""
     }
