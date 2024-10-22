@@ -33,13 +33,6 @@ import { ApiService } from '../../../Core/Services/api.service';
 
   export class RolesListComponent implements OnInit {
 
-<<<<<<< HEAD
-
-export class RolesListComponent  {
-
-
-}
-=======
    //department related veriabls
    departmentForm: FormGroup;
   departments: any[] = [];
@@ -444,4 +437,3 @@ export class RolesListComponent  {
       this.showManagerList = true;
     }
   }
->>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c

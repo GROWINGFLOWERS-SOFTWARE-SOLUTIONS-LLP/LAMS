@@ -164,7 +164,9 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/department`);
   }
 
- 
+  addDepartments(department: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/department`, department);
+  }
   
 
   updateDepartments(department: any): Observable<any> {
