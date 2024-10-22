@@ -28,11 +28,7 @@
       "mobileNumber": "9200378962",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
-<<<<<<< HEAD
-      "role": "Developer",
-=======
       "role": "Emp",
->>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c
       "joiningDate": "2024-01-15",
       "address": "Pune",
       "id": "56d1"
@@ -111,11 +107,6 @@
       "department": "Engineering",
       "manager": "Abhishek Joshi",
       "role": "Employee",
-<<<<<<< HEAD
-      "joiningDate": "2024-02-01",
-      "address": "Pune",
-      "id": "29b7"
-=======
       "joiningDate": "2024-01-15",
       "address": "Pune"
     }
@@ -148,7 +139,6 @@
     {
       "id": "3",
       "roleName": "Employee"
->>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c
     }
   ],
   "attendance": [
