@@ -109,6 +109,19 @@
       "role": "Employee",
       "joiningDate": "2024-01-15",
       "address": "Pune"
+    },
+    {
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shweta@gfss.com",
+      "password": "Shweta@123",
+      "mobileNumber": "8945672349",
+      "department": "Engineering",
+      "manager": "Abhishek Joshi",
+      "role": "Employee",
+      "joiningDate": "2024-01-08",
+      "address": "Pune",
+      "id": "5551"
     }
   ],
   "managers": [
