@@ -28,7 +28,7 @@
       "mobileNumber": "9200378962",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
-      "role": "Employee",
+      "role": "Emp",
       "joiningDate": "2024-01-15",
       "address": "Nashik",
       "id": "56d1"
@@ -1703,9 +1703,36 @@
       "break": ""
     },
     {
+<<<<<<< HEAD
       "id": "d194",
       "date": "22/10/2024",
       "checkIn": "1:59:44 PM",
+=======
+      "id": "da52",
+      "date": "22/10/2024",
+      "checkIn": "12:12:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "de64",
+      "date": "22/10/2024",
+      "checkIn": "12:54:36 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d4f5",
+      "date": "22/10/2024",
+      "checkIn": "1:43:09 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9217",
+      "date": "22/10/2024",
+      "checkIn": "1:44:40 PM",
+>>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c
       "checkOut": "",
       "break": ""
     }
@@ -1834,6 +1861,15 @@
       "endDate": "2024-10-14T05:50:37.511Z",
       "reason": "",
       "totalLeaves": 1,
+      "status": "Pending"
+    },
+    {
+      "id": "f857",
+      "leaveType": "Sick Leave",
+      "startDate": "2024-10-22T18:30:00.000Z",
+      "endDate": "2024-10-23T18:30:00.000Z",
+      "reason": "viral inf",
+      "totalLeaves": 2,
       "status": "Pending"
     }
   ],
