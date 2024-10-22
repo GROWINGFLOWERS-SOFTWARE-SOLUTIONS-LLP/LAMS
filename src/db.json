@@ -116,10 +116,16 @@
     {
       "id": "2",
       "managerName": "Rupesh Shirode"
+    }
+  ],
+  "department": [
+    {
+      "id": "1",
+      "departmentName": "Hr"
     },
     {
-      "id": "1729572479404",
-      "managerName": "Akansha Khose"
+      "id": "1729573370700",
+      "departmentName": "Account"
     }
   ],
   "roles": [
