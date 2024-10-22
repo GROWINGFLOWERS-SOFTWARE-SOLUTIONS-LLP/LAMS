@@ -1,32 +1,32 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../Core/Services/api.service';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
-
+import { CommonModule, DatePipe } from '@angular/common';
+ 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule,CardModule],
+  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe],
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
-
-  constructor(private route:Router){}
-
-  employee = {
-    email: 'shubham.sonje@growingflowers-solutions.com',
-    phoneNumber: '9890628672',
-    // departmentId: '6', // Example ObjectId
-    joiningDate: new Date('2022-02-16'),
-    department: 'Engineering',
-    address: 'Nashik'
+export class ProfileComponent implements OnInit {
+  employee: any;
+ 
+  constructor(private apiService: ApiService, private router: Router) {}
+ 
+  ngOnInit(): void {
+    this.loadUserProfile();
   }
-
-
-  updateProfile(){
-    this.route.navigateByUrl('profile-form');
+ 
+  loadUserProfile() {
+    this.employee = this.apiService.getLoggedInUser();
   }
-
+ 
+  updateProfile() {
+    this.router.navigateByUrl('profile-form');
+  }
 }
