@@ -124,7 +124,7 @@ export class ApiService {
   // Simulate logout
   logout() {
     this.loggedInUser = null;
-    sessionStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loggedInUser');
   }
 
   // ApiService for Manager
