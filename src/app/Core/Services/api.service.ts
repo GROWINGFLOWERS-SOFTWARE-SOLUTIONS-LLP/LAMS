@@ -122,11 +122,15 @@ export class ApiService {
   // Simulate logout
   logout() {
     this.loggedInUser = null;
-    sessionStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loggedInUser');
   }
 
+<<<<<<< HEAD
   // ApiService
 
+=======
+  // ApiService for Manager
+>>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c
   getManagers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/managers`);
   }
@@ -143,12 +147,48 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
   }
 
+<<<<<<< HEAD
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
+=======
+  // ApiService for Role
+  getRoles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/roles`);
+  }
+
+  addRole(role: any): Observable<any> {
+   return this.http.post(`${this.apiUrl}/roles`, role);
+  }
+
+  updateRole(role: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/roles/${role.id}`, role);
+  }
+
+  deleteRole(roleId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/roles/${roleId}`);
+  }
+
+//Department
+  getdepartments(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/department`);
+>>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c
   }
 
  
   }
+<<<<<<< HEAD
+=======
+
+  updateDepartments(department: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
+  }
+
+  deleteDepartments(departmentId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
+  }
+
+}
+>>>>>>> 6296df991c8b1409ddd3d258f5a9bf48d0320a1c
  
 
 
