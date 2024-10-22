@@ -1,33 +1,26 @@
-<!-- <div class="container">
+<div class="container">
   <section>
-    <p-card>
-      <div class=" center-container ">
-
+    <p-card *ngIf="employee">
+      <div class="center-container">
         <div class="text-center">
-          <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle" />
-          <p class="name">Shubham Sonje</p>
-          <p class="Designation">Software Engineer</p>
-
+          <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
+          <p class="name">{{ employee.firstName }} {{ employee.lastName }}</p>
+          <p class="Designation">{{ employee.role }}</p>
         </div>
-
-
-        <div class=" flex justify-content-center">
-
+        <div class="flex justify-content-center">
           <div class="p-grid">
-            <div class="p-col-12 p-md-6 ">
+            <div class="p-col-12 p-md-6">
               <div class="p-d-flex p-ai-center mb-2">
                 <i class="pi pi-envelope fs-2 mx-2"></i>
                 <p>Email: {{ employee.email }}</p>
               </div>
-
               <div class="p-d-flex p-ai-center mb-2">
                 <i class="pi pi-phone fs-2 mx-2"></i>
-                <p>Phone Number: {{ employee.phoneNumber }}</p>
+                <p>Phone Number: {{ employee.mobileNumber }}</p>
               </div>
-
               <div class="p-d-flex p-ai-center mb-2">
                 <i class="pi pi-calendar fs-2 mx-2"></i>
-                <p class="joining-date">Joining Date: <span id="join-date">January 15, 2023</span></p>
+                <p>Joining Date: {{ employee.joiningDate | date }}</p>
               </div>
             </div>
             <div class="p-col-12 p-md-6">
@@ -42,72 +35,13 @@
             </div>
             <div class="p-col-12 p-md-6">
               <div class="text-center">
-                <p-button label="Update Your Details" (click)="updateProfile()" />
+                <p-button label="Update Your Details" (click)="updateProfile()"></p-button>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </p-card>
   </section>
 </div>
-
- -->
-
-
-
-
-
-
-
-
- <div class="flex justify-content-end mb-4">
-  <!-- Button for adding employees with padding and primary color -->
-  <p-button label="Update Your Details" (click)="updateProfile()" />
- </div>
-
-
-  <div class="flex-grow-1 overflow-auto p-4">
-    <div class="p-grid">
-        <div class="p-col-12">
-            <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true"
-                class="shadow-md rounded-lg border border-gray-300 mb-4">
-                <ng-template pTemplate="header">
-                    <tr class="bg-gray-200 text-gray-700">
-                        <th class="p-3">First Name</th>
-                        <th class="p-3">Last Name</th>
-                        <th class="p-3">Email</th>
-                        <th class="p-3">Phone Number</th>
-                        <th class="p-3">Address</th>
-                        <th class="p-3">Department</th>
-                        <th class="p-3">Employee Role</th>
-                        <th class="p-3">Joining Date</th>
-                        <th class="p-3">Actions</th>
-                    </tr>
-                </ng-template>
-
-                <ng-template pTemplate="body" let-employee>
-                    <tr class="text-gray-600 hover:bg-gray-100 transition">
-                        <td class="p-3">{{ employee.firstName }}</td>
-                        <td class="p-3">{{ employee.lastName }}</td>
-                        <td class="p-3">{{ employee.email }}</td>
-                        <td class="p-3">{{ employee.mobileNumber }}</td>
-                        <td class="p-3">{{ employee.address }}</td>
-                        <td class="p-3">{{ employee.department }}</td>
-                        <td class="p-3">{{ employee.role }}</td>
-                        <td class="p-3">{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
-                        <td class="p-3">
-                            <div class="flex gap-2">
-                                <p-button icon="pi pi-pencil" severity="success" class="p-button-rounded p-button-sm"
-                                    (click)="editEmployee(employee)" aria-label="Edit Employee"></p-button>
-                                <p-button icon="pi pi-trash" (click)="deleteEmployee(employee.id, $event)"
-                                    severity="danger" aria-label="Delete Employee"></p-button>
-                            </div>
-                        </td>
-                    </tr>
-                </ng-template>
-            </p-table>
-        </div>
-    </div>
-</div>
+ 

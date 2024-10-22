@@ -1,67 +1,37 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../../../Core/Services/api.service';
+import { Router } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
-import { DialogModule } from 'primeng/dialog';
-import { Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ApiService } from '../../../Core/Services/api.service';
-
+import { CommonModule, DatePipe } from '@angular/common';
+ 
 @Component({
   selector: 'app-profile-form',
-  standalone: true,
-  imports: [AvatarModule,ButtonModule,DialogModule],
   templateUrl: './profile-form.component.html',
-  styleUrl: './profile-form.component.css'
+  styleUrls: ['./profile-form.component.css'],
+  standalone: true,
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, AvatarModule, ButtonModule, DatePipe],
 })
-export class ProfileFormComponent {
-  // visible: boolean = false;
-
-  // showDialog() {
-  //     this.visible = true;
-  // }
-
-  // constructor(private route:Router){}
-
-  // updateProfile(){
-  //   this.route.navigateByUrl('profile');
-  // }
-  employeeForm!: FormGroup;
+export class ProfileFormComponent implements OnInit {
+  employee: any;
  
-  departments = [
-    { label: 'Engineering', value: 'engineering' },
-    { label: 'QA Testing', value: 'qa_testing' },
-    { label: 'Admin', value: 'admin' },
-    { label: 'Human Resources', value: 'hr' }
-  ];
+  constructor(private apiService: ApiService, private router: Router) { }
  
-  constructor(private fb: FormBuilder, private apiService: ApiService) {}
- 
-  ngOnInit() {
-    this.employeeForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      phone: ['', Validators.required],
-      department: ['', Validators.required],
-      designation: ['', Validators.required],
-      joiningDate: ['', Validators.required],
-      address: ['', Validators.required]
-    });
+  ngOnInit(): void {
+    this.employee = this.apiService.getLoggedInUser();
   }
  
-  updateProfile() {
-    if (this.employeeForm.valid) {
-      this.apiService.updateEmployees(this.employeeForm.value).subscribe(
-        (response) => {
-          console.log('Employee updated successfully', response);
-          // Handle success, e.g., show a success message or redirect
-        },
-        (error) => {
-          console.error('Error updating employee', error);
-          // Handle error, e.g., show an error message
-        }
-      );
+  onSubmit(form: any) {
+    if (form.valid) {
+      this.apiService.updateUserProfile(this.employee).subscribe(response => {
+        // Handle success response
+        alert('Profile updated successfully');
+        this.router.navigateByUrl('profile');
+      }, error => {
+        // Handle error response
+        console.error('Error updating profile', error);
+      });
     }
   }
 }
-

@@ -99,7 +99,6 @@
       "id": "af3a"
     },
     {
-      
       "firstName": "Shubham",
       "lastName": "Sonje",
       "email": "shubham@gfss.com",
@@ -109,7 +108,7 @@
       "manager": "Abhishek Joshi",
       "role": "Employee",
       "joiningDate": "2024-02-01",
-      "address": "Nashik",
+      "address": "Pune",
       "id": "29b7"
     }
   ],
@@ -1614,6 +1613,90 @@
       "checkIn": "1:59:53 PM",
       "checkOut": "3:24:47 PM",
       "break": "1h 24m 54s"
+    },
+    {
+      "id": "f86b",
+      "date": "18/10/2024",
+      "checkIn": "3:57:53 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ec97",
+      "date": "22/10/2024",
+      "checkIn": "12:20:16 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "d6ec",
+      "date": "22/10/2024",
+      "checkIn": "12:20:16 AM",
+      "checkOut": "12:20:41 AM",
+      "break": "0h 0m 25s"
+    },
+    {
+      "id": "710a",
+      "date": "22/10/2024",
+      "checkIn": "12:21:52 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "efcb",
+      "date": "22/10/2024",
+      "checkIn": "12:21:52 AM",
+      "checkOut": "12:22:08 AM",
+      "break": "0h 0m 16s"
+    },
+    {
+      "id": "db39",
+      "date": "22/10/2024",
+      "checkIn": "12:29:24 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "af89",
+      "date": "22/10/2024",
+      "checkIn": "9:28:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "efce",
+      "date": "22/10/2024",
+      "checkIn": "11:12:29 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "0489",
+      "date": "22/10/2024",
+      "checkIn": "11:12:29 AM",
+      "checkOut": "11:13:04 AM",
+      "break": "0h 0m 35s"
+    },
+    {
+      "id": "0fd3",
+      "date": "22/10/2024",
+      "checkIn": "11:13:20 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "272b",
+      "date": "22/10/2024",
+      "checkIn": "11:13:20 AM",
+      "checkOut": "12:27:22 PM",
+      "break": "1h 14m 2s"
+    },
+    {
+      "id": "98b5",
+      "date": "22/10/2024",
+      "checkIn": "12:28:16 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [

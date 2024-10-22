@@ -143,27 +143,13 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
   }
 
-
-  // getEmployees(): Observable<Employee[]> {
-  //   return this.http.get<Employee[]>(this.apiUrl);
-  // }
-
-  // addEmployee(employee: Employee): Observable<Employee> {
-  //   return this.http.post<Employee>(this.apiUrl, employee);
-  // }
-
-  // updateEmployee(employee: Employee): Observable<Employee> {
-  //   return this.http.put<Employee>(`${this.apiUrl}/${employee.id}`, employee);
-  // }
-
-  // deleteEmployee
-  // (id: number): Observable<void> {
-  //   return this.http.delete<void>(`${this.apiUrl}/${id}`);
-  // }
-
-  updateEmployees(data: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/update`, data);
+  updateUserProfile(updatedUser: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
-}
+
+ 
+  }
+ 
+
 
 
