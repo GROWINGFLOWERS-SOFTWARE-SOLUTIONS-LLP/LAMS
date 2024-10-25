@@ -9,19 +9,19 @@ import { CommonModule } from '@angular/common';
 import { CalendarModule } from 'primeng/calendar';
 import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
-import { ToastModule } from 'primeng/toast';  // Import ToastModule
+import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
 
 @Component({
     selector: 'app-all-employee-profiles',
     templateUrl: './all-employee-profiles.component.html',
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule], // Add ToastModule here
-    providers: [MessageService, ConfirmationService] // Add MessageService here
+    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
+    providers: [MessageService, ConfirmationService]
 })
 export class AllEmployeeProfilesComponent implements OnInit {
     employees: any[] = [];
@@ -29,13 +29,14 @@ export class AllEmployeeProfilesComponent implements OnInit {
     showDialog: boolean = false;
     isEditing: boolean = false;
     selectedEmployeeId: number | null = null;
+    loading: boolean = false; // Add loading property
 
     constructor(
         private apiService: ApiService,
         private formBuilder: FormBuilder,
         private router: Router,
-        private messageService: MessageService ,// Inject MessageService
-        private confirmationService: ConfirmationService,  
+        private messageService: MessageService,
+        private confirmationService: ConfirmationService,
     ) {
         // Create the employee form
         this.employeeForm = this.formBuilder.group({
@@ -57,10 +58,20 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     loadEmployees() {
-        this.apiService.getEmployees().subscribe((data) => {
-            this.employees = data;
-        });
+        this.loading = true; // Set loading to true
+        // Simulate a delay of 2 seconds before making the API call
+        setTimeout(() => {
+            this.apiService.getEmployees().subscribe((data) => {
+                this.employees = data;
+                this.loading = false; // Set loading to false when data is loaded
+            }, (error) => {
+                console.error('Error loading employees:', error);
+                this.loading = false; // Set loading to false on error
+                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
+            });
+        }, 2000); // Adjust the delay time as needed (2000 ms = 2 seconds)
     }
+    
 
     openDialog() {
         this.showDialog = true;
@@ -123,7 +134,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
             rejectButtonStyleClass: "p-button-text",
             acceptIcon: "none",
             rejectIcon: "none",
-    
+
             accept: () => {
                 this.selectedEmployeeId = employeeId;
                 this.performDelete(); // Call the method to perform the delete
@@ -134,21 +145,18 @@ export class AllEmployeeProfilesComponent implements OnInit {
             }
         });
     }
-    
-    
+
     // Method to perform the delete operation
     performDelete() {
         if (this.selectedEmployeeId !== null) {
             this.apiService.deleteEmployee(this.selectedEmployeeId).subscribe({
                 next: () => {
                     this.loadEmployees(); // Reload employees after successful deletion
-                    
                     // Show success message using p-toast
                     this.messageService.add({ severity: 'success', summary: 'Deleted', detail: 'Employee deleted successfully.' });
                 },
                 error: (err) => {
                     console.error('Error deleting employee:', err);
-    
                     // Show error message using p-toast
                     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete employee. Please try again.' });
                 }
@@ -156,7 +164,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         }
         this.selectedEmployeeId = null; // Reset the selected ID
     }
-    
+
     isFieldInvalid(field: string): boolean {
         const control = this.employeeForm.get(field);
         return control ? control.invalid && (control.touched || control.dirty) : false;
