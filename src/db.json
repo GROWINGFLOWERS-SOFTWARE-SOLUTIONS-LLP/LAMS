@@ -95,7 +95,7 @@
       "manager": "Rupesh Shirode",
       "role": "Admin",
       "joiningDate": "2024-01-01",
-      "address": "Pune",
+      "address": "Pune ",
       "id": "af3a"
     },
     {
@@ -108,7 +108,8 @@
       "manager": "Abhishek Joshi",
       "role": "Employee",
       "joiningDate": "2024-01-15",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "ad3c"
     }
   ],
   "managers": [
@@ -1773,6 +1774,13 @@
       "id": "9217",
       "date": "22/10/2024",
       "checkIn": "1:44:40 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "b731",
+      "date": "25/10/2024",
+      "checkIn": "10:09:28 AM",
       "checkOut": "",
       "break": ""
     }
