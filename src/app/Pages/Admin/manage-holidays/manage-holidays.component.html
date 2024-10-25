@@ -8,13 +8,13 @@
     </p-button>
   </div>
 
-  <!-- Add Holiday Form (Visible when showHolidayList is false) -->
+  <!-- Add Holiday Form (Visible when showHolidayList is false) --> 
   <div class="flex justify-content-center mb-4" *ngIf="!showHolidayList">
     <div class="p-fluid w-full md:w-8 lg:w-6">
       <div class="border-1 border-round p-3 shadow-2 bg-white">
         <!-- Title -->
         <h2 class="text-2xl font-bold text-center mb-3">{{ selectedHolidayId ? 'Edit Holiday' : 'Add Holiday' }}</h2>
-
+ 
         <!-- Reactive Form -->
         <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
           <div class="grid formgrid p-fluid">

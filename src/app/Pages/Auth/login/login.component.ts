@@ -31,6 +31,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
   loading: boolean = false; // State to control loader visibility
+  apiCallCompleted: boolean = false; // Flag to track API call completion
 
   constructor(
     private router: Router, 
@@ -68,8 +69,21 @@ export class LoginComponent implements OnInit {
     // Ensure Angular change detection catches the update
     this.cdr.detectChanges();
 
+    const spinnerTimeout = 10000; // 10 seconds
+    let apiCallCompleted = false;
+
+    // Start a timeout to hide the spinner after the minimum display time
+    const hideSpinnerTimeout = setTimeout(() => {
+        this.loading = false; // Hide spinner after the timeout
+        console.log('Loading state set to false (timeout):', this.loading);
+        this.cdr.detectChanges(); // Detect changes after the timeout
+    }, spinnerTimeout);
+
     this.apiService.getEmployees().subscribe(
       (data) => {
+        this.apiCallCompleted = true; // Mark the API call as completed
+        clearTimeout(hideSpinnerTimeout); // Clear the timeout
+
         let users = data.find(
           (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
         );
@@ -78,28 +92,36 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('users', JSON.stringify(users));
           this.roleBasedRouting(users);
         } else {
-          console.log('User not found');
+          console.log('User  not found');
           this.router.navigate(['/login']);
         }
 
-        // Hide loader after the login process completes
-        this.loading = false;
-        console.log('Loading state set to false:', this.loading);
-
-        // Detect changes after the loading state update
-        this.cdr.detectChanges();
+        // Ensure the spinner is hidden after the minimum duration
+        if (this.loading) {
+          setTimeout(() => {
+            this.loading = false; // Hide spinner after the API response
+            console.log('Loading state set to false (after response):', this.loading);
+            this.cdr.detectChanges(); // Detect changes after the response
+          }, spinnerTimeout);
+        }
       },
       (error) => {
         console.error(error);
+        apiCallCompleted = true; // Mark the API call as completed
+        clearTimeout(hideSpinnerTimeout); // Clear the timeout
 
-        // Hide loader if there's an error
-        this.loading = false;
-        console.log('Loading state set to false (error):', this.loading);
-
-        this.cdr.detectChanges();
+        // Ensure the spinner is hidden after the minimum duration
+        if (this.loading) {
+          setTimeout(() => {
+              this.loading = false; // Hide spinner after the API response
+              console.log('Loading state set to false (error response):', this.loading);
+              this.cdr.detectChanges(); // Detect changes after the response
+          }, spinnerTimeout);
+      }
       }
     );
   }
+
 
   roleBasedRouting(users: any) {
     if (users && users.role) {
@@ -112,8 +134,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.router.navigate(['/login']);
       }
-    } else {
-      this.router.navigate(['/login']);
     }
   }
 }

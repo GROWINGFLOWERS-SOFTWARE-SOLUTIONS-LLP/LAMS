@@ -1,6 +1,6 @@
 <p-toast></p-toast>
 <div class="container">
-  
+
   <!-- Checkout Button Section -->
   <div class="flex justify-content-center gap-2 mt-4 mb-4">
     <p-button label="Checkout" icon="pi pi-times" (click)="checkout()"></p-button>
@@ -17,8 +17,13 @@
     </div>
   </p-dialog>
 
+  <!-- Loading Spinner -->
+  <div *ngIf="isLoading" class="spinner-container">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+
   <!-- Attendance Records Table -->
-  <p-table [value]="attendanceRecords" class="mt-4">
+  <p-table *ngIf="!isLoading" [value]="attendanceRecords" class="mt-4">
     <ng-template pTemplate="header">
       <tr>
         <th>Date</th>

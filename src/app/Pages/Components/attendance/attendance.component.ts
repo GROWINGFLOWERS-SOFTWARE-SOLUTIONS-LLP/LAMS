@@ -14,24 +14,25 @@ import { AuthService } from '../../../Core/Services/auth.service';
 import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
 @Component({
   selector: 'app-attendance',
-  standalone: true,
-  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule],
+  standalone: true, 
+  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule, ProgressSpinnerModule],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
-  providers: [MessageService] 
+  providers: [MessageService]
 })
 export class AttendanceComponent implements OnInit {
-  displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
+  displayPunchInDialog: boolean = false;
   currentTime: string = '';
   attendance_date: string = '';
   Punch_in_time: string | null = null;
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
+  isLoading: boolean = true; // Add loading state
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService) {}
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService,) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
@@ -88,7 +89,6 @@ export class AttendanceComponent implements OnInit {
       lastRecord.checkOut = Punch_out_time;
       lastRecord.break = this.calculateBreakTime(lastRecord.checkIn, lastRecord.checkOut);
 
-      // Post updated attendance record
       this.apiService.postAttendance(lastRecord).subscribe(
         (response) => {
           console.log('Updated attendance record posted successfully:', response);
@@ -100,14 +100,13 @@ export class AttendanceComponent implements OnInit {
 
       this.saveAttendanceRecords();
     } else {
-      // If the user has already punched in, you can add any relevant action here
       console.log("Error.");
     }
   }
 
   updateCurrentTime() {
     const currentDate = new Date();
-    this.attendance_date = currentDate.toLocaleDateString('en-GB'); // Format: day/month/year
+    this.attendance_date = currentDate.toLocaleDateString('en-GB');
     this.currentTime = currentDate.toLocaleTimeString();
   }
 
@@ -133,25 +132,25 @@ export class AttendanceComponent implements OnInit {
   }
 
   loadAttendanceRecords() {
+    this.isLoading = true; // Set loading to true before fetching data
+    setTimeout (() => {
     const savedRecords = localStorage.getItem('attendanceRecords');
     if (savedRecords) {
       this.attendanceRecords = JSON.parse(savedRecords);
-    } else {
-      // If the user has already punched in, you can add any relevant action here
+    } else { 
       console.log("Failed.");
     }
-  }
+    this.isLoading = false; // Set loading to false once data is fetched
+  }, 2000);
+} 
 
   checkPunchInStatus() {
-    // Check session storage for the punch-in status for this session
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
     this.hasPunchedIn = hasPunchedInSession === 'true';
 
     if (!this.hasPunchedIn) {
-      // Show the punch-in dialog only if the user hasn't punched in this session
       this.showPunchInDialog();
     } else {
-      // If the user has already punched in, you can add any relevant action here
       console.log("You have already punched in for this session.");
     }
   }

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../Core/Services/api.service';
 import { TableModule } from 'primeng/table';
 import { Employee } from '../../../Core/Interfaces/employee';
-
+ 
 @Component({
   selector: 'app-all-attendence',
   standalone: true,
@@ -11,7 +11,7 @@ import { Employee } from '../../../Core/Interfaces/employee';
   styleUrls: ['./all-attendence.component.css']
 })
 export class AllAttendenceComponent implements OnInit {
-  record: any[] = [];
+  record: any[] = []; 
   currentMonth: number = new Date().getMonth() + 1; // Current month
   currentYear: number = new Date().getFullYear(); // Current year
 

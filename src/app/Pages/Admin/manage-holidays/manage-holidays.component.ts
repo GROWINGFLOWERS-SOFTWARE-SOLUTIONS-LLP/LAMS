@@ -14,7 +14,7 @@ import { ToastModule } from 'primeng/toast';
 
 @Component({
   selector: 'app-manage-holidays',
-  standalone: true,
+  standalone: true, 
   imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule,ConfirmDialogModule],
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
