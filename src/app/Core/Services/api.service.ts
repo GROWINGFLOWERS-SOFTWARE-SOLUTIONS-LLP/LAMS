@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Employee } from '../Interfaces/employee';
 
 @Injectable({
   providedIn: 'root'
@@ -121,11 +122,10 @@ export class ApiService {
   // Simulate logout
   logout() {
     this.loggedInUser = null;
-    sessionStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loggedInUser');
   }
 
-  // ApiService
-
+  // ApiService for Manager
   getManagers(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/managers`);
   }
@@ -142,4 +142,43 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
   }
 
+  // ApiService for Role
+  getRoles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/roles`);
+  }
+
+  addRole(role: any): Observable<any> {
+   return this.http.post(`${this.apiUrl}/roles`, role);
+  }
+
+  updateRole(role: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/roles/${role.id}`, role);
+  }
+
+  deleteRole(roleId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/roles/${roleId}`);
+  }
+
+//Department
+  getdepartments(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/department`);
+  }
+
+  addDepartments(department: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/department`, department);
+  }
+  
+
+  updateDepartments(department: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
+  }
+
+  deleteDepartments(departmentId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
+  }
+  updateUserProfile(updatedUser: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
+  }
+
 }
+ 

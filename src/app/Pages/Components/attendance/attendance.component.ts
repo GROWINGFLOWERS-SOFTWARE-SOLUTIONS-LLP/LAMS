@@ -14,14 +14,28 @@ import { AuthService } from '../../../Core/Services/auth.service';
 import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
 
 @Component({
   selector: 'app-attendance',
   standalone: true,
-  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule],
+  imports: [
+    DialogModule,
+    ButtonModule,
+    TableModule,
+    CommonModule,
+    MenubarModule,
+    ImageModule,
+    BadgeModule,
+    AvatarModule,
+    InputTextModule,
+    RippleModule,
+    ToastModule,
+    LoaderComponent // Include the LoaderComponent here
+  ],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
-  providers: [MessageService] 
+  providers: [MessageService]
 })
 export class AttendanceComponent implements OnInit {
   displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
@@ -30,6 +44,7 @@ export class AttendanceComponent implements OnInit {
   Punch_in_time: string | null = null;
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
+  loading: boolean = true; // State to control loader visibility
 
   constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService) {}
 
@@ -88,7 +103,6 @@ export class AttendanceComponent implements OnInit {
       lastRecord.checkOut = Punch_out_time;
       lastRecord.break = this.calculateBreakTime(lastRecord.checkIn, lastRecord.checkOut);
 
-      // Post updated attendance record
       this.apiService.postAttendance(lastRecord).subscribe(
         (response) => {
           console.log('Updated attendance record posted successfully:', response);
@@ -100,14 +114,13 @@ export class AttendanceComponent implements OnInit {
 
       this.saveAttendanceRecords();
     } else {
-      // If the user has already punched in, you can add any relevant action here
       console.log("Error.");
     }
   }
 
   updateCurrentTime() {
     const currentDate = new Date();
-    this.attendance_date = currentDate.toLocaleDateString('en-GB'); // Format: day/month/year
+    this.attendance_date = currentDate.toLocaleDateString('en-GB');
     this.currentTime = currentDate.toLocaleTimeString();
   }
 
@@ -133,25 +146,27 @@ export class AttendanceComponent implements OnInit {
   }
 
   loadAttendanceRecords() {
+    this.loading = true; // Show loader when loading starts
     const savedRecords = localStorage.getItem('attendanceRecords');
     if (savedRecords) {
       this.attendanceRecords = JSON.parse(savedRecords);
     } else {
-      // If the user has already punched in, you can add any relevant action here
       console.log("Failed.");
     }
+
+    // Set a timeout to hide the loader after 2 seconds
+    setTimeout(() => {
+      this.loading = false; // Hide loader when loading completes
+    }, 2000); // 2000 milliseconds = 2 seconds
   }
 
   checkPunchInStatus() {
-    // Check session storage for the punch-in status for this session
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
     this.hasPunchedIn = hasPunchedInSession === 'true';
 
     if (!this.hasPunchedIn) {
-      // Show the punch-in dialog only if the user hasn't punched in this session
       this.showPunchInDialog();
     } else {
-      // If the user has already punched in, you can add any relevant action here
       console.log("You have already punched in for this session.");
     }
   }

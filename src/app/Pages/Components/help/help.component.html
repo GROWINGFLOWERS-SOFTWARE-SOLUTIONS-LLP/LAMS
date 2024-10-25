@@ -1,10 +1,7 @@
 <div class="container">
-
-<div class="help-page p-fluid">
-    <!-- Loader -->
-    <div class="flex justify-content-center align-items-center" *ngIf="loading">
-      <p-progressSpinner></p-progressSpinner>
-    </div>
+  <div class="help-page p-fluid">
+    <!-- Reusable Loader -->
+    <app-loader [loading]="loading"></app-loader>
   
     <!-- Content, shown once loading is complete -->
     <div *ngIf="!loading">
