@@ -23,28 +23,28 @@
     {
       "firstName": "Prajakta",
       "lastName": "Badhan",
-      "email": "prajakta@gfss.com",
+      "email": "prajakta24@gfss.com",
       "password": "Prajakta@123",
-      "mobileNumber": "9200378962",
+      "mobileNumber": "9270069872",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
-      "role": "Emp",
+      "role": "Employee",
       "joiningDate": "2024-01-15",
       "address": "Pune",
       "id": "56d1"
     },
     {
-      "id": "4faf",
       "firstName": "Kshitija",
       "lastName": "Gaikwad",
       "email": "kshitija@gfss.com",
-      "password": "Kshitija@123",
+      "password": "Kshitija@9090",
       "mobileNumber": "7710235678",
       "department": "Engineering",
       "manager": "Rupesh Shirude",
-      "role": "Developer",
+      "role": "Manager",
       "joiningDate": "2024-06-19",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "4faf"
     },
     {
       "id": "a78a",
@@ -108,20 +108,8 @@
       "manager": "Abhishek Joshi",
       "role": "Employee",
       "joiningDate": "2024-01-15",
-      "address": "Pune"
-    },
-    {
-      "firstName": "Shweta",
-      "lastName": "Sonje",
-      "email": "shweta@gfss.com",
-      "password": "Shweta@123",
-      "mobileNumber": "8945672349",
-      "department": "Engineering",
-      "manager": "Abhishek Joshi",
-      "role": "Employee",
-      "joiningDate": "2024-01-08",
       "address": "Pune",
-      "id": "5551"
+      "id": "ad3c"
     }
   ],
   "managers": [
@@ -1790,32 +1778,25 @@
       "break": ""
     },
     {
-      "id": "c53c",
-      "date": "22/10/2024",
-      "checkIn": "2:40:57 PM",
-      "checkOut": "2:58:19 PM",
-      "break": "0h 17m 22s"
-    },
-    {
-      "id": "4f26",
-      "date": "22/10/2024",
-      "checkIn": "2:40:57 PM",
-      "checkOut": "2:58:19 PM",
-      "break": "0h 17m 22s"
-    },
-    {
-      "id": "e3b0",
-      "date": "22/10/2024",
-      "checkIn": "2:58:39 PM",
+      "id": "b731",
+      "date": "25/10/2024",
+      "checkIn": "10:09:28 AM",
       "checkOut": "",
       "break": ""
     },
     {
-      "id": "8fa1",
-      "date": "22/10/2024",
-      "checkIn": "2:58:39 PM",
-      "checkOut": "2:58:53 PM",
-      "break": "0h 0m 14s"
+      "id": "4988",
+      "date": "25/10/2024",
+      "checkIn": "11:09:24 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "f702",
+      "date": "25/10/2024",
+      "checkIn": "11:09:24 AM",
+      "checkOut": "11:09:41 AM",
+      "break": "0h 0m 17s"
     }
   ],
   "absent": [
