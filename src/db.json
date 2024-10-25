@@ -30,7 +30,7 @@
       "manager": "Kshitija Gaikwad",
       "role": "Emp",
       "joiningDate": "2024-01-15",
-      "address": "Pune",
+      "address": "Nashik",
       "id": "56d1"
     },
     {
@@ -108,7 +108,8 @@
       "manager": "Abhishek Joshi",
       "role": "Employee",
       "joiningDate": "2024-01-15",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "ffee"
     },
     {
       "firstName": "Shweta",
@@ -1816,6 +1817,13 @@
       "checkIn": "2:58:39 PM",
       "checkOut": "2:58:53 PM",
       "break": "0h 0m 14s"
+    },
+    {
+      "id": "0592",
+      "date": "25/10/2024",
+      "checkIn": "9:48:22 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
