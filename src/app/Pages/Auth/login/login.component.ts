@@ -9,6 +9,7 @@ import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinner
 import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
+import { LoaderComponent } from '../../Components/loader/loader.component';
 
 @Component({
   selector: 'app-login',
@@ -21,20 +22,20 @@ import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    ProgressSpinnerModule // Include ProgressSpinnerModule here
+    ProgressSpinnerModule, // Include ProgressSpinnerModule here
+    LoaderComponent // Include LoaderComponent here
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
   loading: boolean = false; // State to control loader visibility
 
   constructor(
-    private router: Router, 
-    private apiService: ApiService, 
+    private router: Router,
+    private apiService: ApiService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
   ) {}
@@ -60,7 +61,7 @@ export class LoginComponent implements OnInit {
 
   loginFun() {
     console.log('Login initiated...');
-    
+   
     // Show loader when login starts
     this.loading = true;
     console.log('Loading state set to true:', this.loading);
@@ -68,37 +69,40 @@ export class LoginComponent implements OnInit {
     // Ensure Angular change detection catches the update
     this.cdr.detectChanges();
 
-    this.apiService.getEmployees().subscribe(
-      (data) => {
-        let users = data.find(
-          (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
-        );
+    // Simulate 2-second delay for loader (whether login is successful or not)
+    setTimeout(() => {
+      this.apiService.getEmployees().subscribe(
+        (data) => {
+          let users = data.find(
+            (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
+          );
 
-        if (users) {
-          localStorage.setItem('users', JSON.stringify(users));
-          this.roleBasedRouting(users);
-        } else {
-          console.log('User not found');
-          this.router.navigate(['/login']);
+          if (users) {
+            localStorage.setItem('users', JSON.stringify(users));
+            this.roleBasedRouting(users);
+          } else {
+            console.log('User not found');
+            this.router.navigate(['/login']);
+          }
+
+          // Hide loader after the login process completes
+          this.loading = false;
+          console.log('Loading state set to false:', this.loading);
+
+          // Detect changes after the loading state update
+          this.cdr.detectChanges();
+        },
+        (error) => {
+          console.error(error);
+
+          // Hide loader if there's an error
+          this.loading = false;
+          console.log('Loading state set to false (error):', this.loading);
+
+          this.cdr.detectChanges();
         }
-
-        // Hide loader after the login process completes
-        this.loading = false;
-        console.log('Loading state set to false:', this.loading);
-
-        // Detect changes after the loading state update
-        this.cdr.detectChanges();
-      },
-      (error) => {
-        console.error(error);
-
-        // Hide loader if there's an error
-        this.loading = false;
-        console.log('Loading state set to false (error):', this.loading);
-
-        this.cdr.detectChanges();
-      }
-    );
+      );
+    }, 2000); // 2-second delay
   }
 
   roleBasedRouting(users: any) {

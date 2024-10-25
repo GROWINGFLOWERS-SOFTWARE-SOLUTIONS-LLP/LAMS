@@ -14,3 +14,15 @@ h2 {
   box-sizing: border-box;
 }
 
+/* Center the loader in the middle of the page */
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px; /* Adjust height as per your layout */
+}
+
+.custom-spinner {
+  width: 50px;
+  height: 50px;
+}
