@@ -6,30 +6,31 @@ import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import { ApiService } from '../../../Core/Services/api.service';
 import { Holiday } from '../../../Core/Interfaces/holiday';
- 
+import { CommonModule } from "@angular/common";
 
- 
 @Component({
   selector: 'app-holidays',
   standalone: true,
-  imports: [FullCalendarModule],
+  imports: [FullCalendarModule, CommonModule],
   templateUrl: './holidays.component.html',
   styleUrls: ['./holidays.component.css'] // Fixed the styleUrl to styleUrls
 })
 export class HolidaysComponent implements OnInit {
   isMobile: boolean = false;
   fixedEvents: any[] = [];
- 
+  isLoading: boolean = true; // Added loader flag
+  loadingTime: number = 3; // Fetch delay of 3 seconds
+
   private startDate: Date = new Date('2024-01-01');
   private endDate: Date = new Date('2030-12-31');
   private weeklyOffDays: number[] = [0, 6]; // 0 for Sunday, 6 for Saturday
- 
+
   constructor(private apiservice: ApiService) {}
- 
+
   ngOnInit(): void {
-    this.getAllHolidaysList();
+    this.getAllHolidaysListWithDelay();
   }
- 
+
   calendarOptions: CalendarOptions = {
     plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
     weekends: true,
@@ -46,17 +47,16 @@ export class HolidaysComponent implements OnInit {
       this.updateLayout();
     }
   };
- 
+
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.updateLayout();
   }
- 
+
   updateLayout() {
-    // debugger
     const width = window.innerWidth;
     this.isMobile = width <= 600;
-    //  debugger
+
     if (this.isMobile) {
       this.calendarOptions.headerToolbar = {
         start: 'dayGridMonth',
@@ -71,17 +71,17 @@ export class HolidaysComponent implements OnInit {
       };
     }
   }
- 
+
   async getEvents(): Promise<any[]> {
     // Wait for the holidays list to be fetched
     await this.loadFixedEvents();
- 
+
     // Generate weekly off events
     const weeklyOffEvents = this.getWeeklyOffEvents();
- 
+
     return [...this.fixedEvents, ...weeklyOffEvents];
   }
- 
+
   async loadFixedEvents(): Promise<void> {
     // Fetch the holidays list and assign to fixedEvents
     const holidays: Holiday[] = await this.apiservice.getHolidaysList().toPromise();
@@ -91,11 +91,11 @@ export class HolidaysComponent implements OnInit {
       color: '#90EE90' // You can adjust the color as needed
     }));
   }
- 
+
   getWeeklyOffEvents() {
     const events = [];
     let currentDate = new Date(this.startDate);
- 
+
     while (currentDate <= this.endDate) {
       if (this.weeklyOffDays.includes(currentDate.getDay())) {
         events.push({
@@ -106,26 +106,32 @@ export class HolidaysComponent implements OnInit {
       }
       currentDate.setDate(currentDate.getDate() + 1);
     }
- 
+
     return events;
   }
- 
+
   formatDate(date: Date): string {
     const year = date.getFullYear();
     const month = String(date.getMonth() + 1).padStart(2, '0');
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   }
- 
-  getAllHolidaysList() {
-    this.apiservice.getHolidaysList().subscribe((holidays: Holiday[]) => {  
-      this.fixedEvents = holidays.map(holiday => ({
-        title: holiday.holidayName,
-        start: holiday.holidayDate,
-        color: '#90EE90' // You can adjust the color as needed
-      }));
-      this.updateLayout();
-    });
+
+  // Add 3-second delay before fetching data
+  getAllHolidaysListWithDelay() {
+    this.isLoading = true; // Show loader
+
+    // Introduce a 3-second delay before fetching data
+    setTimeout(() => {
+      this.apiservice.getHolidaysList().subscribe((holidays: Holiday[]) => {
+        this.fixedEvents = holidays.map(holiday => ({
+          title: holiday.holidayName,
+          start: holiday.holidayDate,
+          color: '#90EE90' // You can adjust the color as needed
+        }));
+        this.updateLayout();
+        this.isLoading = false; // Hide loader after loading holidays
+      });
+    }, this.loadingTime * 1000); // 3-second delay
   }
- 
 }

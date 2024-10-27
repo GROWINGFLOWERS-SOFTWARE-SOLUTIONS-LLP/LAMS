@@ -7,8 +7,10 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinner
-import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { ChangeDetectorRef } from '@angular/core';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api'; // Import MessageService
 
 @Component({
   selector: 'app-login',
@@ -21,22 +23,25 @@ import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    ProgressSpinnerModule // Include ProgressSpinnerModule here
+    ProgressSpinnerModule,
+    ToastModule
   ],
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: [MessageService] // Provide MessageService here
 })
 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
-  loading: boolean = false; // State to control loader visibility
+  loading: boolean = false;
 
   constructor(
     private router: Router, 
     private apiService: ApiService, 
     private fb: FormBuilder,
-    private cdr: ChangeDetectorRef // Inject ChangeDetectorRef
+    private cdr: ChangeDetectorRef,
+    private messageService: MessageService // Inject MessageService here
   ) {}
 
   ngOnInit() {
@@ -60,54 +65,58 @@ export class LoginComponent implements OnInit {
 
   loginFun() {
     console.log('Login initiated...');
-    
-    // Show loader when login starts
     this.loading = true;
-    console.log('Loading state set to true:', this.loading);
-
-    // Ensure Angular change detection catches the update
     this.cdr.detectChanges();
 
     this.apiService.getEmployees().subscribe(
       (data) => {
-        let users = data.find(
-          (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
+        const user = data.find(
+          (user: any) => 
+            user.email === this.loginForm.value.email && 
+            user.password === this.loginForm.value.password
         );
 
-        if (users) {
-          localStorage.setItem('users', JSON.stringify(users));
-          this.roleBasedRouting(users);
+        if (user) {
+          localStorage.setItem('users', JSON.stringify(user));
+          this.roleBasedRouting(user);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Login Successful',
+            detail: 'Welcome back!'
+          });
         } else {
-          console.log('User not found');
+          
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Login Failed',
+            detail: 'Invalid email or password'
+          });
           this.router.navigate(['/login']);
         }
 
-        // Hide loader after the login process completes
         this.loading = false;
-        console.log('Loading state set to false:', this.loading);
-
-        // Detect changes after the loading state update
         this.cdr.detectChanges();
       },
       (error) => {
         console.error(error);
-
-        // Hide loader if there's an error
         this.loading = false;
-        console.log('Loading state set to false (error):', this.loading);
-
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Login Error',
+          detail: 'An error occurred during login. Please try again.'
+        });
         this.cdr.detectChanges();
       }
     );
   }
 
-  roleBasedRouting(users: any) {
-    if (users && users.role) {
-      if (users.role === 'Admin') {
+  roleBasedRouting(user: any) {
+    if (user && user.role) {
+      if (user.role === 'Admin') {
         this.router.navigate(['/employeeprofile']);
-      } else if (users.role === 'Employee') {
+      } else if (user.role === 'Employee') {
         this.router.navigate(['/attendance']);
-      } else if (users.role === 'Manager') {
+      } else if (user.role === 'Manager') {
         this.router.navigate(['/managerRequest']);
       } else {
         this.router.navigate(['/login']);

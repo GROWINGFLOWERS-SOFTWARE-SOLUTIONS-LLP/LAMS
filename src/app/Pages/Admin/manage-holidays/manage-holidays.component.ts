@@ -6,19 +6,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
-import { ConfirmationService,MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
-
-
 import { ToastModule } from 'primeng/toast';
-
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @Component({
   selector: 'app-manage-holidays',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule,ConfirmDialogModule],
+  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule, ConfirmDialogModule, ProgressSpinnerModule],
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
-  providers: [ ConfirmationService,MessageService], // Add MessageService to providers
+  providers: [ConfirmationService, MessageService], // Add MessageService to providers
   animations: [
     trigger('fadeInOut', [
       transition('hidden => visible', [
@@ -36,9 +34,14 @@ export class ManageHolidaysComponent implements OnInit {
   holidays: any[] = [];
   showHolidayList: boolean = false;
   selectedHolidayId: string | null = null;
+  isLoading: boolean = true; // Initialize the loading state to true
 
-  constructor(private apiService: ApiService, private fb: FormBuilder, private messageService: MessageService, 
-    private confirmationService: ConfirmationService,) { }
+  constructor(
+    private apiService: ApiService,
+    private fb: FormBuilder,
+    private messageService: MessageService,
+    private confirmationService: ConfirmationService
+  ) { }
 
   ngOnInit() {
     // Initialize the reactive form
@@ -46,6 +49,17 @@ export class ManageHolidaysComponent implements OnInit {
       holidayName: ['', Validators.required],
       holidayDate: ['', Validators.required],
     });
+
+    // Simulate an API call or delay to fetch holidays
+    setTimeout(() => {
+      this.loadHolidays(); // Load the holidays list after a delay
+    }, 3000); // Simulating a 3-second delay
+  }
+
+  // Method to load holidays list and hide the spinner
+  loadHolidays() {
+    this.getAllHolidaysList(); // Fetch holidays
+    this.isLoading = false; // Hide the loader after the data is fetched
   }
 
   // Method to add or update a holiday
@@ -55,23 +69,24 @@ export class ManageHolidaysComponent implements OnInit {
       // Extract the form values (holiday name, date)
       const holiday = this.holidayForm.value;
 
+      // Show the loader when the form is being submitted
+      this.isLoading = true;
+
       // If we're editing an existing holiday (selectedHolidayId is set)
       if (this.selectedHolidayId) {
         // Call the API to update the holiday
         this.apiService.updateHoliday({ ...holiday, id: this.selectedHolidayId }).subscribe(() => {
-          // Show success toast
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday updated successfully!' });
           this.clearForm();
-          this.getAllHolidaysList();
+          this.loadHolidays(); // Reload holidays and hide the loader
           this.showHolidayList = true; // Show the holiday list after updating
         });
       } else {
         // If no selectedHolidayId, we are adding a new holiday
         this.apiService.addHoliday(holiday).subscribe(() => {
-          // Show success toast
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday added successfully!' });
           this.clearForm();
-          this.getAllHolidaysList();
+          this.loadHolidays(); // Reload holidays and hide the loader
           this.showHolidayList = true; // Show the holiday list after adding
         });
       }
@@ -88,7 +103,9 @@ export class ManageHolidaysComponent implements OnInit {
   // Method to toggle the holiday list visibility
   toggleHolidayList() {
     if (!this.showHolidayList) {
-      this.getAllHolidaysList(); // Fetch the list of holidays if not already visible
+      this.isLoading = true; // Show the loader before fetching holidays
+      this.getAllHolidaysList(); // Fetch the list of holidays
+      this.isLoading = false; // Hide the loader after fetching
     }
     this.showHolidayList = !this.showHolidayList;
   }
@@ -108,7 +125,7 @@ export class ManageHolidaysComponent implements OnInit {
         // Call the API to delete the holiday
         this.apiService.deleteHoliday(id).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
-          this.getAllHolidaysList(); // Refresh the holiday list after deletion
+          this.loadHolidays(); // Refresh the holiday list after deletion
           this.showHolidayList = false; // Optionally redirect to another view
         });
       },

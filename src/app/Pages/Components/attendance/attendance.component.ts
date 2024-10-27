@@ -15,10 +15,13 @@ import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 
+import { LoaderComponent } from '../../Components/loader/loader.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+
 @Component({
   selector: 'app-attendance',
   standalone: true,
-  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule],
+  imports: [DialogModule, ButtonModule, TableModule, CommonModule,LoaderComponent,ProgressSpinnerModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
   providers: [MessageService] 
@@ -30,6 +33,7 @@ export class AttendanceComponent implements OnInit {
   Punch_in_time: string | null = null;
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
+ 
 
   constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService) {}
 
@@ -63,7 +67,7 @@ export class AttendanceComponent implements OnInit {
 
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
-
+   
     this.apiService.postAttendance(newRecord).subscribe(
       (response) => {
         console.log('Attendance record posted successfully:', response);
@@ -79,6 +83,7 @@ export class AttendanceComponent implements OnInit {
     this.displayPunchInDialog = false;
     sessionStorage.setItem('hasPunchedIn', 'true'); 
     this.router.navigate(['/dashboard']);
+    
   }
 
   checkout() {

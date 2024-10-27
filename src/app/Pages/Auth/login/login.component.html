@@ -1,3 +1,4 @@
+<p-toast></p-toast>
 <div class="container flex align-items-center justify-content-center">
   <div class="main-container flex shadow-2 border-round">
     
@@ -26,18 +27,43 @@
           </small>
 
           <!-- Password Input with toggle icon -->
-          <div class="password-wrapper mb-2">
+          <!-- <div class="password-wrapper mb-2">
             <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password" formControlName="password" class="p-inputtext p-component password-input">
             <i class="toggle-password-icon" (click)="toggleShowPassword()" title="Show password">!</i>
           </div>
           <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
             <div *ngIf="password.errors?.['required']">Password is required.</div>
-          </small>
+          </small> -->
+
+
+
+
+<!-- Password Input with toggle icon -->
+<div class="password-wrapper mb-2" style="position: relative;">
+  <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password" formControlName="password" class="p-inputtext p-component password-input" style="padding-right: 2rem;">
+  
+  <!-- Eye toggle icon -->
+  <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" 
+     (click)="toggleShowPassword()" 
+     title="Toggle password visibility" 
+     style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
+</div>
+
+
+<small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
+  <div *ngIf="password.errors?.['required']">Password is required.</div>
+</small>
+
+
+
+
+
+
 
           <!-- Submit Button -->
-          <button type="submit" class="login-link text-blue-500 hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
+          <button type="submit" class="login-link hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
             [disabled]="loginForm.invalid" 
-            style="background-color: violet; color: white; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;">
+            style="background-color: violet; color: black; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;display: flex; align-items: center; justify-content: center;margin-right: 8px;">
             <i class="pi pi-sign-in"></i> Login
           </button>
         </form>

@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../../Core/Services/api.service';
 import { TableModule } from 'primeng/table';
 import { Employee } from '../../../Core/Interfaces/employee';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-all-attendence',
   standalone: true,
-  imports: [TableModule],
+  imports: [TableModule,ProgressSpinnerModule],
   templateUrl: './all-attendence.component.html',
   styleUrls: ['./all-attendence.component.css']
 })
