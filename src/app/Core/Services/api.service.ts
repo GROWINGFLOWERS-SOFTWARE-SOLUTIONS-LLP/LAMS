@@ -1,14 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Employee } from '../Interfaces/employee';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  getDepartment() {
-    throw new Error('Method not implemented.');
-  }
 
   apiUrl: string = "http://localhost:3000";
 
@@ -124,7 +122,7 @@ export class ApiService {
   // Simulate logout
   logout() {
     this.loggedInUser = null;
-    sessionStorage.removeItem('loggedInUser');
+    localStorage.removeItem('loggedInUser');
   }
 
   // ApiService for Manager
@@ -169,6 +167,7 @@ export class ApiService {
   addDepartments(department: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/department`, department);
   }
+  
 
   updateDepartments(department: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
@@ -177,10 +176,9 @@ export class ApiService {
   deleteDepartments(departmentId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
   }
+  updateUserProfile(updatedUser: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
+  }
 
 }
  
-
-
-
-

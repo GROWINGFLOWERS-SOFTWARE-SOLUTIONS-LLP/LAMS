@@ -7,11 +7,13 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import { ApiService } from '../../../Core/Services/api.service';
 import { Holiday } from '../../../Core/Interfaces/holiday';
 import { CommonModule } from "@angular/common";
+import { LoaderComponent } from '../loader/loader.component';
+
 
 @Component({
   selector: 'app-holidays',
   standalone: true,
-  imports: [FullCalendarModule, CommonModule],
+  imports: [FullCalendarModule, CommonModule,LoaderComponent],
   templateUrl: './holidays.component.html',
   styleUrls: ['./holidays.component.css'] // Fixed the styleUrl to styleUrls
 })

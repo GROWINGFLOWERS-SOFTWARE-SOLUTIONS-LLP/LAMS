@@ -7,10 +7,14 @@ import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { ChangeDetectorRef } from '@angular/core';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinner
+import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
+import { LoaderComponent } from '../../Components/loader/loader.component';
+import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { MessageService } from 'primeng/api'; // Import MessageService
+
+
+
 
 @Component({
   selector: 'app-login',
@@ -23,22 +27,22 @@ import { MessageService } from 'primeng/api'; // Import MessageService
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    ProgressSpinnerModule,
+    ProgressSpinnerModule, // Include ProgressSpinnerModule here
+    LoaderComponent, // Include LoaderComponent here
     ToastModule
   ],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [MessageService] // Provide MessageService here
 })
-
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
   loading: boolean = false;
 
   constructor(
-    private router: Router, 
-    private apiService: ApiService, 
+    private router: Router,
+    private apiService: ApiService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private messageService: MessageService // Inject MessageService here
@@ -65,49 +69,56 @@ export class LoginComponent implements OnInit {
 
   loginFun() {
     console.log('Login initiated...');
+   
+    // Show loader when login starts
     this.loading = true;
     this.cdr.detectChanges();
 
-    this.apiService.getEmployees().subscribe(
-      (data) => {
-        const user = data.find(
-          (user: any) => 
-            user.email === this.loginForm.value.email && 
-            user.password === this.loginForm.value.password
-        );
+    // Simulate 2-second delay for loader (whether login is successful or not)
+    setTimeout(() => {
+      this.apiService.getEmployees().subscribe(
+        (data) => {
+          let users = data.find(
+            (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
+          );
 
-        if (user) {
-          localStorage.setItem('users', JSON.stringify(user));
-          this.roleBasedRouting(user);
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Login Successful',
-            detail: 'Welcome back!'
-          });
-        } else {
-          
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Login Failed',
-            detail: 'Invalid email or password'
-          });
-          this.router.navigate(['/login']);
+          if (users) {
+            localStorage.setItem('users', JSON.stringify(users));
+            this.roleBasedRouting(users);
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Login Successful',
+              detail: 'Welcome back!'
+            });
+  
+          } else {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Login Failed',
+              detail: 'Invalid email or password'
+            });
+  
+            this.router.navigate(['/login']);
+          }
+
+          // Hide loader after the login process completes
+          this.loading = false;
+          console.log('Loading state set to false:', this.loading);
+
+          // Detect changes after the loading state update
+          this.cdr.detectChanges();
+        },
+        (error) => {
+          console.error(error);
+
+          // Hide loader if there's an error
+          this.loading = false;
+          console.log('Loading state set to false (error):', this.loading);
+
+          this.cdr.detectChanges();
         }
-
-        this.loading = false;
-        this.cdr.detectChanges();
-      },
-      (error) => {
-        console.error(error);
-        this.loading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Login Error',
-          detail: 'An error occurred during login. Please try again.'
-        });
-        this.cdr.detectChanges();
-      }
-    );
+      );
+    }, 2000); // 2-second delay
   }
 
   roleBasedRouting(user: any) {

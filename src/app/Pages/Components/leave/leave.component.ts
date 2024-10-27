@@ -65,10 +65,9 @@ export class LeaveComponent implements OnInit {
       leaveType: ['', Validators.required],
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      reason: [''],  // Optional field
+      reason: ['', Validators.required],  // Make reason field required
       totalLeaves: [{ value: 0, disabled: true }]  // Total leaves field is disabled and calculated automatically
     });
-
     // Listen to changes in start and end date to calculate total leaves dynamically
     this.leaveForm.get('startDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
     this.leaveForm.get('endDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
@@ -144,4 +143,3 @@ export class LeaveComponent implements OnInit {
     });
   }
 }
- 

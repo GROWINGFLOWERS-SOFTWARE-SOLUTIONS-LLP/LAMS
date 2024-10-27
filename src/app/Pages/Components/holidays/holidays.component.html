@@ -1,4 +1,5 @@
 <div class="container">
+  <app-loader [loading]="isLoading"></app-loader>
   <!-- Loader - Initially visible -->
   <div *ngIf="isLoading" class="loader-wrapper">
     <div class="loader"></div>
