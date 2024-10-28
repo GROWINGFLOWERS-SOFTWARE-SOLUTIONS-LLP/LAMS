@@ -3,7 +3,11 @@
     <div class="p-col-12 p-md-10 p-lg-8">
       <h2 class="text-center mb-3">Leave Request</h2>
 
-      <p-table class="w-100" [value]="leaveRequests" responsiveLayout="scroll">
+      <!-- Reuse the LoaderComponent for displaying loader -->
+      <app-loader [loading]="isLoading"></app-loader>
+
+      <!-- Display the table when the data has been loaded -->
+      <p-table *ngIf="!isLoading" class="w-100" [value]="leaveRequests" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
             <th>Employee Name</th>

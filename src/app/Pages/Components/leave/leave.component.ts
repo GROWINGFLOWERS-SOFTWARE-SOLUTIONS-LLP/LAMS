@@ -38,7 +38,7 @@ export class LeaveComponent implements OnInit {
   today: Date = new Date();  // Current date for form validation
   leaveForm!: FormGroup;  // Reactive form group
   leaveRequests: Leave[] = [];  // Array to store leave requests using the Leave interface
-
+  isLoading: boolean = true;
   // Leave types options for the dropdown
   leaveTypes = [
     { label: 'Sick Leave', value: 'Sick Leave' },
@@ -73,11 +73,22 @@ export class LeaveComponent implements OnInit {
     this.leaveForm.get('endDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
   }
 
-  // Load leave requests from the API
+  // Load leave requests from the API with loader and a 3-second timer
   loadLeaveRequests(): void {
-    this.apiService.getLeaveRequests().subscribe((data: Leave[]) => {
-      this.leaveRequests = data;
-    });
+    this.isLoading = true;  // Show loader when loading data
+
+    setTimeout(() => { // Add 3-second delay
+      this.apiService.getLeaveRequests().subscribe(
+        (data: Leave[]) => {
+          this.leaveRequests = data;
+          this.isLoading = false;  // Hide loader after data is loaded
+        },
+        (error) => {
+          this.isLoading = false;  // Hide loader if there's an error
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load leave requests.' });
+        }
+      );
+    }, 3000);  // 3 seconds delay before API call
   }
 
   // Show the leave request dialog
@@ -120,7 +131,7 @@ export class LeaveComponent implements OnInit {
       this.leaveForm.get('totalLeaves')?.setValue(0);  // Reset total leaves if dates are invalid
     }
   }
-
+ 
   // Reset the form after a leave request is saved or cancelled
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({

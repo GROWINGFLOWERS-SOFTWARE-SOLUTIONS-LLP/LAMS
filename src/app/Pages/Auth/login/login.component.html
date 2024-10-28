@@ -1,54 +1,62 @@
+<p-toast></p-toast>
+
+<!-- Main container -->
+
 <div class="container flex align-items-center justify-content-center">
-  <div class="main-container flex shadow-2 border-round">
-    
+  <div class="main-container flex shadow-2 border-round" *ngIf="!loading">
+ 
     <!-- Left Container (Login Section) -->
     <div id="log-in" class="left-container flex flex-column align-items-center justify-content-around">
-      
       <!-- Logo -->
-      <img src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95" alt="Logo" class="mb-3">
-      
+      <img
+        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95"
+        alt="Logo" class="mb-3">
+ 
       <h1 class="m-0 text-center">Let's log in</h1>
-      
-      <!-- Loader shown when login is in progress -->
-      <div *ngIf="loading" class="flex justify-content-center align-items-center">
-        <p-progressSpinner strokeWidth="5" styleClass="custom-spinner"></p-progressSpinner>
-      </div>
-      
+ 
       <!-- Form is shown only when not loading -->
-      <div *ngIf="!loading" class="w-full">
+      <div class="w-full">
         <form class="signup-form flex flex-column align-items-center" [formGroup]="loginForm" (ngSubmit)="loginFun()">
-          
           <!-- Email Input -->
-          <input type="email" name="email" placeholder="E-mail" formControlName="email" class="p-inputtext p-component mb-2">
+          <input type="email" name="email" placeholder="E-mail" formControlName="email"
+            class="p-inputtext p-component mb-2">
           <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error mb-2">
             <div *ngIf="email.errors?.['required']">Email is required.</div>
             <div *ngIf="email.errors?.['email']">Email should be valid.</div>
           </small>
-
+ 
           <!-- Password Input with toggle icon -->
-          <div class="password-wrapper mb-2">
-            <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password" formControlName="password" class="p-inputtext p-component password-input">
-            <i class="toggle-password-icon" (click)="toggleShowPassword()" title="Show password">!</i>
+          <div class="password-wrapper mb-2" style="position: relative;">
+            <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password"
+              formControlName="password" class="p-inputtext p-component password-input" style="padding-right: 2rem;">
+ 
+            <!-- Eye toggle icon -->
+            <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="toggleShowPassword()"
+              title="Toggle password visibility"
+              style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
           </div>
+ 
           <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
             <div *ngIf="password.errors?.['required']">Password is required.</div>
           </small>
-
+ 
           <!-- Submit Button -->
-          <button type="submit" class="login-link text-blue-500 hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
-            [disabled]="loginForm.invalid" 
-            style="background-color: violet; color: white; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;">
+          <button type="submit"
+            class="login-link hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
+            [disabled]="loginForm.invalid"
+            style="background-color: violet; color: black; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;display: flex; align-items: center; justify-content: center;margin-right: 8px;">
             <i class="pi pi-sign-in"></i> Login
           </button>
         </form>
       </div>
-
-      <div class="login-link-container">
-        <p class="login-link"></p>
-      </div>
     </div>
-
+ 
     <!-- Right Container (Image Section) -->
     <div class="right-container"></div>
   </div>
+ 
+  <!-- Loader component, displayed when loading -->
+  <app-loader [loading]="loading"></app-loader>
 </div>
+ 
+ 

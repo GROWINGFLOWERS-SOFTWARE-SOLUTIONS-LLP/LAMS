@@ -3,14 +3,14 @@ import { CardModule } from 'primeng/card';
 import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
 import { MessageService } from 'primeng/api';
 import { CommonModule } from '@angular/common'; // Required for *ngIf
+import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
 
 @Component({
   selector: 'app-help',
   standalone: true,
-  imports: [CardModule, AccordionModule, ButtonModule, ToastModule, ProgressSpinnerModule, CommonModule],
+  imports: [CardModule, AccordionModule, ButtonModule, ToastModule, CommonModule, LoaderComponent],
   templateUrl: './help.component.html',
   styleUrls: ['./help.component.css'],
   providers: [MessageService],

@@ -69,3 +69,12 @@
 }
 
 
+.text-center {
+  text-align: center;
+}
+
+.p-progress-spinner {
+  margin: auto; /* Center the spinner */
+  display: block; /* Ensure it is a block element */
+}
+
