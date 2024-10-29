@@ -39,7 +39,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   providers: [MessageService]
 })
 export class AttendanceComponent implements OnInit {
-  displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
+  displayPunchInDialog: boolean = false;
   currentTime: string = '';
   attendance_date: string = '';
   Punch_in_time: string | null = null;
@@ -47,7 +47,7 @@ export class AttendanceComponent implements OnInit {
   hasPunchedIn: boolean = false;
   loading: boolean = true; // State to control loader visibility
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService) {}
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService,) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();

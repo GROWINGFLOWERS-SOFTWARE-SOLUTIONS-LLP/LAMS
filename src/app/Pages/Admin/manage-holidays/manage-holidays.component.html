@@ -6,6 +6,24 @@
     <p-progressSpinner></p-progressSpinner>
   </div>
 
+<<<<<<< HEAD
+  <!-- Add Holiday Form (Visible when showHolidayList is false) --> 
+  <div class="flex justify-content-center mb-4" *ngIf="!showHolidayList">
+    <div class="p-fluid w-full md:w-8 lg:w-6">
+      <div class="border-1 border-round p-3 shadow-2 bg-white">
+        <!-- Title -->
+        <h2 class="text-2xl font-bold text-center mb-3">{{ selectedHolidayId ? 'Edit Holiday' : 'Add Holiday' }}</h2>
+ 
+        <!-- Reactive Form -->
+        <form [formGroup]="holidayForm" (ngSubmit)="onSubmit()">
+          <div class="grid formgrid p-fluid">
+            <!-- Holiday Name Field -->
+            <div class="col-12 lg:col-6">
+              <div class="field">
+                <label for="holidayName" class="font-semibold">Holiday Name</label>
+                <input id="holidayName" type="text" class="p-inputtext p-component w-full border-1 border-round"
+                  placeholder="Enter Holiday Name" formControlName="holidayName" />
+=======
   <!-- Main Content (Visible when isLoading is false) -->
   <div *ngIf="!isLoading">
     <!-- Show List of Holidays Button aligned to the right -->
@@ -48,6 +66,7 @@
                 <button type="submit" class="p-button p-component p-button-primary" [disabled]="holidayForm.invalid">
                   <span class="p-button-label">{{ selectedHolidayId ? 'Update Holiday' : 'Add Holiday' }}</span>
                 </button>
+>>>>>>> 0e41a50df93600bfcb64277dbf8b80becf6f6304
               </div>
             </div>
           </form>

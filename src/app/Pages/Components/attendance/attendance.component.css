@@ -68,6 +68,18 @@
   font-size: 1rem;
 }
 
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full screen height */
+}
+
+.p-progress-spinner {
+  width: 50px !important;  /* Adjust size of the spinner */
+  height: 50px !important;
+}
+
 
 .text-center {
   text-align: center;

@@ -1,0 +1,7 @@
+/* Spinner Centering */
+.p-progress-spinner {
+  width: 70px !important;
+  height: 70px !important;
+  display: block !important;
+  margin: auto !important;
+}
