@@ -38,12 +38,7 @@ import { ToastModule } from 'primeng/toast';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
-<<<<<<< HEAD
-  loading: boolean = false; // State to control loader visibility
-  apiCallCompleted: boolean = false; // Flag to track API call completion
-=======
   loading: boolean = false;
->>>>>>> 0e41a50df93600bfcb64277dbf8b80becf6f6304
 
   constructor(
     private router: Router,
@@ -126,16 +121,9 @@ export class LoginComponent implements OnInit {
     }, 2000); // 2-second delay
   }
 
-<<<<<<< HEAD
-
-  roleBasedRouting(users: any) {
-    if (users && users.role) {
-      if (users.role === 'Admin') {
-=======
   roleBasedRouting(user: any) {
     if (user && user.role) {
       if (user.role === 'Admin') {
->>>>>>> 0e41a50df93600bfcb64277dbf8b80becf6f6304
         this.router.navigate(['/employeeprofile']);
       } else if (user.role === 'Employee') {
         this.router.navigate(['/attendance']);

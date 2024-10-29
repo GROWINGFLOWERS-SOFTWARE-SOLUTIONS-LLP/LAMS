@@ -12,13 +12,8 @@ import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 @Component({
   selector: 'app-manage-holidays',
-<<<<<<< HEAD
-  standalone: true, 
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule,ConfirmDialogModule],
-=======
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule, ConfirmDialogModule, ProgressSpinnerModule],
->>>>>>> 0e41a50df93600bfcb64277dbf8b80becf6f6304
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
   providers: [ConfirmationService, MessageService], // Add MessageService to providers
