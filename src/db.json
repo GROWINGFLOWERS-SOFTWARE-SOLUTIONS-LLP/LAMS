@@ -2553,6 +2553,27 @@
       "checkIn": "10:15:55 AM",
       "checkOut": "10:32:07 AM",
       "break": "0h 16m 12s"
+    },
+    {
+      "id": "e15e",
+      "date": "29/10/2024",
+      "checkIn": "10:39:27 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "c0b4",
+      "date": "29/10/2024",
+      "checkIn": "10:39:27 AM",
+      "checkOut": "10:49:18 AM",
+      "break": "0h 9m 51s"
+    },
+    {
+      "id": "d66c",
+      "date": "29/10/2024",
+      "checkIn": "10:39:27 AM",
+      "checkOut": "10:49:18 AM",
+      "break": "0h 9m 51s"
     }
   ],
   "absent": [
