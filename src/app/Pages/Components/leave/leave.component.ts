@@ -10,16 +10,18 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { ApiService } from '../../../Core/Services/api.service';
 import { Router } from '@angular/router';
-import { Leave } from '../../../Core/Interfaces/leave'; // Importing the Leave interface
-import { ToastModule } from 'primeng/toast'; // Import ToastModule
-import { MessageService } from 'primeng/api'; // Import MessageService
+import { Leave } from '../../../Core/Interfaces/leave';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-leave',
   standalone: true,
   imports: [
     CommonModule,
-    ReactiveFormsModule, // Using ReactiveFormsModule
+    ReactiveFormsModule,
     DialogModule,
     ButtonModule,
     InputTextModule,
@@ -27,88 +29,84 @@ import { MessageService } from 'primeng/api'; // Import MessageService
     CalendarModule,
     InputTextareaModule,
     TableModule,
-    ToastModule // Add ToastModule
+    ToastModule,
+    ProgressSpinnerModule, LoaderComponent
   ],
-  providers: [MessageService], // Provide MessageService
+  providers: [MessageService],
   templateUrl: './leave.component.html',
   styleUrls: ['./leave.component.css']
 })
 export class LeaveComponent implements OnInit {
-  visible: boolean = false;  // Control visibility of the dialog
-  today: Date = new Date();  // Current date for form validation
-  leaveForm!: FormGroup;  // Reactive form group
-  leaveRequests: Leave[] = [];  // Array to store leave requests using the Leave interface
+  visible: boolean = false;
+  today: Date = new Date();
+  leaveForm!: FormGroup;
+  leaveRequests: Leave[] = [];
   isLoading: boolean = true;
-  // Leave types options for the dropdown
+  showPaginator: boolean = false; // Control paginator visibility
+
   leaveTypes = [
     { label: 'Sick Leave', value: 'Sick Leave' },
     { label: 'Paid Leave', value: 'Paid Leave' },
     { label: 'Unpaid Leave', value: 'Unpaid Leave' }
   ];
 
-  // Injecting required services including MessageService
   constructor(
     private apiService: ApiService,
     private router: Router,
     private fb: FormBuilder,
-    private messageService: MessageService  // Inject MessageService
-  ) { }
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
-    this.initLeaveForm();  // Initialize the form
-    this.loadLeaveRequests();  // Load existing leave requests from the API
+    this.initLeaveForm();
+    this.loadLeaveRequests();
   }
 
-  // Initialize the reactive form
   initLeaveForm(): void {
     this.leaveForm = this.fb.group({
       leaveType: ['', Validators.required],
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
-      reason: ['', Validators.required],  // Make reason field required
-      totalLeaves: [{ value: 0, disabled: true }]  // Total leaves field is disabled and calculated automatically
+      reason: ['', Validators.required],
+      totalLeaves: [{ value: 0, disabled: true }]
     });
-    // Listen to changes in start and end date to calculate total leaves dynamically
+
     this.leaveForm.get('startDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
     this.leaveForm.get('endDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
   }
 
-  // Load leave requests from the API with loader and a 3-second timer
   loadLeaveRequests(): void {
-    this.isLoading = true;  // Show loader when loading data
+    this.isLoading = true;
+    this.showPaginator = false; // Hide paginator initially
 
-    setTimeout(() => { // Add 3-second delay
+    setTimeout(() => {
       this.apiService.getLeaveRequests().subscribe(
         (data: Leave[]) => {
           this.leaveRequests = data;
-          this.isLoading = false;  // Hide loader after data is loaded
+          this.isLoading = false;
+          this.showPaginator = true; // Show paginator after loading data
         },
         (error) => {
-          this.isLoading = false;  // Hide loader if there's an error
+          this.isLoading = false;
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load leave requests.' });
         }
       );
-    }, 3000);  // 3 seconds delay before API call
+    }, 3000);
   }
 
-  // Show the leave request dialog
   showDialog(): void {
     this.visible = true;
   }
 
-  // Save the leave request and send it to the API
   saveLeaveRequest(): void {
     if (this.leaveForm.valid) {
-      const leaveRequest: Leave = this.leaveForm.getRawValue();  // Get form values including disabled fields
-      leaveRequest.status = 'Pending';  // Set status to "Pending"
+      const leaveRequest: Leave = this.leaveForm.getRawValue();
+      leaveRequest.status = 'Pending';
 
-      // Send leave request to the API
       this.apiService.submitLeaveRequest(leaveRequest).subscribe(() => {
-        this.leaveRequests.push({ ...leaveRequest });  // Add the new leave request to the list
-        this.resetLeaveRequestForm();  // Reset the form
-        this.visible = false;  // Hide the dialog
-
-        // Show success toast
+        this.leaveRequests.push({ ...leaveRequest });
+        this.resetLeaveRequestForm();
+        this.visible = false;
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Leave request saved successfully.' });
       });
     } else {
@@ -117,22 +115,20 @@ export class LeaveComponent implements OnInit {
     }
   }
 
-  // Calculate the total number of leave days based on the start and end dates
   calculateTotalLeaves(): void {
     const startDate = this.leaveForm.get('startDate')?.value;
     const endDate = this.leaveForm.get('endDate')?.value;
 
     if (startDate && endDate) {
       const diffInMs = new Date(endDate).getTime() - new Date(startDate).getTime();
-      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;  // Include both start and end date
+      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;
       const totalLeaves = diffInDays > 0 ? diffInDays : 0;
-      this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);  // Update total leaves
+      this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);
     } else {
-      this.leaveForm.get('totalLeaves')?.setValue(0);  // Reset total leaves if dates are invalid
+      this.leaveForm.get('totalLeaves')?.setValue(0);
     }
   }
- 
-  // Reset the form after a leave request is saved or cancelled
+
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({
       leaveType: '',

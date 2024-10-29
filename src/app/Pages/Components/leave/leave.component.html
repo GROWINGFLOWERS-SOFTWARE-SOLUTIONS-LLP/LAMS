@@ -7,75 +7,12 @@
         <p-button label="Leave Application Form" (onClick)="showDialog()"></p-button>
       </div>
 
-      <!-- Dialog for the leave application form -->
       <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false"
         [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <!-- Form for leave application -->
-        <form [formGroup]="leaveForm">
-          <div class="p-fluid grid">
-            <!-- Start Date -->
-            <div class="field col-12 lg:col-6">
-              <label for="startDate">Start Date <span class="text-red-500">*</span></label>
-              <p-calendar formControlName="startDate" [minDate]="today" [showIcon]="true" appendTo="body"
-                dateFormat="yy-mm-dd"></p-calendar>
-              <small *ngIf="leaveForm.get('startDate')?.invalid && leaveForm.get('startDate')?.touched" class="p-error">
-                Start Date is required.
-              </small>
-            </div>
-
-            <!-- End Date -->
-            <div class="field col-12 lg:col-6">
-              <label for="endDate">End Date <span class="text-red-500">*</span></label>
-              <p-calendar formControlName="endDate" [minDate]="leaveForm.get('startDate')?.value || today"
-                [showIcon]="true" appendTo="body" dateFormat="yy-mm-dd"></p-calendar>
-              <small *ngIf="leaveForm.get('endDate')?.invalid && leaveForm.get('endDate')?.touched" class="p-error">
-                End Date is required.
-              </small>
-            </div>
-
-            <!-- Leave Type -->
-            <div class="col-12 lg:col-6">
-              <div class="p-field">
-                <label for="leaveType">Leave Type <span class="text-red-500">*</span></label>
-                <p-dropdown formControlName="leaveType" [options]="leaveTypes"
-                  placeholder="Select Leave Type"></p-dropdown>
-                <small *ngIf="leaveForm.get('leaveType')?.invalid && leaveForm.get('leaveType')?.touched"
-                  class="p-error">Leave Type is required.</small>
-              </div>
-            </div>
-
-            <!-- Total Leaves -->
-            <div class="col-12 lg:col-6">
-              <div class="p-field">
-                <label for="totalLeaves">Total Leaves <span class="text-red-500">*</span></label>
-                <input pInputText formControlName="totalLeaves" type="number" [readonly]="true" />
-              </div>
-            </div>
-          </div>
-
-          <!-- Reason -->
-          <div class="col-12">
-            <div class="p-field">
-              <label for="reason">Reason <span class="text-red-500">*</span></label>
-              <textarea pInputTextarea formControlName="reason" rows="3"></textarea>
-              <small *ngIf="leaveForm.get('reason')?.invalid && leaveForm.get('reason')?.touched" class="p-error">
-                Reason is required.
-              </small>
-            </div>
-          </div>
-        </form>
-
-        <!-- Dialog Footer -->
-        <div class="p-dialog-footer flex justify-content-center gap-3 p-3">
-          <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
-          <p-button label="Save" icon="pi pi-check" (onClick)="saveLeaveRequest()"
-            [disabled]="!leaveForm.valid"></p-button>
-        </div>
       </p-dialog>
 
-      <!-- Table to display submitted leave requests -->
-      <div class="mt-3">
-        <p-table [value]="leaveRequests" [paginator]="true" [rows]="8" [scrollable]="true" responsiveLayout="scroll"
+      <div class="mt-3" style="position: relative;">
+        <p-table [value]="leaveRequests" [paginator]="showPaginator" [rows]="8" [scrollable]="true" responsiveLayout="scroll"
           class="responsive-table">
           <ng-template pTemplate="header">
             <tr>
@@ -101,9 +38,8 @@
           </ng-template>
         </p-table>
 
-        <!-- Loader Overlay for Table Body -->
         <div *ngIf="isLoading" class="table-loader-overlay">
-          <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
+          <app-loader [loading]="isLoading"></app-loader>
         </div>
       </div>
     </div>

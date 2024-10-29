@@ -1,7 +1,6 @@
 <p-toast></p-toast>
 <div class="container">
 
-  <!-- Loader Component -->
   <app-loader [loading]="loading"></app-loader>
 
   <!-- Punch In Dialog -->
@@ -18,7 +17,7 @@
   
 
   <!-- Attendance Records Table -->
-  <div *ngIf="!loading">
+  <div>
     <p-table [value]="attendanceRecords" class="mt-4">
       <ng-template pTemplate="header">
         <tr>
@@ -29,7 +28,7 @@
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-record>
-        <tr>
+        <tr *ngIf="!loading">
           <td>{{ record.date }}</td>
           <td>{{ record.checkIn }}</td>
           <td>{{ record.checkOut }}</td>
