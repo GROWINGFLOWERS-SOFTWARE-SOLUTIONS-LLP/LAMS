@@ -1,7 +1,12 @@
-
 <div class="container">
-  <full-calendar class="full-calendar" [options]="calendarOptions"></full-calendar>
+  <app-loader [loading]="isLoading"></app-loader>
+  <!-- Loader - Initially visible -->
+  <div *ngIf="isLoading" class="loader-wrapper">
+    <div class="loader"></div>
+  </div>
+
+  <!-- Full Calendar - Initially hidden, shown after loading completes -->
+  <div *ngIf="!isLoading">
+    <full-calendar class="full-calendar" [options]="calendarOptions"></full-calendar>
+  </div>
 </div>
-
-  
-

@@ -15,6 +15,7 @@ import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-attendance',
@@ -78,7 +79,7 @@ export class AttendanceComponent implements OnInit {
 
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
-
+   
     this.apiService.postAttendance(newRecord).subscribe(
       (response) => {
         console.log('Attendance record posted successfully:', response);
@@ -94,6 +95,7 @@ export class AttendanceComponent implements OnInit {
     this.displayPunchInDialog = false;
     sessionStorage.setItem('hasPunchedIn', 'true'); 
     this.router.navigate(['/dashboard']);
+    
   }
 
   checkout() {

@@ -1,16 +1,19 @@
+<p-toast></p-toast>
+
 <!-- Main container -->
+
 <div class="container flex align-items-center justify-content-center">
   <div class="main-container flex shadow-2 border-round" *ngIf="!loading">
-
+ 
     <!-- Left Container (Login Section) -->
     <div id="log-in" class="left-container flex flex-column align-items-center justify-content-around">
       <!-- Logo -->
       <img
         src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95"
         alt="Logo" class="mb-3">
-
+ 
       <h1 class="m-0 text-center">Let's log in</h1>
-
+ 
       <!-- Form is shown only when not loading -->
       <div class="w-full">
         <form class="signup-form flex flex-column align-items-center" [formGroup]="loginForm" (ngSubmit)="loginFun()">
@@ -21,22 +24,22 @@
             <div *ngIf="email.errors?.['required']">Email is required.</div>
             <div *ngIf="email.errors?.['email']">Email should be valid.</div>
           </small>
-
+ 
           <!-- Password Input with toggle icon -->
           <div class="password-wrapper mb-2" style="position: relative;">
             <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password"
               formControlName="password" class="p-inputtext p-component password-input" style="padding-right: 2rem;">
-
+ 
             <!-- Eye toggle icon -->
             <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="toggleShowPassword()"
               title="Toggle password visibility"
               style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
           </div>
-
+ 
           <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
             <div *ngIf="password.errors?.['required']">Password is required.</div>
           </small>
-
+ 
           <!-- Submit Button -->
           <button type="submit"
             class="login-link hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
@@ -47,11 +50,13 @@
         </form>
       </div>
     </div>
-
+ 
     <!-- Right Container (Image Section) -->
     <div class="right-container"></div>
   </div>
-
+ 
   <!-- Loader component, displayed when loading -->
   <app-loader [loading]="loading"></app-loader>
 </div>
+ 
+ 
