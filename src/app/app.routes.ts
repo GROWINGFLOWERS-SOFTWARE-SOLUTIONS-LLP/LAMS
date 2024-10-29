@@ -16,6 +16,7 @@ import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-ho
 import { RolesListComponent } from './Pages/Admin/roles-list/roles-list.component';
 
 
+
 export const routes: Routes = [
   {
     path: '',
@@ -43,7 +44,7 @@ export const routes: Routes = [
       { path: 'employeeprofile', component: AllEmployeeProfilesComponent },
       { path: 'managerRequest', component: RequestComponent },
       { path: 'manageHolidays', component: ManageHolidaysComponent },
-      { path: 'roleslist', component: RolesListComponent }
+      { path: 'roleslist', component : RolesListComponent }
 
     ]
   },

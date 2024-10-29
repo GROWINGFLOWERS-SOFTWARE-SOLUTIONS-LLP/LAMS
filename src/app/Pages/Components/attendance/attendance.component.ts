@@ -14,11 +14,25 @@ import { AuthService } from '../../../Core/Services/auth.service';
 import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
+import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
+
 @Component({
   selector: 'app-attendance',
-  standalone: true, 
-  imports: [DialogModule, ButtonModule, TableModule, CommonModule, MenubarModule, ImageModule, BadgeModule, AvatarModule, InputTextModule, RippleModule, ToastModule, ProgressSpinnerModule],
+  standalone: true,
+  imports: [
+    DialogModule,
+    ButtonModule,
+    TableModule,
+    CommonModule,
+    MenubarModule,
+    ImageModule,
+    BadgeModule,
+    AvatarModule,
+    InputTextModule,
+    RippleModule,
+    ToastModule,
+    LoaderComponent // Include the LoaderComponent here
+  ],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
   providers: [MessageService]
@@ -30,7 +44,7 @@ export class AttendanceComponent implements OnInit {
   Punch_in_time: string | null = null;
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
-  isLoading: boolean = true; // Add loading state
+  loading: boolean = true; // State to control loader visibility
 
   constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService,) {}
 
@@ -132,17 +146,19 @@ export class AttendanceComponent implements OnInit {
   }
 
   loadAttendanceRecords() {
-    this.isLoading = true; // Set loading to true before fetching data
-    setTimeout (() => {
+    this.loading = true; // Show loader when loading starts
     const savedRecords = localStorage.getItem('attendanceRecords');
     if (savedRecords) {
       this.attendanceRecords = JSON.parse(savedRecords);
-    } else { 
+    } else {
       console.log("Failed.");
     }
-    this.isLoading = false; // Set loading to false once data is fetched
-  }, 2000);
-} 
+
+    // Set a timeout to hide the loader after 2 seconds
+    setTimeout(() => {
+      this.loading = false; // Hide loader when loading completes
+    }, 2000); // 2000 milliseconds = 2 seconds
+  }
 
   checkPunchInStatus() {
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');

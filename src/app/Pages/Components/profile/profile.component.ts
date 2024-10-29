@@ -1,32 +1,38 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from '../../../Core/Services/api.service';
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
+import { CommonModule, DatePipe } from '@angular/common';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule,CardModule],
+  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe, LoaderComponent],  
   templateUrl: './profile.component.html',
-  styleUrl: './profile.component.css'
+  styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  employee: any;
+  loading: boolean = false;  // Add a loading state
 
-  constructor(private route:Router){}
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  employee = {
-    email: 'shubham.sonje@growingflowers-solutions.com',
-    phoneNumber: '9890628672',
-    // departmentId: '6', // Example ObjectId
-    joiningDate: new Date('2022-02-16'),
-    department: 'Engineering',
-    address: 'Nashik'
+  ngOnInit(): void {
+    this.loadUserProfile();
   }
 
-
-  updateProfile(){
-    this.route.navigateByUrl('profile-form');
+  loadUserProfile() {
+    this.loading = true;  // Start loading before fetching the data
+    setTimeout(() => {  // Simulate delay for fetching the data (Replace this with real API call)
+      this.employee = this.apiService.getLoggedInUser();
+      this.loading = false;  // Stop loading when data is fetched
+    }, 2000);
   }
 
+  updateProfile() {
+    this.router.navigateByUrl('profile-form');
+  }
 }

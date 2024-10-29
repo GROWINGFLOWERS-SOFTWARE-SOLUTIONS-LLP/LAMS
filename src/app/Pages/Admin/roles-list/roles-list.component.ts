@@ -9,9 +9,9 @@ import { TableModule } from 'primeng/table';
 import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Spinner module
-import { Manager } from '../../../Core/Interfaces/manager'; // Manager interface
-import { ApiService } from '../../../Core/Services/api.service'; // API service
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { Manager } from '../../../Core/Interfaces/manager';
+import { ApiService } from '../../../Core/Services/api.service';
 
 @Component({
   selector: 'app-roles-list',
@@ -26,51 +26,283 @@ import { ApiService } from '../../../Core/Services/api.service'; // API service
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    ProgressSpinnerModule, // Add the spinner module
+    ProgressSpinnerModule,
   ],
   templateUrl: './roles-list.component.html',
   styleUrls: ['./roles-list.component.css'],
   providers: [ConfirmationService, MessageService],
 })
 export class RolesListComponent implements OnInit {
-  managerForm: FormGroup; // Form for adding/editing managers
-  managers: any[] = []; // Manager list
-  selectedManagerId: string | null = null; // ID of selected manager (for editing)
-  showManagerList: boolean = false; // Toggle between form and list views
-  loading: boolean = false; // Spinner control for loading state
+  departmentForm: FormGroup;
+  departments: any[] = [];
+  selectedDepartmentId: string | null = null;
+  showDepartmentList: boolean = false;
+  loading: boolean = false; // Spinner control variable
+
+  roleForm: FormGroup;
+  roles: any[] = [];
+  selectedRoleId: string | null = null;
+  showRoleList: boolean = false;
+
+  managerForm: FormGroup;
+  managers: any[] = [];
+  selectedManagerId: string | null = null;
+  showManagerList: boolean = false;
 
   constructor(
     private fb: FormBuilder,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private apiService: ApiService,
-    private ngZone: NgZone
+    private apiService: ApiService
   ) {
+    this.departmentForm = this.fb.group({
+      departmentName: ['', Validators.required],
+    });
+
+    this.roleForm = this.fb.group({
+      roleName: ['', Validators.required],
+    });
+
     this.managerForm = this.fb.group({
-      managerName: ['', Validators.required], // Manager Name input with validation
+      managerName: ['', Validators.required],
     });
   }
 
   ngOnInit(): void {
-    this.loadManagers(); // Fetch managers when component initializes
+    this.loadRoles();
+    this.loadManagers();
+    this.loadDepartments();
   }
 
-  // Toggle between manager list and form
+  toggleRoleList(): void {
+    this.showRoleList = !this.showRoleList;
+  }
+
+  loadRoles(): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.apiService.getRoles().subscribe(
+        (data) => {
+          this.roles = data;
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to load roles',
+          });
+        }
+      );
+    }, 500); // Adjust the timeout duration as needed (500 ms in this case)
+  }
+
+  submitRole(): void {
+    if (this.roleForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    const roleData = {
+      id: this.selectedRoleId ?? new Date().getTime().toString(),
+      roleName: this.roleForm.value.roleName,
+    };
+
+    const roleObservable = this.selectedRoleId
+      ? this.apiService.updateRole(roleData)
+      : this.apiService.addRole(roleData);
+
+    roleObservable.subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: this.selectedRoleId ? 'Role Updated' : 'Role Added',
+          detail: this.selectedRoleId
+            ? 'Role details have been updated successfully.'
+            : 'New role has been added successfully.',
+        });
+        this.loadRoles();
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to ' + (this.selectedRoleId ? 'update' : 'add') + ' role',
+        });
+      }
+    );
+
+    this.resetRoleForm();
+  }
+
+  editRole(role: any): void {
+    this.selectedRoleId = role.id;
+    this.roleForm.patchValue({
+      roleName: role.roleName,
+    });
+    this.showRoleList = false;
+  }
+
+  deleteRole(roleId: string, event: Event): void {
+    this.loading = true;
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to delete this role?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteRole(roleId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Role Deleted',
+              detail: 'Role has been deleted successfully.',
+            });
+            this.loadRoles();
+            this.loading = false;
+          },
+          (error) => {
+            this.loading = false;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete role: ' + error.status + ' ' + error.message,
+            });
+          }
+        );
+      },
+    });
+  }
+
+  resetRoleForm(): void {
+    this.selectedRoleId = null;
+    this.roleForm.reset();
+    this.showRoleList = true;
+  }
+
+  toggleDepartmentList(): void {
+    this.showDepartmentList = !this.showDepartmentList;
+  }
+
+  loadDepartments(): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.apiService.getdepartments().subscribe(
+        (data) => {
+          this.departments = data;
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Failed to load departments',
+          });
+        }
+      );
+    }, 2000); // Adjust the timeout duration as needed
+  }
+  
+
+  onSubmit(): void {
+    if (this.departmentForm.invalid) {
+      return;
+    }
+    this.loading = true;
+    const departmentData = {
+      id: this.selectedDepartmentId ?? new Date().getTime().toString(),
+      departmentName: this.departmentForm.value.departmentName,
+    };
+
+    const departmentObservable = this.selectedDepartmentId
+      ? this.apiService.updateDepartments(departmentData)
+      : this.apiService.addDepartments(departmentData);
+
+    departmentObservable.subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: this.selectedDepartmentId ? 'Department Updated' : 'Department Added',
+          detail: this.selectedDepartmentId
+            ? 'Department details have been updated successfully.'
+            : 'New department has been added successfully.',
+        });
+        this.loadDepartments();
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to ' + (this.selectedDepartmentId ? 'update' : 'add') + ' department',
+        });
+      }
+    );
+
+    this.resetForm();
+  }
+
+  editDepartment(department: any): void {
+    this.selectedDepartmentId = department.id;
+    this.departmentForm.patchValue({
+      departmentName: department.departmentName,
+    });
+    this.showDepartmentList = false;
+  }
+
+  deleteDepartment(departmentId: string, event: Event): void {
+    this.loading = true;
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Are you sure you want to delete this department?',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.apiService.deleteDepartments(departmentId).subscribe(
+          () => {
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Department Deleted',
+              detail: 'Department has been deleted successfully.',
+            });
+            this.loadDepartments();
+            this.loading = false;
+          },
+          (error) => {
+            this.loading = false;
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: 'Failed to delete department: ' + error.status + ' ' + error.message,
+            });
+          }
+        );
+      },
+    });
+  }
+
+  resetForm(): void {
+    this.selectedDepartmentId = null;
+    this.departmentForm.reset();
+    this.showDepartmentList = true;
+  }
+
   toggleManagerList(): void {
     this.showManagerList = !this.showManagerList;
   }
 
-  // Fetch manager list from the API
   loadManagers(): void {
-    this.loading = true; // Show spinner while loading
+    this.loading = true;
     setTimeout(() => {
       this.apiService.getManagers().subscribe(
         (data) => {
-          this.managers = data; // Populate the manager list
-          this.loading = false; // Hide spinner
+          this.managers = data;
+          this.loading = false;
         },
         (error) => {
-          this.loading = false; // Hide spinner on error
+          this.loading = false;
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -78,74 +310,57 @@ export class RolesListComponent implements OnInit {
           });
         }
       );
-    }, 3000); // Simulated 3-second delay to showcase spinner
+    }, 500); // Adjust the timeout duration as needed
   }
-
-  // Handle form submission for adding or editing a manager
-  onSubmit(): void {
+  submitManager(): void {
     if (this.managerForm.invalid) {
-      return; // Do not proceed if form is invalid
+      return;
     }
-
+    this.loading = true;
     const managerData = {
-      id: this.selectedManagerId ?? new Date().getTime().toString(), // Generate new ID if creating a new manager
-      managerName: this.managerForm.value.managerName, // Get manager name from form
+      id: this.selectedManagerId ?? new Date().getTime().toString(),
+      managerName: this.managerForm.value.managerName,
     };
 
-    if (this.selectedManagerId) {
-      // Update an existing manager
-      this.apiService.updateManager(managerData).subscribe(
-        () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Manager Updated',
-            detail: 'Manager details have been updated successfully.',
-          });
-          this.loadManagers(); // Reload manager list after update
-        },
-        (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to update manager',
-          });
-        }
-      );
-    } else {
-      // Add a new manager
-      this.apiService.addManager(managerData).subscribe(
-        () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: 'Manager Added',
-            detail: 'New manager has been added successfully.',
-          });
-          this.loadManagers(); // Reload manager list after adding
-        },
-        (error) => {
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to add manager',
-          });
-        }
-      );
-    }
+    const managerObservable = this.selectedManagerId
+      ? this.apiService.updateManager(managerData)
+      : this.apiService.addManager(managerData);
 
-    this.resetForm(); // Clear form after submission
+    managerObservable.subscribe(
+      () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: this.selectedManagerId ? 'Manager Updated' : 'Manager Added',
+          detail: this.selectedManagerId
+            ? 'Manager details have been updated successfully.'
+            : 'New manager has been added successfully.',
+        });
+        this.loadManagers();
+        this.loading = false;
+      },
+      (error) => {
+        this.loading = false;
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to ' + (this.selectedManagerId ? 'update' : 'add') + ' manager',
+        });
+      }
+    );
+
+    this.resetManagerForm();
   }
 
-  // Edit a manager (populate the form with existing manager data)
   editManager(manager: any): void {
-    this.selectedManagerId = manager.id; // Set selected manager ID
+    this.selectedManagerId = manager.id;
     this.managerForm.patchValue({
-      managerName: manager.managerName, // Patch the form with manager's name
+      managerName: manager.managerName,
     });
-    this.showManagerList = false; // Switch to form view
+    this.showManagerList = false;
   }
 
-  // Delete a manager with confirmation
   deleteManager(managerId: string, event: Event): void {
+    this.loading = true;
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to delete this manager?',
@@ -158,27 +373,25 @@ export class RolesListComponent implements OnInit {
               summary: 'Manager Deleted',
               detail: 'Manager has been deleted successfully.',
             });
-            this.loadManagers(); // Reload manager list after deletion
+            this.loadManagers();
+            this.loading = false;
           },
-          (error: any) => {
-            console.error('Delete error:', error);
+          (error) => {
+            this.loading = false;
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
-              detail: 'Failed to delete manager',
+              detail: 'Failed to delete manager: ' + error.status + ' ' + error.message,
             });
           }
         );
       },
-      reject: () => {
-        // Action cancelled
-      },
     });
   }
 
-  // Reset the form after adding or editing a manager
-  resetForm(): void {
-    this.managerForm.reset(); // Clear form inputs
-    this.selectedManagerId = null; // Reset selected manager ID
+  resetManagerForm(): void {
+    this.selectedManagerId = null;
+    this.managerForm.reset();
+    this.showManagerList = true;
   }
 }

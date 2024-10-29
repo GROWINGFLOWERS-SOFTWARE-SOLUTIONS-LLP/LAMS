@@ -7,7 +7,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   standalone: true,
   imports: [ProgressSpinnerModule, CommonModule],
   templateUrl: './loader.component.html',
-  styleUrl: './loader.component.css'
+  styleUrls: ['./loader.component.css']
 })
 export class LoaderComponent {
   @Input() loading: boolean = false;  // Takes in the loading state from parent components

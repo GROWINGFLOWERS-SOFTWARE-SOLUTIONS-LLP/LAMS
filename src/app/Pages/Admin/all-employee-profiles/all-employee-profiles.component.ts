@@ -14,13 +14,16 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
+import { LoaderComponent } from '../../Components/loader/loader.component';
+
 
 @Component({
     selector: 'app-all-employee-profiles',
     templateUrl: './all-employee-profiles.component.html',
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
+    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule, 
+        LoaderComponent,ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
     providers: [MessageService, ConfirmationService]
 })
 export class AllEmployeeProfilesComponent implements OnInit {
