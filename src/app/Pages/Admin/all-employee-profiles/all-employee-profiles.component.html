@@ -6,9 +6,18 @@
     <div class="flex justify-content-end mb-4">
         <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()"></p-button>
     </div>
+<!-- Loading Spinner -->
+<!-- <div *ngIf="loading" class="flex justify-content-center my-4">
+    <p-progressSpinner [style]="{'width': '50px', 'height': '50px'}"></p-progressSpinner>
+</div> -->
 
-    <!-- Employee Table Section -->
-    <div class="flex-grow-1 overflow-auto p-4">
+<app-loader [loading]="loading"></app-loader>  <!-- Reusable loader component -->
+
+<!-- Other parts of your HTML -->
+
+
+    <!-- Employee Table (loading = false) -->
+    <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
         <div class="p-grid">
             <div class="p-col-12">
                 <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true"
@@ -66,120 +75,7 @@
                 <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()"
                     class="p-fluid">
                     <div class="formgrid grid">
-                        <!-- First Name and Last Name Fields -->
-                        <div class="field col-12 md:col-6">
-                            <label for="firstName" class="font-semibold text-gray-700">First Name</label>
-                            <input id="firstName" type="text" formControlName="firstName"
-                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                                placeholder="Enter first name" required pattern="[A-Za-z]+" />
-                            <div *ngIf="isFieldInvalid('firstName')" class="error-message text-red-600">
-                                First Name is required and must contain only letters.
-                            </div>
-                        </div>
-                        <div class="field col-12 md:col-6">
-                            <label for="lastName" class="font-semibold text-gray-700">Last Name</label>
-                            <input id="lastName" type="text" formControlName="lastName"
-                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                                placeholder="Enter last name" required pattern="[A-Za-z]+" />
-                            <div *ngIf="isFieldInvalid('lastName')" class="error-message text-red-600">
-                                Last Name is required and must contain only letters.
-                            </div>
-                        </div>
-
-                        <!-- Email and Password Fields -->
-                        <div class="field col-12 md:col-6">
-                            <label for="email" class="font-semibold text-gray-700">Email Address</label>
-                            <input id="email" type="email" formControlName="email"
-                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                                placeholder="Enter email address" required
-                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" />
-                            <div *ngIf="isFieldInvalid('email')" class="error-message text-red-600">
-                                Valid Email is required.
-                            </div>
-                        </div>
-
-                        <div class="field col-12 md:col-6">
-                            <label for="password" class="font-semibold text-gray-700">Password</label>
-                            <input id="password" type="password" formControlName="password"
-                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                                placeholder="Enter password" required
-                                pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}" />
-                            <div *ngIf="isFieldInvalid('password')" class="error-message text-red-600">
-                                Password must be at least 8 characters long, contain at least one uppercase letter, one
-                                lowercase letter, one digit, and one special character.
-                            </div>
-                        </div>
-
-                        <!-- Phone Number and Department -->
-                        <div class="field col-12 md:col-6">
-                            <label for="mobileNumber" class="font-semibold">Phone Number</label>
-                            <input id="mobileNumber" type="tel" formControlName="mobileNumber"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                placeholder="Enter phone number" required pattern="[0-9]{10}" />
-                            <div *ngIf="isFieldInvalid('mobileNumber')" class="error-message text-red-600">
-                                Phone Number is required and must be 10 digits.
-                            </div>
-                        </div>
-
-                        <div class="field col-12 md:col-6">
-                            <label for="department" class="font-semibold">Department</label>
-                            <select id="department" formControlName="department"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                                <option value="">Select Department</option>
-                                <option value="Engineering">Engineering</option>
-                                <option value="QA Testing">QA Testing</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Human Resources">Human Resources</option>
-                            </select>
-                            <div *ngIf="isFieldInvalid('department')" class="error-message text-red-600">
-                                Department is required.
-                            </div>
-                        </div>
-
-                        <!-- Manager and Role -->
-                        <div class="field col-12 md:col-6">
-                            <label for="manager" class="font-semibold">Manager</label>
-                            <input id="manager" type="text" formControlName="manager"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                placeholder="Enter Manager Name" />
-                            <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
-                                Manager Name is required.
-                            </div>
-                        </div>
-                        <div class="field col-12 md:col-6">
-                            <label for="role" class="font-semibold">Role</label>
-                            <select id="role" formControlName="role"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                                <option value="">Select Role</option>
-                                <option value="Manager">Manager</option>
-                                <option value="HR">HR</option>
-                                <option value="Admin">Admin</option>
-                                <option value="Employee">Employee</option>
-                                <option value="Tester">Tester</option>
-                            </select>
-                            <div *ngIf="isFieldInvalid('role')" class="error-message text-red-600">
-                                Role is required.
-                            </div>
-                        </div>
-
-                        <!-- Joining Date and Address -->
-                        <div class="field col-12 md:col-6">
-                            <label for="joiningDate" class="font-semibold">Joining Date</label>
-                            <input id="joiningDate" type="date" formControlName="joiningDate"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" />
-                            <div *ngIf="isFieldInvalid('joiningDate')" class="error-message text-red-600">
-                                Joining Date is required.
-                            </div>
-                        </div>
-                        <div class="field col-12 md:col-6">
-                            <label for="address" class="font-semibold">Address</label>
-                            <input id="address" type="text" formControlName="address"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
-                                placeholder="Enter address" />
-                            <div *ngIf="isFieldInvalid('address')" class="error-message text-red-600">
-                                Address is required.
-                            </div>
-                        </div>
+                        <!-- Employee form fields -->
                     </div>
 
                     <!-- Submit and Cancel Buttons -->
