@@ -2560,6 +2560,13 @@
       "checkIn": "11:21:03 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "31e7",
+      "date": "30/10/2024",
+      "checkIn": "2:41:02 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
@@ -2685,6 +2692,15 @@
       "startDate": "2024-10-22T18:30:00.000Z",
       "endDate": "2024-10-23T18:30:00.000Z",
       "reason": "viral inf",
+      "totalLeaves": 2,
+      "status": "Pending"
+    },
+    {
+      "id": "50ac",
+      "leaveType": "Paid Leave",
+      "startDate": "2024-10-30T18:30:00.000Z",
+      "endDate": "2024-10-31T18:30:00.000Z",
+      "reason": "xsx",
       "totalLeaves": 2,
       "status": "Pending"
     }
