@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {                                                                    
     this.loadUserProfile();
   }
 
