@@ -181,11 +181,7 @@ export class ApiService {
   }
 
 }
-<<<<<<< HEAD
- 
-=======
  
 
 
 
->>>>>>> cdd3e3b0585f8661ce924e8db6c4ed608c458f25
