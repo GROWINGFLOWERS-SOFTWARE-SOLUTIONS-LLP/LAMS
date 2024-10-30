@@ -15,6 +15,7 @@ import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'app-attendance',
@@ -38,7 +39,7 @@ import { LoaderComponent } from '../loader/loader.component'; // Import the Load
   providers: [MessageService]
 })
 export class AttendanceComponent implements OnInit {
-  displayPunchInDialog: boolean = false; // Initially false, so it doesn't show immediately
+  displayPunchInDialog: boolean = false;
   currentTime: string = '';
   attendance_date: string = '';
   Punch_in_time: string | null = null;
@@ -46,7 +47,7 @@ export class AttendanceComponent implements OnInit {
   hasPunchedIn: boolean = false;
   loading: boolean = true; // State to control loader visibility
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService) {}
+  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService,) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
@@ -78,7 +79,7 @@ export class AttendanceComponent implements OnInit {
 
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
-
+   
     this.apiService.postAttendance(newRecord).subscribe(
       (response) => {
         console.log('Attendance record posted successfully:', response);
@@ -94,6 +95,7 @@ export class AttendanceComponent implements OnInit {
     this.displayPunchInDialog = false;
     sessionStorage.setItem('hasPunchedIn', 'true'); 
     this.router.navigate(['/dashboard']);
+    
   }
 
   checkout() {

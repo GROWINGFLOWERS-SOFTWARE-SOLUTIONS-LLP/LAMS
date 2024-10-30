@@ -1,0 +1,11 @@
+/* manage-holidays.component.css */
+.custom-spinner {
+    display: block;
+    margin: auto;
+    position: absolute; /* Ensure it doesn't affect layout */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust position to center */
+    z-index: 1000; /* Ensure it's above other elements */
+  }
+  

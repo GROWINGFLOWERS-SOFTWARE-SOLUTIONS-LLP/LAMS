@@ -2,8 +2,8 @@
   <h2>Admin Attendance Records</h2>
 
   <!-- Reusable Loader -->
-  <app-loader [loading]="isLoading"></app-loader>  <!-- Reusable loader component -->
-
+  
+<app-loader [loading]="isLoading"></app-loader>  <!-- Reusable loader component -->
   <!-- Table Section -->
   <p-table *ngIf="!isLoading" [value]="record" class="mt-4">
     <ng-template pTemplate="header">
