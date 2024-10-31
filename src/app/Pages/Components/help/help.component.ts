@@ -26,7 +26,7 @@ export class HelpComponent {
   simulateLoading() {
     setTimeout(() => {
       this.loading = false; // Hide loader after 2 seconds
-    }, 1000); // Adjust time as needed
+    }, 2000); // Adjust time as needed
   }
 
   onTabSelect(event: boolean, index: number) {

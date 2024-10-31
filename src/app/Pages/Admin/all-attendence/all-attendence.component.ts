@@ -79,6 +79,6 @@ export class AllAttendenceComponent implements OnInit {
           console.error('Error fetching employees:', error);
         }
       );
-    }, 1000);  // Delay of 1 second
+    }, 2000);  // Delay of 1 second
   }
 }

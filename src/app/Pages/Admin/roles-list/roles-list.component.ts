@@ -310,7 +310,7 @@ export class RolesListComponent implements OnInit {
           });
         }
       );
-    }, 500); // Adjust the timeout duration as needed
+    }, 2000); // Adjust the timeout duration as needed
   }
   submitManager(): void {
     if (this.managerForm.invalid) {

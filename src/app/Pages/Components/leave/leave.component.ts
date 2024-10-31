@@ -91,7 +91,7 @@ export class LeaveComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load leave requests.' });
         }
       );
-    }, 3000);
+    }, 2000);
   }
 
   showDialog(): void {
@@ -100,13 +100,16 @@ export class LeaveComponent implements OnInit {
 
   saveLeaveRequest(): void {
     if (this.leaveForm.valid) {
-      const leaveRequest: Leave = this.leaveForm.getRawValue();
-      leaveRequest.status = 'Pending';
-
+      const leaveRequest: Leave = this.leaveForm.getRawValue();  // Get form values including disabled fields
+      leaveRequest.status = 'Pending';  // Set status to "Pending"
+ 
+      // Send leave request to the API
       this.apiService.submitLeaveRequest(leaveRequest).subscribe(() => {
-        this.leaveRequests.push({ ...leaveRequest });
-        this.resetLeaveRequestForm();
-        this.visible = false;
+        this.leaveRequests.push({ ...leaveRequest });  // Add the new leave request to the list
+        this.resetLeaveRequestForm();  // Reset the form
+        this.visible = false;  // Hide the dialog
+ 
+        // Show success toast
         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Leave request saved successfully.' });
       });
     } else {
@@ -114,21 +117,23 @@ export class LeaveComponent implements OnInit {
       this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Please fill out all required fields.' });
     }
   }
-
+ 
+  // Calculate the total number of leave days based on the start and end dates
   calculateTotalLeaves(): void {
     const startDate = this.leaveForm.get('startDate')?.value;
     const endDate = this.leaveForm.get('endDate')?.value;
-
+ 
     if (startDate && endDate) {
       const diffInMs = new Date(endDate).getTime() - new Date(startDate).getTime();
-      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;
+      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;  // Include both start and end date
       const totalLeaves = diffInDays > 0 ? diffInDays : 0;
-      this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);
+      this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);  // Update total leaves
     } else {
-      this.leaveForm.get('totalLeaves')?.setValue(0);
+      this.leaveForm.get('totalLeaves')?.setValue(0);  // Reset total leaves if dates are invalid
     }
   }
-
+ 
+  // Reset the form after a leave request is saved or cancelled
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({
       leaveType: '',

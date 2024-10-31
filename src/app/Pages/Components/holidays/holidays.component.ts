@@ -21,7 +21,7 @@ export class HolidaysComponent implements OnInit {
   isMobile: boolean = false;
   fixedEvents: any[] = [];
   isLoading: boolean = true; // Added loader flag
-  loadingTime: number = 3; // Fetch delay of 3 seconds
+  loadingTime: number = 2; 
 
   private startDate: Date = new Date('2024-01-01');
   private endDate: Date = new Date('2030-12-31');
