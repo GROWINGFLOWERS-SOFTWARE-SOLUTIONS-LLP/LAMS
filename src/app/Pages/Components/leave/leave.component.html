@@ -6,7 +6,7 @@
       <div class="flex justify-content-end mb-3">
         <p-button label="Leave Application Form" (onClick)="showDialog()"></p-button>
       </div>
- 
+
       <!-- Dialog for the leave application form -->
       <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false"
         [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
@@ -21,7 +21,7 @@
                 Start Date is required.
               </small>
             </div>
- 
+
             <!-- End Date -->
             <div class="field col-12 lg:col-6">
               <label for="endDate">End Date <span class="text-red-500">*</span></label>
@@ -31,7 +31,7 @@
                 End Date is required.
               </small>
             </div>
- 
+
             <!-- Leave Type -->
             <div class="col-12 lg:col-6">
               <div class="p-field">
@@ -42,7 +42,7 @@
                   class="p-error">Leave Type is required.</small>
               </div>
             </div>
- 
+
             <!-- Total Leaves -->
             <div class="col-12 lg:col-6">
               <div class="p-field">
@@ -51,7 +51,7 @@
               </div>
             </div>
           </div>
-         
+          
           <!-- Reason -->
           <div class="col-12">
             <div class="p-field">
@@ -63,7 +63,7 @@
             </div>
           </div>
         </form>
- 
+
         <!-- Dialog Footer -->
         <div class="p-dialog-footer flex justify-content-center gap-3 p-3">
           <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
