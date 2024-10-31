@@ -110,6 +110,19 @@
       "joiningDate": "2024-01-15",
       "address": "Pune",
       "id": "ad3c"
+    },
+    {
+      "id": "c0e0",
+      "firstName": "Zaid",
+      "lastName": "Saboowala",
+      "email": "zaid@gfss.com",
+      "password": "Zaid@123",
+      "mobileNumber": "1561651651",
+      "department": "Engineering",
+      "manager": "Kshitija",
+      "role": "Employee",
+      "joiningDate": "2024-10-11",
+      "address": "Mumbai"
     }
   ],
   "managers": [
@@ -2565,6 +2578,69 @@
       "id": "31e7",
       "date": "30/10/2024",
       "checkIn": "2:41:02 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5dca",
+      "date": "30/10/2024",
+      "checkIn": "2:56:31 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "4549",
+      "date": "30/10/2024",
+      "checkIn": "2:56:31 PM",
+      "checkOut": "2:59:14 PM",
+      "break": "0h 2m 43s"
+    },
+    {
+      "id": "0d0c",
+      "date": "30/10/2024",
+      "checkIn": "2:56:31 PM",
+      "checkOut": "2:59:14 PM",
+      "break": "0h 2m 43s"
+    },
+    {
+      "id": "6ab4",
+      "date": "30/10/2024",
+      "checkIn": "3:00:54 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "ae74",
+      "date": "30/10/2024",
+      "checkIn": "3:00:54 PM",
+      "checkOut": "10:17:27 AM",
+      "break": "19h 16m 33s"
+    },
+    {
+      "id": "26f9",
+      "date": "30/10/2024",
+      "checkIn": "3:00:54 PM",
+      "checkOut": "10:17:27 AM",
+      "break": "19h 16m 33s"
+    },
+    {
+      "id": "127e",
+      "date": "31/10/2024",
+      "checkIn": "10:22:32 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "eb3b",
+      "date": "31/10/2024",
+      "checkIn": "10:22:32 AM",
+      "checkOut": "10:22:39 AM",
+      "break": "0h 0m 7s"
+    },
+    {
+      "id": "2b44",
+      "date": "31/10/2024",
+      "checkIn": "10:38:13 AM",
       "checkOut": "",
       "break": ""
     }
