@@ -52,7 +52,7 @@ export class RequestComponent implements OnInit {
     // Simulate loading for 1 second
     setTimeout(() => {
       this.isLoading = false;  // Stop loader after 1 second
-    }, 1000);
+    }, 2000);
   }
 
   approveLeave(request: any) {

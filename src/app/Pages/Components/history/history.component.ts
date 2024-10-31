@@ -19,6 +19,6 @@ export class HistoryComponent {
   loadData() {
     setTimeout(() => {
       this.loading = false; 
-    }, 1000);  // Simulate 1 second delay
+    }, 2000);  // Simulate 1 second delay
   }
 }
