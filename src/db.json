@@ -23,8 +23,8 @@
     {
       "firstName": "Prajakta",
       "lastName": "Badhan",
-      "email": "prajakta@gfss.com",
-      "password": "Prajakta@123",
+      "email": "prajakta24@gfss.com",
+      "password": "Prajakta@890",
       "mobileNumber": "9200378962",
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
@@ -34,7 +34,6 @@
       "id": "56d1"
     },
     {
-      "id": "4faf",
       "firstName": "Kshitija",
       "lastName": "Gaikwad",
       "email": "kshitija@gfss.com",
@@ -44,7 +43,8 @@
       "manager": "Rupesh Shirude",
       "role": "Developer",
       "joiningDate": "2024-06-19",
-      "address": "Pune"
+      "address": "Pune",
+      "id": "4faf"
     },
     {
       "id": "a78a",
@@ -2601,6 +2601,20 @@
       "checkIn": "2:41:02 PM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "f9d4",
+      "date": "31/10/2024",
+      "checkIn": "9:43:01 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "16a0",
+      "date": "31/10/2024",
+      "checkIn": "9:43:01 AM",
+      "checkOut": "9:43:57 AM",
+      "break": "0h 0m 56s"
     }
   ],
   "absent": [
