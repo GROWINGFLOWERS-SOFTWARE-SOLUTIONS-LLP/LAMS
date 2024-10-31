@@ -53,7 +53,7 @@ export class ManageHolidaysComponent implements OnInit {
     // Simulate an API call or delay to fetch holidays
     setTimeout(() => {
       this.loadHolidays(); // Load the holidays list after a delay
-    }, 3000); // Simulating a 3-second delay
+    }, 2000); // Simulating a 3-second delay
   }
 
   // Method to load holidays list and hide the spinner

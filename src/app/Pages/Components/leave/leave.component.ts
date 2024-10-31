@@ -91,7 +91,7 @@ export class LeaveComponent implements OnInit {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load leave requests.' });
         }
       );
-    }, 3000);
+    }, 2000);
   }
 
   showDialog(): void {
