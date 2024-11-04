@@ -159,7 +159,7 @@ export class AttendanceComponent implements OnInit {
     // Set a timeout to hide the loader after 2 seconds
     setTimeout(() => {
       this.loading = false; // Hide loader when loading completes
-    }, 2000); // 2000 milliseconds = 2 seconds
+    }, 1500); // 2000 milliseconds = 2 seconds
   }
 
   checkPunchInStatus() {
