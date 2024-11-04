@@ -109,22 +109,6 @@
       "role": "Employee",
       "joiningDate": "2024-01-15",
       "address": "Pune",
-<<<<<<< HEAD
-      "id": "ad3c"
-    },
-    {
-      "id": "c0e0",
-      "firstName": "Zaid",
-      "lastName": "Saboowala",
-      "email": "zaid@gfss.com",
-      "password": "Zaid@123",
-      "mobileNumber": "1561651651",
-      "department": "Engineering",
-      "manager": "Kshitija",
-      "role": "Employee",
-      "joiningDate": "2024-10-11",
-      "address": "Mumbai"
-=======
       "id": "ffee"
     },
     {
@@ -139,7 +123,6 @@
       "joiningDate": "2024-01-08",
       "address": "Pune",
       "id": "5551"
->>>>>>> 967f1b0fdb7680ce28b09fd599b0f8efc094fb63
     }
   ],
   "managers": [
@@ -1913,13 +1896,6 @@
       "break": "0h 0m 56s"
     },
     {
-<<<<<<< HEAD
-      "id": "2465",
-      "date": "04/11/2024",
-      "checkIn": "10:30:16 AM",
-      "checkOut": "",
-      "break": ""
-=======
       "id": "507b",
       "date": "31/10/2024",
       "checkIn": "11:03:34 AM",
@@ -1932,7 +1908,6 @@
       "checkIn": "11:03:34 AM",
       "checkOut": "11:04:15 AM",
       "break": "0h 0m 41s"
->>>>>>> 967f1b0fdb7680ce28b09fd599b0f8efc094fb63
     }
   ],
   "absent": [
