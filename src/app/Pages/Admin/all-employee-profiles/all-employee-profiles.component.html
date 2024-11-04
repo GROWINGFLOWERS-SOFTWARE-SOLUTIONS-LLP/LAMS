@@ -6,14 +6,11 @@
     <div class="flex justify-content-end mb-4">
         <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()"></p-button>
     </div>
-<!-- Loading Spinner -->
-<!-- <div *ngIf="loading" class="flex justify-content-center my-4">
-    <p-progressSpinner [style]="{'width': '50px', 'height': '50px'}"></p-progressSpinner>
-</div> -->
 
-<app-loader [loading]="loading"></app-loader>  <!-- Reusable loader component -->
 
-<!-- Other parts of your HTML -->
+    <app-loader [loading]="loading"></app-loader> <!-- Reusable loader component -->
+
+    <!-- Other parts of your HTML -->
 
 
     <!-- Employee Table (loading = false) -->

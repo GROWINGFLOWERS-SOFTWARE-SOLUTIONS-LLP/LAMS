@@ -30,8 +30,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     employees: any[] = [];
     employeeForm: FormGroup;
     showDialog: boolean = false;
-    isEditing: boolean = true;
-    isEditingProfile: boolean = false;
+    isEditing: boolean = false;
     selectedEmployeeId: number | null = null;
     loading: boolean = false; // Add loading property
 
