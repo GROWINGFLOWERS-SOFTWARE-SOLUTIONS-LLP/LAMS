@@ -23,15 +23,9 @@
     {
       "firstName": "Prajakta",
       "lastName": "Badhan",
-<<<<<<< HEAD
-      "email": "prajakta24@gfss.com",
-      "password": "Prajakta@123",
-      "mobileNumber": "9270069872",
-=======
       "email": "prajakta11@gfss.com",
       "password": "Prajakta@890",
       "mobileNumber": "9200378962",
->>>>>>> 967f1b0fdb7680ce28b09fd599b0f8efc094fb63
       "department": "Engineering",
       "manager": "Kshitija Gaikwad",
       "role": "Employee",
@@ -115,22 +109,6 @@
       "role": "Employee",
       "joiningDate": "2024-01-15",
       "address": "Pune",
-<<<<<<< HEAD
-      "id": "ad3c"
-    },
-    {
-      "id": "c0e0",
-      "firstName": "Zaid",
-      "lastName": "Saboowala",
-      "email": "zaid@gfss.com",
-      "password": "Zaid@123",
-      "mobileNumber": "1561651651",
-      "department": "Engineering",
-      "manager": "Kshitija",
-      "role": "Employee",
-      "joiningDate": "2024-10-11",
-      "address": "Mumbai"
-=======
       "id": "ffee"
     },
     {
@@ -145,7 +123,6 @@
       "joiningDate": "2024-01-08",
       "address": "Pune",
       "id": "5551"
->>>>>>> 967f1b0fdb7680ce28b09fd599b0f8efc094fb63
     }
   ],
   "managers": [
@@ -1877,34 +1854,6 @@
       "break": "0h 9m 19s"
     },
     {
-<<<<<<< HEAD
-      "id": "2725",
-      "date": "29/10/2024",
-      "checkIn": "10:15:55 AM",
-      "checkOut": "10:32:07 AM",
-      "break": "0h 16m 12s"
-    },
-    {
-      "id": "01ec",
-      "date": "29/10/2024",
-      "checkIn": "11:01:07 AM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "e9c0",
-      "date": "29/10/2024",
-      "checkIn": "11:21:03 AM",
-      "checkOut": "",
-      "break": ""
-    },
-    {
-      "id": "05a2",
-      "date": "04/11/2024",
-      "checkIn": "9:59:15 AM",
-      "checkOut": "",
-      "break": ""
-=======
       "id": "8729",
       "date": "30/10/2024",
       "checkIn": "3:18:02 PM",
@@ -1938,7 +1887,6 @@
       "checkIn": "11:03:34 AM",
       "checkOut": "11:04:15 AM",
       "break": "0h 0m 41s"
->>>>>>> 967f1b0fdb7680ce28b09fd599b0f8efc094fb63
     }
   ],
   "absent": [
