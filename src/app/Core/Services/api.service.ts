@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { Employee } from '../Interfaces/employee';
 
 @Injectable({
@@ -11,8 +11,17 @@ export class ApiService {
   apiUrl: string = "http://localhost:3000";
 
   private loggedInUser: any = null;
+  private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
+  loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    // Check local storage for logged-in user on service initialization
+    const storedUser = localStorage.getItem('users');
+    if (storedUser) {
+      this.loggedInUser = JSON.parse(storedUser);
+      this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
+    }
+  }
 
   loginValidation(data: any) {
     return this.http.post(this.apiUrl + "/login", data);
@@ -112,17 +121,20 @@ export class ApiService {
 
   // Get the logged-in user details
   getLoggedInUser() {
-    if (!this.loggedInUser) {
-      const user = localStorage.getItem('users');
-      this.loggedInUser = user ? JSON.parse(user) : null;
-    }
     return this.loggedInUser;
+  }
+
+  setLoggedInUser(user: any) {
+    this.loggedInUser = user;
+    this.loggedInUserSubject.next(user); // Emit updated user data
+    localStorage.setItem('users', JSON.stringify(user));
   }
 
   // Simulate logout
   logout() {
     this.loggedInUser = null;
-    localStorage.removeItem('loggedInUser');
+    this.loggedInUserSubject.next(null); // Emit null to indicate logout
+    localStorage.removeItem('users');
   }
 
   // ApiService for Manager
