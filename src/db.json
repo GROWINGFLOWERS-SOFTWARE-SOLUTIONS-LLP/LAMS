@@ -110,6 +110,19 @@
       "joiningDate": "2024-01-15",
       "address": "Pune",
       "id": "ad3c"
+    },
+    {
+      "firstName": "Shweta",
+      "lastName": "Sonje",
+      "email": "shweta@gfss.com",
+      "password": "Shweta@123",
+      "mobileNumber": "9856784329",
+      "department": "Engineering",
+      "manager": "Abhishek Joshi",
+      "role": "Employee",
+      "joiningDate": "2024-01-5",
+      "address": "Pune",
+      "id": "ad3D"
     }
   ],
   "managers": [
@@ -2457,24 +2470,13 @@
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "55eb",
-      "date": "22/10/2024",
-      "checkIn": "11:25:46 PM",
-=======
       "id": "b731",
       "date": "25/10/2024",
       "checkIn": "10:09:28 AM",
->>>>>>> 06c7cd18312939b13deff4ef5f129dad305d8f38
       "checkOut": "",
       "break": ""
     },
     {
-<<<<<<< HEAD
-      "id": "7a11",
-      "date": "22/10/2024",
-      "checkIn": "11:33:56 PM",
-=======
       "id": "4988",
       "date": "25/10/2024",
       "checkIn": "11:09:24 AM",
@@ -2534,7 +2536,34 @@
       "id": "6e31",
       "date": "27/10/2024",
       "checkIn": "2:58:03 PM",
->>>>>>> 06c7cd18312939b13deff4ef5f129dad305d8f38
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "24d4",
+      "date": "28/10/2024",
+      "checkIn": "10:49:16 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "9f4e",
+      "date": "05/11/2024",
+      "checkIn": "9:17:07 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2f19",
+      "date": "05/11/2024",
+      "checkIn": "9:17:07 AM",
+      "checkOut": "9:17:15 AM",
+      "break": "0h 0m 8s"
+    },
+    {
+      "id": "0507",
+      "date": "05/11/2024",
+      "checkIn": "9:17:27 AM",
       "checkOut": "",
       "break": ""
     }
