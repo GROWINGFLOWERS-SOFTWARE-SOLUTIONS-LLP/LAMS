@@ -2608,6 +2608,13 @@
       "checkIn": "11:12:30 AM",
       "checkOut": "11:12:48 AM",
       "break": "0h 0m 18s"
+    },
+    {
+      "id": "a202",
+      "date": "05/11/2024",
+      "checkIn": "11:28:34 AM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [

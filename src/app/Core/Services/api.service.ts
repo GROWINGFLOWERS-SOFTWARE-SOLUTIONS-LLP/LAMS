@@ -13,7 +13,6 @@ export class ApiService {
   private loggedInUser: any = null;
   private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
   loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
- 
   constructor(private http: HttpClient) {
     // Check local storage for logged-in user on service initialization
     const storedUser = localStorage.getItem('users');
@@ -22,7 +21,6 @@ export class ApiService {
       this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
     }
   }
- 
   loginValidation(data: any) {
     return this.http.post(this.apiUrl + "/login", data);
   }
@@ -123,13 +121,11 @@ export class ApiService {
   getLoggedInUser() {
     return this.loggedInUser;
   }
- 
   setLoggedInUser(user: any) {
     this.loggedInUser = user;
     this.loggedInUserSubject.next(user); // Emit updated user data
     localStorage.setItem('users', JSON.stringify(user));
   }
- 
   // Simulate logout
   logout() {
     this.loggedInUser = null;

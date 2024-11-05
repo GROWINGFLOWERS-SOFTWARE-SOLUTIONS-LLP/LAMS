@@ -12,7 +12,6 @@ import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
- 
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -32,7 +31,6 @@ import { ToastModule } from 'primeng/toast';
   styleUrls: ['./login.component.css'],
   providers: [MessageService] // Provide MessageService here
 })
- 
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
@@ -78,7 +76,7 @@ export class LoginComponent implements OnInit {
           );
  
           if (users) {
-            this.apiService.setLoggedInUser(users);
+            this.apiService.setLoggedInUser(users); 
             this.roleBasedRouting(users);
             this.messageService.add({
               severity: 'success',
