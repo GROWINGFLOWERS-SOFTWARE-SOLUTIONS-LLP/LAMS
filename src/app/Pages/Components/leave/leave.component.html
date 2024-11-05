@@ -10,7 +10,6 @@
       <!-- Dialog for the leave application form -->
       <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false"
         [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <!-- Form for leave application -->
         <form [formGroup]="leaveForm">
           <div class="p-fluid grid">
             <!-- Start Date -->
@@ -52,7 +51,7 @@
               </div>
             </div>
           </div>
-
+          
           <!-- Reason -->
           <div class="col-12">
             <div class="p-field">
@@ -73,9 +72,8 @@
         </div>
       </p-dialog>
 
-      <!-- Table to display submitted leave requests -->
-      <div class="mt-3">
-        <p-table [value]="leaveRequests" [paginator]="true" [rows]="8" [scrollable]="true" responsiveLayout="scroll"
+      <div class="mt-3" style="position: relative;">
+        <p-table [value]="leaveRequests" [paginator]="showPaginator" [rows]="8" [scrollable]="true" responsiveLayout="scroll"
           class="responsive-table">
           <ng-template pTemplate="header">
             <tr>
@@ -101,9 +99,8 @@
           </ng-template>
         </p-table>
 
-        <!-- Loader Overlay for Table Body -->
         <div *ngIf="isLoading" class="table-loader-overlay">
-          <i class="pi pi-spin pi-spinner" style="font-size: 3rem"></i>
+          <app-loader [loading]="isLoading"></app-loader>
         </div>
       </div>
     </div>

@@ -124,16 +124,14 @@ export class LoginComponent implements OnInit {
   roleBasedRouting(user: any) {
     if (user && user.role) {
       if (user.role === 'Admin') {
-        this.router.navigate(['/employeeprofile']);
+        this.router.navigate(['/dashboard']);
       } else if (user.role === 'Employee') {
         this.router.navigate(['/attendance']);
       } else if (user.role === 'Manager') {
-        this.router.navigate(['/managerRequest']);
+        this.router.navigate(['/dashboard']);
       } else {
         this.router.navigate(['/login']);
       }
-    } else {
-      this.router.navigate(['/login']);
     }
   }
 }
