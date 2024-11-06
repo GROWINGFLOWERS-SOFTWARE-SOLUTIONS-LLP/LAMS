@@ -119,17 +119,7 @@
   border: none;
 }
  
-/* Style for the "!" icon */
-.toggle-password-icon {
-  position: absolute;
-  right: 15px;
-  top: 39%;
-  transform: translateY(-50%);
-  font-size: 1.5rem;
-  cursor: pointer;
-  color: #444;
-  user-select: none;
-}
+
  
 .toggle-password-icon:hover {
   color: black; 

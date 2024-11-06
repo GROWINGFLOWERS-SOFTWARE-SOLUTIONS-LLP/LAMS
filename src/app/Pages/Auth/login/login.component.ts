@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
   }
  
   loginFun() {
-    this.loading = true;
+    this.loading = false;
     this.cdr.detectChanges();
  
     // Simulate 2-second delay for loader (whether login is successful or not)
