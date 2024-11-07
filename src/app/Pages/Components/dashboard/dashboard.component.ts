@@ -44,7 +44,8 @@ export class DashboardComponent implements OnInit {
         if (loggedInUser) {
             this.loggedInUserName = `${loggedInUser.firstName} ${loggedInUser.lastName}`;
         }
-    }
+    };
+
 
     private loadTotalEmployees(): Promise<void> {
         return new Promise(resolve => {
