@@ -176,17 +176,17 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/department`, department);
   }
  
- 
   updateDepartments(department: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
   }
  
-  deleteDepartments(departmentId: string): Observable<void> {
+  deleteDepartments(departmentId: string): Observable<void> { 
     return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
   }
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
+
  
 }
  
