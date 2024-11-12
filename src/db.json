@@ -129,6 +129,10 @@
     {
       "id": "2",
       "managerName": "Rupesh Shirode"
+    },
+    {
+      "id": "1731387916831",
+      "managerName": "Abhishek Joshi"
     }
   ],
   "department": [
@@ -139,6 +143,10 @@
     {
       "id": "1729573370700",
       "departmentName": "Account"
+    },
+    {
+      "id": "1731321388381",
+      "departmentName": "Engineering"
     }
   ],
   "roles": [
@@ -153,6 +161,16 @@
     {
       "id": "3",
       "roleName": "Employee"
+    }
+  ],
+  "projects": [
+    {
+      "id": "1",
+      "projectName": "Demo Project"
+    },
+    {
+      "id": "1731327555588",
+      "projectName": "LAMS"
     }
   ],
   "attendance": [
@@ -2617,9 +2635,15 @@
       "break": ""
     },
     {
+<<<<<<< HEAD
+      "id": "ec83",
+      "date": "07/11/2024",
+      "checkIn": "10:48:19 AM",
+=======
       "id": "a1c9",
       "date": "07/11/2024",
       "checkIn": "10:46:57 AM",
+>>>>>>> 8a3a0419833fa58948244f99f567c0af2ee96e6f
       "checkOut": "",
       "break": ""
     }

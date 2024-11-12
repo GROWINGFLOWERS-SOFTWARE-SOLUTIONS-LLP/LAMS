@@ -176,7 +176,6 @@ export class ApiService {
     return this.http.post(`${this.apiUrl}/department`, department);
   }
  
- 
   updateDepartments(department: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
   }
@@ -186,6 +185,25 @@ export class ApiService {
   }
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
+  }
+
+
+
+  
+  getProjects(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/projects`);
+  }
+
+  addProject(project: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/projects`, project);
+  }
+
+  updateProject(project: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/projects/${project.id}`, project);
+  }
+
+  deleteProject(projectId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
   }
  
 }
