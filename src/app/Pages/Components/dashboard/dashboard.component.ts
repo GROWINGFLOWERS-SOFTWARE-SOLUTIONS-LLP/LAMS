@@ -3,11 +3,12 @@ import { CardModule } from 'primeng/card';
 import { ApiService } from '../../../Core/Services/api.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CardModule, ProgressSpinnerModule, CommonModule],
+    imports: [CardModule, ProgressSpinnerModule, CommonModule, DialogModule],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -19,22 +20,24 @@ export class DashboardComponent implements OnInit {
     totalAttendance!: number;
     absent!: number;
     leavesTaken!: number;
-    isLoading = true; // Loader state
+    isLoading = true;
+    projects: any[] = [];
+    activeProjectsCount = 0;
+    selectedProject: any = null; // For project details modal
+    isProjectListVisible = false;
 
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
-        // Show loader initially and start data loading
         this.isLoading = true;
 
-        // Start loading all data
         Promise.all([
             this.loadTotalEmployees(),
             this.loadTotalAttendance(),
             this.loadTotalAbsent(),
-            this.loadLeaveData()
+            this.loadLeaveData(),
+            this.loadProjects()
         ]).then(() => {
-            // Set a 2-second timer before hiding the loader
             setTimeout(() => {
                 this.isLoading = false;
             }, 2000);
@@ -44,8 +47,7 @@ export class DashboardComponent implements OnInit {
         if (loggedInUser) {
             this.loggedInUserName = `${loggedInUser.firstName} ${loggedInUser.lastName}`;
         }
-    };
-
+    }
 
     private loadTotalEmployees(): Promise<void> {
         return new Promise(resolve => {
@@ -88,4 +90,23 @@ export class DashboardComponent implements OnInit {
     private calculateRemainingLeaves(): void {
         this.remainingLeaves = this.totalLeaves - this.leavesTaken;
     }
+
+    private loadProjects(): Promise<void> {
+        return new Promise(resolve => {
+            this.apiService.getProjects().subscribe((projects: any[]) => {
+                this.projects = projects;
+                this.activeProjectsCount = projects.length;
+                resolve();
+            });
+        });
+    }
+
+    // Show details of the selected project
+    showProjectDetails(project: any): void {
+        this.selectedProject = project;
+    }
+
+    showProjectList() {
+        this.isProjectListVisible = true;
+      }
 }
