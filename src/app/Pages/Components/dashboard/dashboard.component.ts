@@ -11,7 +11,7 @@ import { ButtonModule } from 'primeng/button';
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule], 
+    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -28,9 +28,9 @@ export class DashboardComponent implements OnInit {
     activeProjectsCount = 0;
     selectedProject: any = null;
     isProjectListVisible = false;
-    selectedEmployee: any = { employee: null, role: '', manager: null }; // Initialize selectedEmployee
-    employees: any[] = []; // Available employees for assignment
-    managers: any[] = [];  // List of managers
+    selectedEmployee: any = { employee: null, role: '', manager: null }; 
+    employees: any[] = []; 
+    managers: any[] = [];
 
     constructor(private apiService: ApiService) {}
 
@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
             this.loadLeaveData(),
             this.loadProjects(),
             this.loadEmployees(),
-            this.loadManagers() // Load managers
+            this.loadManagers()
         ]).then(() => {
             setTimeout(() => {
                 this.isLoading = false;
@@ -114,7 +114,7 @@ export class DashboardComponent implements OnInit {
             this.apiService.getEmployee().subscribe((employees: any[]) => {
                 this.employees = employees.map(emp => ({
                     ...emp,
-                    fullName: `${emp.firstName} ${emp.lastName}`  // Combine first and last name
+                    fullName: `${emp.firstName} ${emp.lastName}`
                 }));
                 resolve();
             });
@@ -129,15 +129,16 @@ export class DashboardComponent implements OnInit {
     }
 
     showProjectDetails(project: any): void {
-        this.selectedProject = { ...project, assignedEmployees: [] }; 
+        this.selectedProject = { ...project, assignedEmployees: [] };
     }
 
-    showProjectList() {
+    // Method to show the "Assign Project" form
+    showAssignProjectForm(): void {
         this.isProjectListVisible = true;
     }
 
     assignProjectToEmployee() {
-        console.log('Assigned Employees:', this.selectedEmployee); 
-        // Logic to update the project assignments
+        console.log('Assigned Employees:', this.selectedEmployee);
+        this.isProjectListVisible = false;
     }
 }
