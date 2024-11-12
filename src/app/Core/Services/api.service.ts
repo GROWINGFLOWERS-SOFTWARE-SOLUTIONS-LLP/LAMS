@@ -187,8 +187,6 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
 
-
-
   
   getProjects(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
