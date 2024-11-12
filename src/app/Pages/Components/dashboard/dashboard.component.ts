@@ -7,11 +7,12 @@ import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule],
+    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule,TableModule],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -129,7 +130,8 @@ export class DashboardComponent implements OnInit {
     }
 
     showProjectDetails(project: any): void {
-        this.selectedProject = { ...project, assignedEmployees: [] };
+        console.log(project);
+        this.selectedProject = project;
     }
 
     // Method to show the "Assign Project" form

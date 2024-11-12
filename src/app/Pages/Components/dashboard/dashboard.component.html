@@ -43,11 +43,8 @@
                 <div class="card max-w-22rem shadow-3">
                     <p-card header="Projects">
                         <div class="flex justify-content-between">
-                            <p class="m-0">{{ activeProjectsCount }} Active Projects</p>
+                            <p (click)="showProjectDetails(projects)" class="m-0">{{ activeProjectsCount }} Active Projects</p>
                             <i class="pi pi-chart-pie" style="color: #ffd952; font-size:45px;"></i>
-                        </div>
-                        <div class="mt-3">
-                            <p-button label="Details" icon="pi pi-info-circle" (click)="showProjectDetails(projects[0])"></p-button>
                         </div>
                     </p-card>
                 </div>
@@ -57,7 +54,7 @@
         <!-- Project Details Modal -->
         <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true" styleClass="p-fluid p-dialog-max-width">
             <div *ngIf="selectedProject">
-                <p><strong>Project Name:</strong> {{ selectedProject.projectName }}</p>
+                <!-- <p *ngFor="let project of selectedProject"><strong>Project Name:</strong> {{ project.projectName }}</p>
                 <ul class="p-m-0">
                     <li *ngFor="let employee of selectedProject.assignedEmployees">
                         {{ employee.name }} - {{ employee.role }}
@@ -66,6 +63,25 @@
                 </ul>
                 <div class="mt-4">
                     <p-button label="Assign Project" icon="pi pi-user-plus" (click)="showAssignProjectForm()"></p-button>
+                </div> -->
+
+                <div class="card">
+                    <p-table [value]="selectedProject" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Project Name</th>
+                                <th>Actions</th>
+                                
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-project>
+                            <tr >
+                                <td>{{ project.projectName }}</td>
+                                <td><p-button label="Assign Project" icon="pi pi-user-plus" (click)="showAssignProjectForm()"></p-button></td>
+                          
+                            </tr>
+                        </ng-template>
+                    </p-table>
                 </div>
             </div>
         </p-dialog>

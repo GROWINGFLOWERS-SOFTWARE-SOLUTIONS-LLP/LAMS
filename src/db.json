@@ -166,11 +166,15 @@
   "projects": [
     {
       "id": "1",
-      "projectName": "Demo Project"
+      "projectName": "vvs"
     },
     {
       "id": "1731327555588",
       "projectName": "LAMS"
+    },
+    {
+      "id": "1731406977668",
+      "projectName": "My Dream Property"
     }
   ],
   "attendance": [
