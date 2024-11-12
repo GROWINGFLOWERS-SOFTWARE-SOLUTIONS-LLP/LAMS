@@ -51,12 +51,12 @@
 
         <!-- Projects List Modal -->
         <p-dialog header="Assign Project to Employees" [(visible)]="isProjectListVisible" modal="true"
-            [closable]="true">
+            [closable]="true" styleClass="p-fluid p-dialog-max-width">
             <form (ngSubmit)="assignProjectToEmployee()">
                 <div class="grid">
                     <div class="col-12 md:col-6">
                         <!-- Employee Dropdown -->
-                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.employee" optionLabel="name"
+                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.employee" optionLabel="fullName"
                             placeholder="Select Employee" [showClear]="true" [filter]="true" name="employee">
                         </p-dropdown>
                     </div>
@@ -67,8 +67,10 @@
                     </div>
                     <div class="col-12 md:col-6">
                         <!-- Manager Dropdown (Optional) -->
-                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.manager" optionLabel="name"
-                            placeholder="Select Manager (Optional)" [showClear]="true" name="manager"></p-dropdown>
+                        <p-dropdown [options]="managers" [(ngModel)]="selectedEmployee.manager"
+                            optionLabel="managerName" placeholder="Select Manager (Optional)" [showClear]="true"
+                            name="manager">
+                        </p-dropdown>
                     </div>
                 </div>
 
@@ -82,10 +84,10 @@
         </p-dialog>
 
         <!-- Project Details Modal -->
-        <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true">
+        <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true" styleClass="p-fluid p-dialog-max-width">
             <div *ngIf="selectedProject">
                 <p><strong>Project Name:</strong> {{ selectedProject.projectName }}</p>
-                <ul>
+                <ul class="p-m-0">
                     <li *ngFor="let employee of selectedProject.assignedEmployees">
                         {{ employee.name }} - {{ employee.role }}
                         <span *ngIf="employee.manager"> (Manager: {{ employee.manager }})</span>
@@ -150,6 +152,7 @@
             </div>
         </div>
     </div>
+
     <!-- Additional Cards -->
     <div class="container mx-3">
         <div class="grid justify-content-around">

@@ -30,6 +30,7 @@ export class DashboardComponent implements OnInit {
     isProjectListVisible = false;
     selectedEmployee: any = { employee: null, role: '', manager: null }; // Initialize selectedEmployee
     employees: any[] = []; // Available employees for assignment
+    managers: any[] = [];  // List of managers
 
     constructor(private apiService: ApiService) {}
 
@@ -42,7 +43,8 @@ export class DashboardComponent implements OnInit {
             this.loadTotalAbsent(),
             this.loadLeaveData(),
             this.loadProjects(),
-            this.loadEmployees() 
+            this.loadEmployees(),
+            this.loadManagers() // Load managers
         ]).then(() => {
             setTimeout(() => {
                 this.isLoading = false;
@@ -110,9 +112,19 @@ export class DashboardComponent implements OnInit {
     private loadEmployees(): Promise<void> {
         return new Promise(resolve => {
             this.apiService.getEmployee().subscribe((employees: any[]) => {
-                this.employees = employees;
+                this.employees = employees.map(emp => ({
+                    ...emp,
+                    fullName: `${emp.firstName} ${emp.lastName}`  // Combine first and last name
+                }));
                 resolve();
             });
+        });
+    }
+
+    private loadManagers(): Promise<void> {
+        return new Promise(resolve => {
+            this.managers = this.employees.filter(emp => emp.role === 'Manager');
+            resolve();
         });
     }
 
