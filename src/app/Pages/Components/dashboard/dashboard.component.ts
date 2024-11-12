@@ -3,11 +3,16 @@ import { CardModule } from 'primeng/card';
 import { ApiService } from '../../../Core/Services/api.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CardModule, ProgressSpinnerModule, CommonModule],
+    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule,TableModule],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -19,22 +24,29 @@ export class DashboardComponent implements OnInit {
     totalAttendance!: number;
     absent!: number;
     leavesTaken!: number;
-    isLoading = true; // Loader state
+    isLoading = true;
+    projects: any[] = [];
+    activeProjectsCount = 0;
+    selectedProject: any = null;
+    isProjectListVisible = false;
+    selectedEmployee: any = { employee: null, role: '', manager: null }; 
+    employees: any[] = []; 
+    managers: any[] = [];
 
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
-        // Show loader initially and start data loading
         this.isLoading = true;
 
-        // Start loading all data
         Promise.all([
             this.loadTotalEmployees(),
             this.loadTotalAttendance(),
             this.loadTotalAbsent(),
-            this.loadLeaveData()
+            this.loadLeaveData(),
+            this.loadProjects(),
+            this.loadEmployees(),
+            this.loadManagers()
         ]).then(() => {
-            // Set a 2-second timer before hiding the loader
             setTimeout(() => {
                 this.isLoading = false;
             }, 2000);
@@ -44,8 +56,7 @@ export class DashboardComponent implements OnInit {
         if (loggedInUser) {
             this.loggedInUserName = `${loggedInUser.firstName} ${loggedInUser.lastName}`;
         }
-    };
-
+    }
 
     private loadTotalEmployees(): Promise<void> {
         return new Promise(resolve => {
@@ -87,5 +98,49 @@ export class DashboardComponent implements OnInit {
 
     private calculateRemainingLeaves(): void {
         this.remainingLeaves = this.totalLeaves - this.leavesTaken;
+    }
+
+    private loadProjects(): Promise<void> {
+        return new Promise(resolve => {
+            this.apiService.getProjects().subscribe((projects: any[]) => {
+                this.projects = projects;
+                this.activeProjectsCount = projects.length;
+                resolve();
+            });
+        });
+    }
+
+    private loadEmployees(): Promise<void> {
+        return new Promise(resolve => {
+            this.apiService.getEmployee().subscribe((employees: any[]) => {
+                this.employees = employees.map(emp => ({
+                    ...emp,
+                    fullName: `${emp.firstName} ${emp.lastName}`
+                }));
+                resolve();
+            });
+        });
+    }
+
+    private loadManagers(): Promise<void> {
+        return new Promise(resolve => {
+            this.managers = this.employees.filter(emp => emp.role === 'Manager');
+            resolve();
+        });
+    }
+
+    showProjectDetails(project: any): void {
+        console.log(project);
+        this.selectedProject = project;
+    }
+
+    // Method to show the "Assign Project" form
+    showAssignProjectForm(): void {
+        this.isProjectListVisible = true;
+    }
+
+    assignProjectToEmployee() {
+        console.log('Assigned Employees:', this.selectedEmployee);
+        this.isProjectListVisible = false;
     }
 }

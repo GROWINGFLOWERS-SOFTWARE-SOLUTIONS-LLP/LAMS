@@ -1,7 +1,7 @@
 <div class="container flex flex-column p-4 bg-gray-50 h-screen">
     <div class="card">
         <p-tabView>
-            <!-- Department Tab --> 
+            <!-- Department Tab -->
             <p-tabPanel header="Department">
                 <div class="p-fluid">
                     <!-- Confirmation Dialog -->
@@ -30,7 +30,8 @@
                                         <div class="grid formgrid p-fluid">
                                             <div class="col-12">
                                                 <div class="field">
-                                                    <label for="departmentName" class="font-semibold">Department Name</label>
+                                                    <label for="departmentName" class="font-semibold">Department
+                                                        Name</label>
                                                     <input id="departmentName" type="text"
                                                         class="p-inputtext p-component w-full border-1 border-round"
                                                         placeholder="Enter Department Name"
@@ -41,7 +42,8 @@
                                                 <button type="submit" class="p-button p-component p-button-primary"
                                                     [disabled]="departmentForm.invalid">
                                                     <span class="p-button-label">
-                                                        {{ selectedDepartmentId ? 'Update Department' : 'Add Department' }}
+                                                        {{ selectedDepartmentId ? 'Update Department' : 'Add Department'
+                                                        }}
                                                     </span>
                                                 </button>
                                             </div>
@@ -188,7 +190,8 @@
                     <div *ngIf="!loading">
                         <div class="flex justify-content-end mb-4">
                             <p-button label="{{ showManagerList ? 'Add Manager' : 'List of Managers' }}"
-                                class="p-button-secondary p-button-sm" severity="secondary" (click)="toggleManagerList()">
+                                class="p-button-secondary p-button-sm" severity="secondary"
+                                (click)="toggleManagerList()">
                             </p-button>
                         </div>
 
@@ -205,7 +208,8 @@
                                                     <label for="managerName" class="font-semibold">Manager Name</label>
                                                     <input id="managerName" type="text"
                                                         class="p-inputtext p-component w-full border-1 border-round"
-                                                        placeholder="Enter Manager Name" formControlName="managerName" />
+                                                        placeholder="Enter Manager Name"
+                                                        formControlName="managerName" />
                                                 </div>
                                             </div>
                                             <div class="col-12 flex justify-content-center mt-3">
@@ -260,6 +264,99 @@
                     </div>
                 </div>
             </p-tabPanel>
+
+
+
+            <!-- Project Tab -->
+            <p-tabPanel header="Project">
+                <div class="p-fluid">
+                    <p-confirmDialog></p-confirmDialog>
+
+                    <!-- Loading Spinner -->
+                    <div *ngIf="loading" class="flex justify-content-center align-items-center">
+                        <p-progressSpinner></p-progressSpinner>
+                    </div>
+
+                    <div *ngIf="!loading">
+                        <div class="flex justify-content-end mb-4">
+                            <p-button label="{{ showProjectList ? 'Add Project' : 'List of Projects' }}"
+                                class="p-button-secondary p-button-sm" severity="secondary"
+                                (click)="toggleProjectList()">
+                            </p-button>
+                        </div>
+
+                        <!-- Project Form for Adding/Editing -->
+                        <div class="flex justify-content-center mb-4" *ngIf="!showProjectList">
+                            <div class="p-fluid w-full md:w-8 lg:w-6">
+                                <div class="border-1 border-round p-3 shadow-2 bg-white">
+                                    <h2 class="text-2xl font-bold text-center mb-3">
+                                        {{ selectedProjectId ? 'Edit Project' : 'Add Project' }}
+                                    </h2>
+                                    <form [formGroup]="projectForm" (ngSubmit)="submitProject()">
+                                        <div class="grid formgrid p-fluid">
+                                            <div class="col-12">
+                                                <div class="field">
+                                                    <label for="projectName" class="font-semibold">Project Name</label>
+                                                    <input id="projectName" type="text"
+                                                        class="p-inputtext p-component w-full border-1 border-round"
+                                                        placeholder="Enter Project Name"
+                                                        formControlName="projectName" />
+                                                </div>
+                                            </div>
+                                            <div class="col-12 flex justify-content-center mt-3">
+                                                <button type="submit" class="p-button p-component p-button-primary"
+                                                    [disabled]="projectForm.invalid">
+                                                    <span class="p-button-label">
+                                                        {{ selectedProjectId ? 'Update Project' : 'Add Project' }}
+                                                    </span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Project List -->
+                        <div *ngIf="showProjectList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
+                            <h3 class="text-xl font-bold text-center mb-3">Project List</h3>
+                            <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
+                                <p-table [value]="projects" [paginator]="true" [rows]="5" responsiveLayout="scroll">
+                                    <ng-template pTemplate="header">
+                                        <tr>
+                                            <th>Project Name</th>
+                                            <th>Edit</th>
+                                            <th>Delete</th>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="body" let-project>
+                                        <tr>
+                                            <td>{{ project.projectName }}</td>
+                                            <td>
+                                                <button type="button" class="p-button p-component p-button-success"
+                                                    (click)="editProject(project)">
+                                                    <span class="p-button-label">Edit</span>
+                                                </button>
+                                            </td>
+                                            <td>
+                                                <p-button label="Delete" severity="danger" [outlined]="true"
+                                                    (onClick)="deleteProject(project.id, $event)"></p-button>
+                                            </td>
+                                        </tr>
+                                    </ng-template>
+                                    <ng-template pTemplate="emptymessage">
+                                        <tr>
+                                            <td colspan="3">No projects found.</td>
+                                        </tr>
+                                    </ng-template>
+                                </p-table>
+                            </div>
+                        </div>
+                        <p-toast></p-toast>
+                    </div>
+                </div>
+            </p-tabPanel>
+
         </p-tabView>
     </div>
 </div>

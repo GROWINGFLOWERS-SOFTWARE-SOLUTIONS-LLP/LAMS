@@ -1,123 +1,190 @@
 <!-- Loader Section -->
 <div *ngIf="isLoading" class="flex justify-content-center align-items-center p-5" style="height: 100vh;">
-  <p-progressSpinner></p-progressSpinner>
+    <p-progressSpinner></p-progressSpinner>
 </div>
 
 <!-- Main Content (Displays only when not loading) -->
 <div *ngIf="!isLoading">
-  <!-- Welcome Message -->
-  <div class="text-xl p-2">
-      <b class="text-3xl">Welcome,</b> {{ loggedInUserName }}!
-  </div>
-  <br>
+    <!-- Welcome Message -->
+    <div class="text-xl p-2">
+        <b class="text-3xl">Welcome,</b> {{ loggedInUserName }}!
+    </div>
+    <br>
 
-  <!-- Summary Cards Row 1 -->
-  <div class="container mx-3">
-      <div class="grid justify-content-around">
-          <div class="col-12 md:col-6 lg:col-3">
-              <div class="card max-w-22rem shadow-3">
-                  <p-card header="Employees">
-                      <div class="flex justify-content-between ">
-                          <p class="m-0">{{ totalEmployees }} Employees</p>
-                          <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
-                      </div>
-                  </p-card>
-              </div>
-          </div>
+    <!-- Summary Cards Row 1 -->
+    <div class="container mx-3">
+        <div class="grid justify-content-around">
+            <!-- Employees Card -->
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Employees">
+                        <div class="flex justify-content-between">
+                            <p class="m-0">{{ totalEmployees }} Employees</p>
+                            <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
 
-          <div class="col-12 md:col-6 lg:col-3">
-              <div class="card max-w-22rem shadow-3">
-                  <p-card header="Department">
-                      <div class="flex justify-content-between">
-                          <p class="m-0">4 Departments</p>
-                          <i class="pi pi-building" style="color: #82f784; font-size:45px;"></i>
-                      </div>
-                  </p-card>
-              </div>
-          </div>
+            <!-- Departments Card -->
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Department">
+                        <div class="flex justify-content-between">
+                            <p class="m-0">4 Departments</p>
+                            <i class="pi pi-building" style="color: #82f784; font-size:45px;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
 
-          <div class="col-12 md:col-6 lg:col-3">
-              <div class="card max-w-22rem shadow-3">
-                  <p-card header="Projects">
-                      <div class="flex justify-content-between">
-                          <p class="m-0">3 Active Projects</p>
-                          <i class="pi pi-chart-pie" style="color: #ffd952; font-size:45px;"></i>
-                      </div>
-                  </p-card>
-              </div>
-          </div>
-      </div>
-  </div>
+            <!-- Projects Summary Card -->
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Projects">
+                        <div class="flex justify-content-between">
+                            <p (click)="showProjectDetails(projects)" class="m-0">{{ activeProjectsCount }} Active Projects</p>
+                            <i class="pi pi-chart-pie" style="color: #ffd952; font-size:45px;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+        </div>
 
-  <!--Leave Summary Cards -->
+        <!-- Project Details Modal -->
+        <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true" styleClass="p-fluid p-dialog-max-width">
+            <div *ngIf="selectedProject">
+                <!-- <p *ngFor="let project of selectedProject"><strong>Project Name:</strong> {{ project.projectName }}</p>
+                <ul class="p-m-0">
+                    <li *ngFor="let employee of selectedProject.assignedEmployees">
+                        {{ employee.name }} - {{ employee.role }}
+                        <span *ngIf="employee.manager"> (Manager: {{ employee.manager }})</span>
+                    </li>
+                </ul>
+                <div class="mt-4">
+                    <p-button label="Assign Project" icon="pi pi-user-plus" (click)="showAssignProjectForm()"></p-button>
+                </div> -->
+
+                <div class="card">
+                    <p-table [value]="selectedProject" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template pTemplate="header">
+                            <tr>
+                                <th>Project Name</th>
+                                <th>Actions</th>
+                                
+                            </tr>
+                        </ng-template>
+                        <ng-template pTemplate="body" let-project>
+                            <tr >
+                                <td>{{ project.projectName }}</td>
+                                <td><p-button label="Assign Project" icon="pi pi-user-plus" (click)="showAssignProjectForm()"></p-button></td>
+                          
+                            </tr>
+                        </ng-template>
+                    </p-table>
+                </div>
+            </div>
+        </p-dialog>
+
+        <!-- Assign Project to Employees Modal -->
+        <p-dialog header="Assign Project to Employees" [(visible)]="isProjectListVisible" modal="true" [closable]="true" styleClass="p-fluid p-dialog-max-width">
+            <form (ngSubmit)="assignProjectToEmployee()">
+                <div class="grid">
+                    <div class="col-12 md:col-6">
+                        <!-- Employee Dropdown -->
+                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.employee" optionLabel="fullName"
+                                    placeholder="Select Employee" [showClear]="true" [filter]="true" name="employee">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <!-- Role Input -->
+                        <p-inputText [(ngModel)]="selectedEmployee.role" placeholder="Role" name="role" class="w-full"></p-inputText>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <!-- Manager Dropdown (Optional) -->
+                        <p-dropdown [options]="managers" [(ngModel)]="selectedEmployee.manager" optionLabel="managerName"
+                                    placeholder="Select Manager (Optional)" [showClear]="true" name="manager">
+                        </p-dropdown>
+                    </div>
+                </div>
+                <!-- Action Buttons -->
+                <div class="flex justify-content-end mt-4">
+                    <p-button label="Assign" type="submit" icon="pi pi-check" class="p-button-success"></p-button>
+                    <p-button label="Cancel" icon="pi pi-times" class="p-button-danger ml-3" (click)="isProjectListVisible = false"></p-button>
+                </div>
+            </form>
+        </p-dialog>
+    </div>
+
+      <!--Leave Summary Cards -->
 <div class="container mx-3 md:mx-8">
-  <div class="grid">
-      <div class="col-12 md:col-6">
-          <div class="cards max-w-42rem shadow-3 p-1">
-              <div>
-                  <h2>Leave Summary</h2>
-              </div>
-              <div class="container ml-3 p-5">
-              <tr>
-                  <td><li>Total Leaves - {{totalLeaves}}</li></td>
-              </tr>
-              <br>
-              <tr>
-                  <td><li>Leaves Taken - {{leavesTaken}}</li></td>
-              </tr>
-              <br>
-              <tr>
-                  <td><li>Remaining Leaves - {{remainingLeaves}}</li></td>
-              </tr>
-              </div>
-          </div>
-      </div>
-
-<!-- Attendance Summary Cards -->
-<div class="col-12 md:col-6 lg:col-6">
-  <div class="cards max-w-42rem shadow-3 p-1">
-      <div>
-          <h2>Attendance Summary</h2>
-      </div>
-      <div class="container ml-3 p-5">
-          <tr>
-              <td><li>Total Attendance - {{totalAttendance}}</li></td>
-          </tr>
-          <br>
-          <tr>
-              <td><li>Absent - {{absent}}</li></td>
-          </tr>
-          <br>
-          <br>
-      </div>
+    <div class="grid">
+        <div class="col-12 md:col-6">
+            <div class="cards max-w-42rem shadow-3 p-1">
+                <div>
+                    <h2>Leave Summary</h2>
+                </div>
+                <div class="container ml-3 p-5">
+                <tr>
+                    <td><li>Total Leaves - {{totalLeaves}}</li></td>
+                </tr>
+                <br>
+                <tr>
+                    <td><li>Leaves Taken - {{leavesTaken}}</li></td>
+                </tr>
+                <br>
+                <tr>
+                    <td><li>Remaining Leaves - {{remainingLeaves}}</li></td>
+                </tr>
+                </div>
+            </div>
+        </div>
+   
+  <!-- Attendance Summary Cards -->
+  <div class="col-12 md:col-6 lg:col-6">
+    <div class="cards max-w-42rem shadow-3 p-1">
+        <div>
+            <h2>Attendance Summary</h2>
+        </div>
+        <div class="container ml-3 p-5">
+            <tr>
+                <td><li>Total Attendance - {{totalAttendance}}</li></td>
+            </tr>
+            <br>
+            <tr>
+                <td><li>Absent - {{absent}}</li></td>
+            </tr>
+            <br>
+            <br>
+        </div>
+    </div>
   </div>
-</div>
-</div>
-</div>
- 
-<!-- Card -->
-<div class="container mx-3">
-  <div class="grid justify-content-around">
-      <div class="col-12 md:col-6 lg:col-3">
-          <div class="card max-w-22rem shadow-3">
-              <p-card header="Reports">
-                  <div class="flex justify-content-between">
-                      <p class="m-0">View/Download Reports</p>
-                      <i class=" pi pi-file" style="color: #72c9ac; font-size: 45px;"></i>
-                  </div>
-              </p-card>
-          </div>
-      </div>
-
-<div class="col-12 md:col-6 lg:col-3">
-  <div class="card max-w-22rem shadow-3">
-      <p-card header="Settings">
-          <div class="flex justify-content-between">
-              <p class="m-0">Configure IceHrm</p>
-              <i class=" pi pi-cog" style="color:rgb(111, 111, 238);  font-size: 45px;"></i>
-          </div>
-      </p-card>
   </div>
-</div>
-</div>
+  </div>
+    <!-- Additional Cards -->
+    <div class="container mx-3">
+        <div class="grid justify-content-around">
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Reports">
+                        <div class="flex justify-content-between">
+                            <p class="m-0">View/Download Reports</p>
+                            <i class="pi pi-file" style="color: #72c9ac; font-size: 45px;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+
+            <div class="col-12 md:col-6 lg:col-3">
+                <div class="card max-w-22rem shadow-3">
+                    <p-card header="Settings">
+                        <div class="flex justify-content-between">
+                            <p class="m-0">Configure IceHrm</p>
+                            <i class="pi pi-cog" style="color:rgb(111, 111, 238); font-size: 45px;"></i>
+                        </div>
+                    </p-card>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

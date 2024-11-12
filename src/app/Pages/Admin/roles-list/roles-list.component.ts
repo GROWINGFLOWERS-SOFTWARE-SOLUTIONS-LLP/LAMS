@@ -49,6 +49,12 @@ export class RolesListComponent implements OnInit {
   selectedManagerId: string | null = null;
   showManagerList: boolean = false;
 
+  projectForm: FormGroup;
+  projects: any[] = [];
+  selectedProjectId: string | null = null;
+  showProjectList: boolean = true;
+
+
   constructor(
     private fb: FormBuilder,
     private confirmationService: ConfirmationService,
@@ -66,12 +72,17 @@ export class RolesListComponent implements OnInit {
     this.managerForm = this.fb.group({
       managerName: ['', Validators.required],
     });
+
+    this.projectForm = this.fb.group({
+      projectName: ['', Validators.required]
+    });
   }
 
   ngOnInit(): void {
     this.loadRoles();
     this.loadManagers();
     this.loadDepartments();
+    this.loadProjects();
   }
 
   toggleRoleList(): void {
@@ -394,4 +405,98 @@ export class RolesListComponent implements OnInit {
     this.managerForm.reset();
     this.showManagerList = true;
   }
+
+
+
+    // Toggle between form and list
+    toggleProjectList(): void {
+      this.showProjectList = !this.showProjectList;
+    }
+  
+    // Load existing projects
+    loadProjects(): void {
+      this.loading = true;
+      this.apiService.getProjects().subscribe(
+        (data) => {
+          this.projects = data;
+          this.loading = false;
+        },
+        (error) => {
+          this.loading = false;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load projects' });
+        }
+      );
+    }
+  
+    // Submit project form
+    submitProject(): void {
+      if (this.projectForm.invalid) {
+        return;
+      }
+  
+      const projectData = {
+        id: this.selectedProjectId ?? new Date().getTime().toString(),
+        projectName: this.projectForm.value.projectName,
+      };
+  
+      this.loading = true;
+  
+      // Check if it's an update or a new addition
+      const projectObservable = this.selectedProjectId
+        ? this.apiService.updateProject(projectData)
+        : this.apiService.addProject(projectData);
+  
+      projectObservable.subscribe(
+        () => {
+          this.messageService.add({
+            severity: 'success',
+            summary: this.selectedProjectId ? 'Project Updated' : 'Project Added',
+            detail: this.selectedProjectId ? 'Project updated successfully.' : 'Project added successfully.'
+          });
+          this.loadProjects();
+          this.resetProjectForm();
+        },
+        (error) => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to save project' });
+          this.loading = false;
+        }
+      );
+    }
+  
+    // Edit project
+    editProject(project: any): void {
+      this.selectedProjectId = project.id;
+      this.projectForm.patchValue({ projectName: project.projectName });
+      this.showProjectList = false;
+    }
+  
+    // Delete project
+    deleteProject(projectId: string, event: Event): void {
+      this.confirmationService.confirm({
+        target: event.target as EventTarget,
+        message: 'Are you sure you want to delete this project?',
+        icon: 'pi pi-exclamation-triangle',
+        accept: () => {
+          this.loading = true;
+          this.apiService.deleteProject(projectId).subscribe(
+            () => {
+              this.messageService.add({ severity: 'success', summary: 'Project Deleted', detail: 'Project deleted successfully.' });
+              this.loadProjects();
+            },
+            (error) => {
+              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete project' });
+              this.loading = false;
+            }
+          );
+        }
+      });
+    }
+  
+    // Reset the form after submission
+    resetProjectForm(): void {
+      this.selectedProjectId = null;
+      this.projectForm.reset();
+      this.showProjectList = true;
+      this.loading = false;
+    }
 }

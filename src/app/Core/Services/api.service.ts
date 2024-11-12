@@ -187,6 +187,25 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
 
+<<<<<<< HEAD
+=======
+  
+  getProjects(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/projects`);
+  }
+
+  addProject(project: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/projects`, project);
+  }
+
+  updateProject(project: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/projects/${project.id}`, project);
+  }
+
+  deleteProject(projectId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
+  }
+>>>>>>> 362442895f625ddab90ddfdcff35c42b797bcb21
  
 }
  
