@@ -48,6 +48,51 @@
                 </div>
             </div>
         </div>
+
+        <!-- Projects List Modal -->
+        <p-dialog header="Assign Project to Employees" [(visible)]="isProjectListVisible" modal="true"
+            [closable]="true">
+            <form (ngSubmit)="assignProjectToEmployee()">
+                <div class="grid">
+                    <div class="col-12 md:col-6">
+                        <!-- Employee Dropdown -->
+                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.employee" optionLabel="name"
+                            placeholder="Select Employee" [showClear]="true" [filter]="true" name="employee">
+                        </p-dropdown>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <!-- Role Input -->
+                        <p-inputText [(ngModel)]="selectedEmployee.role" placeholder="Role" name="role"
+                            class="w-full"></p-inputText>
+                    </div>
+                    <div class="col-12 md:col-6">
+                        <!-- Manager Dropdown (Optional) -->
+                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.manager" optionLabel="name"
+                            placeholder="Select Manager (Optional)" [showClear]="true" name="manager"></p-dropdown>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="p-d-flex p-jc-end p-mt-3">
+                    <p-button label="Assign" type="submit" icon="pi pi-check" class="p-button-success"></p-button>
+                    <p-button label="Cancel" icon="pi pi-times" class="p-button-danger p-ml-2"
+                        (click)="isProjectListVisible = false"></p-button>
+                </div>
+            </form>
+        </p-dialog>
+
+        <!-- Project Details Modal -->
+        <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true">
+            <div *ngIf="selectedProject">
+                <p><strong>Project Name:</strong> {{ selectedProject.projectName }}</p>
+                <ul>
+                    <li *ngFor="let employee of selectedProject.assignedEmployees">
+                        {{ employee.name }} - {{ employee.role }}
+                        <span *ngIf="employee.manager"> (Manager: {{ employee.manager }})</span>
+                    </li>
+                </ul>
+            </div>
+        </p-dialog>
     </div>
 
     <!--Leave Summary Cards -->
@@ -105,8 +150,7 @@
             </div>
         </div>
     </div>
-
-    <!-- Additional Summary Cards (e.g., Reports, Settings) -->
+    <!-- Additional Cards -->
     <div class="container mx-3">
         <div class="grid justify-content-around">
             <div class="col-12 md:col-6 lg:col-3">
@@ -132,27 +176,4 @@
             </div>
         </div>
     </div>
-
-    <!-- Modal for Project List -->
-    <p-dialog header="Projects List" [(visible)]="isProjectListVisible" modal="true" [closable]="true">
-        <ul *ngIf="projects && projects.length > 0">
-            <li *ngFor="let project of projects">
-                {{ project.projectName }}
-                <button pButton label="Details" class="p-button-text" (click)="showProjectDetails(project)"></button>
-            </li>
-        </ul>
-    </p-dialog>
-
-    <!-- Modal for Project Details -->
-    <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true">
-        <div *ngIf="selectedProject">
-            <p><strong>Project Name:</strong> {{ selectedProject.projectName }}</p>
-            <ul>
-                <li *ngFor="let employee of selectedProject.assignedEmployees">
-                    {{ employee.name }} - {{ employee.role }}
-                    <span *ngIf="employee.manager"> (Manager: {{ employee.manager }})</span>
-                </li>
-            </ul>
-        </div>
-    </p-dialog>
 </div>

@@ -4,11 +4,14 @@ import { ApiService } from '../../../Core/Services/api.service';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CardModule, ProgressSpinnerModule, CommonModule, DialogModule],
+    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule], 
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -23,8 +26,10 @@ export class DashboardComponent implements OnInit {
     isLoading = true;
     projects: any[] = [];
     activeProjectsCount = 0;
-    selectedProject: any = null; // For project details modal
+    selectedProject: any = null;
     isProjectListVisible = false;
+    selectedEmployee: any = { employee: null, role: '', manager: null }; // Initialize selectedEmployee
+    employees: any[] = []; // Available employees for assignment
 
     constructor(private apiService: ApiService) {}
 
@@ -36,7 +41,8 @@ export class DashboardComponent implements OnInit {
             this.loadTotalAttendance(),
             this.loadTotalAbsent(),
             this.loadLeaveData(),
-            this.loadProjects()
+            this.loadProjects(),
+            this.loadEmployees() 
         ]).then(() => {
             setTimeout(() => {
                 this.isLoading = false;
@@ -101,12 +107,25 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    // Show details of the selected project
+    private loadEmployees(): Promise<void> {
+        return new Promise(resolve => {
+            this.apiService.getEmployee().subscribe((employees: any[]) => {
+                this.employees = employees;
+                resolve();
+            });
+        });
+    }
+
     showProjectDetails(project: any): void {
-        this.selectedProject = project;
+        this.selectedProject = { ...project, assignedEmployees: [] }; 
     }
 
     showProjectList() {
         this.isProjectListVisible = true;
-      }
+    }
+
+    assignProjectToEmployee() {
+        console.log('Assigned Employees:', this.selectedEmployee); 
+        // Logic to update the project assignments
+    }
 }
