@@ -187,9 +187,6 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
 
-<<<<<<< HEAD
-=======
-  
   getProjects(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
   }
@@ -205,7 +202,6 @@ export class ApiService {
   deleteProject(projectId: string): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
   }
->>>>>>> 362442895f625ddab90ddfdcff35c42b797bcb21
  
 }
  

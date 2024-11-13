@@ -2644,6 +2644,20 @@
       "checkIn": "10:46:57 AM",
       "checkOut": "",
       "break": ""
+    },
+    {
+      "id": "0c14",
+      "date": "12/11/2024",
+      "checkIn": "10:46:59 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "15db",
+      "date": "13/11/2024",
+      "checkIn": "1:23:13 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [

@@ -54,17 +54,6 @@
         <!-- Project Details Modal -->
         <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true" styleClass="p-fluid p-dialog-max-width">
             <div *ngIf="selectedProject">
-                <!-- <p *ngFor="let project of selectedProject"><strong>Project Name:</strong> {{ project.projectName }}</p>
-                <ul class="p-m-0">
-                    <li *ngFor="let employee of selectedProject.assignedEmployees">
-                        {{ employee.name }} - {{ employee.role }}
-                        <span *ngIf="employee.manager"> (Manager: {{ employee.manager }})</span>
-                    </li>
-                </ul>
-                <div class="mt-4">
-                    <p-button label="Assign Project" icon="pi pi-user-plus" (click)="showAssignProjectForm()"></p-button>
-                </div> -->
-
                 <div class="card">
                     <p-table [value]="selectedProject" [tableStyle]="{ 'min-width': '50rem' }">
                         <ng-template pTemplate="header">
