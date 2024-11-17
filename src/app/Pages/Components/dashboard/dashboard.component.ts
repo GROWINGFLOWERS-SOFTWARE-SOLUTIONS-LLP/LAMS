@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
     selectedEmployee: any = { employee: null, role: '', manager: null }; 
     employees: any[] = []; 
     managers: any[] = [];
+    currentProjectName: string = '';
 
     constructor(private apiService: ApiService) {}
 
@@ -135,7 +136,8 @@ export class DashboardComponent implements OnInit {
     }
 
     // Method to show the "Assign Project" form
-    showAssignProjectForm(): void {
+    showAssignProjectForm(projectName: string) {
+        this.currentProjectName = projectName;
         this.isProjectListVisible = true;
     }
 
