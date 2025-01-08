@@ -31,7 +31,7 @@
               formControlName="password" class="p-inputtext p-component password-input" style="padding-right: 2rem;">
  
             <!-- Eye toggle icon -->
-            <i class="pi" [ngClass]="showPassword ? 'pi-eye-slash' : 'pi-eye'" (click)="toggleShowPassword()"
+            <i class="pi" [ngClass]="showPassword ? 'pi-eye' : 'pi-eye-slash'" (click)="toggleShowPassword()"
               title="Toggle password visibility"
               style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
           </div>
@@ -45,7 +45,7 @@
             class="login-link hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
             [disabled]="loginForm.invalid"
             style="background-color: violet; color: black; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;display: flex; align-items: center; justify-content: center;margin-right: 8px;">
-            <i class="pi pi-sign-in"></i> Login
+            <i class="pi pi-sign-in" style= "margin-right: 0.9rem;"></i> Login
           </button>
         </form>
       </div>
