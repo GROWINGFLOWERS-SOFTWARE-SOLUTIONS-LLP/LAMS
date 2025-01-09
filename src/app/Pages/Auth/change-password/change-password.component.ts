@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,27 +15,31 @@ import { ReactiveFormsModule } from '@angular/forms';
   templateUrl: './change-password.component.html',
   styleUrl: './change-password.component.css'
 })
-export class ChangePasswordComponent{
-  value: string | undefined;
+export class ChangePasswordComponent {
+  passwordForm: FormGroup;
 
-  currentPassword: string = '';
-  newPassword: string = '';
-  confirmNewPassword: string = '';
-
-
-  onSubmit(form: any) {
-    if (form.valid) {
-      console.log('Form Submitted!', this.currentPassword);
-    }
-  
-  
-    if (form.valid) {
-      console.log('Form Submitted!', this.newPassword);
-    }
-
-    if (form.valid) {
-      console.log('Form Submitted!', this.newPassword, this.confirmNewPassword);
-    }
-  }
+  constructor(private fb: FormBuilder) {
+    this.passwordForm = this.fb.group(
+      {
+        currentPassword: ['', Validators.required],
+        newPassword: ['', Validators.required],
+        confirmPassword: ['', Validators.required],
+      },
+      { validator: this.passwordMatcher }
+    );
   }
 
+  passwordMatcher(group: FormGroup) {
+    const newPassword = group.get('newPassword')?.value;
+    const confirmPassword = group.get('confirmPassword')?.value;
+
+    return newPassword === confirmPassword ? null : { mismatch: true };
+  }
+
+  onSubmit() {
+    if (this.passwordForm.valid) {
+      console.log('Password Changed:', this.passwordForm.value);
+    }
+  }
+}
+  
