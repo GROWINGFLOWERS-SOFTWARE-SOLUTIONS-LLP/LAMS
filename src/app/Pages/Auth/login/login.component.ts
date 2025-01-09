@@ -12,6 +12,7 @@ import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+import { AdminService } from '../../../Core/Services/admin.service';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -38,7 +39,7 @@ export class LoginComponent implements OnInit {
  
   constructor(
     private router: Router,
-    private apiService: ApiService,
+    private apiService: AdminService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private messageService: MessageService // Inject MessageService here
@@ -64,52 +65,56 @@ export class LoginComponent implements OnInit {
   }
  
   loginFun() {
+    debugger
     this.loading = false;
     this.cdr.detectChanges();
  
     // Simulate 2-second delay for loader (whether login is successful or not)
     setTimeout(() => {
-      this.apiService.getEmployees().subscribe(
+      debugger
+      this.apiService.loginValidation(this.loginForm.value).subscribe(
         (data) => {
-          let users = data.find(
-            (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
-          );
+          debugger
+          console.log(data)
+          // let users = data.find(
+          //   (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
+          // );
  
-          if (users) {
-            this.apiService.setLoggedInUser(users); 
-            this.roleBasedRouting(users);
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Login Successful',
-              detail: 'Welcome back!'
-            });
+          // if (users) {
+          //   this.apiService.setLoggedInUser(users); 
+          //   this.roleBasedRouting(users);
+          //   this.messageService.add({
+          //     severity: 'success',
+          //     summary: 'Login Successful',
+          //     detail: 'Welcome back!'
+          //   });
  
-          } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Login Failed',
-              detail: 'Invalid email or password'
-            });
+          // } else {
+          //   this.messageService.add({
+          //     severity: 'error',
+          //     summary: 'Login Failed',
+          //     detail: 'Invalid email or password'
+          //   });
  
-            this.router.navigate(['/login']);
-          }
+          //   this.router.navigate(['/login']);
+          // }
  
-          // Hide loader after the login process completes
-          this.loading = false;
-          console.log('Loading state set to false:', this.loading);
+          // // Hide loader after the login process completes
+          // this.loading = false;
+          // console.log('Loading state set to false:', this.loading);
  
-          // Detect changes after the loading state update
-          this.cdr.detectChanges();
+          // // Detect changes after the loading state update
+          // this.cdr.detectChanges();
         },
-        (error) => {
-          console.error(error);
+        // (error) => {
+        //   console.error(error);
  
-          // Hide loader if there's an error
-          this.loading = false;
-          console.log('Loading state set to false (error):', this.loading);
+        //   // Hide loader if there's an error
+        //   this.loading = false;
+        //   console.log('Loading state set to false (error):', this.loading);
  
-          this.cdr.detectChanges();
-        }
+        //   this.cdr.detectChanges();
+        // }
       );
     }, 2000); // 2-second delay
   }

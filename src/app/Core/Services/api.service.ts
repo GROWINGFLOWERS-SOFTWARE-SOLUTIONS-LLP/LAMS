@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Employee } from '../Interfaces/employee';
@@ -8,8 +8,12 @@ import { Employee } from '../Interfaces/employee';
 })
 export class ApiService {
  
-  apiUrl: string = "http://localhost:3000";
+  apiUrl: string = "http://localhost:8442";
  
+   headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
   private loggedInUser: any = null;
   private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
   loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
@@ -21,9 +25,7 @@ export class ApiService {
       this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
     }
   }
-  loginValidation(data: any) {
-    return this.http.post(this.apiUrl + "/login", data);
-  }
+ 
  
   postAttendance(attendanceRecord: any) {
     return this.http.post(this.apiUrl + "/attendance", attendanceRecord);
