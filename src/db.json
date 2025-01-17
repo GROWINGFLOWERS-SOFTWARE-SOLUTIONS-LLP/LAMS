@@ -2686,6 +2686,13 @@
       "checkIn": "10:44:07 AM",
       "checkOut": "10:44:44 AM",
       "break": "0h 0m 37s"
+    },
+    {
+      "id": "4bc0",
+      "date": "17/01/2025",
+      "checkIn": "2:53:08 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
