@@ -31,10 +31,7 @@ export class ApiService {
     return this.http.post(this.apiUrl + "/attendance", attendanceRecord);
   }
  
-  // Method to get leave requests from the backend API
-  getLeaveRequests(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/leaveApplications`);
-  }
+ 
  
   // Method to submit a leave request to the backend API
   submitLeaveRequest(leaveRequest: any): Observable<any> {
@@ -61,22 +58,6 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
   }
  
-  addEmployee(employee: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/employees`, employee);
-  }
-  updateEmployee(employee: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
-  }
- 
-  // In your ApiService
-  deleteEmployee(employeeId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/employees/${employeeId}`);
-  }
- 
-  getEmployees(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/employees`);
-  }
- 
   // dashboard - get employees number
   getEmployee(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/employees`);
@@ -94,14 +75,16 @@ export class ApiService {
   getLeaves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
+
+  
+     // Method to get leave requests from the backend API
+     getLeaveRequests(): Observable<any> {
+      return this.http.get(`${this.apiUrl}/leaveApplications`);
+    }
  
   //dashboard - Total Attendance
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
-  }
- 
-  getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
   }
  
   //dashboard - Total Absent
@@ -182,14 +165,13 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
   }
  
-  deleteDepartments(departmentId: string): Observable<void> {
+  deleteDepartments(departmentId: string): Observable<void> { 
     return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
   }
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
 
-  
   getProjects(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
   }

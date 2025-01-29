@@ -11,12 +11,19 @@ export class AdminService {
   constructor(private http: HttpClient) {
 
    }
-
+// Login Api
   loginValidation(data: any) {
-    debugger
+    
      const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
     return this.http.post(this.apiUrl + "/auth/login", data,{headers});
+  }
+// Change Password Api
+  changePassword(data: any) {
+     const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(this.apiUrl + "/auth/cp", data,{headers});
   }
 }

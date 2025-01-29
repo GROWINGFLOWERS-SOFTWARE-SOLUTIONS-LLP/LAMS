@@ -15,6 +15,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
 import { LoaderComponent } from '../../Components/loader/loader.component';
+import { EmployeeService } from '../../../Core/Services/employee.service';
 
 
 @Component({
@@ -35,7 +36,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     loading: boolean = false; // Add loading property
 
     constructor(
-        private apiService: ApiService,
+        private apiService: EmployeeService,
         private formBuilder: FormBuilder,
         private router: Router,
         private messageService: MessageService,
@@ -45,7 +46,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         this.employeeForm = this.formBuilder.group({
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email]],
+            emailId: ['', [Validators.required, Validators.email]],
             password: ['Gfss@2024'],
             mobileNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', Validators.required],

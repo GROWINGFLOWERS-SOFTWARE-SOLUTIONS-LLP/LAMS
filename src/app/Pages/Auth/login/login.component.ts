@@ -13,10 +13,12 @@ import { LoaderComponent } from '../../Components/loader/loader.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AdminService } from '../../../Core/Services/admin.service';
+import { ChangePasswordComponent } from '../change-password/change-password.component';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    ChangePasswordComponent,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
@@ -35,25 +37,28 @@ import { AdminService } from '../../../Core/Services/admin.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
-  loading: boolean = false;
+  // loading: boolean = false;
+  isChangePassword:boolean=false;
+
  
   constructor(
     private router: Router,
     private apiService: AdminService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private messageService: MessageService // Inject MessageService here
+    private messageService: MessageService, // Inject MessageService here
+    
   ) {}
  
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailId: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
  
-  get email() {
-    return this.loginForm.controls['email'];
+  get emailId() {
+    return this.loginForm.controls['emailId'];
   }
  
   get password() {
@@ -65,17 +70,22 @@ export class LoginComponent implements OnInit {
   }
  
   loginFun() {
-    debugger
-    this.loading = false;
+    // this.loading = false;
     this.cdr.detectChanges();
+    
  
     // Simulate 2-second delay for loader (whether login is successful or not)
     setTimeout(() => {
-      debugger
+     
       this.apiService.loginValidation(this.loginForm.value).subscribe(
-        (data) => {
-          debugger
-          console.log(data)
+        (data:any) => {
+          localStorage.setItem("userValue",JSON.stringify(data))
+           if(data && data.password == 'Gfss@2024'){
+             this.router.navigate(['/change-password']);
+
+          } else {
+            this.router.navigate(['/dashboard']);
+          }
           // let users = data.find(
           //   (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
           // );
@@ -116,7 +126,7 @@ export class LoginComponent implements OnInit {
         //   this.cdr.detectChanges();
         // }
       );
-    }, 2000); // 2-second delay
+    }, 0); // 2-second delay
   }
  
   roleBasedRouting(user: any) {
