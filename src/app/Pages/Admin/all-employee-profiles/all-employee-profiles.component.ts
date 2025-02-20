@@ -15,7 +15,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
 import { LoaderComponent } from '../../Components/loader/loader.component';
-import { EmployeeService } from '../../../Core/Services/employee.service';
+import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
+
 
 
 @Component({

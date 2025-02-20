@@ -36,7 +36,7 @@ export class EmployeeService {
     return this.http.get(`${this.apiUrl}/leaveApplications`);
   }
 
-  getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
+  getAttendanceByEmployee( month: number, year: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${123}&month=${month}&year=${year}`);
   }
 }
