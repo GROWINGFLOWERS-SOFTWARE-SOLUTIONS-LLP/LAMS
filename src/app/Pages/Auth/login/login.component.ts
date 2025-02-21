@@ -12,8 +12,9 @@ import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { AdminService } from '../../../Core/Services/admin.service';
+
 import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 @Component({
   selector: 'app-login',
   standalone: true,

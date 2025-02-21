@@ -4,8 +4,9 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CardModule } from 'primeng/card';
 import { Password, PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-import { AdminService } from '../../../Core/Services/admin.service';
+
 import {  Router } from '@angular/router';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
 @Component({
   selector: 'app-change-password',

@@ -12,7 +12,7 @@ import { AuthService } from '../../../Core/Services/auth.service';
 @Component({
   selector: 'app-navbar', 
   standalone: true,
-  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule, FooterComponent],
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'] 
 }) 
