@@ -14,6 +14,7 @@ import { AllEmployeeProfilesComponent } from './Pages/Admin/all-employee-profile
 import { RequestComponent } from './Pages/Manager Page/request/request.component';
 import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-holidays.component';
 import { RolesListComponent } from './Pages/Admin/roles-list/roles-list.component';
+import { ChangePasswordComponent } from './Pages/Auth/change-password/change-password.component';
 
 
 
@@ -26,6 +27,10 @@ export const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent
   },
 
   {

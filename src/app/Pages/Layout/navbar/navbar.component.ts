@@ -12,7 +12,7 @@ import { AuthService } from '../../../Core/Services/auth.service';
 @Component({
   selector: 'app-navbar', 
   standalone: true,
-  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule, FooterComponent],
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule],
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css'] 
 }) 
@@ -25,7 +25,7 @@ export class NavbarComponent implements OnInit {
     { label: 'Attendance', link: 'allattendance' },
     { label: 'Employee List', link: 'employeeprofile' },
     { label: 'Manage Holidays', link: 'manageHolidays' },
-    { label: 'Add Menus', link: 'roleslist' },
+    { label: 'Add Roles', link: 'roleslist' },
     { label: 'History', link: 'history' },
 
   ];

@@ -4,6 +4,8 @@ import { TableModule } from 'primeng/table';
 import { Employee } from '../../../Core/Interfaces/employee';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../../Components/loader/loader.component';
+import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
+
 
 @Component({
   selector: 'app-all-attendence',
@@ -18,7 +20,7 @@ export class AllAttendenceComponent implements OnInit {
   currentMonth: number = new Date().getMonth() + 1;  // Current month
   currentYear: number = new Date().getFullYear();  // Current year
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: EmployeeService) {}
 
   ngOnInit(): void {
     this.loadEmployeeRecords();
@@ -30,7 +32,7 @@ export class AllAttendenceComponent implements OnInit {
       this.apiService.getEmployees().subscribe(
         (employees: Employee[]) => {
           employees.forEach((employee: Employee) => {
-            this.apiService.getAttendanceByEmployee(employee.id, this.currentMonth, this.currentYear).subscribe(
+            this.apiService.getAttendanceByEmployee( this.currentMonth, this.currentYear).subscribe(
               (attendanceRecords) => {
                 const totalDaysInMonth = new Date(this.currentYear, this.currentMonth, 0).getDate();
 

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Employee } from '../Interfaces/employee';
@@ -8,8 +8,12 @@ import { Employee } from '../Interfaces/employee';
 })
 export class ApiService {
  
-  apiUrl: string = "http://localhost:3000";
+  apiUrl: string = "http://localhost:8442";
  
+   headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+
   private loggedInUser: any = null;
   private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
   loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
@@ -21,18 +25,13 @@ export class ApiService {
       this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
     }
   }
-  loginValidation(data: any) {
-    return this.http.post(this.apiUrl + "/login", data);
-  }
+ 
  
   postAttendance(attendanceRecord: any) {
     return this.http.post(this.apiUrl + "/attendance", attendanceRecord);
   }
  
-  // Method to get leave requests from the backend API
-  getLeaveRequests(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/leaveApplications`);
-  }
+ 
  
   // Method to submit a leave request to the backend API
   submitLeaveRequest(leaveRequest: any): Observable<any> {
@@ -59,22 +58,6 @@ export class ApiService {
     return this.http.put(`${this.apiUrl}/publicHolidays/${holiday.id}`, holiday);
   }
  
-  addEmployee(employee: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/employees`, employee);
-  }
-  updateEmployee(employee: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/employees/${employee.id}`, employee);
-  }
- 
-  // In your ApiService
-  deleteEmployee(employeeId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/employees/${employeeId}`);
-  }
- 
-  getEmployees(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/employees`);
-  }
- 
   // dashboard - get employees number
   getEmployee(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/employees`);
@@ -92,14 +75,16 @@ export class ApiService {
   getLeaves(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
+
+  
+     // Method to get leave requests from the backend API
+     getLeaveRequests(): Observable<any> {
+      return this.http.get(`${this.apiUrl}/leaveApplications`);
+    }
  
   //dashboard - Total Attendance
   getAttendance(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance`);
-  }
- 
-  getAttendanceByEmployee(employeeId: string, month: number, year: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`);
   }
  
   //dashboard - Total Absent
