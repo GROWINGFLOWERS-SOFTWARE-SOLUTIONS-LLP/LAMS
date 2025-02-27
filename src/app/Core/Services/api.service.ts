@@ -188,5 +188,11 @@ export class ApiService {
     return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
   }
  
+
+       //  Api for Dashboard
+  getDashboard(id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
+  }
+
 }
  

@@ -74,10 +74,6 @@ export class LoginComponent implements OnInit {
     // this.loading = false;
     this.cdr.detectChanges();
     
- 
-    // Simulate 2-second delay for loader (whether login is successful or not)
-    setTimeout(() => {
-     
       this.apiService.loginValidation(this.loginForm.value).subscribe(
         (data:any) => {
           localStorage.setItem("userValue",JSON.stringify(data))
@@ -85,58 +81,23 @@ export class LoginComponent implements OnInit {
              this.router.navigate(['/change-password']);
 
           } else {
-            this.router.navigate(['/dashboard']);
+          debugger
+           this.roleBasedRouting(data.role)
           }
-          // let users = data.find(
-          //   (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
-          // );
- 
-          // if (users) {
-          //   this.apiService.setLoggedInUser(users); 
-          //   this.roleBasedRouting(users);
-          //   this.messageService.add({
-          //     severity: 'success',
-          //     summary: 'Login Successful',
-          //     detail: 'Welcome back!'
-          //   });
- 
-          // } else {
-          //   this.messageService.add({
-          //     severity: 'error',
-          //     summary: 'Login Failed',
-          //     detail: 'Invalid email or password'
-          //   });
- 
-          //   this.router.navigate(['/login']);
-          // }
- 
-          // // Hide loader after the login process completes
-          // this.loading = false;
-          // console.log('Loading state set to false:', this.loading);
- 
-          // // Detect changes after the loading state update
-          // this.cdr.detectChanges();
+       
         },
-        // (error) => {
-        //   console.error(error);
- 
-        //   // Hide loader if there's an error
-        //   this.loading = false;
-        //   console.log('Loading state set to false (error):', this.loading);
- 
-        //   this.cdr.detectChanges();
-        // }
+        
       );
-    }, 0); // 2-second delay
+  
   }
  
   roleBasedRouting(user: any) {
-    if (user && user.role) {
-      if (user.role === 'Admin') {
+    if (user) {
+      if (user === 'Admin') {
         this.router.navigate(['/dashboard']);
-      } else if (user.role === 'Employee') {
+      } else if (user === 'Employee') {
         this.router.navigate(['/attendance']);
-      } else if (user.role === 'Manager') {
+      } else if (user === 'Manager') {
         this.router.navigate(['/dashboard']);
       } else {
         this.router.navigate(['/login']);
