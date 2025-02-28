@@ -19,7 +19,7 @@
                 <div class="card max-w-22rem shadow-3">
                     <p-card header="Employees">
                         <div class="flex justify-content-between">
-                            <p class="m-0">{{ totalEmployees }} Employees</p>
+                            <p class="m-0">{{ dashboardData.employeeCount }} Employees</p>
                             <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
                         </div>
                     </p-card>
@@ -31,7 +31,7 @@
                 <div class="card max-w-22rem shadow-3">
                     <p-card header="Department">
                         <div class="flex justify-content-between">
-                            <p class="m-0">4 Departments</p>
+                            <p class="m-0">{{ dashboardData.departmentCount }} Departments</p>
                             <i class="pi pi-building" style="color: #82f784; font-size:45px;"></i>
                         </div>
                     </p-card>
@@ -43,7 +43,7 @@
                 <div class="card max-w-22rem shadow-3">
                     <p-card header="Projects">
                         <div class="flex justify-content-between">
-                            <p (click)="showProjectDetails(projects)" class="m-0">{{ activeProjectsCount }} Active
+                            <p (click)="showProjectDetails(projects)" class="m-0">{{dashboardData.activeProjectsCount }} Active
                                 Projects</p>
                             <i class="pi pi-chart-pie" style="color: #ffd952; font-size:45px;"></i>
                         </div>
@@ -121,19 +121,19 @@
                     <div class="container ml-3 p-5">
                         <tr>
                             <td>
-                                <li>Total Leaves - {{totalLeaves}}</li>
+                                <li>Total Leaves - {{dashboardData.totalLeaves}}</li>
                             </td>
                         </tr>
                         <br>
                         <tr>
                             <td>
-                                <li>Leaves Taken - {{leavesTaken}}</li>
+                                <li>Leaves Applied - {{dashboardData.leaveApplied}}</li>
                             </td>
                         </tr>
                         <br>
                         <tr>
                             <td>
-                                <li>Remaining Leaves - {{remainingLeaves}}</li>
+                                <li>Remaining Leaves - {{dashboardData.remainingLeaves}}</li>
                             </td>
                         </tr>
                     </div>
@@ -149,13 +149,13 @@
                     <div class="container ml-3 p-5">
                         <tr>
                             <td>
-                                <li>Total Attendance - {{totalAttendance}}</li>
+                                <li>Total Attendance - {{dashboardData.totalAttendance}}</li>
                             </td>
                         </tr>
                         <br>
                         <tr>
                             <td>
-                                <li>Absent - {{absent}}</li>
+                                <li>Absent - {{dashboardData.absentCount}}</li>
                             </td>
                         </tr>
                         <br>

@@ -61,7 +61,7 @@ export class NavbarComponent implements OnInit {
   }
 
   checkUserRole() {
-    const loginData = localStorage.getItem('users');
+    const loginData = localStorage.getItem('userValue');
     if (loginData) {
       const user = JSON.parse(loginData);
       this.loginCredentials = user;

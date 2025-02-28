@@ -125,12 +125,12 @@
       "id": "ad3D"
     },
     {
-      "firstName":"Priya",
+      "firstName":"Sakshi",
       "lastName":"Patil",
       "department":"Devlopment",
       "manager":"Abhishek Joshi",
-      "emailId":"priya@gfss.com",
-      "password":"Priya@123",
+      "email":"admin@gfss.com",
+      "password":"Gfss@2025",
       "role":"Admin"
     }
   ],
