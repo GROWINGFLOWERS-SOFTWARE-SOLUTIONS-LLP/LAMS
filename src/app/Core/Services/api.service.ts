@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, debounceTime, Observable } from 'rxjs';
 import { Employee } from '../Interfaces/employee';
  
 @Injectable({
@@ -189,8 +189,9 @@ export class ApiService {
   }
  
 
-       //  Api for Dashboard
+      //  Api for Dashboard
   getDashboard(id:any): Observable<any[]> {
+    debugger;
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
 

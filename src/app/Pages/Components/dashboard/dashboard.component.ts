@@ -17,6 +17,8 @@ import { TableModule } from 'primeng/table';
     styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
+
+
     loggedInUserName!: string;
     totalEmployees!: number;
     totalLeaves!: number;
@@ -33,72 +35,14 @@ export class DashboardComponent implements OnInit {
     employees: any[] = []; 
     managers: any[] = [];
     currentProjectName: string = '';
-
+     
+    dashboardData:any;
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
         this.isLoading = true;
-
-        Promise.all([
-            this.loadTotalEmployees(),
-            this.loadTotalAttendance(),
-            this.loadTotalAbsent(),
-            this.loadLeaveData(),
-            this.loadProjects(),
-            this.loadEmployees(),
-            this.loadManagers()
-        ]).then(() => {
-            setTimeout(() => {
-                this.isLoading = false;
-            }, 2000);
-        });
-
-        const loggedInUser = this.apiService.getLoggedInUser();
-        if (loggedInUser) {
-            this.loggedInUserName = `${loggedInUser.firstName} ${loggedInUser.lastName}`;
-        }
-    }
-
-    private loadTotalEmployees(): Promise<void> {
-        return new Promise(resolve => {
-            this.apiService.getEmployee().subscribe(employee => {
-                this.totalEmployees = employee.length;
-                resolve();
-            });
-        });
-    }
-
-    private loadTotalAttendance(): Promise<void> {
-        return new Promise(resolve => {
-            this.apiService.getAttendance().subscribe(attendance => {
-                this.totalAttendance = attendance.length;
-                resolve();
-            });
-        });
-    }
-
-    private loadTotalAbsent(): Promise<void> {
-        return new Promise(resolve => {
-            this.apiService.getAbsent().subscribe(absent => {
-                this.absent = absent.length;
-                resolve();
-            });
-        });
-    }
-
-    private loadLeaveData(): Promise<void> {
-        return new Promise(resolve => {
-            this.apiService.getLeavedata().subscribe((Leavedata: any) => {
-                this.totalLeaves = Leavedata.totalLeaves;
-                this.leavesTaken = Leavedata.leavesTaken;
-                this.calculateRemainingLeaves();
-                resolve();
-            });
-        });
-    }
-
-    private calculateRemainingLeaves(): void {
-        this.remainingLeaves = this.totalLeaves - this.leavesTaken;
+        this.getDashbaordData()
+       
     }
 
     private loadProjects(): Promise<void> {
@@ -111,24 +55,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    private loadEmployees(): Promise<void> {
-        return new Promise(resolve => {
-            this.apiService.getEmployee().subscribe((employees: any[]) => {
-                this.employees = employees.map(emp => ({
-                    ...emp,
-                    fullName: `${emp.firstName} ${emp.lastName}`
-                }));
-                resolve();
-            });
-        });
-    }
-
-    private loadManagers(): Promise<void> {
-        return new Promise(resolve => {
-            this.managers = this.employees.filter(emp => emp.role === 'Manager');
-            resolve();
-        });
-    }
+    
 
     showProjectDetails(project: any): void {
         console.log(project);
@@ -145,4 +72,15 @@ export class DashboardComponent implements OnInit {
         console.log('Assigned Employees:', this.selectedEmployee);
         this.isProjectListVisible = false;
     }
+
+    getDashbaordData(){
+        debugger;
+        let employeeId: any = JSON.parse(localStorage.getItem("userValue") || "null");
+        console.log('Employee Id:', employeeId);
+        this.apiService.getDashboard(employeeId.empId).subscribe((data:any)=>{
+            console.log('Dashboard Data:', data);
+            this.dashboardData=data;
+            this.isLoading=false;
+        })
+       }
 }
