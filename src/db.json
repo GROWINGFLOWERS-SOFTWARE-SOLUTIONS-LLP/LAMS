@@ -123,6 +123,15 @@
       "joiningDate": "2024-01-5",
       "address": "Pune",
       "id": "ad3D"
+    },
+    {
+      "firstName":"Priya",
+      "lastName":"Patil",
+      "department":"Devlopment",
+      "manager":"Abhishek Joshi",
+      "emailId":"priya@gfss.com",
+      "password":"Priya@123",
+      "role":"Admin"
     }
   ],
   "managers": [
