@@ -12,10 +12,14 @@ import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
+
+import { ChangePasswordComponent } from '../change-password/change-password.component';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
+    ChangePasswordComponent,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
@@ -34,25 +38,28 @@ import { ToastModule } from 'primeng/toast';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
-  loading: boolean = false;
+  // loading: boolean = false;
+  isChangePassword:boolean=false;
+
  
   constructor(
     private router: Router,
-    private apiService: ApiService,
+    private apiService: AdminService,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
-    private messageService: MessageService // Inject MessageService here
+    private messageService: MessageService, // Inject MessageService here
+    
   ) {}
  
   ngOnInit() {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      emailId: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
  
-  get email() {
-    return this.loginForm.controls['email'];
+  get emailId() {
+    return this.loginForm.controls['emailId'];
   }
  
   get password() {
@@ -64,64 +71,39 @@ export class LoginComponent implements OnInit {
   }
  
   loginFun() {
-    this.loading = false;
+    // this.loading = false;
     this.cdr.detectChanges();
- 
-    // Simulate 2-second delay for loader (whether login is successful or not)
-    setTimeout(() => {
-      this.apiService.getEmployees().subscribe(
-        (data) => {
-          let users = data.find(
-            (user: any) => user.email === this.loginForm.value.email && user.password === this.loginForm.value.password
-          );
- 
-          if (users) {
-            this.apiService.setLoggedInUser(users); 
-            this.roleBasedRouting(users);
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Login Successful',
-              detail: 'Welcome back!'
-            });
- 
+    
+      this.apiService.loginValidation(this.loginForm.value).subscribe(
+        (data:any) => {
+          localStorage.setItem("userValue",JSON.stringify(data))
+           if(data && data.password == 'Gfss@2024'){
+             this.router.navigate(['/change-password']);
+
           } else {
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Login Failed',
-              detail: 'Invalid email or password'
-            });
- 
-            this.router.navigate(['/login']);
+          debugger
+           this.roleBasedRouting(data.role)
           }
- 
-          // Hide loader after the login process completes
-          this.loading = false;
-          console.log('Loading state set to false:', this.loading);
- 
-          // Detect changes after the loading state update
-          this.cdr.detectChanges();
+       
         },
-        (error) => {
-          console.error(error);
- 
-          // Hide loader if there's an error
-          this.loading = false;
-          console.log('Loading state set to false (error):', this.loading);
- 
-          this.cdr.detectChanges();
-        }
+        
       );
-    }, 2000); // 2-second delay
+  
   }
  
   roleBasedRouting(user: any) {
-    if (user && user.role) {
-      if (user.role === 'Admin') {
+    if (user) {
+      if (user === 'Admin') {
         this.router.navigate(['/dashboard']);
-      } else if (user.role === 'Employee') {
+      } else if (user === 'Employee') {
         this.router.navigate(['/attendance']);
+<<<<<<< HEAD
       } else if (user.role === 'Manager') {
         this.router.navigate(['/attendance']);
+=======
+      } else if (user === 'Manager') {
+        this.router.navigate(['/dashboard']);
+>>>>>>> d39c99b9c390a9530f3d811210f5c78e080f87e9
       } else {
         this.router.navigate(['/login']);
       }

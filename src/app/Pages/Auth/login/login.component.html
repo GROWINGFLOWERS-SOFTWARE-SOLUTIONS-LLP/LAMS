@@ -3,7 +3,7 @@
 <!-- Main container -->
 
 <div class="container flex align-items-center justify-content-center">
-  <div class="main-container flex shadow-2 border-round" *ngIf="!loading">
+  <div class="main-container flex shadow-2 border-round" *ngIf="!isChangePassword">
  
     <!-- Left Container (Login Section) -->
     <div id="log-in" class="left-container flex flex-column align-items-center justify-content-around">
@@ -18,11 +18,11 @@
       <div class="w-full">
         <form class="signup-form flex flex-column align-items-center" [formGroup]="loginForm" (ngSubmit)="loginFun()">
           <!-- Email Input -->
-          <input type="email" name="email" placeholder="E-mail" formControlName="email"
+          <input type="email" name="emailId" placeholder="E-mail" formControlName="emailId"
             class="p-inputtext p-component mb-2">
-          <small *ngIf="email.invalid && (email.dirty || email.touched)" class="block p-error mb-2">
-            <div *ngIf="email.errors?.['required']">Email is required.</div>
-            <div *ngIf="email.errors?.['email']">Email should be valid.</div>
+          <small *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)" class="block p-error mb-2">
+            <div *ngIf="emailId.errors?.['required']">Email is required.</div>
+            <div *ngIf="emailId.errors?.['emailId']">Email should be valid.</div>
           </small>
  
           <!-- Password Input with toggle icon -->
@@ -55,8 +55,8 @@
     <div class="right-container"></div>
   </div>
  
+
+
   <!-- Loader component, displayed when loading -->
-  <app-loader [loading]="loading"></app-loader>
+  <!-- <app-loader [loading]="loading"></app-loader> -->
 </div>
- 
- 
