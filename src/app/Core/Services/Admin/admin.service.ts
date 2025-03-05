@@ -29,7 +29,6 @@ export class AdminService {
     return this.http.post(this.apiUrl + "/auth/cp", data,{headers});
   }
 
-<<<<<<< HEAD
   // Holidays Api methods
  
   createHoliday(data: any) {
@@ -76,7 +75,6 @@ getAllAttendance() {
   return this.http.get(this.apiUrl + "/admin/attendance/all", { headers });
 }
   
-=======
   // addMenus(data: any) {
   //   return this.http.post(this.apiUrl+ "/admin/roles-list", data, { headers: this.headers });
   // }
@@ -178,5 +176,4 @@ deleteProject(id: number) {
   return this.http.delete(`${this.apiUrl}/admin/project/${id}`, { headers: this.headers });
 }
 
->>>>>>> 36e953f386aebc613b35c56825c944f57f066871
 }

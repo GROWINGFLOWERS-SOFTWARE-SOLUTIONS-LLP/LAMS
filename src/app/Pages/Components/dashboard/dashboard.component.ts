@@ -18,7 +18,7 @@ import { TableModule } from 'primeng/table';
 })
 export class DashboardComponent implements OnInit {
 
-
+    
     loggedInUserName!: string;
     totalEmployees!: number;
     totalLeaves!: number;
@@ -35,7 +35,7 @@ export class DashboardComponent implements OnInit {
     employees: any[] = []; 
     managers: any[] = [];
     currentProjectName: string = '';
-     
+    dashboard:any;
     dashboardData:any;
     constructor(private apiService: ApiService) {}
 
@@ -74,10 +74,9 @@ export class DashboardComponent implements OnInit {
     }
 
     getDashbaordData(){
-        debugger;
-        let employeeId: any = JSON.parse(localStorage.getItem("userValue") || "null");
-        console.log('Employee Id:', employeeId);
-        this.apiService.getDashboard(employeeId.empId).subscribe((data:any)=>{
+        this.dashboard = JSON.parse(localStorage.getItem("userValue") || "null");
+        console.log('Employee Id:', this.dashboard);
+        this.apiService.getDashboard(this.dashboard.empId).subscribe((data:any)=>{
             console.log('Dashboard Data:', data);
             this.dashboardData=data;
             this.isLoading=false;

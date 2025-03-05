@@ -30,7 +30,6 @@ export class EmployeeService {
     }
 
 
-
      // Method to get leave requests from the backend API
   getLeaveRequests(): Observable<any> {
     return this.http.get(`${this.apiUrl}/leaveApplications`);
