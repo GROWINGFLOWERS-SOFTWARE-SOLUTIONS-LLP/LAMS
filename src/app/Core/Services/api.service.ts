@@ -4,6 +4,7 @@ import { BehaviorSubject, debounceTime, Observable } from 'rxjs';
 import { Employee } from '../Interfaces/employee';
  
 @Injectable({
+
   providedIn: 'root'
 })
 export class ApiService {
@@ -126,11 +127,15 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
   }
 
-  
-  //  Api for Dashboard
+  //  Api for Dashboard 
   getDashboard(id:any): Observable<any[]> {
-    debugger;
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
+  }
+
+
+  //  Api for Profile
+  getProfile(id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`);
   }
 
 }
