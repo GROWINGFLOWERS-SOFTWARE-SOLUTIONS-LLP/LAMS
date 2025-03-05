@@ -26,10 +26,12 @@ export class ProfileComponent implements OnInit {
 
   loadUserProfile() {
     this.loading = true;  // Start loading before fetching the data
-    setTimeout(() => {  // Simulate delay for fetching the data (Replace this with real API call)
-      this.employee = this.apiService.getLoggedInUser();
+    let employeeId: any = JSON.parse(localStorage.getItem("userValue") || "null");
+      this.employee = this.apiService.getProfile(employeeId.empId).subscribe((data:any) => {
+        console.log('Profile Data: ', data);
+      });
       this.loading = false;  // Stop loading when data is fetched
-    }, 2000);
+   
   }
 
   updateProfile() {

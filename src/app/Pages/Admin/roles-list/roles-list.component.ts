@@ -11,7 +11,8 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { Manager } from '../../../Core/Interfaces/manager';
-import { ApiService } from '../../../Core/Services/api.service';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-roles-list',
@@ -34,32 +35,32 @@ import { ApiService } from '../../../Core/Services/api.service';
 })
 export class RolesListComponent implements OnInit {
   departmentForm: FormGroup;
-  departments: any[] = [];
+  departments: any = [];
   selectedDepartmentId: string | null = null;
   showDepartmentList: boolean = false;
   loading: boolean = false; // Spinner control variable
 
   roleForm: FormGroup;
-  roles: any[] = [];
+  roles: any = [];
   selectedRoleId: string | null = null;
   showRoleList: boolean = false;
 
   managerForm: FormGroup;
-  managers: any[] = [];
+  managers: any = [];
   selectedManagerId: string | null = null;
   showManagerList: boolean = false;
 
   projectForm: FormGroup;
-  projects: any[] = [];
+  projects: any = [];
   selectedProjectId: string | null = null;
-  showProjectList: boolean = true;
+  showProjectList: boolean = false;
 
 
   constructor(
     private fb: FormBuilder,
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private apiService: ApiService
+    private adminService: AdminService
   ) {
     this.departmentForm = this.fb.group({
       departmentName: ['', Validators.required],
@@ -92,7 +93,7 @@ export class RolesListComponent implements OnInit {
   loadRoles(): void {
     this.loading = true;
     setTimeout(() => {
-      this.apiService.getRoles().subscribe(
+      this.adminService.getAllRoles().subscribe(
         (data) => {
           this.roles = data;
           this.loading = false;
@@ -120,8 +121,8 @@ export class RolesListComponent implements OnInit {
     };
 
     const roleObservable = this.selectedRoleId
-      ? this.apiService.updateRole(roleData)
-      : this.apiService.addRole(roleData);
+      ? this.adminService.updateRole(roleData)
+      : this.adminService.addRole(roleData);
 
     roleObservable.subscribe(
       () => {
@@ -156,14 +157,14 @@ export class RolesListComponent implements OnInit {
     this.showRoleList = false;
   }
 
-  deleteRole(roleId: string, event: Event): void {
+  deleteRole(roleId: number, event: Event): void {
     this.loading = true;
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to delete this role?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.deleteRole(roleId).subscribe(
+        this.adminService.deleteRole(roleId).subscribe(
           () => {
             this.messageService.add({
               severity: 'success',
@@ -199,8 +200,9 @@ export class RolesListComponent implements OnInit {
   loadDepartments(): void {
     this.loading = true;
     setTimeout(() => {
-      this.apiService.getdepartments().subscribe(
-        (data) => {
+      this.adminService.getAllDepartments().subscribe(
+        (data) => { 
+          console.log(data)
           this.departments = data;
           this.loading = false;
         },
@@ -228,8 +230,8 @@ export class RolesListComponent implements OnInit {
     };
 
     const departmentObservable = this.selectedDepartmentId
-      ? this.apiService.updateDepartments(departmentData)
-      : this.apiService.addDepartments(departmentData);
+      ? this.adminService.updateDepartment(departmentData)
+      : this.adminService.addDepartment(departmentData);
 
     departmentObservable.subscribe(
       () => {
@@ -264,14 +266,14 @@ export class RolesListComponent implements OnInit {
     this.showDepartmentList = false;
   }
 
-  deleteDepartment(departmentId: string, event: Event): void {
+  deleteDepartment(departmentId: any, event: Event): void {
     this.loading = true;
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to delete this department?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.deleteDepartments(departmentId).subscribe(
+        this.adminService.deleteDepartment(departmentId).subscribe(
           () => {
             this.messageService.add({
               severity: 'success',
@@ -307,7 +309,7 @@ export class RolesListComponent implements OnInit {
   loadManagers(): void {
     this.loading = true;
     setTimeout(() => {
-      this.apiService.getManagers().subscribe(
+      this.adminService.getAllManagers().subscribe(
         (data) => {
           this.managers = data;
           this.loading = false;
@@ -334,8 +336,8 @@ export class RolesListComponent implements OnInit {
     };
 
     const managerObservable = this.selectedManagerId
-      ? this.apiService.updateManager(managerData)
-      : this.apiService.addManager(managerData);
+      ? this.adminService.updateManager(managerData)
+      : this.adminService.addManager(managerData);
 
     managerObservable.subscribe(
       () => {
@@ -370,14 +372,14 @@ export class RolesListComponent implements OnInit {
     this.showManagerList = false;
   }
 
-  deleteManager(managerId: string, event: Event): void {
+  deleteManager(managerId: any, event: Event): void {
     this.loading = true;
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure you want to delete this manager?',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
-        this.apiService.deleteManager(managerId).subscribe(
+        this.adminService.deleteManager(managerId).subscribe(
           () => {
             this.messageService.add({
               severity: 'success',
@@ -416,7 +418,7 @@ export class RolesListComponent implements OnInit {
     // Load existing projects
     loadProjects(): void {
       this.loading = true;
-      this.apiService.getProjects().subscribe(
+      this.adminService.getAllProjects().subscribe(
         (data) => {
           this.projects = data;
           this.loading = false;
@@ -433,34 +435,37 @@ export class RolesListComponent implements OnInit {
       if (this.projectForm.invalid) {
         return;
       }
+      this.loading = true;
   
       const projectData = {
         id: this.selectedProjectId ?? new Date().getTime().toString(),
         projectName: this.projectForm.value.projectName,
       };
   
-      this.loading = true;
-  
       // Check if it's an update or a new addition
       const projectObservable = this.selectedProjectId
-        ? this.apiService.updateProject(projectData)
-        : this.apiService.addProject(projectData);
+        ? this.adminService.updateProject(projectData)
+        : this.adminService.addProject(projectData);
   
       projectObservable.subscribe(
         () => {
           this.messageService.add({
             severity: 'success',
             summary: this.selectedProjectId ? 'Project Updated' : 'Project Added',
-            detail: this.selectedProjectId ? 'Project updated successfully.' : 'Project added successfully.'
+            detail: this.selectedProjectId ? 'Project details have been updated successfully.' 
+            : 'New Project has been added successfully.',
           });
           this.loadProjects();
-          this.resetProjectForm();
+          this.loading = false;
         },
         (error) => {
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to save project' });
           this.loading = false;
+          this.messageService.add({ severity: 'error', summary: 'Error',
+             detail: 'Failed to' + (this.selectedProjectId ? 'update' : 'add') + 'project', });
+          
         }
       );
+      this.resetProjectForm();
     }
   
     // Edit project
@@ -471,32 +476,36 @@ export class RolesListComponent implements OnInit {
     }
   
     // Delete project
-    deleteProject(projectId: string, event: Event): void {
+    deleteProject(projectId: any, event: Event): void {
+      this.loading = true;
       this.confirmationService.confirm({
         target: event.target as EventTarget,
         message: 'Are you sure you want to delete this project?',
         icon: 'pi pi-exclamation-triangle',
         accept: () => {
-          this.loading = true;
-          this.apiService.deleteProject(projectId).subscribe(
+          this.adminService.deleteProject(projectId).subscribe(
             () => {
-              this.messageService.add({ severity: 'success', summary: 'Project Deleted', detail: 'Project deleted successfully.' });
+              this.messageService.add({ severity: 'success', summary: 'Project Deleted', 
+                detail: 'Project has been deleted successfully.' });
               this.loadProjects();
+              this.loading = false;
             },
             (error) => {
-              this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to delete project' });
+              this.loading = false;
+              this.messageService.add({ severity: 'error', summary: 'Error', 
+                detail: 'Failed to delete project' + ' ' + error.message, });
               this.loading = false;
             }
           );
-        }
+        },
       });
     }
+    
   
     // Reset the form after submission
     resetProjectForm(): void {
       this.selectedProjectId = null;
       this.projectForm.reset();
       this.showProjectList = true;
-      this.loading = false;
     }
 }
