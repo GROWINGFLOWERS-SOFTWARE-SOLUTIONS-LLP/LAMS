@@ -92,7 +92,7 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['/profile']);
     } else if (route === 'logout') {
       this.authService.logout();
-      localStorage.removeItem('users');
+      localStorage.removeItem('userValue');
       this.router.navigate(['/login']);
     }
   }

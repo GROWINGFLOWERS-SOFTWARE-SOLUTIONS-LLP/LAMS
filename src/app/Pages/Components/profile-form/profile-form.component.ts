@@ -19,7 +19,7 @@ export class ProfileFormComponent implements OnInit {
   constructor(private apiService: ApiService, private router: Router) { }
  
   ngOnInit(): void {
-    this.employee = this.apiService.getLoggedInUser();
+    // this.employee = this.apiService.getLoggedInUser();
   }
  
   onSubmit(form: any) {

@@ -14,17 +14,7 @@ export class ApiService {
     'Content-Type': 'application/json',
   });
 
-  private loggedInUser: any = null;
-  private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
-  loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
-  constructor(private http: HttpClient) {
-    // Check local storage for logged-in user on service initialization
-    const storedUser = localStorage.getItem('users');
-    if (storedUser) {
-      this.loggedInUser = JSON.parse(storedUser);
-      this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
-    }
-  }
+  constructor(private http: HttpClient) {  }
  
  
   postAttendance(attendanceRecord: any) {
@@ -102,21 +92,6 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
  
-  // Get the logged-in user details
-  getLoggedInUser() {
-    return this.loggedInUser;
-  }
-  setLoggedInUser(user: any) {
-    this.loggedInUser = user;
-    this.loggedInUserSubject.next(user); // Emit updated user data
-    localStorage.setItem('users', JSON.stringify(user));
-  }
-  // Simulate logout
-  logout() {
-    this.loggedInUser = null;
-    this.loggedInUserSubject.next(null); // Emit null to indicate logout
-    localStorage.removeItem('users');
-  }
  
   // ApiService for Manager
   getManagers(): Observable<any[]> {
@@ -189,11 +164,17 @@ export class ApiService {
   }
  
 
-      //  Api for Dashboard
+  //  Api for Dashboard 
   getDashboard(id:any): Observable<any[]> {
-    debugger;
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
+
+
+  //  Api for Profile
+  getProfile(id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`);
+  }
+
 
 }
  
