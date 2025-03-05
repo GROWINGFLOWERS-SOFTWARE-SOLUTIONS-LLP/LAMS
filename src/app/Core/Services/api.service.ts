@@ -14,17 +14,7 @@ export class ApiService {
     'Content-Type': 'application/json',
   });
 
-  private loggedInUser: any = null;
-  private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
-  loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
-  constructor(private http: HttpClient) {
-    // Check local storage for logged-in user on service initialization
-    const storedUser = localStorage.getItem('users');
-    if (storedUser) {
-      this.loggedInUser = JSON.parse(storedUser);
-      this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
-    }
-  }
+  constructor(private http: HttpClient) {  }
  
  
   postAttendance(attendanceRecord: any) {
@@ -102,6 +92,7 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
  
+<<<<<<< HEAD
   // Get the logged-in user details
   getLoggedInUser() {
     return this.loggedInUser;
@@ -118,6 +109,59 @@ export class ApiService {
     localStorage.removeItem('users');
   }
 
+=======
+ 
+  // ApiService for Manager
+  getManagers(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/managers`);
+  }
+ 
+  addManager(manager: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/managers`, manager);
+  }
+ 
+  updateManager(manager: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/managers/${manager.id}`, manager);
+  }
+ 
+  deleteManager(managerId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
+  }
+ 
+  // ApiService for Role
+  getRoles(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/roles`);
+  }
+ 
+  addRole(role: any): Observable<any> {
+   return this.http.post(`${this.apiUrl}/roles`, role);
+  }
+ 
+  updateRole(role: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/roles/${role.id}`, role);
+  }
+ 
+  deleteRole(roleId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/roles/${roleId}`);
+  }
+ 
+//Department
+  getdepartments(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/department`);
+  }
+ 
+  addDepartments(department: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/department`, department);
+  }
+ 
+  updateDepartments(department: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
+  }
+ 
+  deleteDepartments(departmentId: string): Observable<void> { 
+    return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
+  }
+>>>>>>> d9e9296f23bb185c73cd5234ce88c73d86e65997
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
@@ -193,11 +237,17 @@ export class ApiService {
   // }
  
 
-      //  Api for Dashboard
+  //  Api for Dashboard 
   getDashboard(id:any): Observable<any[]> {
-    debugger;
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
+
+
+  //  Api for Profile
+  getProfile(id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`);
+  }
+
 
 }
  
