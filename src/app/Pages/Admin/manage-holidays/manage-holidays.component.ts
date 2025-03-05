@@ -10,6 +10,8 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
+
 @Component({
   selector: 'app-manage-holidays',
   standalone: true,
@@ -38,6 +40,7 @@ export class ManageHolidaysComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
+    private adminService: AdminService,
     private fb: FormBuilder,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
@@ -67,7 +70,8 @@ export class ManageHolidaysComponent implements OnInit {
     // First, we check if the form is valid
     if (this.holidayForm.valid) {
       // Extract the form values (holiday name, date)
-      const holiday = this.holidayForm.value;
+      let holiday = {...this.holidayForm.value, holidayId: this.selectedHolidayId ? this.selectedHolidayId : null // Add holidayId here
+    };  console.log(this.selectedHolidayId);
 
       // Show the loader when the form is being submitted
       this.isLoading = true;
@@ -75,7 +79,9 @@ export class ManageHolidaysComponent implements OnInit {
       // If we're editing an existing holiday (selectedHolidayId is set)
       if (this.selectedHolidayId) {
         // Call the API to update the holiday
-        this.apiService.updateHoliday({ ...holiday, id: this.selectedHolidayId }).subscribe(() => {
+        this.adminService.updateHoliday( holiday).subscribe((data: any) => {
+
+
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday updated successfully!' });
           this.clearForm();
           this.loadHolidays(); // Reload holidays and hide the loader
@@ -83,7 +89,7 @@ export class ManageHolidaysComponent implements OnInit {
         });
       } else {
         // If no selectedHolidayId, we are adding a new holiday
-        this.apiService.addHoliday(holiday).subscribe(() => {
+        this.adminService.createHoliday(holiday).subscribe((data: any) =>  {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday added successfully!' });
           this.clearForm();
           this.loadHolidays(); // Reload holidays and hide the loader
@@ -95,7 +101,7 @@ export class ManageHolidaysComponent implements OnInit {
 
   // Method to fetch the list of holidays from the API
   getAllHolidaysList() {
-    this.apiService.getHolidaysList().subscribe((data: any[]) => {
+    this.adminService.getAllHolidaysList().subscribe((data: any) => {
       this.holidays = data;
     });
   }
@@ -123,7 +129,7 @@ export class ManageHolidaysComponent implements OnInit {
       rejectIcon: "none",
       accept: () => {
         // Call the API to delete the holiday
-        this.apiService.deleteHoliday(id).subscribe(() => {
+       this.adminService.deleteHoliday(Number(id)).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
           this.loadHolidays(); // Refresh the holiday list after deletion
           this.showHolidayList = false; // Optionally redirect to another view
@@ -137,13 +143,17 @@ export class ManageHolidaysComponent implements OnInit {
 
   // Method to edit a holiday
   editHoliday(holiday: any) {
+    console.log("Editing holiday:", holiday); // Log the whole object
+    console.log("Selected holiday ID:", holiday.holidId); // Log the ID
+  
     this.holidayForm.patchValue({
       holidayName: holiday.holidayName,
       holidayDate: holiday.holidayDate
     });
-    this.selectedHolidayId = holiday.id; // Store the ID of the holiday being edited
-    this.showHolidayList = false; // Optionally redirect to the form
+    this.selectedHolidayId = holiday.holidId;
+    this.showHolidayList = false; // Hide list and show the form
   }
+  
 
   // Method to clear the form fields
   clearForm() {
