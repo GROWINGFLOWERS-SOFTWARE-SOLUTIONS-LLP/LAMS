@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoaderComponent } from '../loader/loader.component';  // Import reusable LoaderComponent
-import { ApiService } from '../../../Core/Services/api.service';
-
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
 @Component({
   selector: 'app-history',
@@ -18,7 +17,7 @@ export class HistoryComponent implements OnInit {
   
   historyData: any;
 
-  constructor(private apiService:ApiService) {}
+  constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.isLoading = false;
@@ -34,7 +33,7 @@ export class HistoryComponent implements OnInit {
     
         let history: any = JSON.parse(localStorage.getItem("userValue") || "null");
         console.log('History:', history);
-        this.apiService.getHistory(history.empId).subscribe((data:any)=>{
+        this.adminService.getHistory(history.empId).subscribe((data:any)=>{
             console.log('History Data:', data);
             this.historyData=data;
             this.isLoading=false;
@@ -46,7 +45,7 @@ deleteHistory(){
   
       let history: any = JSON.parse(localStorage.getItem("userValue") || "null");
       console.log('History :', history);
-      this.apiService.deleteHistory(history.empId).subscribe((data:any)=>{
+      this.adminService.deleteHistory(history.empId).subscribe((data:any)=>{
           console.log('Delete Data:', data);
           this.historyData=data;
           this.isLoading=false;

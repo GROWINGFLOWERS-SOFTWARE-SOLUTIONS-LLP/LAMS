@@ -29,11 +29,8 @@ export class AdminService {
     });
     return this.http.post(this.apiUrl + "/auth/cp", data,{headers});
   }
-<<<<<<< HEAD
 
-=======
  
->>>>>>> 5017a6cf54dfe1dc0b9e8eed67373607eb0a3a1d
   // Holidays Api methods
  
   createHoliday(data: any) {
@@ -80,11 +77,8 @@ getAllAttendance() {
   });
   return this.http.get(this.apiUrl + "/admin/attendance/all", { headers });
 }
-<<<<<<< HEAD
   
-=======
  
->>>>>>> 5017a6cf54dfe1dc0b9e8eed67373607eb0a3a1d
   // addMenus(data: any) {
   //   return this.http.post(this.apiUrl+ "/admin/roles-list", data, { headers: this.headers });
   // }
@@ -186,8 +180,6 @@ deleteProject(id: number) {
   return this.http.delete(`${this.apiUrl}/admin/project/${id}`, { headers: this.headers });
 }
 
-<<<<<<< HEAD
-=======
 
    //API for GET History
    getHistory(history:any): Observable<any[]> {
@@ -198,7 +190,6 @@ deleteProject(id: number) {
  //API for Delete Histoy
  deleteHistory(history:any): Observable<any[]> {
   return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
->>>>>>> 5017a6cf54dfe1dc0b9e8eed67373607eb0a3a1d
 }
  
 }
