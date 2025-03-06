@@ -4,6 +4,7 @@ import { BehaviorSubject, debounceTime, Observable } from 'rxjs';
 import { Employee } from '../Interfaces/employee';
  
 @Injectable({
+
   providedIn: 'root'
 })
 export class ApiService {
@@ -119,56 +120,6 @@ export class ApiService {
     localStorage.removeItem('users');
   }
  
-  // ApiService for Manager
-  getManagers(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/managers`);
-  }
- 
-  addManager(manager: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/managers`, manager);
-  }
- 
-  updateManager(manager: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/managers/${manager.id}`, manager);
-  }
- 
-  deleteManager(managerId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/managers/${managerId}`);
-  }
- 
-  // ApiService for Role
-  getRoles(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/roles`);
-  }
- 
-  addRole(role: any): Observable<any> {
-   return this.http.post(`${this.apiUrl}/roles`, role);
-  }
- 
-  updateRole(role: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/roles/${role.id}`, role);
-  }
- 
-  deleteRole(roleId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/roles/${roleId}`);
-  }
- 
-//Department
-  getdepartments(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/department`);
-  }
- 
-  addDepartments(department: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/department`, department);
-  }
- 
-  updateDepartments(department: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/department/${department.id}`, department);
-  }
- 
-  deleteDepartments(departmentId: string): Observable<void> { 
-    return this.http.delete<void>(`${this.apiUrl}/department/${departmentId}`);
-  }
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
@@ -177,37 +128,15 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
   }
 
-  addProject(project: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/projects`, project);
-  }
-
-  updateProject(project: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/projects/${project.id}`, project);
-  }
-
-  deleteProject(projectId: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
-  }
- 
-
-      //  Api for Dashboard
+  //  Api for Dashboard 
   getDashboard(id:any): Observable<any[]> {
-    debugger;
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
 
-   //API for GET History
-   getHistory(history:any): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+  //  Api for Profile
+  getProfile(id:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`);
   }
 
-
- //API for Delete Histoy
- deleteHistory(history:any): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
-}
- 
-
- 
 }
  

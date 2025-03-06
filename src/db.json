@@ -123,6 +123,15 @@
       "joiningDate": "2024-01-5",
       "address": "Pune",
       "id": "ad3D"
+    },
+    {
+      "firstName":"Sakshi",
+      "lastName":"Patil",
+      "department":"Devlopment",
+      "manager":"Abhishek Joshi",
+      "email":"admin@gfss.com",
+      "password":"Gfss@2025",
+      "role":"Admin"
     }
   ],
   "managers": [
@@ -2686,6 +2695,69 @@
       "checkIn": "10:44:07 AM",
       "checkOut": "10:44:44 AM",
       "break": "0h 0m 37s"
+    },
+    {
+      "id": "4bc0",
+      "date": "17/01/2025",
+      "checkIn": "2:53:08 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "2b72",
+      "date": "30/01/2025",
+      "checkIn": "3:20:39 PM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "15d2",
+      "date": "30/01/2025",
+      "checkIn": "3:20:39 PM",
+      "checkOut": "3:22:25 PM",
+      "break": "0h 1m 46s"
+    },
+    {
+      "id": "0247",
+      "date": "30/01/2025",
+      "checkIn": "3:20:39 PM",
+      "checkOut": "3:22:25 PM",
+      "break": "0h 1m 46s"
+    },
+    {
+      "id": "8444",
+      "date": "13/02/2025",
+      "checkIn": "11:01:57 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5e5c",
+      "date": "13/02/2025",
+      "checkIn": "11:01:57 AM",
+      "checkOut": "11:03:03 AM",
+      "break": "0h 1m 6s"
+    },
+    {
+      "id": "938b",
+      "date": "13/02/2025",
+      "checkIn": "11:01:57 AM",
+      "checkOut": "11:03:03 AM",
+      "break": "0h 1m 6s"
+    },
+    {
+      "id": "29b2",
+      "date": "13/02/2025",
+      "checkIn": "11:03:13 AM",
+      "checkOut": "",
+      "break": ""
+    },
+    {
+      "id": "5f44",
+      "date": "21/02/2025",
+      "checkIn": "3:12:11 PM",
+      "checkOut": "",
+      "break": ""
     }
   ],
   "absent": [
