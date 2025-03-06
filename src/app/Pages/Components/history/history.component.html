@@ -1,10 +1,10 @@
 <div class="container">
   <main class="p-4">
     <!-- Reusable Loader Component -->
-    <app-loader [loading]="loading"></app-loader>
+   <app-loader [loading]="isLoading"></app-loader>
 
     <!-- Content is shown when loading is false -->
-    <div *ngIf="!loading" class="history-list">
+     <div *ngIf="!isLoading" class="history-list"> 
       <h2 class="text-center">History List</h2>
       <ul>
         <li class="p-3">
@@ -15,6 +15,6 @@
           </div>
         </li>
       </ul>
-    </div>
+     </div> 
   </main>
 </div>

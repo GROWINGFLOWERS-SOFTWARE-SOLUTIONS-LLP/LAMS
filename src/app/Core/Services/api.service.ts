@@ -8,7 +8,8 @@ import { Employee } from '../Interfaces/employee';
   providedIn: 'root'
 })
 export class ApiService {
- 
+  
+  
   apiUrl: string = "http://localhost:8442";
  
    headers = new HttpHeaders({
@@ -131,7 +132,6 @@ export class ApiService {
   getDashboard(id:any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
-
 
   //  Api for Profile
   getProfile(id:any): Observable<any[]> {
