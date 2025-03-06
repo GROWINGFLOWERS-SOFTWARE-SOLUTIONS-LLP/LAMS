@@ -7,7 +7,8 @@ import { Employee } from '../Interfaces/employee';
   providedIn: 'root'
 })
 export class ApiService {
- 
+  
+  
   apiUrl: string = "http://localhost:8442";
  
    headers = new HttpHeaders({
@@ -195,5 +196,18 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
 
+   //API for GET History
+   getHistory(history:any): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+  }
+
+
+ //API for Delete Histoy
+ deleteHistory(history:any): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+}
+ 
+
+ 
 }
  

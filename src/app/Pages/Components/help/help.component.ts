@@ -18,6 +18,8 @@ import { LoaderComponent } from '../loader/loader.component'; // Import the Load
 export class HelpComponent {
   isTabOpen: boolean[] = [false, false, false, false, false];
   loading: boolean = true; // Initialize loading state
+  apiService: any;
+  helpData: any;
 
   constructor(private messageService: MessageService) {
     this.simulateLoading(); // Simulate loading for demo purposes

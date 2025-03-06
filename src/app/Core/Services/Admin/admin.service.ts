@@ -26,4 +26,11 @@ export class AdminService {
     });
     return this.http.post(this.apiUrl + "/auth/cp", data,{headers});
   }
-}
+  
+
+
+  
+
+ }
+
+
