@@ -42,6 +42,7 @@
                     formControlName="holidayDate" />
                 </div>
               </div>
+             
 
               <!-- Centered Add/Edit Holiday Button -->
               <div class="col-12 flex justify-content-center mt-3">
@@ -81,7 +82,7 @@
                 </button>
               </td>
               <td>
-                <p-button label="Delete" severity="danger" [outlined]="true" (onClick)="deleteHoliday(holiday.id, $event)"></p-button>
+                <p-button label="Delete" severity="danger" [outlined]="true" (onClick)="deleteHoliday(holiday)"></p-button>
               </td>
             </tr>
           </ng-template>

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -28,7 +28,6 @@ export class EmployeeService {
     getEmployees(): Observable<any> {
       return this.http.get(`${this.apiUrl}/employees`);
     }
-
 
 
      // Method to get leave requests from the backend API
