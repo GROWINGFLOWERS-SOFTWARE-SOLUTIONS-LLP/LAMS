@@ -27,8 +27,9 @@ export class ProfileComponent implements OnInit {
   loadUserProfile() {
     this.loading = true;  // Start loading before fetching the data
     let employeeId: any = JSON.parse(localStorage.getItem("userValue") || "null");
-      this.employee = this.apiService.getProfile(employeeId.empId).subscribe((data:any) => {
+       this.apiService.getProfile(employeeId.empId).subscribe((data:any) => {
         console.log('Profile Data: ', data);
+        this.employee = data;
       });
       this.loading = false;  // Stop loading when data is fetched
    
