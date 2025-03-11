@@ -183,7 +183,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     loadDepartMents(){
-        this.adminService.getAllDepartments().subscribe((data) =>{
+        this.adminService.getAllDepartmentsList().subscribe((data) =>{
             this.departments = data;
         })
     }

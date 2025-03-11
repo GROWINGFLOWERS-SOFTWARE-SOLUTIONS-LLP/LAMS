@@ -229,7 +229,7 @@ export class RolesListComponent implements OnInit {
   
   
             this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role updated successfully!' });
-            this.clearForm2();
+            this.clearForm1();
             this.loadRoles(); 
             this.showRoleList = true; 
           });
