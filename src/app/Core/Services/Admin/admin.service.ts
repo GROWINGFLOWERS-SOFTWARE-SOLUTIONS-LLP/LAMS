@@ -241,4 +241,15 @@ deleteProject(projId: string) {
  return this.http.delete(`${this.apiUrl}/admin/project/${projId}`, { headers });
 }
 
+//API for GET History
+getHistory(history:any): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+}
+
+
+//API for Delete Histoy
+deleteHistory(history:any): Observable<any[]> {
+return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+}
+
 }
