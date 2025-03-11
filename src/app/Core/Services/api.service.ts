@@ -4,7 +4,6 @@ import {  Observable } from 'rxjs';
 
  
 @Injectable({
-
   providedIn: 'root'
 })
 export class ApiService {
@@ -16,7 +15,8 @@ export class ApiService {
     'Content-Type': 'application/json',
   });
 
-  constructor(private http: HttpClient) {}
+  
+  constructor(private http: HttpClient) { }
  
  
   postAttendance(attendanceRecord: any) {
@@ -93,7 +93,7 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/Leavedata`);
   }
  
- 
+  // Get the logged-in user details
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
@@ -101,6 +101,19 @@ export class ApiService {
   getProjects(): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
   }
+
+  addProject(project: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/projects`, project);
+  }
+
+  updateProject(project: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/projects/${project.id}`, project);
+  }
+
+  deleteProject(projectId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
+  }
+ 
 
   //  Api for Dashboard 
   getDashboard(id:any): Observable<any[]> {
@@ -111,6 +124,8 @@ export class ApiService {
   getProfile(id:any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`);
   }
+
+  
 
 }
  
