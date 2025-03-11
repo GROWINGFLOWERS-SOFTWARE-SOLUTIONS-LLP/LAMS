@@ -30,6 +30,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
 export class AllEmployeeProfilesComponent implements OnInit {
     employees: any = [];
     departments: any = [];
+    roles: any = [];
     employeeForm: FormGroup;
     showDialog: boolean = false;
     isEditing: boolean = false;
@@ -48,11 +49,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             emailId: ['', [Validators.required, Validators.email]],
-            password: ['Gfss@2024'],
+            password: ['Gfss@2024',Validators.required],
             mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', Validators.required],
+            role: ['', Validators.required],
             // manager: [''],
-            // role: [''],
             joiningDate: ['', Validators.required],
             address: ['', Validators.required],
         });
@@ -60,7 +61,8 @@ export class AllEmployeeProfilesComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadEmployees();
-        this.loadDepartMents()
+        this.loadDepartments();
+        this.loadRoles();
     }
 
     loadEmployees() {
@@ -88,7 +90,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     addEmployee() {
         debugger
         if (this.employeeForm.valid) {
-            debugger
+            debugger;
             this.employeeService.addEmployee(this.employeeForm.value).subscribe({
                 next: () => {
                     debugger;
@@ -182,8 +184,14 @@ export class AllEmployeeProfilesComponent implements OnInit {
         return control ? control.invalid && (control.touched || control.dirty) : false;
     }
 
-    loadDepartMents(){
+    loadDepartments(){
         this.adminService.getAllDepartmentsList().subscribe((data) =>{
+            this.departments = data;
+        })
+    }
+
+    loadRoles(){
+        this.adminService.getAllRolesList().subscribe((data) =>{
             this.departments = data;
         })
     }
