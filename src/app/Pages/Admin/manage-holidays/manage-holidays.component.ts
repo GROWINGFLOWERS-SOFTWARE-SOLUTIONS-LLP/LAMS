@@ -117,9 +117,10 @@ export class ManageHolidaysComponent implements OnInit {
   }
 
   // Method to delete a holiday with confirmation
-  deleteHoliday(id: string, event: Event) {
+  deleteHoliday(data: any, ) {
+    console.log(data)
     this.confirmationService.confirm({
-      target: event.target as EventTarget,
+      
       message: 'Are you sure you want to delete this holiday?',
       header: 'Delete Confirmation',
       icon: 'pi pi-info-circle',
@@ -128,8 +129,9 @@ export class ManageHolidaysComponent implements OnInit {
       acceptIcon: "none",
       rejectIcon: "none",
       accept: () => {
+        debugger
         // Call the API to delete the holiday
-       this.adminService.deleteHoliday(Number(id)).subscribe(() => {
+       this.adminService.deleteHoliday(data.holidId).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
           this.loadHolidays(); // Refresh the holiday list after deletion
           this.showHolidayList = false; // Optionally redirect to another view

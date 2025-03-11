@@ -1,31 +1,22 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, debounceTime, Observable } from 'rxjs';
-import { Employee } from '../Interfaces/employee';
+import {  Observable } from 'rxjs';
+
  
 @Injectable({
-
   providedIn: 'root'
 })
 export class ApiService {
- 
+  
+  
   apiUrl: string = "http://localhost:8442";
  
    headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
 
-  private loggedInUser: any = null;
-  private loggedInUserSubject = new BehaviorSubject<any>(null); // BehaviorSubject to hold user data
-  loggedInUser$ = this.loggedInUserSubject.asObservable(); // Observable for components to subscribe
-  constructor(private http: HttpClient) {
-    // Check local storage for logged-in user on service initialization
-    const storedUser = localStorage.getItem('users');
-    if (storedUser) {
-      this.loggedInUser = JSON.parse(storedUser);
-      this.loggedInUserSubject.next(this.loggedInUser); // Emit initial value if user is already logged in
-    }
-  }
+  
+  constructor(private http: HttpClient) { }
  
  
   postAttendance(attendanceRecord: any) {
@@ -77,7 +68,6 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/leaveBalance`);
   }
 
-  
      // Method to get leave requests from the backend API
      getLeaveRequests(): Observable<any> {
       return this.http.get(`${this.apiUrl}/leaveApplications`);
@@ -104,21 +94,6 @@ export class ApiService {
   }
  
   // Get the logged-in user details
-  getLoggedInUser() {
-    return this.loggedInUser;
-  }
-  setLoggedInUser(user: any) {
-    this.loggedInUser = user;
-    this.loggedInUserSubject.next(user); // Emit updated user data
-    localStorage.setItem('users', JSON.stringify(user));
-  }
-  // Simulate logout
-  logout() {
-    this.loggedInUser = null;
-    this.loggedInUserSubject.next(null); // Emit null to indicate logout
-    localStorage.removeItem('users');
-  }
- 
   updateUserProfile(updatedUser: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/employees/${updatedUser.id}`, updatedUser);
   }
@@ -127,16 +102,30 @@ export class ApiService {
     return this.http.get<any[]>(`${this.apiUrl}/projects`);
   }
 
+  addProject(project: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/projects`, project);
+  }
+
+  updateProject(project: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/projects/${project.id}`, project);
+  }
+
+  deleteProject(projectId: string): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/projects/${projectId}`);
+  }
+ 
+
   //  Api for Dashboard 
   getDashboard(id:any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/Dashboard/summary/${id}`);
   }
 
-
   //  Api for Profile
   getProfile(id:any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`);
   }
+
+  
 
 }
  

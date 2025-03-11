@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
 
-
   apiUrl: string = "http://localhost:8442";
   headers: HttpHeaders | { [header: string]: string | string[]; } | undefined;
   getRoles: any;
