@@ -185,13 +185,13 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     loadDepartments(){
-        this.adminService.getAllDepartments().subscribe((data) =>{
+        this.adminService.getAllDepartmentsList().subscribe((data) =>{
             this.departments = data;
         })
     }
 
     loadRoles(){
-        this.adminService.getAllRoles().subscribe((data) =>{
+        this.adminService.getAllRolesList().subscribe((data) =>{
             this.departments = data;
         })
     }
