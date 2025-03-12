@@ -112,13 +112,7 @@ deleteDepartment(depId: string) {
 
 }
 
-// Roles CRUD Operations
-createRole(data: any) {
-  const headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-  });
-  return this.http.post(this.apiUrl + "/admin/role",data ,{ headers });
-}
+
 
 // Get All Roles
 getAllRolesList() {
@@ -127,11 +121,18 @@ getAllRolesList() {
   });
   return this.http.get(this.apiUrl + "/admin/roles", { headers });
 }
+// Roles CRUD Operations
+createRole(data: any) {
+  const headers = new HttpHeaders({
+    'Content-Type': 'application/json',
+  });
+  return this.http.post(this.apiUrl + "/admin/role",data ,{ headers });
+}
 
 // Update Role
 updateRole(data: any) {
   const headers = new HttpHeaders({
-  'Content-Type ': 'application/json',
+  'Content-Type': 'application/json',
   });
   return this.http.put(this.apiUrl + "/admin/role", data, { headers });
 }
@@ -204,15 +205,6 @@ getAllProjectsList() {
   return this.http.get(this.apiUrl + "/admin/project", { headers });
   }
 
-// Get Employees in Project
-// getEmployeesInProject(id: number) {
-//   const headers = new HttpHeaders({
-//     'Content-Type': 'application/json',
-//   });
-  // return this.http.get(`${this.apiUrl}/admin/project/${id}/employees`, { headers: this.headers });
-  // return this.http.get(this.apiUrl + "/admin/project/${id}/employees", { headers });
-//   return this.http.get(`${this.apiUrl}/admin/project/${id}/employees`, { headers });
-// }
 
 // Get Project Details
 getProjectDetails(id: number) {
@@ -234,7 +226,8 @@ updateProject(data: any) {
 }
 
 // Delete Project
-deleteProject(projId: string) {
+deleteProject(projId: any) {
+  debugger;
   const headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });

@@ -1,12 +1,11 @@
+<p-confirmDialog></p-confirmDialog>
+
 <div class="container flex flex-column p-4 bg-gray-50 h-screen">
     <div class="card">
         <p-tabView>
             <!-- Department Tab -->
             <p-tabPanel header="Department">
                 <div class="p-fluid">
-                    <!-- Confirmation Dialog -->
-                    <p-confirmDialog></p-confirmDialog>
-
                     <!-- Loading Spinner -->
                     <div *ngIf="isLoading" class="flex justify-content-center align-items-center">
                         <p-progressSpinner></p-progressSpinner>
@@ -19,7 +18,7 @@
                                 (click)="toggleDepartmentList()">
                             </p-button>
                         </div>
-
+                        
                         <div class="flex justify-content-center mb-4" *ngIf="!showDepartmentList">
                             <div class="p-fluid w-full md:w-8 lg:w-6">
                                 <div class="border-1 border-round p-3 shadow-2 bg-white">
@@ -75,7 +74,7 @@
                                             </td>
                                             <td>
                                                 <p-button label="Delete" severity="danger" [outlined]="true"
-                                                    (onClick)="deleteDepartment(department.depId, $event)"></p-button>
+                                                    (onClick)="deleteDepartment(department.depId)"></p-button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -92,11 +91,8 @@
             </p-tabPanel>
 
             <!-- Roles Tab -->
-
             <p-tabPanel header="Role">
                 <div class="p-fluid">
-                    <p-confirmDialog></p-confirmDialog>
-
                     <!-- Loading Spinner -->
                     <div *ngIf="isLoading" class="flex justify-content-center align-items-center">
                         <p-progressSpinner></p-progressSpinner>
@@ -105,8 +101,7 @@
                     <div *ngIf="!isLoading">
                         <div class="flex justify-content-end mb-4">
                             <p-button label="{{ showRoleList ? 'Add Role' : 'List of Roles' }}"
-                                class="p-button-secondary p-button-sm" severity="secondary"
-                                (click)="toggleRoleList()">
+                                class="p-button-secondary p-button-sm" severity="secondary" (click)="toggleRoleList()">
                             </p-button>
                         </div>
 
@@ -123,8 +118,7 @@
                                                     <label for="roleName" class="font-semibold">Role Name</label>
                                                     <input id="roleName" type="text"
                                                         class="p-inputtext p-component w-full border-1 border-round"
-                                                        placeholder="Enter Role Name"
-                                                        formControlName="roleName" />
+                                                        placeholder="Enter Role Name" formControlName="roleName" />
                                                 </div>
                                             </div>
                                             <div class="col-12 flex justify-content-center mt-3">
@@ -163,7 +157,7 @@
                                             </td>
                                             <td>
                                                 <p-button label="Delete" severity="danger" [outlined]="true"
-                                                    (onClick)="deleteRole(role.rolId, $event)"></p-button>
+                                                    (onClick)="deleteRole(role.rolId)"></p-button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -179,12 +173,11 @@
                     </div>
                 </div>
             </p-tabPanel>
-           
 
             <!-- Manager Tab -->
             <p-tabPanel header="Manager">
                 <div class="p-fluid">
-                    <p-confirmDialog></p-confirmDialog>
+                    <!-- <p-confirmDialog></p-confirmDialog> -->
 
                     <!-- Loading Spinner -->
                     <div *ngIf="isLoading" class="flex justify-content-center align-items-center">
@@ -252,7 +245,7 @@
                                             </td>
                                             <td>
                                                 <p-button label="Delete" severity="danger" [outlined]="true"
-                                                    (onClick)="deleteManager(manager.managId, $event)"></p-button>
+                                                    (onClick)="deleteManager(manager.managId)"></p-button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -269,13 +262,9 @@
                 </div>
             </p-tabPanel>
 
-
-
             <!-- Project Tab -->
             <p-tabPanel header="Project">
                 <div class="p-fluid">
-                    <p-confirmDialog></p-confirmDialog>
-
                     <!-- Loading Spinner -->
                     <div *ngIf="isLoading" class="flex justify-content-center align-items-center">
                         <p-progressSpinner></p-progressSpinner>
@@ -288,6 +277,8 @@
                                 (click)="toggleProjectList()">
                             </p-button>
                         </div>
+
+                        <p-confirmDialog></p-confirmDialog>
 
                         <div class="flex justify-content-center mb-4" *ngIf="!showProjectList">
                             <div class="p-fluid w-full md:w-8 lg:w-6">
@@ -342,7 +333,7 @@
                                             </td>
                                             <td>
                                                 <p-button label="Delete" severity="danger" [outlined]="true"
-                                                    (onClick)="deleteProject(project.projId, $event)"></p-button>
+                                                    (onClick)="deleteProject(project.projId)"></p-button>
                                             </td>
                                         </tr>
                                     </ng-template>
@@ -358,3 +349,6 @@
                     </div>
                 </div>
             </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

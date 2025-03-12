@@ -22,10 +22,6 @@ export class HistoryComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = false;
     this.getHistory(); 
-    
-    
-    
-
   }
   
   // Method to get history
@@ -33,11 +29,11 @@ export class HistoryComponent implements OnInit {
     
         let history: any = JSON.parse(localStorage.getItem("userValue") || "null");
         console.log('History:', history);
-        this.adminService.getHistory(history.empId).subscribe((data:any)=>{
-            console.log('History Data:', data);
-            this.historyData=data;
-            this.isLoading=false;
-        })
+        // this.adminService.getHistory(history.empId).subscribe((data:any)=>{
+        //     console.log('History Data:', data);
+        //     this.historyData=data;
+        //     this.isLoading=false;
+        // })
        }
 
 // Method to delete history
@@ -45,11 +41,11 @@ deleteHistory(){
   
       let history: any = JSON.parse(localStorage.getItem("userValue") || "null");
       console.log('History :', history);
-      this.adminService.deleteHistory(history.empId).subscribe((data:any)=>{
-          console.log('Delete Data:', data);
-          this.historyData=data;
-          this.isLoading=false;
-      })
+      // this.adminService.deleteHistory(history.empId).subscribe((data:any)=>{
+      //     console.log('Delete Data:', data);
+      //     this.historyData=data;
+      //     this.isLoading=false;
+      // })
      }
    }
 
