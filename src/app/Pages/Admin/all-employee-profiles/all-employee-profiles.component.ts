@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ApiService } from '../../../Core/Services/api.service';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
@@ -16,6 +14,7 @@ import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
 import { LoaderComponent } from '../../Components/loader/loader.component';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
 
 
@@ -24,12 +23,14 @@ import { EmployeeService } from '../../../Core/Services/Employee/employee.servic
     templateUrl: './all-employee-profiles.component.html',
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
-    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule, 
-        LoaderComponent,ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
+    imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule,
+        LoaderComponent, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
     providers: [MessageService, ConfirmationService]
 })
 export class AllEmployeeProfilesComponent implements OnInit {
-    employees: any[] = [];
+    employees: any = [];
+    departments: any = [];
+    roles: any = [];
     employeeForm: FormGroup;
     showDialog: boolean = false;
     isEditing: boolean = false;
@@ -37,9 +38,9 @@ export class AllEmployeeProfilesComponent implements OnInit {
     loading: boolean = false; // Add loading property
 
     constructor(
-        private apiService: EmployeeService,
+        private employeeService: EmployeeService,
+        private adminService: AdminService,
         private formBuilder: FormBuilder,
-        private router: Router,
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
     ) {
@@ -48,11 +49,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
             emailId: ['', [Validators.required, Validators.email]],
-            password: ['Gfss@2024'],
-            mobileNumber: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+            password: ['Gfss@2024',Validators.required],
+            mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', Validators.required],
+            role: ['', Validators.required],
             // manager: [''],
-            // role: [''],
             joiningDate: ['', Validators.required],
             address: ['', Validators.required],
         });
@@ -60,23 +61,25 @@ export class AllEmployeeProfilesComponent implements OnInit {
 
     ngOnInit(): void {
         this.loadEmployees();
+        this.loadDepartments();
+        this.loadRoles();
     }
 
     loadEmployees() {
+        debugger
         this.loading = true; // Set loading to true
-        // Simulate a delay of 2 seconds before making the API call
-        setTimeout(() => {
-            this.apiService.getEmployees().subscribe((data) => {
-                this.employees = data;
-                this.loading = false; // Set loading to false when data is loaded
-            }, (error) => {
-                console.error('Error loading employees:', error);
-                this.loading = false; // Set loading to false on error
-                this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
-            });
-        }, 2000); // Adjust the delay time as needed (2000 ms = 2 seconds)
+        this.employeeService.getEmployees().subscribe((data) => {
+            debugger
+            this.employees = data;
+            this.loading = false; // Set loading to false when data is loaded
+        }, (error) => {
+            console.error('Error loading employees:', error);
+            this.loading = false; // Set loading to false on error
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
+        });
+
     }
-    
+
 
     openDialog() {
         this.showDialog = true;
@@ -85,9 +88,12 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     addEmployee() {
+        debugger
         if (this.employeeForm.valid) {
-            this.apiService.addEmployee(this.employeeForm.value).subscribe({
+            debugger;
+            this.employeeService.addEmployee(this.employeeForm.value).subscribe({
                 next: () => {
+                    debugger;
                     this.loadEmployees();
                     this.showDialog = false;
                     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Employee added successfully.' });
@@ -106,13 +112,15 @@ export class AllEmployeeProfilesComponent implements OnInit {
         this.employeeForm.patchValue(employee);
         this.isEditing = true;
         this.showDialog = true;
-        this.selectedEmployeeId = employee.id;
+        this.selectedEmployeeId = employee.empId;
     }
 
     updateEmployee() {
         if (this.employeeForm.valid) {
-            const employeeData = { ...this.employeeForm.value, id: this.selectedEmployeeId };
-            this.apiService.updateEmployee(employeeData).subscribe({
+            debugger;
+            const employeeData = { ...this.employeeForm.value, employeeId: this.selectedEmployeeId };
+            debugger;
+            this.employeeService.updateEmployee(employeeData).subscribe({
                 next: () => {
                     this.loadEmployees();
                     this.showDialog = false;
@@ -129,9 +137,10 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     // Method to confirm deletion with an alert
-    deleteEmployee(employeeId: number, event: Event) {
+    deleteEmployee(employee: any) {
+        console.log('Employee: ', employee);
+        debugger;
         this.confirmationService.confirm({
-            target: event.target as EventTarget,
             message: 'Are you sure you want to delete this employee?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
@@ -141,7 +150,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
             rejectIcon: "none",
 
             accept: () => {
-                this.selectedEmployeeId = employeeId;
+                this.selectedEmployeeId = employee.empId;
                 this.performDelete(); // Call the method to perform the delete
             },
             reject: () => {
@@ -154,7 +163,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     // Method to perform the delete operation
     performDelete() {
         if (this.selectedEmployeeId !== null) {
-            this.apiService.deleteEmployee(this.selectedEmployeeId).subscribe({
+            this.employeeService.deleteEmployee(this.selectedEmployeeId).subscribe({
                 next: () => {
                     this.loadEmployees(); // Reload employees after successful deletion
                     // Show success message using p-toast
@@ -173,5 +182,17 @@ export class AllEmployeeProfilesComponent implements OnInit {
     isFieldInvalid(field: string): boolean {
         const control = this.employeeForm.get(field);
         return control ? control.invalid && (control.touched || control.dirty) : false;
+    }
+
+    loadDepartments(){
+        this.adminService.getAllDepartmentsList().subscribe((data) =>{
+            this.departments = data;
+        })
+    }
+
+    loadRoles(){
+        this.adminService.getAllRolesList().subscribe((data) =>{
+            this.departments = data;
+        })
     }
 }
