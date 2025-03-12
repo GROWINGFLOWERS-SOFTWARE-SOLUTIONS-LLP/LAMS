@@ -8,6 +8,7 @@ import { ApiService } from '../../../Core/Services/api.service';
 import { Holiday } from '../../../Core/Interfaces/holiday';
 import { CommonModule } from "@angular/common";
 import { LoaderComponent } from '../loader/loader.component';
+import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 
 
 @Component({
@@ -27,7 +28,7 @@ export class HolidaysComponent implements OnInit {
   private endDate: Date = new Date('2030-12-31');
   private weeklyOffDays: number[] = [0, 6]; // 0 for Sunday, 6 for Saturday
 
-  constructor(private apiservice: ApiService) {}
+  constructor(private employeeService: EmployeeService) {}
 
   ngOnInit(): void {
     this.getAllHolidaysListWithDelay();
@@ -86,7 +87,7 @@ export class HolidaysComponent implements OnInit {
 
   async loadFixedEvents(): Promise<void> {
     // Fetch the holidays list and assign to fixedEvents
-    const holidays: Holiday[] = await this.apiservice.getHolidaysList().toPromise();
+    const holidays: Holiday[] = await this.employeeService.getAllHolidays().toPromise();
     this.fixedEvents = holidays.map(holiday => ({
       title: holiday.holidayName,
       start: holiday.holidayDate,
@@ -125,7 +126,7 @@ export class HolidaysComponent implements OnInit {
 
     // Introduce a 3-second delay before fetching data
     setTimeout(() => {
-      this.apiservice.getHolidaysList().subscribe((holidays: Holiday[]) => {
+      this.employeeService.getAllHolidays().subscribe((holidays: Holiday[]) => {
         this.fixedEvents = holidays.map(holiday => ({
           title: holiday.holidayName,
           start: holiday.holidayDate,
