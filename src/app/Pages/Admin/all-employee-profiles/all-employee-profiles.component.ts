@@ -31,7 +31,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     employees: any = [];
     departments: any = [];
     roles: any = [];
-    employeeForm: FormGroup;
+    employeeForm!: FormGroup;
     showDialog: boolean = false;
     isEditing: boolean = false;
     selectedEmployeeId: number | null = null;
@@ -44,27 +44,31 @@ export class AllEmployeeProfilesComponent implements OnInit {
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
     ) {
-        // Create the employee form
-        this.employeeForm = this.formBuilder.group({
-            firstName: ['', Validators.required],
-            lastName: ['', Validators.required],
-            emailId: ['', [Validators.required, Validators.email]],
-            password: ['Gfss@2024',Validators.required],
-            mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-            department: ['', Validators.required],
-            role: ['', Validators.required],
-            // manager: [''],
-            joiningDate: ['', Validators.required],
-            address: ['', Validators.required],
-        });
+       
     }
 
     ngOnInit(): void {
         this.loadEmployees();
         this.loadDepartments();
         this.loadRoles();
+        this.loadForm()
     }
 
+
+    loadForm(){
+         // Create the employee form
+         this.employeeForm = this.formBuilder.group({
+            firstName: ['', [Validators.required]],
+            lastName: ['', [Validators.required]],
+            emailId: ['', [Validators.required, Validators.email]],
+            mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+            department: ['', [Validators.required]],
+            role: ['', [Validators.required]],
+            // manager: [''],
+            joiningDate: ['', [Validators.required]],
+            address: ['', [Validators.required]],
+        });
+    }
     loadEmployees() {
         debugger
         this.loading = true; // Set loading to true
@@ -88,10 +92,12 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     addEmployee() {
-        debugger
+        debugger;
         if (this.employeeForm.valid) {
             debugger;
-            this.employeeService.addEmployee(this.employeeForm.value).subscribe({
+            let employeeForm = {...this.employeeForm.value, password: 'Gfss@2024'}
+            debugger;
+            this.employeeService.addEmployee(employeeForm).subscribe({
                 next: () => {
                     debugger;
                     this.loadEmployees();
@@ -192,7 +198,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
 
     loadRoles(){
         this.adminService.getAllRolesList().subscribe((data) =>{
-            this.departments = data;
+            this.roles = data;
         })
     }
 }
