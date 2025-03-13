@@ -10,9 +10,9 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { Manager } from '../../../Core/Interfaces/manager';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
-import { finalize } from 'rxjs';
+
+// import { ApiService } from '../../../Core/Services/api.service';
 
 @Component({
   selector: 'app-roles-list',
@@ -34,478 +34,463 @@ import { finalize } from 'rxjs';
   providers: [ConfirmationService, MessageService],
 })
 export class RolesListComponent implements OnInit {
-  departmentForm: FormGroup;
+  departmentForm !: FormGroup;
   departments: any = [];
   selectedDepartmentId: string | null = null;
   showDepartmentList: boolean = false;
-  loading: boolean = false; // Spinner control variable
+  isLoading: boolean = false;
 
-  roleForm: FormGroup;
+  roleForm !: FormGroup;
   roles: any = [];
   selectedRoleId: string | null = null;
   showRoleList: boolean = false;
 
-  managerForm: FormGroup;
+  managerForm !: FormGroup;
   managers: any = [];
   selectedManagerId: string | null = null;
   showManagerList: boolean = false;
 
-  projectForm: FormGroup;
+  projectForm !: FormGroup;
   projects: any = [];
   selectedProjectId: string | null = null;
   showProjectList: boolean = false;
 
 
   constructor(
+    private adminService: AdminService,
     private fb: FormBuilder,
-    private confirmationService: ConfirmationService,
     private messageService: MessageService,
-    private adminService: AdminService
-  ) {
+    private confirmationService: ConfirmationService
+  ) { }
+
+  ngOnInit() {
+    // Initialize the reactive form
     this.departmentForm = this.fb.group({
-      departmentName: ['', Validators.required],
+      departmentName: ['', Validators.required]
     });
 
     this.roleForm = this.fb.group({
-      roleName: ['', Validators.required],
+      roleName: ['', Validators.required]
     });
 
     this.managerForm = this.fb.group({
-      managerName: ['', Validators.required],
+      managerName: ['', Validators.required]
     });
 
     this.projectForm = this.fb.group({
       projectName: ['', Validators.required]
     });
+
+    this.toggleDepartmentList();
+    // this.loadDepartments();
+    // this.loadRoles();
+    // this.loadManagers();
+    // this.loadProjects();
+
   }
 
-  ngOnInit(): void {
-    this.loadRoles();
-    this.loadManagers();
-    this.loadDepartments();
-    this.loadProjects();
+  loadDepartments() {
+    this.getAllDepartmentsList();
+    this.isLoading = false; // Hide the loader after the data is fetched
   }
 
-  toggleRoleList(): void {
-    this.showRoleList = !this.showRoleList;
+  loadRoles() {
+    this.getAllRolesList();
+    this.isLoading = false; // Hide the loader after the data is fetched
   }
 
-  loadRoles(): void {
-    this.loading = true;
-    setTimeout(() => {
-      this.adminService.getAllRoles().subscribe(
-        (data) => {
-          this.roles = data;
-          this.loading = false;
-        },
-        (error) => {
-          this.loading = false;
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to load roles',
-          });
-        }
-      );
-    }, 500); // Adjust the timeout duration as needed (500 ms in this case)
+  loadManagers() {
+    this.getAllManagersList();
+    this.isLoading = false; // Hide the loader after the data is fetched
   }
 
-  submitRole(): void {
-    if (this.roleForm.invalid) {
-      return;
-    }
-    this.loading = true;
-    const roleData = {
-      id: this.selectedRoleId ?? new Date().getTime().toString(),
-      roleName: this.roleForm.value.roleName,
-    };
+  loadProjects() {
+    this.getAllProjectsList();
+    this.isLoading = false; // Hide the loader after the data is fetched
+  }
 
-    const roleObservable = this.selectedRoleId
-      ? this.adminService.updateRole(roleData)
-      : this.adminService.addRole(roleData);
 
-    roleObservable.subscribe(
-      () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: this.selectedRoleId ? 'Role Updated' : 'Role Added',
-          detail: this.selectedRoleId
-            ? 'Role details have been updated successfully.'
-            : 'New role has been added successfully.',
+
+
+  // Departments
+  // Method to fetch the list of departments from the API
+  getAllDepartmentsList() {
+    this.adminService.getAllDepartmentsList().subscribe((data: any) => {
+      this.departments = data;
+    });
+  }
+
+
+  // Method to add or update a department
+  onSubmit() {
+
+    if (this.departmentForm.valid) {
+
+      let department = { ...this.departmentForm.value };
+      this.isLoading = true;
+
+      if (this.selectedDepartmentId) {
+        let updateDepartment = { ...this.departmentForm.value, departmentId: this.selectedDepartmentId ? this.selectedDepartmentId : null };
+        this.adminService.updateDepartment(updateDepartment).subscribe((data: any) => {
+
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Department updated successfully!' });
+          this.clearDepartmentForm();
+          this.loadDepartments();
+          this.showDepartmentList = true;
         });
-        this.loadRoles();
-        this.loading = false;
-      },
-      (error) => {
-        this.loading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to ' + (this.selectedRoleId ? 'update' : 'add') + ' role',
+      } else {
+        // If no selectedDepartmentId, we are adding a new department
+        this.adminService.createDepartment(department).subscribe((data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: data.message });
+          this.clearDepartmentForm();
+          this.loadDepartments();
+          this.showDepartmentList = true;
         });
       }
-    );
-
-    this.resetRoleForm();
+    }
   }
 
-  editRole(role: any): void {
-    this.selectedRoleId = role.id;
-    this.roleForm.patchValue({
-      roleName: role.roleName,
-    });
-    this.showRoleList = false;
-  }
-
-  deleteRole(roleId: number, event: Event): void {
-    this.loading = true;
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure you want to delete this role?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.adminService.deleteRole(roleId).subscribe(
-          () => {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Role Deleted',
-              detail: 'Role has been deleted successfully.',
-            });
-            this.loadRoles();
-            this.loading = false;
-          },
-          (error) => {
-            this.loading = false;
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to delete role: ' + error.status + ' ' + error.message,
-            });
-          }
-        );
-      },
-    });
-  }
-
-  resetRoleForm(): void {
-    this.selectedRoleId = null;
-    this.roleForm.reset();
-    this.showRoleList = true;
-  }
-
-  toggleDepartmentList(): void {
+  // Method to toggle the department list visibility
+  toggleDepartmentList() {
+    if (!this.showDepartmentList) {
+      this.isLoading = true;
+      this.getAllDepartmentsList();
+      this.isLoading = false;
+    }
     this.showDepartmentList = !this.showDepartmentList;
   }
 
-  loadDepartments(): void {
-    this.loading = true;
-    setTimeout(() => {
-      this.adminService.getAllDepartments().subscribe(
-        (data) => { 
-          console.log(data)
-          this.departments = data;
-          this.loading = false;
-        },
-        (error) => {
-          this.loading = false;
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to load departments',
-          });
-        }
-      );
-    }, 2000); // Adjust the timeout duration as needed
-  }
-  
+  // Method to delete a department with confirmation
+  deleteDepartment(id: string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete this department?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      accept: () => {
 
-  onSubmit(): void {
-    if (this.departmentForm.invalid) {
-      return;
-    }
-    this.loading = true;
-    const departmentData = {
-      id: this.selectedDepartmentId ?? new Date().getTime().toString(),
-      departmentName: this.departmentForm.value.departmentName,
-    };
-
-    const departmentObservable = this.selectedDepartmentId
-      ? this.adminService.updateDepartment(departmentData)
-      : this.adminService.addDepartment(departmentData);
-
-    departmentObservable.subscribe(
-      () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: this.selectedDepartmentId ? 'Department Updated' : 'Department Added',
-          detail: this.selectedDepartmentId
-            ? 'Department details have been updated successfully.'
-            : 'New department has been added successfully.',
+        this.adminService.deleteDepartment(id).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Department deleted successfully!' });
+          this.loadDepartments();
+          this.showDepartmentList = false;
+          //  this.isLoading = false;
         });
-        this.loadDepartments();
-        this.loading = false;
       },
-      (error) => {
-        this.loading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to ' + (this.selectedDepartmentId ? 'update' : 'add') + ' department',
-        });
-      }
-    );
-
-    this.resetForm();
+      reject: () => { this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: 'Department deletion cancelled!' }); }
+    });
   }
 
-  editDepartment(department: any): void {
-    this.selectedDepartmentId = department.id;
+  // Method to edit a department
+  editDepartment(department: any) {
+
     this.departmentForm.patchValue({
       departmentName: department.departmentName,
     });
-    this.showDepartmentList = false;
+    this.selectedDepartmentId = department.depId;
+    this.showDepartmentList = false; // Hide list and show the form
   }
 
-  deleteDepartment(departmentId: any, event: Event): void {
-    this.loading = true;
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure you want to delete this department?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.adminService.deleteDepartment(departmentId).subscribe(
-          () => {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Department Deleted',
-              detail: 'Department has been deleted successfully.',
-            });
-            this.loadDepartments();
-            this.loading = false;
-          },
-          (error) => {
-            this.loading = false;
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to delete department: ' + error.status + ' ' + error.message,
-            });
-          }
-        );
-      },
+
+  // Method to clear the form fields
+  clearDepartmentForm() {
+    this.departmentForm.reset();
+    this.selectedDepartmentId = null;
+    this.isLoading = false;
+  }
+
+  // Role
+  // Method to fetch the list of roles from the API
+  getAllRolesList() {
+    this.adminService.getAllRolesList().subscribe((data: any) => {
+      this.roles = data;
     });
   }
 
-  resetForm(): void {
-    this.selectedDepartmentId = null;
-    this.departmentForm.reset();
-    this.showDepartmentList = true;
+  // Method to add or update a role
+  submitRole() {
+    if (this.roleForm.valid) {
+      debugger;
+      let role = { ...this.roleForm.value };
+
+      this.isLoading = true;
+      debugger;
+      if (this.selectedRoleId) {
+        let updateRole = { ...this.roleForm.value, roleId: this.selectedRoleId ? this.selectedRoleId : null };
+        this.adminService.updateRole(updateRole).subscribe((data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role updated successfully!' });
+          this.clearRoleForm();
+          this.loadRoles();
+          this.showRoleList = true;
+        });
+      } else {
+        // If no selectedRoleId, we are adding a new role
+        this.adminService.createRole(role).subscribe((data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role added successfully!' });
+          this.clearRoleForm();
+          this.loadRoles();
+          this.showRoleList = true;
+        });
+      }
+    }
   }
 
-  toggleManagerList(): void {
+
+  // Method to edit a role
+  editRole(role: any) {
+    debugger;
+    this.roleForm.patchValue({
+      roleName: role.roleName,
+    });
+    this.selectedRoleId = role.rolId;
+    this.showRoleList = false; // Hide list and show the form
+  }
+
+  // Method to toggle the role list visibility
+  toggleRoleList() {
+    if (!this.showRoleList) {
+      this.isLoading = true;
+      this.getAllRolesList();
+      this.isLoading = false;
+    }
+    this.showRoleList = !this.showRoleList;
+  }
+
+  // Method to delete a role with confirmation
+  deleteRole(id: string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete this role?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      accept: () => {
+        // Call the API to delete the role
+        this.adminService.deleteRole(id).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role deleted successfully!' });
+          this.loadRoles();
+          this.showRoleList = false;
+        });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: 'Role deletion cancelled!' });
+      }
+    });
+  }
+
+  // Method to clear the form fields
+  clearRoleForm() {
+    this.roleForm.reset();
+    this.selectedRoleId = null;
+    this.isLoading = false;
+  }
+
+
+  // Manager
+  // Method to fetch the list of managers from the API
+  getAllManagersList() {
+    this.adminService.getAllManagersList().subscribe((data: any) => {
+      this.managers = data;
+    });
+  }
+
+  // Method to add or update a manager
+  submitManager() {
+    if (this.managerForm.valid) {
+      let manager = { ...this.managerForm.value };
+
+      this.isLoading = true;
+
+      if (this.selectedManagerId) {
+        let updateManager = { ...this.managerForm.value, managerId: this.selectedManagerId ? this.selectedManagerId : null }
+        this.adminService.updateManager(updateManager).subscribe((data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Manager updated successfully!' });
+          this.clearMangerForm();
+          this.loadManagers();
+          this.showManagerList = true;
+        });
+      } else {
+        this.adminService.createManager(manager).subscribe((data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Manager added successfully!' });
+          this.clearMangerForm();
+          this.loadManagers();
+          this.showManagerList = true;
+        });
+      }
+    }
+  }
+
+  // Method to toggle the manager list visibility
+  toggleManagerList() {
+    if (!this.showManagerList) {
+      this.isLoading = true;
+      this.getAllManagersList();
+      this.isLoading = false;
+    }
     this.showManagerList = !this.showManagerList;
   }
 
-  loadManagers(): void {
-    this.loading = true;
-    setTimeout(() => {
-      this.adminService.getAllManagers().subscribe(
-        (data) => {
-          this.managers = data;
-          this.loading = false;
-        },
-        (error) => {
-          this.loading = false;
-          this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Failed to load managers',
-          });
-        }
-      );
-    }, 2000); // Adjust the timeout duration as needed
-  }
-  submitManager(): void {
-    if (this.managerForm.invalid) {
-      return;
-    }
-    this.loading = true;
-    const managerData = {
-      id: this.selectedManagerId ?? new Date().getTime().toString(),
-      managerName: this.managerForm.value.managerName,
-    };
-
-    const managerObservable = this.selectedManagerId
-      ? this.adminService.updateManager(managerData)
-      : this.adminService.addManager(managerData);
-
-    managerObservable.subscribe(
-      () => {
-        this.messageService.add({
-          severity: 'success',
-          summary: this.selectedManagerId ? 'Manager Updated' : 'Manager Added',
-          detail: this.selectedManagerId
-            ? 'Manager details have been updated successfully.'
-            : 'New manager has been added successfully.',
+  // Method to delete a manager with confirmation
+  deleteManager(id: string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete this manager?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      accept: () => {
+        // Call the API to delete the manager
+        this.adminService.deleteManager(id).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Manager deleted successfully!' });
+          this.loadManagers();
+          this.showManagerList = false;
         });
-        this.loadManagers();
-        this.loading = false;
       },
-      (error) => {
-        this.loading = false;
-        this.messageService.add({
-          severity: 'error',
-          summary: 'Error',
-          detail: 'Failed to ' + (this.selectedManagerId ? 'update' : 'add') + ' manager',
-        });
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: 'Manager deletion cancelled!' });
       }
-    );
-
-    this.resetManagerForm();
+    });
   }
 
-  editManager(manager: any): void {
-    this.selectedManagerId = manager.id;
+  // Method to edit a manager
+  editManager(manager: any) {
+
     this.managerForm.patchValue({
       managerName: manager.managerName,
     });
-    this.showManagerList = false;
+    this.selectedManagerId = manager.managId;
+    this.showManagerList = false; // Hide list and show the form
   }
 
-  deleteManager(managerId: any, event: Event): void {
-    this.loading = true;
-    this.confirmationService.confirm({
-      target: event.target as EventTarget,
-      message: 'Are you sure you want to delete this manager?',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.adminService.deleteManager(managerId).subscribe(
-          () => {
-            this.messageService.add({
-              severity: 'success',
-              summary: 'Manager Deleted',
-              detail: 'Manager has been deleted successfully.',
-            });
-            this.loadManagers();
-            this.loading = false;
-          },
-          (error) => {
-            this.loading = false;
-            this.messageService.add({
-              severity: 'error',
-              summary: 'Error',
-              detail: 'Failed to delete manager: ' + error.status + ' ' + error.message,
-            });
-          }
-        );
-      },
+
+  // Method to clear the form fields
+  clearMangerForm() {
+    this.managerForm.reset();
+    this.selectedManagerId = null;
+    this.isLoading = false;
+  }
+
+  // Project
+  // Method to fetch the list of projects from the API
+  getAllProjectsList() {
+    this.adminService.getAllProjectsList().subscribe((data: any) => {
+      this.projects = data;
     });
   }
 
-  resetManagerForm(): void {
-    this.selectedManagerId = null;
-    this.managerForm.reset();
-    this.showManagerList = true;
+  // Method to add or update a project
+  submitProject() {
+    if (this.projectForm.valid) {
+
+      let project = { ...this.projectForm.value };
+
+      this.isLoading = true;
+
+      if (this.selectedProjectId) {
+        let updateProject = { ...this.projectForm.value, projectId: this.selectedProjectId ? this.selectedProjectId : null };
+        this.adminService.updateProject(updateProject).subscribe((data: any) => {
+
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project updated successfully!' });
+          this.clearProjectForm();
+          this.loadProjects();
+          this.showProjectList = true;
+        });
+      } else {
+        console.log('Project: ', project)
+        this.adminService.createProject(project).subscribe((data: any) => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project added successfully!' });
+          this.clearProjectForm();
+          this.loadProjects();
+          this.showProjectList = true;
+        });
+      }
+    }
   }
 
 
 
-    // Toggle between form and list
-    toggleProjectList(): void {
-      this.showProjectList = !this.showProjectList;
+  // Method to toggle the project list visibility
+  toggleProjectList() {
+    if (!this.showProjectList) {
+      this.isLoading = true;
+      this.getAllProjectsList();
+      this.isLoading = false;
     }
-  
-    // Load existing projects
-    loadProjects(): void {
-      this.loading = true;
-      this.adminService.getAllProjects().subscribe(
-        (data) => {
-          this.projects = data;
-          this.loading = false;
-        },
-        (error) => {
-          this.loading = false;
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load projects' });
-        }
-      );
-    }
-  
-    // Submit project form
-    submitProject(): void {
-      if (this.projectForm.invalid) {
-        return;
-      }
-      this.loading = true;
-  
-      const projectData = {
-        id: this.selectedProjectId ?? new Date().getTime().toString(),
-        projectName: this.projectForm.value.projectName,
-      };
-  
-      // Check if it's an update or a new addition
-      const projectObservable = this.selectedProjectId
-        ? this.adminService.updateProject(projectData)
-        : this.adminService.addProject(projectData);
-  
-      projectObservable.subscribe(
-        () => {
-          this.messageService.add({
-            severity: 'success',
-            summary: this.selectedProjectId ? 'Project Updated' : 'Project Added',
-            detail: this.selectedProjectId ? 'Project details have been updated successfully.' 
-            : 'New Project has been added successfully.',
-          });
+    this.showProjectList = !this.showProjectList;
+  }
+
+  // Method to delete a project with confirmation
+  deleteProject(id: any) {
+    console.log('Project ID: ', id);
+    debugger;
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete this project?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: "p-button-danger p-button-text",
+      rejectButtonStyleClass: "p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      accept: () => {
+        debugger;
+        console.log('Accept button clicked. Deleting project...');
+        // Call the API to delete the project
+        this.adminService.deleteProject(id).subscribe(() => {
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project deleted successfully!' });
           this.loadProjects();
-          this.loading = false;
-        },
-        (error) => {
-          this.loading = false;
-          this.messageService.add({ severity: 'error', summary: 'Error',
-             detail: 'Failed to' + (this.selectedProjectId ? 'update' : 'add') + 'project', });
-          
+          this.showProjectList = false;
+        });
+      },
+      reject: () => {
+        this.messageService.add({ severity: 'error', summary: 'Cancelled', detail: 'Project deletion cancelled!' });
+      }
+    });
+  }
+
+  // Method to edit a project
+  editProject(project: any) {
+    this.projectForm.patchValue({
+      projectName: project.projectName,
+    });
+    this.selectedProjectId = project.projId;
+    this.showProjectList = false; // Hide list and show the form
+  }
+
+
+  // Method to clear the form fields
+  clearProjectForm() {
+    this.projectForm.reset();
+    this.selectedProjectId = null;
+    this.isLoading = false;
+  }
+
+  confirmDelete(type: string, id: any) {
+    this.confirmationService.confirm({
+      message: `Are you sure you want to delete this ${type}?`,
+      header: 'Confirm Deletion',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        switch (type) {
+          case 'department':
+            this.deleteDepartment(id);
+            break;
+          case 'role':
+            this.deleteRole(id);
+            break;
+          case 'project':
+            this.deleteProject(id);
+            break;
+          case 'manager':
+            this.deleteManager(id);
+            break;
         }
-      );
-      this.resetProjectForm();
-    }
-  
-    // Edit project
-    editProject(project: any): void {
-      this.selectedProjectId = project.id;
-      this.projectForm.patchValue({ projectName: project.projectName });
-      this.showProjectList = false;
-    }
-  
-    // Delete project
-    deleteProject(projectId: any, event: Event): void {
-      this.loading = true;
-      this.confirmationService.confirm({
-        target: event.target as EventTarget,
-        message: 'Are you sure you want to delete this project?',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          this.adminService.deleteProject(projectId).subscribe(
-            () => {
-              this.messageService.add({ severity: 'success', summary: 'Project Deleted', 
-                detail: 'Project has been deleted successfully.' });
-              this.loadProjects();
-              this.loading = false;
-            },
-            (error) => {
-              this.loading = false;
-              this.messageService.add({ severity: 'error', summary: 'Error', 
-                detail: 'Failed to delete project' + ' ' + error.message, });
-              this.loading = false;
-            }
-          );
-        },
-      });
-    }
-    
-  
-    // Reset the form after submission
-    resetProjectForm(): void {
-      this.selectedProjectId = null;
-      this.projectForm.reset();
-      this.showProjectList = true;
-    }
+      }
+    });
+  }
 }
