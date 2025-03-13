@@ -38,4 +38,39 @@ export class EmployeeService {
   getAttendanceByEmployee( month: number, year: number): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${123}&month=${month}&year=${year}`);
   }
+
+
+  //-------------------//
+
+  getAttendanceById(attendanceId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.get(this.apiUrl + "attendance/${attendanceId}", { headers });
+  }
+
+  searchAttendance(data: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(this.apiUrl + "attendance/search", { headers });
+  }
+
+
+  markAttendance(attendanceRecord: any) {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.post(`${this.apiUrl}/attendance/mark`, attendanceRecord, { headers });
+  }
+
+
+  getAllAttendance(employeeId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+    });
+    return this.http.get(`${this.apiUrl}/attendance/all?employeeId=${employeeId}`, { headers });
+  }
+  
+
 }

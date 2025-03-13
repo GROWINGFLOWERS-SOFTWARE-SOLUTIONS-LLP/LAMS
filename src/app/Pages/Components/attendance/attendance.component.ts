@@ -16,6 +16,7 @@ import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { EmployeeService } from '../../../Core/Services/Employee/employee.service'; 
 
 @Component({
   selector: 'app-attendance',
@@ -45,9 +46,11 @@ export class AttendanceComponent implements OnInit {
   Punch_in_time: string | null = null;
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
-  loading: boolean = true; // State to control loader visibility
+  loading: boolean = true;
+  attendance: any ;// State to control loader visibility
 
-  constructor(private authService: AuthService, private apiService: ApiService, private router: Router, private messageService: MessageService,) {}
+  constructor(private authService: AuthService, private apiService: ApiService, 
+    private employeeService: EmployeeService, private router: Router, private messageService: MessageService,) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
@@ -70,32 +73,49 @@ export class AttendanceComponent implements OnInit {
   punchIn() {
     this.Punch_in_time = this.currentTime;
     const attendance_date = new Date();
+    debugger
     const newRecord = {
+      checkIn: String(this.Punch_in_time), // Ensure it's a string
       date: attendance_date.toLocaleDateString('en-GB'),
-      checkIn: this.Punch_in_time,
       checkOut: '',
-      break: ''
+      employeeId: this.attendance.empId,
+      breaktime: '',
     };
+    console.log(newRecord);
 
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
-   
-    this.apiService.postAttendance(newRecord).subscribe(
-      (response) => {
-        console.log('Attendance record posted successfully:', response);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully punched in!' });
-      },
-      (error) => {
-        console.error('Error posting attendance record:', error);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to punch in. Please try again.' });
-      }
-    );
+    debugger
 
-    this.saveAttendanceRecords();
+    // this.employeeService.markAttendance(newRecord).subscribe(
+    //   (response) => {
+    //     console.log('Attendance record posted successfully:', response);
+    //     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully punched in!' });
+    //   },
+    //   (error) => {
+    //     console.error('Error posting attendance record:', error);
+    //     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to punch in. Please try again.' });
+    //   }
+    // );
+    this.employeeService.markAttendance({
+      employeeId: newRecord.employeeId,
+      date: newRecord.date,
+      checkIn: newRecord.checkIn,
+      checkOut: null,
+      breaktime: null
+    }).subscribe((data: any) =>  {
+      console.log("data", data);
+      // this.displayPunchInDialog = false;
+      // sessionStorage.setItem('hasPunchedIn', 'true'); 
+      // this.router.navigate(['/dashboard']);
+    });
+    debugger
+    
     this.displayPunchInDialog = false;
     sessionStorage.setItem('hasPunchedIn', 'true'); 
     this.router.navigate(['/dashboard']);
-    
+    this.saveAttendanceRecords();
+
   }
 
   checkout() {
@@ -103,9 +123,9 @@ export class AttendanceComponent implements OnInit {
     const lastRecord = this.attendanceRecords[this.attendanceRecords.length - 1];
     if (lastRecord && !lastRecord.checkOut) {
       lastRecord.checkOut = Punch_out_time;
-      lastRecord.break = this.calculateBreakTime(lastRecord.checkIn, lastRecord.checkOut);
+      lastRecord.breaktime = this.calculateBreakTime(lastRecord.checkIn, lastRecord.checkOut);
 
-      this.apiService.postAttendance(lastRecord).subscribe(
+      this.employeeService.markAttendance(lastRecord).subscribe(
         (response) => {
           console.log('Updated attendance record posted successfully:', response);
         },
@@ -113,7 +133,7 @@ export class AttendanceComponent implements OnInit {
           console.error('Error posting updated attendance record:', error);
         }
       );
-
+      debugger
       this.saveAttendanceRecords();
     } else {
       console.log("Error.");
@@ -148,19 +168,41 @@ export class AttendanceComponent implements OnInit {
   }
 
   loadAttendanceRecords() {
-    this.loading = true; // Show loader when loading starts
+    this.loading = true;
+    this.attendance = JSON.parse(localStorage.getItem("userValue") || "null");
     const savedRecords = localStorage.getItem('attendanceRecords');
+  
     if (savedRecords) {
-      this.attendanceRecords = JSON.parse(savedRecords);
+      let parsedRecords = JSON.parse(savedRecords);
+  
+      // Get today's date in the correct format
+      const todayDate = new Date().toLocaleDateString('en-GB');
+  
+      // Find today's attendance record
+      const todayRecord = parsedRecords.find((record: any) => record.date === todayDate);
+  
+      if (todayRecord) {
+        this.hasPunchedIn = true;  // Ensure UI knows that user has punched in today
+      }
+  
+      // Keep only the latest entry for each date
+      const uniqueRecordsMap = new Map<string, any>();
+      parsedRecords.forEach((record: any) => {
+        uniqueRecordsMap.set(record.date, record);
+      });
+  
+      this.attendanceRecords = Array.from(uniqueRecordsMap.values());
     } else {
-      console.log("Failed.");
+      console.log("No attendance records found.");
     }
-
-    // Set a timeout to hide the loader after 2 seconds
+  
     setTimeout(() => {
-      this.loading = false; // Hide loader when loading completes
-    }, 1500); // 2000 milliseconds = 2 seconds
+      this.loading = false;
+    }, 1500);
   }
+  
+  
+  
 
   checkPunchInStatus() {
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');

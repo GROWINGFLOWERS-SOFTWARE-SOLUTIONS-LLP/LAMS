@@ -97,13 +97,8 @@ export class LoginComponent implements OnInit {
         this.router.navigate(['/dashboard']);
       } else if (user === 'Employee') {
         this.router.navigate(['/attendance']);
-<<<<<<< HEAD
-      } else if (user.role === 'Manager') {
-        this.router.navigate(['/attendance']);
-=======
       } else if (user === 'Manager') {
-        this.router.navigate(['/dashboard']);
->>>>>>> d39c99b9c390a9530f3d811210f5c78e080f87e9
+        this.router.navigate(['/attendance']);
       } else {
         this.router.navigate(['/login']);
       }
