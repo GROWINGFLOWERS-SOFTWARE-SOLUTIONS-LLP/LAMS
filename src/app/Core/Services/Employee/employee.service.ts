@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
  
 @Injectable({
   providedIn: 'root'
@@ -38,19 +38,28 @@ export class EmployeeService {
     return this.http.get(`${this.apiUrl}/leaveApplications`);
   }
 
-  getAttendanceByEmployee(month: number, year: number): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/attendance?employeeId=${123}&month=${month}&year=${year}`);
+
+  getAttendanceByEmployee(employeeId: number, month: number, year: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`, { headers: this.headers })
+      .pipe(
+        map(response => {
+          if (response.success) {
+            return response.data; // ✅ Extracting only the `data`
+          } else {
+            throw new Error('Failed to fetch attendance data');
+          }
+        })
+      );
   }
+  
  
  
   //-------------------//
  
-  getAttendanceById(attendanceId: string): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "attendance/${attendanceId}", { headers });
-  }
+  getAttendanceById(employeeId: string) {
+    return this.http.get(`${this.apiUrl}/attendance/${employeeId}`);
+}
+
  
   searchAttendance(data: any): Observable<any> {
     const headers = new HttpHeaders({
@@ -68,11 +77,11 @@ export class EmployeeService {
   }
 
 
-  getAllAttendance(employeeId: string): Observable<any> {
+  getAllAttendance(currentMonth: number, currentYear: number, employeeId: string): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.get(`${this.apiUrl}/attendance/all?employeeId=${employeeId}`, { headers });
+    return this.http.get(`${this.apiUrl}/attendance/all?employeeId=${employeeId}`);
   }
   
 
