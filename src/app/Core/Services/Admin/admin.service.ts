@@ -235,8 +235,8 @@ deleteProject(projId: any) {
 }
 
 //API for GET History
-getHistory(history:any): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+getHistory(employeeId:any): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/history/${employeeId}`);
 }
 
 

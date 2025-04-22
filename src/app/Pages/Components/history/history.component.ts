@@ -1,51 +1,49 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoaderComponent } from '../loader/loader.component';  // Import reusable LoaderComponent
+import { LoaderComponent } from '../loader/loader.component';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
+import { CardModule } from 'primeng/card';
+import { DividerModule } from 'primeng/divider';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, LoaderComponent],  // Import LoaderComponent
+  imports: [CommonModule, LoaderComponent, CardModule, DividerModule],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })
 export class HistoryComponent implements OnInit {
-  
-  history: any[] = [];  // To store history data
-  isLoading = false;  // To track loading state
-  
-  historyData: any;
+
+  historyData: any[] = [];
+  isLoading = false;
 
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
-    this.isLoading = false;
+    this.isLoading = true;
     this.getHistory(); 
   }
-  
-  // Method to get history
-  getHistory(){
-    
-        let history: any = JSON.parse(localStorage.getItem("userValue") || "null");
-        console.log('History:', history);
-        // this.adminService.getHistory(history.empId).subscribe((data:any)=>{
-        //     console.log('History Data:', data);
-        //     this.historyData=data;
-        //     this.isLoading=false;
-        // })
-       }
 
-// Method to delete history
-deleteHistory(){
-  
-      let history: any = JSON.parse(localStorage.getItem("userValue") || "null");
-      console.log('History :', history);
-      // this.adminService.deleteHistory(history.empId).subscribe((data:any)=>{
-      //     console.log('Delete Data:', data);
-      //     this.historyData=data;
-      //     this.isLoading=false;
-      // })
-     }
-   }
+  getHistory() {
+    const user = JSON.parse(localStorage.getItem("userValue") || "null");
+    if (!user?.empId) {
+      this.isLoading = false;
+      return;
+    }
 
+    this.adminService.getHistory(user.empId).subscribe({
+      next: (data: any) => {
+        this.historyData = data;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.error('Failed to fetch history:', err);
+        this.isLoading = false;
+      }
+    });
+  }
+
+  hasHistory(): boolean {
+    return this.historyData && this.historyData.length > 0;
+  }
+}
