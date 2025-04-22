@@ -10,32 +10,32 @@ import { LoaderComponent } from '../loader/loader.component';
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe, LoaderComponent],  
+  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe, LoaderComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   employee: any;
-  loading: boolean = false;  // Add a loading state
+  loading: boolean = false;
 
   constructor(private apiService: ApiService, private router: Router) {}
 
-  ngOnInit(): void {                                                                    
+  ngOnInit(): void {
     this.loadUserProfile();
   }
 
   loadUserProfile() {
-    this.loading = true;  // Start loading before fetching the data
-    let employeeId: any = JSON.parse(localStorage.getItem("userValue") || "null");
-       this.apiService.getProfile(employeeId.empId).subscribe((data:any) => {
-        console.log('Profile Data: ', data);
+    this.loading = true;
+    const user = JSON.parse(localStorage.getItem('userValue') || 'null');
+    if (user?.empId) {
+      this.apiService.getProfile(user.empId).subscribe((data: any) => {
         this.employee = data;
+        this.loading = false;
       });
-      this.loading = false;  // Stop loading when data is fetched
-   
+    }
   }
 
   updateProfile() {
-    this.router.navigateByUrl('profile-form');
+    this.router.navigateByUrl('profile-form', { state: { employee: this.employee } });
   }
 }
