@@ -14,7 +14,7 @@ export class AdminService {
    }
 // Login Api
   loginValidation(data: any) {
-    
+    debugger;
      const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
@@ -236,7 +236,7 @@ deleteProject(projId: any) {
 
 //API for GET History
 getHistory(history:any): Observable<any[]> {
-  return this.http.get<any[]>(`${this.apiUrl}/Components/history/${history}`);
+  return this.http.get<any[]>(`${this.apiUrl}/history/${history}`);
 }
 
 

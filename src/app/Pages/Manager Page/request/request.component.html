@@ -23,10 +23,10 @@
         </ng-template>
         <ng-template pTemplate="body" let-request>
           <tr>
-            <td>{{ request.employeeName }}</td>
+            <td>{{ request.firstName }} {{ request.lastName }}</td>
             <td>{{ request.employeeRole }}</td>
-            <td>{{ request.leaveRequest }}</td>
-            <td>{{ request.leaveReason }}</td>
+            <td>{{ request.leaveType }}</td>
+            <td>{{ request.reason }}</td>
             <td>{{ request.totalLeaves }}</td>
             <td>{{ request.leavesTaken }}</td>
 

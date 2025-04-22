@@ -19,7 +19,6 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
   selector: 'app-login',
   standalone: true,
   imports: [
-    ChangePasswordComponent,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
@@ -28,7 +27,6 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
     PasswordModule,
     ButtonModule,
     ProgressSpinnerModule, // Include ProgressSpinnerModule here
-    LoaderComponent, // Include LoaderComponent here
     ToastModule
   ],
   templateUrl: './login.component.html',
@@ -71,9 +69,8 @@ export class LoginComponent implements OnInit {
   }
  
   loginFun() {
-    // this.loading = false;
-    this.cdr.detectChanges();
-    
+    debugger;
+    // this.loading = false 
       this.apiService.loginValidation(this.loginForm.value).subscribe(
         (data:any) => {
           localStorage.setItem("userValue",JSON.stringify(data))
@@ -81,7 +78,7 @@ export class LoginComponent implements OnInit {
              this.router.navigate(['/change-password']);
 
           } else {
-          debugger
+          debugger;
            this.roleBasedRouting(data.role)
           }
        

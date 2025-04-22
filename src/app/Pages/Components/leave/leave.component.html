@@ -93,7 +93,11 @@
               <td>{{ request.endDate | date:'yyyy-MM-dd' }}</td>
               <td>{{ request.leaveType }}</td>
               <td>{{ request.totalLeaves }}</td>
-              <td><span class="p-tag p-tag-warning">Pending</span></td>
+              <td>
+                <span *ngIf="request.status === 'PENDING'" class="p-tag p-tag-warning">{{request.status}}</span>
+                <span *ngIf="request.status === 'APPROVED'" class="p-tag p-tag-success">{{request.status}}</span>
+                <span *ngIf="request.status === 'REJECTED'" class="p-tag p-tag-warning">{{request.status}}</span>
+              </td>
               <td>{{ request.reason }}</td>
             </tr>
           </ng-template>
