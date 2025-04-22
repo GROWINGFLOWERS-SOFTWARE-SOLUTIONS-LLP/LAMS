@@ -1,60 +1,66 @@
-<section>
-  <div class="center-container">
-    <p-avatar icon="pi pi-user" styleClass="mr-2" size="xlarge" shape="circle"></p-avatar>
-  </div>
-  <div class="container">
-    <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)">
-      <div class="column">
-        <div class="input-box">
-          <label>First Name</label>
-          <input type="text" name="firstName" [(ngModel)]="employee.firstName" placeholder="Enter first name"
-            required />
-        </div>
-        <div class="input-box">
-          <label>Last Name</label>
-          <input type="text" name="lastName" [(ngModel)]="employee.lastName" placeholder="Enter last name" required />
-        </div>
+<p-toast></p-toast>
+
+<section class="p-m-4">
+  <div class="flex justify-content-center">
+    <div class="surface-card p-4 shadow-2 border-round w-full md:w-8 lg:w-6">
+      <div class="text-center mb-4">
+        <p-avatar icon="pi pi-user" size="xlarge" shape="circle" class="mb-3"></p-avatar>
+        <h3>Update Profile</h3>
       </div>
-      <div class="column">
-        <div class="input-box">
-          <label>Email Address</label>
-          <input type="email" name="email" [(ngModel)]="employee.email" placeholder="Enter email address" required />
-        </div>
-        <div class="input-box">
-          <label>Phone Number</label>
-          <input type="tel" name="mobileNumber" [(ngModel)]="employee.mobileNumber" placeholder="Enter phone number"
-            required />
-        </div>
-      </div>
-      <div class="column">
-        <div class="input-box">
-          <label>Department</label>
-          <div class="select-box">
-            <select name="department" [(ngModel)]="employee.department">
-              <option hidden>Department</option>
-              <option>Engineering</option>
-              <option>QA Testing</option>
-              <option>Admin</option>
-              <option>Human Resources</option>
-            </select>
+
+      <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)" class="p-fluid">
+        <div class="formgrid grid">
+          <div class="field col-12 md:col-6">
+            <label for="firstName">First Name</label>
+            <input pInputText id="firstName" name="firstName" [(ngModel)]="employee.firstName" required />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="lastName">Last Name</label>
+            <input pInputText id="lastName" name="lastName" [(ngModel)]="employee.lastName" required />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="email">Email</label>
+            <input pInputText type="email" id="email" name="email" [(ngModel)]="employee.emailId" required />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="mobile">Phone Number</label>
+            <input pInputText type="tel" id="mobile" name="mobile" [(ngModel)]="employee.mobile" required />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="department">Department</label>
+            <p-dropdown id="department" name="department" [options]="departments" [(ngModel)]="employee.department"
+              placeholder="Select Department"></p-dropdown>
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="role">Designation</label>
+            <input pInputText id="role" name="role" [(ngModel)]="employee.role" required />
+          </div>
+
+          <div class="field col-12 md:col-6">
+            <label for="joiningDate">Joining Date</label>
+            <p-calendar inputId="joiningDate" [(ngModel)]="employee.joiningDate" name="joiningDate"
+              dateFormat="yy-mm-dd"></p-calendar>
+          </div>
+
+          <div class="field col-12">
+            <label for="address">Address</label>
+            <textarea pInputTextarea id="address" name="address" [(ngModel)]="employee.address" rows="3"
+              required></textarea>
           </div>
         </div>
-        <div class="input-box">
-          <label>Designation</label>
-          <input type="text" name="role" [(ngModel)]="employee.role" placeholder="Enter Designation" required />
+
+        <div class="flex justify-content-center mt-4 p-col-12 p-md-6">
+          <div class="text-center">
+            <button pButton label="Update"  type="submit"
+              class="p-button-primary p-button-sm"></button>
+          </div>
         </div>
-        <div class="input-box">
-          <label>Joining Date</label>
-          <input type="date" name="joiningDate" [(ngModel)]="employee.joiningDate" required />
-        </div>
-      </div>
-      <div class="input-box address">
-        <label>Address</label>
-        <input type="text" name="address" [(ngModel)]="employee.address" placeholder="Enter street address" required />
-      </div>
-      <div style="display: flex; justify-content: flex-end; margin-top: 1rem;">
-        <p-button label="Update" type="submit"></p-button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
 </section>
