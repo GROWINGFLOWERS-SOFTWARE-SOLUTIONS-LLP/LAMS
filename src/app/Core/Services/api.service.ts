@@ -82,7 +82,7 @@ export class ApiService {
   // }
 
   updateProfile(profile: any): Observable<any> {
-    return this.http.put('/profile/update', profile); // update with correct endpoint
+    return this.http.put(`${this.apiUrl}/profile/update`, profile); // update with correct endpoint
   }
 
 

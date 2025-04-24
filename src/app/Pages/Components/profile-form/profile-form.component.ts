@@ -13,6 +13,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
 @Component({
   selector: 'app-profile-form',
@@ -35,23 +36,36 @@ import { MessageService } from 'primeng/api';
 })
 export class ProfileFormComponent implements OnInit {
   employee: any = {};
-  departments = ['Engineering', 'QA Testing', 'Admin', 'Human Resources'];
+  departments = [];
 
   constructor(
     private apiService: ApiService,
     private router: Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private adminService: AdminService
   ) { }
 
   ngOnInit(): void {
     const userValue = localStorage.getItem('userValue');
     const employeeId = userValue ? JSON.parse(userValue).empId : null;
 
+
     if (employeeId) {
-      this.apiService.getProfile(employeeId).subscribe((data: any) => {
-        this.employee = data;
-      });
+      this.getProfile(employeeId)
     }
+    this.getDepartments()
+  }
+
+  getProfile(employeeId: any) {
+    this.apiService.getProfile(employeeId).subscribe((data: any) => {
+      this.employee = data;
+    });
+  }
+
+  getDepartments() {
+    this.adminService.getAllDepartmentsList().subscribe((data: any) => {
+      this.departments = data;
+    })
   }
 
   onSubmit(form: NgForm) {
@@ -64,10 +78,7 @@ export class ProfileFormComponent implements OnInit {
             detail: 'Profile updated successfully',
           });
 
-          // Optionally redirect after short delay
-          setTimeout(() => {
-            this.router.navigateByUrl('profile');
-          }, 1500);
+          this.router.navigateByUrl('profile');
         },
         error => {
           console.error('Error updating profile', error);
