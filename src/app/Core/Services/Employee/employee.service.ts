@@ -1,43 +1,34 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
- 
+
 @Injectable({
   providedIn: 'root'
 })
 export class EmployeeService {
- 
+
   apiUrl: string = "http://localhost:8442";
 
   headers: HttpHeaders | { [header: string]: string | string[]; } | undefined;
 
-  
+
   constructor(private http: HttpClient) { }
 
   getEmployees(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/admin/employees`,{ headers: this.headers });
+    return this.http.get(`${this.apiUrl}/admin/employees`, { headers: this.headers });
   }
 
   addEmployee(employee: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/admin/employee`, employee,{ headers: this.headers });
+    return this.http.post(`${this.apiUrl}/admin/employee`, employee, { headers: this.headers });
   }
   updateEmployee(employee: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/admin/employee`, employee,{ headers: this.headers });
+    return this.http.put(`${this.apiUrl}/admin/employee`, employee, { headers: this.headers });
   }
 
   // In your ApiService
   deleteEmployee(employeeId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/admin/employee/${employeeId}`,{ headers: this.headers });
+    return this.http.delete(`${this.apiUrl}/admin/employee/${employeeId}`, { headers: this.headers });
   }
-
-
-
-
-  // Method to get leave requests from the backend API
-  getLeaveRequests(): Observable<any> {
-    return this.http.get(`${this.apiUrl}/leaveApplications`);
-  }
-
 
   getAttendanceByEmployee(employeeId: number, month: number, year: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`, { headers: this.headers })
@@ -51,29 +42,24 @@ export class EmployeeService {
         })
       );
   }
-  
- 
- 
+
+
+
   //-------------------//
- 
+
   getAttendanceById(employeeId: string) {
     return this.http.get(`${this.apiUrl}/attendance/${employeeId}`);
-}
-
- 
-  searchAttendance(data: any): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "attendance/search", { headers });
   }
- 
- 
+
+
+  searchAttendance(data: any): Observable<any> {
+    return this.http.post(this.apiUrl + "attendance/search", { headers: this.headers });
+  }
+
+
   markAttendance(attendanceRecord: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(`${this.apiUrl}/attendance/mark`, attendanceRecord, { headers });
+
+    return this.http.post(`${this.apiUrl}/attendance/mark`, attendanceRecord, { headers: this.headers });
   }
 
 
@@ -83,23 +69,19 @@ export class EmployeeService {
     });
     return this.http.get(`${this.apiUrl}/attendance/all?employeeId=${employeeId}`);
   }
-  
 
- 
- 
+
+
+
   getAllAttendanceEmployee(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(`${this.apiUrl}/attendance/all`, { headers });
+  
+    return this.http.get(`${this.apiUrl}/attendance/all`, { headers: this.headers });
   }
- 
+
   // Holidays employee API
 
   getAllHolidays(): Observable<any> {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(`${this.apiUrl}/admin/holidays`, { headers });
+
+    return this.http.get(`${this.apiUrl}/admin/holidays`, { headers: this.headers });
   }
 }

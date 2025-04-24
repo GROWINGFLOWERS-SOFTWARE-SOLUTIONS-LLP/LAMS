@@ -24,8 +24,8 @@ import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 export class RequestComponent implements OnInit {
   leaveRequests: any = [];
 
-  isLoading = true;  // Manage loading state
-
+  isLoading = true;
+  
   constructor(
     private leaveService: ManagerService
   ) { }
@@ -36,11 +36,8 @@ export class RequestComponent implements OnInit {
   }
 
   getAllPendingLeaves(): void {
-    this.isLoading = true;
     this.leaveService.getAllPendingLeaves().subscribe({
       next: (data: any) => {
-        console.log('Leave Data:', data);
-  
         // Check if data is valid and the role is not 'Manager'
         this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
       },

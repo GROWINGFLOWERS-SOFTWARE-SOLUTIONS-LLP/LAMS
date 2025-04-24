@@ -7,7 +7,7 @@
       <app-loader [loading]="isLoading"></app-loader>
 
       <!-- Display the table when the data has been loaded -->
-      <p-table *ngIf="!isLoading" class="w-100" [value]="leaveRequests" responsiveLayout="scroll">
+      <p-table *ngIf="!isLoading && leaveRequests.length > 0" class="w-100" [value]="leaveRequests" responsiveLayout="scroll">
         <ng-template pTemplate="header">
           <tr>
             <th>Employee Name</th>
@@ -47,6 +47,10 @@
           </tr>
         </ng-template>
       </p-table>
+
+      <div *ngIf="leaveRequests.length > 0">
+        <p>No Leave Data Available</p>
+      </div>
     </div>
   </div>
 </div>
