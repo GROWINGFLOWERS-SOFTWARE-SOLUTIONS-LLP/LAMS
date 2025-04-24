@@ -32,7 +32,8 @@
 
           <div class="field col-12 md:col-6">
             <label for="department">Department</label>
-            <p-dropdown id="department" name="department" [options]="departments" [(ngModel)]="employee.department"
+            <p-dropdown id="department" name="department" [options]="departments"
+            optionLabel="departmentName" [(ngModel)]="employee.departments"
               placeholder="Select Department"></p-dropdown>
           </div>
 

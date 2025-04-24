@@ -111,7 +111,7 @@
     </div>
 
     <!--Leave Summary Cards -->
-    <div class="container mx-3 md:mx-8">
+    <div *ngIf="dashboard.role !='Admin'" class="container mx-3 md:mx-8">
         <div class="grid">
             <div class="col-12 md:col-6">
                 <div class="cards max-w-42rem shadow-3 p-1">
