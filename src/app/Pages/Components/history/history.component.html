@@ -1,20 +1,26 @@
-<div class="container">
-  <main class="p-4">
-    <!-- Reusable Loader Component -->
-   <app-loader [loading]="isLoading"></app-loader>
+<div class="container p-4">
+  <app-loader [loading]="isLoading"></app-loader>
 
-    <!-- Content is shown when loading is false -->
-     <div *ngIf="!isLoading" class="history-list"> 
-      <h2 class="text-center">History List</h2>
+  <main class="history-list" *ngIf="!isLoading">
+    <h2>History List</h2>
+
+    <ng-container *ngIf="hasHistory(); else noHistory">
       <ul>
-        <li class="p-3">
-          <time class="text-sm">Date: 2024-09-30</time>
-          <div class="event-details">
-            <h3 class="text-lg">Event-title</h3>
-            <p>Event Description</p>
+        <li *ngFor="let item of historyData">
+          <div>
+            <time><strong>Date:</strong> {{ item.creationDate | date: 'dd-MM-yyyy' }}</time>
+            <div class="event-details">
+              <h3> <strong>Activity:</strong> {{ item.activity || 'No Activity' }}</h3>
+            </div>
           </div>
         </li>
       </ul>
-     </div> 
+    </ng-container>
+
+    <ng-template #noHistory>
+      <div class="text-center text-color-secondary py-5">
+        <p>No history records found.</p>
+      </div>
+    </ng-template>
   </main>
 </div>

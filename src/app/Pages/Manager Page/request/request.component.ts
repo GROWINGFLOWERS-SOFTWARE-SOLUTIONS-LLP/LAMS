@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoaderComponent } from '../../Components/loader/loader.component';
+import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 
 @Component({
   selector: 'app-request',
@@ -21,49 +22,56 @@ import { LoaderComponent } from '../../Components/loader/loader.component';
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
-  leaveRequests = [
-    {
-      employeeName: 'Prajakta Badhan',
-      employeeRole: 'Software Engineer',
-      leaveRequest: 'Annual Leave',
-      leaveReason: 'Family Vacation',
-      totalLeaves: 20,
-      leavesTaken: 6,
-      startDate: new Date(2024, 8, 15),
-      endDate: new Date(2024, 8, 20),
-      status: 'Pending'
-    },
-    {
-      employeeName: 'Bhushan Malpure',
-      employeeRole: 'Developer',
-      leaveRequest: 'Sick Leave',
-      leaveReason: 'Medical emergency',
-      totalLeaves: 20,
-      leavesTaken: 6,
-      startDate: new Date(2024, 8, 10),
-      endDate: new Date(2024, 8, 12),
-      status: 'Pending'
-    }
-  ];
+  leaveRequests: any = [];
 
-  isLoading = true;  // Manage loading state
+  isLoading = true;
+  
+  constructor(
+    private leaveService: ManagerService
+  ) { }
 
   ngOnInit() {
-    // Simulate loading for 1 second
-    setTimeout(() => {
-      this.isLoading = false;  // Stop loader after 1 second
-    }, 2000);
+
+    this.getAllPendingLeaves()
   }
 
+  getAllPendingLeaves(): void {
+    this.leaveService.getAllPendingLeaves().subscribe({
+      next: (data: any) => {
+        // Check if data is valid and the role is not 'Manager'
+        this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
+      },
+      error: (error) => {
+        console.error('Error fetching leave data:', error);
+        this.leaveRequests = [];
+      },
+      complete: () => {
+        this.isLoading = false;
+      }
+    });
+  }
+  
+
   approveLeave(request: any) {
-    console.log('Leave approved for:', request.employeeName);
-    request.status = 'Approved';
-    // Add logic for leave approval, such as calling an API to update the status
+    console.log('Leave approved for:', request);
+    debugger;
+    if (request.employeeLeaveId) {
+      this.leaveService.approveLeave(request.leaveId).subscribe((data) => {
+        console.log('Approve Leave: ', data);
+        this.getAllPendingLeaves();
+      })
+    }
+
+
   }
 
   rejectLeave(request: any) {
-    console.log('Leave rejected for:', request.employeeName);
-    request.status = 'Rejected';
-    // Add logic for leave rejection, such as calling an API to update the status
+    console.log('Leave rejected for:', request);
+    if (request.employeeLeaveId) {
+      this.leaveService.rejectLeave(request.leaveId).subscribe((data) => {
+        console.log('Reject Leave: ', data);
+        this.getAllPendingLeaves();
+      })
+    }
   }
 }

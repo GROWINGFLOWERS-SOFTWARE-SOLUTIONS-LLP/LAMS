@@ -31,7 +31,6 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     PasswordModule,
     ButtonModule,
     ProgressSpinnerModule, // Include ProgressSpinnerModule here
-    LoaderComponent, // Include LoaderComponent here
     ToastModule
   ],
   templateUrl: './login.component.html',

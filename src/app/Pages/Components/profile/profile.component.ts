@@ -30,6 +30,7 @@ export class ProfileComponent implements OnInit {
     if (user?.empId) {
       this.apiService.getProfile(user.empId).subscribe((data: any) => {
         this.employee = data;
+        console.log(this.employee)
         this.loading = false;
       });
     }
