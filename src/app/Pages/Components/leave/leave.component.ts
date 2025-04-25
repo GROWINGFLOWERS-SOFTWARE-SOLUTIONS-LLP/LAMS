@@ -53,9 +53,8 @@ export class LeaveComponent implements OnInit {
   ];
 
   constructor(
-    private apiService: ApiService,
+    
     private leaveService: ManagerService,
-    private router: Router,
     private fb: FormBuilder,
     private messageService: MessageService
   ) { }
@@ -90,7 +89,7 @@ export class LeaveComponent implements OnInit {
 
 
     this.leaveService.geEmployeeleave(this.employee.empId).subscribe((data: any) => {
-      console.log('Leave Data: ', data);
+     
         this.leaveRequests = data;
         this.isLoading = false;
         this.showPaginator = true; // Show paginator after loading data
@@ -115,7 +114,7 @@ export class LeaveComponent implements OnInit {
       // Send leave request to the API
       debugger;
       this.leaveService.applyLeave(leaveRequest).subscribe((data) => {
-        console.log('Leave Data: ', data);
+       
         if (data) {
           this.loadLeaveRequests();
           this.visible = false; 

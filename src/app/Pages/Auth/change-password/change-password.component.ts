@@ -50,9 +50,6 @@ export class ChangePasswordComponent {
           this.router.navigate(['/login']);
         }
       })
-
-
-
     }
   }
 }

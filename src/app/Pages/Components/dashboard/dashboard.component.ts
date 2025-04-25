@@ -18,7 +18,6 @@ import { TableModule } from 'primeng/table';
 })
 export class DashboardComponent implements OnInit {
 
-    
     loggedInUserName!: string;
     totalEmployees!: number;
     totalLeaves!: number;
@@ -37,6 +36,7 @@ export class DashboardComponent implements OnInit {
     currentProjectName: string = '';
     dashboard:any;
     dashboardData:any;
+
     constructor(private apiService: ApiService) {}
 
     ngOnInit(): void {
@@ -75,9 +75,9 @@ export class DashboardComponent implements OnInit {
 
     getDashbaordData(){
         this.dashboard = JSON.parse(localStorage.getItem("userValue") || "null");
-        console.log('Employee Id:', this.dashboard);
+       
         this.apiService.getDashboard(this.dashboard.empId).subscribe((data:any)=>{
-            console.log('Dashboard Data:', data);
+           
             this.dashboardData=data;
             this.isLoading=false;
         })

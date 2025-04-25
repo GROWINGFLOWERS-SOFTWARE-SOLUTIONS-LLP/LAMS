@@ -44,7 +44,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
     ) {
-       
+
     }
 
     ngOnInit(): void {
@@ -55,9 +55,9 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
 
-    loadForm(){
-         // Create the employee form
-         this.employeeForm = this.formBuilder.group({
+    loadForm() {
+        // Create the employee form
+        this.employeeForm = this.formBuilder.group({
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             emailId: ['', [Validators.required, Validators.email]],
@@ -95,7 +95,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         debugger;
         if (this.employeeForm.valid) {
             debugger;
-            let employeeForm = {...this.employeeForm.value, password: 'Gfss@2024'}
+            let employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' }
             debugger;
             this.employeeService.addEmployee(employeeForm).subscribe({
                 next: () => {
@@ -144,8 +144,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
 
     // Method to confirm deletion with an alert
     deleteEmployee(employee: any) {
-        console.log('Employee: ', employee);
-        debugger;
+
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete this employee?',
             header: 'Delete Confirmation',
@@ -190,14 +189,14 @@ export class AllEmployeeProfilesComponent implements OnInit {
         return control ? control.invalid && (control.touched || control.dirty) : false;
     }
 
-    loadDepartments(){
-        this.adminService.getAllDepartmentsList().subscribe((data) =>{
+    loadDepartments() {
+        this.adminService.getAllDepartmentsList().subscribe((data) => {
             this.departments = data;
         })
     }
 
-    loadRoles(){
-        this.adminService.getAllRolesList().subscribe((data) =>{
+    loadRoles() {
+        this.adminService.getAllRolesList().subscribe((data) => {
             this.roles = data;
         })
     }

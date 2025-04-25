@@ -1,11 +1,10 @@
-<p-toolbar styleClass="bg-blue-900 shadow-2 custom-toolbar"
-    [style]="{ 
+<p-toolbar styleClass="bg-blue-900 shadow-2 custom-toolbar" [style]="{ 
         'background-image': 'linear-gradient(to right, var(--blue-500), var(--blue-800))', 
         'padding': '2px' 
     }">
 
     <div class="flex justify-content-between align-items-center w-full px-3">
-        
+
         <!-- Logo -->
         <div class="flex align-items-center">
             <img class="w-6rem h-auto"
@@ -15,15 +14,14 @@
         <!-- Center Navigation Buttons -->
         <div class="flex align-items-center gap-2 flex-wrap justify-content-center">
             <button *ngFor="let item of navItems"
-            class="p-link nav-hover inline-flex justify-content-center align-items-center text-white transition-all transition-duration-200 m-1 p-2 square-btn sm:w-5rem md:w-6rem"
+                class="p-link nav-hover inline-flex justify-content-center align-items-center text-white transition-all transition-duration-200 m-1 p-2 square-btn sm:w-5rem md:w-6rem"
                 [routerLink]="item.link">
                 {{ item.label }}
             </button>
         </div>
 
         <!-- Right Account Section -->
-        <div class="flex align-items-center gap-1 cursor-pointer"
-            (click)="toggleDropdown($event, overlayPanel)">
+        <div class="flex align-items-center gap-1 cursor-pointer" (click)="toggleDropdown($event, overlayPanel)">
             <p-avatar
                 image="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
                 shape="circle" styleClass="mt-1" />

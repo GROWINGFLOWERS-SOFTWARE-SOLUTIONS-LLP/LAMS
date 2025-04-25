@@ -43,10 +43,7 @@ export class EmployeeService {
       );
   }
 
-
-
   //-------------------//
-
   getAttendanceById(employeeId: string) {
     return this.http.get(`${this.apiUrl}/attendance/${employeeId}`);
   }

@@ -27,8 +27,9 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
     PasswordModule,
     ButtonModule,
     ProgressSpinnerModule, // Include ProgressSpinnerModule here
-    ToastModule
-  ],
+    ToastModule,
+    LoaderComponent
+],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [MessageService] // Provide MessageService here
@@ -36,7 +37,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   showPassword: boolean = false;
-  // loading: boolean = false;
+  loading: boolean = false;
   isChangePassword:boolean=false;
 
  
@@ -70,9 +71,10 @@ export class LoginComponent implements OnInit {
  
   loginFun() {
     debugger;
-    // this.loading = false 
+    this.loading = true;
       this.apiService.loginValidation(this.loginForm.value).subscribe(
         (data:any) => {
+          this.loading = false
           localStorage.setItem("userValue",JSON.stringify(data))
            if(data && data.password == 'Gfss@2024'){
              this.router.navigate(['/change-password']);
@@ -81,11 +83,8 @@ export class LoginComponent implements OnInit {
           debugger;
            this.roleBasedRouting(data.role)
           }
-       
         },
-        
       );
-  
   }
  
   roleBasedRouting(user: any) {
