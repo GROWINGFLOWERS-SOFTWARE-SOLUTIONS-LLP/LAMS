@@ -17,30 +17,31 @@
                     class="shadow-md rounded-lg border border-gray-300 mb-4">
                     <ng-template pTemplate="header">
                         <tr class="bg-gray-200 text-gray-700">
-                            <th class="p-3">First Name</th>
-                            <th class="p-3">Last Name</th>
-                            <th class="p-3">Email</th>
-                            <th class="p-3">Phone Number</th>
-                            <th class="p-3">Address</th>
-                            <th class="p-3">Department</th>
-                            <th class="p-3">Manager</th>
-                            <th class="p-3">Employee Role</th>
-                            <th class="p-3">Joining Date</th>
-                            <th class="p-3">Actions</th>
+                            <th class="p-3 center-text">First Name</th>
+                            <th class="p-3 center-text">Last Name</th>
+                            <th class="p-3 center-text">Email</th>
+                            <th class="p-3 center-text">Phone Number</th>
+                            <th class="p-3 center-text">Address</th>
+                            <th class="p-3 center-text">Department</th>
+                            <th class="p-3 center-text">Manager</th>
+                            <th class="p-3 center-text">Employee Role</th>
+                            <th class="p-3 center-text">Joining Date</th>
+                            <th class="p-3 center-text">Actions</th>
                         </tr>
                     </ng-template>
 
                     <ng-template pTemplate="body" let-employee>
                         <tr class="text-gray-600 hover:bg-gray-100 transition">
-                            <td class="p-3">{{ employee.firstName }}</td>
-                            <td class="p-3">{{ employee.lastName }}</td>
-                            <td class="p-3">{{ employee.emailId }}</td>
-                            <td class="p-3">{{ employee.mobile }}</td>
-                            <td class="p-3">{{ employee.address }}</td>
-                            <td class="p-3">{{ employee.department }}</td>
-                            <td class="p-3">{{ employee.manager }}</td>
-                            <td class="p-3">{{ employee.role }}</td>
-                            <td class="p-3">{{ employee.joiningDate | date: 'yyyy-MM-dd' }}</td>
+                            <td class="p-3 center-text">{{ employee.firstName  || '–' }}</td>
+                            <td class="p-3 center-text">{{ employee.lastName || '–'  }}</td>
+                            <td class="p-3 center-text">{{ employee.emailId || '–'  }}</td>
+                            <td class="p-3 center-text">{{ employee.mobile || '–' }}</td>
+                            <td class="p-3 center-text">{{ employee.address || '–' }}</td>
+                            <td class="p-3 center-text">{{ employee.department || '–' }}</td>
+                            <td class="p-3 center-text">{{ employee.manager || '–' }}</td>
+                            <td class="p-3 center-text">{{ employee.role || '–' }}</td>
+                            <td class="p-3 center-text">{{ employee.joiningDate ? (employee.joiningDate | date:'yyyy-MM-dd') : '–' }}</td>
+
                             <td class="p-3">
                                 <div class="flex gap-2">
                                     <p-button icon="pi pi-pencil" severity="success"
