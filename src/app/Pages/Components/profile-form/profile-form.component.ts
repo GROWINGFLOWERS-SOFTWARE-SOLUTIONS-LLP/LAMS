@@ -48,24 +48,24 @@ export class ProfileFormComponent implements OnInit {
   ngOnInit(): void {
     const userValue = localStorage.getItem('userValue');
     const employeeId = userValue ? JSON.parse(userValue).empId : null;
-
+    
 
     if (employeeId) {
-      this.getProfile(employeeId)
+    this.getProfile(employeeId)
     }
     this.getDepartments()
   }
 
-  getProfile(employeeId: any) {
+  getProfile(employeeId:any){
     this.apiService.getProfile(employeeId).subscribe((data: any) => {
-      this.employee = data;
+      this.employee = data; 
     });
   }
 
-  getDepartments() {
-    this.adminService.getAllDepartmentsList().subscribe((data: any) => {
-      this.departments = data;
-    })
+  getDepartments(){
+   this.adminService.getAllDepartmentsList().subscribe((data:any)=>{
+    this.departments=data;
+   })
   }
 
   onSubmit(form: NgForm) {
