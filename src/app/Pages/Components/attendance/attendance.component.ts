@@ -49,8 +49,9 @@ export class AttendanceComponent implements OnInit {
   loading: boolean = true;
   attendance: any ;// State to control loader visibility
 
-  constructor(private authService: AuthService, private apiService: ApiService, 
-    private employeeService: EmployeeService, private router: Router, private messageService: MessageService,) {}
+  constructor(private authService: AuthService, 
+              private employeeService: EmployeeService, 
+              private router: Router ) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
@@ -72,8 +73,7 @@ export class AttendanceComponent implements OnInit {
 
   punchIn() {
     this.Punch_in_time = this.currentTime;
-    const attendance_date = new Date();
-    debugger
+    const attendance_date = new Date()
     const newRecord = {
       checkIn: String(this.Punch_in_time), // Ensure it's a string
       date: attendance_date.toLocaleDateString('en-GB'),
@@ -81,12 +81,10 @@ export class AttendanceComponent implements OnInit {
       employeeId: this.attendance.empId,
       breaktime: '',
     };
-    console.log(newRecord);
-
+    
     this.attendanceRecords.push(newRecord);
     this.hasPunchedIn = true;
-    debugger
-
+    
     // this.employeeService.markAttendance(newRecord).subscribe(
     //   (response) => {
     //     console.log('Attendance record posted successfully:', response);
@@ -104,12 +102,11 @@ export class AttendanceComponent implements OnInit {
       checkOut: null,
       breaktime: null
     }).subscribe((data: any) =>  {
-      console.log("data", data);
+      
       // this.displayPunchInDialog = false;
       // sessionStorage.setItem('hasPunchedIn', 'true'); 
       // this.router.navigate(['/dashboard']);
     });
-    debugger
     
     this.displayPunchInDialog = false;
     sessionStorage.setItem('hasPunchedIn', 'true'); 
@@ -196,14 +193,10 @@ export class AttendanceComponent implements OnInit {
       console.log("No attendance records found.");
     }
   
-    setTimeout(() => {
       this.loading = false;
-    }, 1500);
+
   }
   
-  
-  
-
   checkPunchInStatus() {
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
     this.hasPunchedIn = hasPunchedInSession === 'true';

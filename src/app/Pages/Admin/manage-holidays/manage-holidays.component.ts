@@ -39,7 +39,6 @@ export class ManageHolidaysComponent implements OnInit {
   isLoading: boolean = true; // Initialize the loading state to true
 
   constructor(
-    private apiService: ApiService,
     private adminService: AdminService,
     private fb: FormBuilder,
     private messageService: MessageService,
@@ -53,10 +52,7 @@ export class ManageHolidaysComponent implements OnInit {
       holidayDate: ['', Validators.required],
     });
 
-    // Simulate an API call or delay to fetch holidays
-    setTimeout(() => {
       this.loadHolidays(); // Load the holidays list after a delay
-    }, 2000); // Simulating a 3-second delay
   }
 
   // Method to load holidays list and hide the spinner
@@ -67,11 +63,10 @@ export class ManageHolidaysComponent implements OnInit {
 
   // Method to add or update a holiday
   onSubmit() {
-    // First, we check if the form is valid
     if (this.holidayForm.valid) {
       // Extract the form values (holiday name, date)
       let holiday = {...this.holidayForm.value, holidayId: this.selectedHolidayId ? this.selectedHolidayId : null // Add holidayId here
-    };  console.log(this.selectedHolidayId);
+    };
 
       // Show the loader when the form is being submitted
       this.isLoading = true;
@@ -80,8 +75,6 @@ export class ManageHolidaysComponent implements OnInit {
       if (this.selectedHolidayId) {
         // Call the API to update the holiday
         this.adminService.updateHoliday( holiday).subscribe((data: any) => {
-
-
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday updated successfully!' });
           this.clearForm();
           this.loadHolidays(); // Reload holidays and hide the loader
@@ -118,7 +111,7 @@ export class ManageHolidaysComponent implements OnInit {
 
   // Method to delete a holiday with confirmation
   deleteHoliday(data: any, ) {
-    console.log(data)
+   
     this.confirmationService.confirm({
       
       message: 'Are you sure you want to delete this holiday?',
@@ -129,7 +122,6 @@ export class ManageHolidaysComponent implements OnInit {
       acceptIcon: "none",
       rejectIcon: "none",
       accept: () => {
-        debugger
         // Call the API to delete the holiday
        this.adminService.deleteHoliday(data.holidId).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday deleted successfully!' });
@@ -145,9 +137,7 @@ export class ManageHolidaysComponent implements OnInit {
 
   // Method to edit a holiday
   editHoliday(holiday: any) {
-    console.log("Editing holiday:", holiday); // Log the whole object
-    console.log("Selected holiday ID:", holiday.holidId); // Log the ID
-  
+
     this.holidayForm.patchValue({
       holidayName: holiday.holidayName,
       holidayDate: holiday.holidayDate

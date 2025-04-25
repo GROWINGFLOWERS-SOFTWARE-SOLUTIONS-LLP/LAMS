@@ -77,10 +77,6 @@ export class ApiService {
   }
 
 
-  //  updateProfile(profile: any): Observable<boolean> {
-  //   return this.http.post<boolean>(`${this.apiUrl}/profile/update`, profile, { headers: this.headers });
-  // }
-
   updateProfile(profile: any): Observable<any> {
     return this.http.put(`${this.apiUrl}/Employee/update`, profile); // update with correct endpoint
   }

@@ -1,62 +1,69 @@
-<p-toast></p-toast>
+<div class="grid grid-nogutter surface-100 pt-7">
+  <div class=" col col-md-6 col-sm-12">
+    <div class="text-center p-3 border-round-sm  font-bold ">
+      <div class="mb-4 p-lg-5 p-md-5 p-sm-1 flex items-center justify-center">
+        <form [formGroup]="loginForm" (ngSubmit)="loginFun()">
+        <p-card class="shadow-5 hover:shadow-8 ">
+          <ng-template pTemplate="header">
+            <!-- <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" /> -->
+            <div
+              class="border-bottom-4 border-blue-100 hover:border-blue-600 py-5 text-4xl font-semibold shadow-1 forestgreenColor uppercase">
+             <marquee> LAMS Login</marquee></div>
+          </ng-template>
+          <ng-template pTemplate="title" class="mt-3"> Hi! Welcome Back!👋👋
 
-<!-- Main container -->
-
-<div class="container flex align-items-center justify-content-center">
-  <div class="main-container flex shadow-2 border-round" *ngIf="!isChangePassword">
- 
-    <!-- Left Container (Login Section) -->
-    <div id="log-in" class="left-container flex flex-column align-items-center justify-content-around">
-      <!-- Logo -->
-      <img
-        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95"
-        alt="Logo" class="mb-3">
- 
-      <h1 class="m-0 text-center">Let's log in</h1>
- 
-      <!-- Form is shown only when not loading -->
-      <div class="w-full">
-        <form class="signup-form flex flex-column align-items-center" [formGroup]="loginForm" (ngSubmit)="loginFun()">
-          <!-- Email Input -->
-          <input type="email" name="emailId" placeholder="E-mail" formControlName="emailId"
-            class="p-inputtext p-component mb-2">
-          <small *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)" class="block p-error mb-2">
-            <div *ngIf="emailId.errors?.['required']">Email is required.</div>
-            <div *ngIf="emailId.errors?.['emailId']">Email should be valid.</div>
-          </small>
- 
-          <!-- Password Input with toggle icon -->
-          <div class="password-wrapper mb-2" style="position: relative;">
-            <input [type]="showPassword ? 'text' : 'password'" name="password" placeholder="Password"
-              formControlName="password" class="p-inputtext p-component password-input" style="padding-right: 2rem;">
- 
-            <!-- Eye toggle icon -->
-            <i class="pi" [ngClass]="showPassword ? 'pi-eye' : 'pi-eye-slash'" (click)="toggleShowPassword()"
-              title="Toggle password visibility"
-              style="position: absolute; right: 10px; top: 40%; transform: translateY(-50%); cursor: pointer;"></i>
+          </ng-template>
+          <!-- <ng-template pTemplate="subtitle"> Card subtitle </ng-template> -->
+          <p><q>👋 Say Goodbye to Manual Logs! 📋✨ Automate Attendance and Leave ⏱️🗓️ – Empower Your Workforce 💪👨‍💼👩‍💼</q></p>
+          <div class="grid">
+            <div class="col-12">
+              <div class="field">
+                <!-- <label for="firstname1">Firstname</label> -->
+                <input pInputText id="firstname1" type="email" name="emailId" formControlName="emailId" 
+                  inputClass="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"
+                  pSize="large" placeholder="Email">
+                  <small *ngIf="emailId.invalid && (emailId.dirty || emailId.touched)" class="block p-error mb-2">
+                    <div *ngIf="emailId.errors?.['required']">Email is required.</div>
+                    <div *ngIf="emailId.errors?.['emailId']">Email should be valid.</div>
+                  </small>
+        
+              </div>
+            </div>
+            <div class="col-12 ">
+              <div class="field ">
+                <!-- <label for="lastname1">Lastname</label> -->
+                <!-- <input id="lastname1" type="password" class="text-base text-color surface-overlay p-3 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full"  pSize="large" placeholder="password"> -->
+                <p-password id="lastname1" styleClass="w-full" [toggleMask]="true" [feedback]="false" pSize="large"
+                  placeholder="Password" name="password"  formControlName="password"
+                  inputClass="text-base text-color surface-overlay p-4 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary"></p-password>
+                  <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
+                    <div *ngIf="password.errors?.['required']">Password is required.</div>
+                  </small>
+        
+              </div>
+            </div>
           </div>
- 
-          <small *ngIf="password.invalid && (password.dirty || password.touched)" class="block p-error mb-2">
-            <div *ngIf="password.errors?.['required']">Password is required.</div>
-          </small>
- 
-          <!-- Submit Button -->
-          <button type="submit"
-            class="login-link hover:text-gray-800 cursor-pointer p-button p-component p-button-outlined p-fluid"
-            [disabled]="loginForm.invalid"
-            style="background-color: violet; color: black; height: 60px; margin-top: 2rem; max-width: 200px; width: 100%;display: flex; align-items: center; justify-content: center;margin-right: 8px;">
-            <i class="pi pi-sign-in" style= "margin-right: 0.9rem;"></i> Login
-          </button>
-        </form>
+          <ng-template pTemplate="footer">
+            <div class="flex gap-4 mt-1 ">
+              <!-- <p-button label="Cancel" severity="secondary" class="w-full" [outlined]="true" styleClass="w-full" /> -->
+              <p-button type="ngSubmit" label="Login" class="w-full mossgreenBgColor" styleClass="w-full" [disabled]="loginForm.invalid" />
+            </div>
+          </ng-template>
+        </p-card>
+      </form>
       </div>
     </div>
- 
-    <!-- Right Container (Image Section) -->
-    <div class="right-container"></div>
   </div>
- 
-
-
-  <!-- Loader component, displayed when loading -->
-  <!-- <app-loader [loading]="loading"></app-loader> -->
+  <div class="col col-md-6 col-sm-12">
+    <div class="text-center p-3 border-round-sm  font-bold">
+      <div>
+        <div class=" flex justify-content-center mt-5">
+          <p-image src="assets/images/imglogin.png" alt="Image" width="250" class=" mt-8 shadow-8 rotated-image" />
+      </div>
+      <div class="mt-5 py-5">
+        <p class="text-4xl font-bold mossgreenColor"><q>💼 Empowering Workplaces with Smarter Time Management ⏰📊.</q></p>
+      </div>
+      </div>
+    </div>
+  </div>
 </div>
