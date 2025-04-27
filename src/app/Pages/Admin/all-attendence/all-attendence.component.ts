@@ -12,7 +12,6 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { LoaderComponent } from '../../Components/loader/loader.component';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
@@ -25,7 +24,6 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
         CommonModule,
         ButtonModule,
         PaginatorModule,
-        LoaderComponent,
         ConfirmDialogModule,
         DialogModule,
         TableModule,

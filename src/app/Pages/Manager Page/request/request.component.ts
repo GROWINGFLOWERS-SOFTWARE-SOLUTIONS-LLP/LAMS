@@ -4,7 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { LoaderComponent } from '../../Components/loader/loader.component';
 import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 
 @Component({
@@ -15,8 +14,7 @@ import { ManagerService } from '../../../Core/Services/Manager/manager.service';
     ButtonModule,
     FormsModule,
     CommonModule,
-    ProgressSpinnerModule,
-    LoaderComponent  // Register the loader component
+    ProgressSpinnerModule
   ],
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']

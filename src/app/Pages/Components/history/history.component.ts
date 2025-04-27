@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LoaderComponent } from '../loader/loader.component';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
@@ -8,7 +7,7 @@ import { DividerModule } from 'primeng/divider';
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, CardModule, DividerModule],
+  imports: [CommonModule, CardModule, DividerModule],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })

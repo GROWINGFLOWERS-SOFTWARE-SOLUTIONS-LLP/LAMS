@@ -11,11 +11,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
-import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
-import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service'; 
 
 @Component({
@@ -33,7 +30,7 @@ import { EmployeeService } from '../../../Core/Services/Employee/employee.servic
     InputTextModule,
     RippleModule,
     ToastModule,
-    LoaderComponent // Include the LoaderComponent here
+   
   ],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],

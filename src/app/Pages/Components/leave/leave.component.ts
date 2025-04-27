@@ -8,13 +8,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
-import { ApiService } from '../../../Core/Services/api.service';
-import { Router } from '@angular/router';
 import { Leave } from '../../../Core/Interfaces/leave';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { LoaderComponent } from '../loader/loader.component';
 import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 
 @Component({
@@ -31,7 +28,7 @@ import { ManagerService } from '../../../Core/Services/Manager/manager.service';
     InputTextareaModule,
     TableModule,
     ToastModule,
-    ProgressSpinnerModule, LoaderComponent
+    ProgressSpinnerModule
   ],
   providers: [MessageService],
   templateUrl: './leave.component.html',

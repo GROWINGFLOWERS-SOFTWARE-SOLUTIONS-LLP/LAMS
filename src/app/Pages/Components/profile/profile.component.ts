@@ -5,12 +5,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CommonModule, DatePipe } from '@angular/common';
-import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe, LoaderComponent],
+  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })

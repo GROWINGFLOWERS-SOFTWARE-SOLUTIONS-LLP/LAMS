@@ -11,8 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
-import { LoaderComponent } from '../../Components/loader/loader.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; 
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
@@ -24,7 +23,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
     imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule,
-        LoaderComponent, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
+        ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
     providers: [MessageService, ConfirmationService]
 })
 export class AllEmployeeProfilesComponent implements OnInit {
