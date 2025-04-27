@@ -8,11 +8,21 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
+import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
 @Component({
     selector: 'app-dashboard',
     standalone: true,
-    imports: [CardModule, ProgressSpinnerModule, CommonModule, ButtonModule, DialogModule, DropdownModule, FormsModule,TableModule],
+    imports: [
+        CardModule,
+        ProgressSpinnerModule,
+        CommonModule,
+        ButtonModule,
+        DialogModule,
+        DropdownModule,
+        FormsModule,
+        TableModule
+    ],
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.css']
 })
@@ -27,42 +37,40 @@ export class DashboardComponent implements OnInit {
     leavesTaken!: number;
     isLoading = true;
     projects: any[] = [];
-    activeProjectsCount = 0;
+    activeProjectsCount =0;
     selectedProject: any = null;
     isProjectListVisible = false;
-    selectedEmployee: any = { employee: null, role: '', manager: null }; 
-    employees: any[] = []; 
+    selectedEmployee: any = { employee: null, role: '', manager: null };
+    employees: any[] = [];
     managers: any[] = [];
     currentProjectName: string = '';
-    dashboard:any;
-    dashboardData:any;
+    dashboard: any;
+    dashboardData: any;
 
-    constructor(private apiService: ApiService) {}
+    constructor(private apiService: ApiService,private adminService: AdminService) {}
 
     ngOnInit(): void {
         this.isLoading = true;
-        this.getDashbaordData()
-       
+        this.getDashbaordData();
+        this.loadProjects(); // Load and count active projects
     }
 
     private loadProjects(): Promise<void> {
         return new Promise(resolve => {
-            this.apiService.getProjects().subscribe((projects: any[]) => {
+            this.adminService.getAllProjectsList().subscribe((projects: any) => {
                 this.projects = projects;
-                this.activeProjectsCount = projects.length;
+                // Count only active projects
+                this.activeProjectsCount = projects.filter((project: any) => project.status === 'active').length;
                 resolve();
             });
         });
     }
-
-    
 
     showProjectDetails(project: any): void {
         console.log(project);
         this.selectedProject = project;
     }
 
-    // Method to show the "Assign Project" form
     showAssignProjectForm(projectName: string) {
         this.currentProjectName = projectName;
         this.isProjectListVisible = true;
@@ -73,13 +81,13 @@ export class DashboardComponent implements OnInit {
         this.isProjectListVisible = false;
     }
 
-    getDashbaordData(){
+    getDashbaordData() {
         this.dashboard = JSON.parse(localStorage.getItem("userValue") || "null");
-       
-        this.apiService.getDashboard(this.dashboard.empId).subscribe((data:any)=>{
-           
-            this.dashboardData=data;
-            this.isLoading=false;
-        })
-       }
+        console.log('Employee Id:', this.dashboard);
+        this.apiService.getDashboard(this.dashboard.empId).subscribe((data: any) => {
+            console.log('Dashboard Data:', data);
+            this.dashboardData = data;
+            this.isLoading = false;
+        });
+    }
 }
