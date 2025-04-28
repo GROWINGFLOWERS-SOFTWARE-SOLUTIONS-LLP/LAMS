@@ -58,26 +58,53 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  loginFun() {
-    // this.loading = false;
-    this.cdr.detectChanges();
+  // loginFun() {
+  //   // this.loading = false;
+  //   this.cdr.detectChanges();
 
+  //   this.apiService.loginValidation(this.loginForm.value).subscribe(
+  //     (data: any) => {
+      
+  //       localStorage.setItem("userValue", JSON.stringify(data));
+  //       if (data && data.password == 'Gfss@2024') {
+  //         this.router.navigate(['/change-password']);
+
+  //       } else {
+  //         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Login Sucessfully!' });
+  //         this.roleBasedRouting(data.role)
+  //       }
+
+  //     },
+
+  //   );
+
+  // }
+  loginFun() {
+    this.cdr.detectChanges();
+  
     this.apiService.loginValidation(this.loginForm.value).subscribe(
       (data: any) => {
-        localStorage.setItem("userValue", JSON.stringify(data))
-        if (data && data.password == 'Gfss@2024') {
-          this.router.navigate(['/change-password']);
-
+        if (data) {
+          localStorage.setItem("userValue", JSON.stringify(data));
+          
+          if (data.password === 'Gfss@2024') {
+            this.router.navigate(['/change-password']);
+            this.messageService.add({ severity: 'info', summary: 'Change Password', detail: 'Please change your default password.' });
+          } else {
+            this.messageService.add({ severity: 'success', summary: 'Login Successful', detail: 'Welcome back!' });
+            this.roleBasedRouting(data.role);
+          }
         } else {
-          debugger
-          this.roleBasedRouting(data.role)
+          this.messageService.add({ severity: 'error', summary: 'Login Failed', detail: 'Invalid login response.' });
         }
-
       },
-
+      (error) => {
+        console.error('Login error:', error);
+        this.messageService.add({ severity: 'error', summary: 'Login Error', detail: 'Invalid Username or Password. Please try again.' });
+      }
     );
-
   }
+  
   get emailId() {
     return this.loginForm.controls['emailId'];
   }

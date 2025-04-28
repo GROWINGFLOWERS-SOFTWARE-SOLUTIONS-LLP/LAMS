@@ -2,15 +2,19 @@
   <app-loader [loading]="isLoading"></app-loader>
 
   <main class="history-list" *ngIf="!isLoading">
-    <h2>History List</h2>
+    <!-- <h2>History List</h2> -->
 
     <ng-container *ngIf="hasHistory(); else noHistory">
       <ul>
         <li *ngFor="let item of historyData">
           <div>
-            <time><strong>Date:</strong> {{ item.creationDate | date: 'dd-MM-yyyy' }}</time>
+           
             <div class="event-details">
-              <h3> <strong>Activity:</strong> {{ item.activity || 'No Activity' }}</h3>
+              <h3> <strong> <i class="pi pi-history"></i></strong> {{ item.activity || 'No Activity' }}</h3>
+            </div>
+            <div class="flex justify-content-end text-yellow-900">
+              <time ><strong>Date:</strong> {{ item.creationDate | date: 'dd-MM-yyyy' }}</time>
+
             </div>
           </div>
         </li>

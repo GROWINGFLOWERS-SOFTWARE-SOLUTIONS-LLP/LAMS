@@ -1,9 +1,9 @@
-<p-toolbar styleClass="bg-blue-900 shadow-2 custom-toolbar"
-    [style]="{ 
-        'background-image': 'linear-gradient(to right, var(--blue-500), var(--blue-800))', 
-        'padding': '2px' 
-    }">
-
+<p-toolbar styleClass=" shadow-4 custom-toolbar p-2 "
+[style]="{ 
+    'background-image': 'linear-gradient(to left, var(--blue-400), var(--blue-600))', 
+    'padding': '2px' 
+}">
+   
     <div class="flex justify-content-between align-items-center w-full px-3">
         
         <!-- Logo -->
@@ -13,8 +13,9 @@
         </div>
 
         <!-- Center Navigation Buttons -->
-        <div class="flex align-items-center gap-2 flex-wrap justify-content-center">
-            <button *ngFor="let item of navItems"
+        <div class="flex align-items-center gap-3 flex-wrap justify-content-center">
+            <button *ngFor="let item of navItems" routerLinkActive="active-nav-link"
+            [routerLinkActiveOptions]="{ exact: true }"
             class="p-link nav-hover inline-flex justify-content-center align-items-center text-white transition-all transition-duration-200 m-1 p-2 square-btn sm:w-5rem md:w-6rem"
                 [routerLink]="item.link">
                 {{ item.label }}
@@ -44,5 +45,6 @@
 
     </div>
 </p-toolbar>
-
-<router-outlet></router-outlet>
+<div class="page-content">
+    <router-outlet></router-outlet>
+  </div>
