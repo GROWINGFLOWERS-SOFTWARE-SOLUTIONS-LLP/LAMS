@@ -8,57 +8,54 @@
         <h3>Update Profile</h3>
       </div>
 
-      <form #profileForm="ngForm" (ngSubmit)="onSubmit(profileForm)" class="p-fluid">
+      <form [formGroup]="profileForm" (ngSubmit)="onSubmit()" class="p-fluid">
         <div class="formgrid grid">
           <div class="field col-12 md:col-6">
             <label for="firstName">First Name</label>
-            <input pInputText id="firstName" name="firstName" [(ngModel)]="employee.firstName" required />
+            <input pInputText  formControlName="firstName" [disabled]="true" />
           </div>
-
+      
           <div class="field col-12 md:col-6">
             <label for="lastName">Last Name</label>
-            <input pInputText id="lastName" name="lastName" [(ngModel)]="employee.lastName" required />
+            <input pInputText  formControlName="lastName" />
           </div>
-
+      
           <div class="field col-12 md:col-6">
             <label for="email">Email</label>
-            <input pInputText type="email" id="email" name="email" [(ngModel)]="employee.emailId" required />
+            <input pInputText type="email" formControlName="emailId" />
           </div>
-
+      
           <div class="field col-12 md:col-6">
             <label for="mobile">Phone Number</label>
-            <input pInputText type="tel" id="mobile" name="mobile" [(ngModel)]="employee.mobile" required />
+            <input pInputText type="tel" formControlName="mobile" />
           </div>
-
+      
           <div class="field col-12 md:col-6">
             <label for="department">Department</label>
-            <p-dropdown id="department" name="department" [options]="departments"
-            optionLabel="departmentName" [(ngModel)]="employee.departments"
-              placeholder="Select Department"></p-dropdown>
+            <p-dropdown  [options]="department" optionLabel="departmentName" optionValue="departmentName" formControlName="department" placeholder="Select Department">
+            </p-dropdown>
           </div>
-
+      
           <div class="field col-12 md:col-6">
             <label for="role">Designation</label>
-            <input pInputText id="role" name="role" [(ngModel)]="employee.role" required />
+            <input pInputText  formControlName="role" />
           </div>
-
+      
           <div class="field col-12 md:col-6">
             <label for="joiningDate">Joining Date</label>
-            <p-calendar inputId="joiningDate" [(ngModel)]="employee.joiningDate" name="joiningDate"
-              dateFormat="yy-mm-dd"></p-calendar>
+            <p-calendar inputId="joiningDate" formControlName="joiningDate" dateFormat="yy-mm-dd"></p-calendar>
           </div>
-
+      
           <div class="field col-12">
             <label for="address">Address</label>
-            <textarea pInputTextarea id="address" name="address" [(ngModel)]="employee.address" rows="3"
-              required></textarea>
+            <textarea pInputTextarea  formControlName="address" rows="3"></textarea>
           </div>
         </div>
-
+      
         <div class="flex justify-content-center mt-4 p-col-12 p-md-6">
           <div class="text-center">
-            <button pButton label="Update"  type="submit"
-              class="p-button-primary p-button-sm"></button>
+            <button pButton label="Update" type="submit" class="p-button-primary p-button-sm" [disabled]="profileForm.invalid">
+            </button>
           </div>
         </div>
       </form>

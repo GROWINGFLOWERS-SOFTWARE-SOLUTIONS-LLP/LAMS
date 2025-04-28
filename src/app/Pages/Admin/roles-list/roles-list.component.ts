@@ -82,11 +82,6 @@ export class RolesListComponent implements OnInit {
     });
 
     this.toggleDepartmentList();
-    // this.loadDepartments();
-    // this.loadRoles();
-    // this.loadManagers();
-    // this.loadProjects();
-
   }
 
   loadDepartments() {
@@ -109,9 +104,6 @@ export class RolesListComponent implements OnInit {
     this.isLoading = false; // Hide the loader after the data is fetched
   }
 
-
-
-
   // Departments
   // Method to fetch the list of departments from the API
   getAllDepartmentsList() {
@@ -123,7 +115,6 @@ export class RolesListComponent implements OnInit {
 
   // Method to add or update a department
   onSubmit() {
-
     if (this.departmentForm.valid) {
 
       let department = { ...this.departmentForm.value };
@@ -302,7 +293,6 @@ export class RolesListComponent implements OnInit {
   submitManager() {
     if (this.managerForm.valid) {
       let manager = { ...this.managerForm.value };
-
       this.isLoading = true;
 
       if (this.selectedManagerId) {

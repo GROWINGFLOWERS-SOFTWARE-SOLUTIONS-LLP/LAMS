@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../Core/Services/api.service';
 
@@ -35,42 +35,61 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
   ],
 })
 export class ProfileFormComponent implements OnInit {
-  employee: any = {};
-  departments = [];
+ 
+  department = [];
+  profileForm!: FormGroup;
+  employeeId: any;
 
   constructor(
     private apiService: ApiService,
     private router: Router,
     private messageService: MessageService,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
     const userValue = localStorage.getItem('userValue');
-    const employeeId = userValue ? JSON.parse(userValue).empId : null;
+    this.employeeId = userValue ? JSON.parse(userValue).empId : null;
 
-
-    if (employeeId) {
-      this.getProfile(employeeId)
-    }
-    this.getDepartments()
+    this.getProfileForm();
+    this.getDepartments();
+    
+      this.getProfile()
+   
   }
 
-  getProfile(employeeId: any) {
-    this.apiService.getProfile(employeeId).subscribe((data: any) => {
-      this.employee = data;
+  getProfileForm(){
+    this.profileForm = this.fb.group({
+      empId: [this.employeeId],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      emailId: ['', [Validators.required, Validators.email]],
+      mobile: ['', Validators.required],
+      department: ['', Validators.required],
+      role: ['', Validators.required],
+      joiningDate: [''],
+      address: ['', Validators.required]
+    });
+  }
+
+  getProfile() {
+    this.apiService.getProfile(this.employeeId).subscribe((data: any) => {
+      this.profileForm.patchValue(data);
     });
   }
 
   getDepartments() {
     this.adminService.getAllDepartmentsList().subscribe((data: any) => {
-      this.departments = data;
+      this.department = data;
     })
   }
 
-  onSubmit(form: NgForm) {
-    if (form.valid) {
-      this.apiService.updateProfile(this.employee).subscribe(
+  onSubmit() {
+    if (this.profileForm.valid) {
+      console.log('Form Data; ', this.profileForm.value);
+      debugger;
+      this.apiService.updateProfile(this.profileForm.value).subscribe(
         () => {
           this.messageService.add({
             severity: 'success',
@@ -78,10 +97,9 @@ export class ProfileFormComponent implements OnInit {
             detail: 'Profile updated successfully',
           });
 
-          this.router.navigateByUrl('profile');
+          this.router.navigate(['profile']);
         },
         error => {
-          console.error('Error updating profile', error);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

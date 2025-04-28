@@ -11,12 +11,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
-import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LoaderComponent } from '../loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
+import { ApiService } from '../../../Core/Services/api.service';
 
 @Component({
   selector: 'app-attendance',
@@ -250,12 +250,10 @@ export class AttendanceComponent implements OnInit {
       this.attendanceRecords = Array.from(uniqueRecordsMap.values());
     }
   
-    setTimeout(() => {
       this.loading = false;
-    }, 1500);
+
   }
   
-
   checkPunchInStatus() {
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
     this.hasPunchedIn = hasPunchedInSession === 'true';

@@ -4,13 +4,12 @@ import { AccordionModule } from 'primeng/accordion';
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { CommonModule } from '@angular/common'; // Required for *ngIf
-import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-help',
   standalone: true,
-  imports: [CardModule, AccordionModule, ButtonModule, ToastModule, CommonModule, LoaderComponent],
+  imports: [CardModule, AccordionModule, ButtonModule, ToastModule, CommonModule],
   templateUrl: './help.component.html',
   styleUrls: ['./help.component.css'],
   providers: [MessageService],
@@ -26,9 +25,7 @@ export class HelpComponent {
   }
 
   simulateLoading() {
-    setTimeout(() => {
       this.loading = false; // Hide loader after 2 seconds
-    }, 2000); // Adjust time as needed
   }
 
   onTabSelect(event: boolean, index: number) {

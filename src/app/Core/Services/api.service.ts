@@ -73,21 +73,17 @@ export class ApiService {
 
   //  Api for Profile
   getProfile(id: any): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/profile/${id}`, { headers: this.headers });
+    return this.http.get<any[]>(`${this.apiUrl}/Employee/${id}`, { headers: this.headers });
   }
 
 
-  //  updateProfile(profile: any): Observable<boolean> {
-  //   return this.http.post<boolean>(`${this.apiUrl}/profile/update`, profile, { headers: this.headers });
-  // }
-
   updateProfile(profile: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/profile/update`, profile); // update with correct endpoint
+    return this.http.put(`${this.apiUrl}/Employee/update`, profile); // update with correct endpoint
   }
 
 
   deleteProfile(id: any): Observable<boolean> {
-    return this.http.delete<boolean>(`${this.apiUrl}/profile/delete/${id}`, { headers: this.headers });
+    return this.http.delete<boolean>(`${this.apiUrl}/Employee/delete/${id}`, { headers: this.headers });
   }
 
 }

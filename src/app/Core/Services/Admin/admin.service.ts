@@ -14,173 +14,129 @@ export class AdminService {
   }
   // Login Api
   loginValidation(data: any) {
-    debugger;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/auth/login", data, { headers });
+   
+    return this.http.post(this.apiUrl + "/auth/login", data, { headers: this.headers });
   }
   // Change Password Api
   changePassword(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/auth/cp", data, { headers });
+ 
+    return this.http.post(this.apiUrl + "/auth/cp", data, { headers: this.headers });
   }
 
   // Holidays Api methods
   createHoliday(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/admin/holiday", data, { headers });
+
+    return this.http.post(this.apiUrl + "/admin/holiday", data, { headers: this.headers });
   }
 
   getAllHolidaysList() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "/admin/holidays", { headers });
+  
+    return this.http.get(this.apiUrl + "/admin/holidays", { headers: this.headers });
   }
 
   updateHoliday(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.put(this.apiUrl + "/admin/holiday", data, { headers });
+ 
+    return this.http.put(this.apiUrl + "/admin/holiday", data, { headers: this.headers });
   }
 
   deleteHoliday(id: number) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.delete(`${this.apiUrl}/admin/holiday/${id}`, { headers });
+    
+    return this.http.delete(`${this.apiUrl}/admin/holiday/${id}`, { headers:this.headers });
   }
 
   // Attendance api methods
 
   createAttendance(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/admin/attendance", data, { headers });
+   
+    return this.http.post(this.apiUrl + "/admin/attendance", data, { headers: this.headers });
   }
 
   getAllAttendance() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "/admin/attendance/all", { headers });
+   
+    return this.http.get(this.apiUrl + "/admin/attendance/all", { headers:this.headers });
   }
 
   // Add Menus Api  
   // Add Department
   createDepartment(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/admin/department", data, { headers });
+ 
+    return this.http.post(this.apiUrl + "/admin/department", data, { headers: this.headers });
   }
 
   // Get All Departments
   getAllDepartmentsList() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "/admin/departments", { headers });
+  
+    return this.http.get(this.apiUrl + "/admin/departments", { headers: this.headers });
   }
 
   // Update Department
   updateDepartment(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.put(this.apiUrl + "/admin/department", data, { headers });
+   
+    return this.http.put(this.apiUrl + "/admin/department", data, { headers: this.headers });
   }
 
   // Delete Department
   deleteDepartment(depId: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.delete(`${this.apiUrl}/admin/department/${depId}`, { headers });
+  
+    return this.http.delete(`${this.apiUrl}/admin/department/${depId}`, { headers: this.headers });
 
   }
-
-
 
   // Get All Roles
   getAllRolesList() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "/admin/roles", { headers });
+ 
+    return this.http.get(this.apiUrl + "/admin/roles", { headers: this.headers });
   }
+  
   // Roles CRUD Operations
   createRole(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/admin/role", data, { headers });
+
+    return this.http.post(this.apiUrl + "/admin/role", data, { headers: this.headers });
   }
 
   // Update Role
   updateRole(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.put(this.apiUrl + "/admin/role", data, { headers });
+ 
+    return this.http.put(this.apiUrl + "/admin/role", data, { headers: this.headers });
   }
 
   // Delete Role
   deleteRole(rolId: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.delete(`${this.apiUrl}/admin/role/${rolId}`, { headers });
+    
+    return this.http.delete(`${this.apiUrl}/admin/role/${rolId}`, { headers: this.headers });
   }
 
   // Manager CRUD Operations
   // Add Manager
   createManager(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(`${this.apiUrl}/admin/manager`, data, { headers });
+   
+    return this.http.post(`${this.apiUrl}/admin/manager`, data, { headers: this.headers });
   }
 
   // Get All Managers
   getAllManagersList() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "/admin/managers", { headers });
+  
+    return this.http.get(this.apiUrl + "/admin/managers", { headers: this.headers});
   }
 
   // Update Manager
   updateManager(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.put(this.apiUrl + "/admin/manager", data, { headers });
+   
+    return this.http.put(this.apiUrl + "/admin/manager", data, { headers: this.headers });
   }
 
   // Delete Manager
   deleteManager(managId: string) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.delete(`${this.apiUrl}/admin/manager/${managId}`, { headers });
+  
+    return this.http.delete(`${this.apiUrl}/admin/manager/${managId}`, { headers: this.headers });
 
   }
 
   // Project CRUD Operations
   // Add project 
   createProject(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.post(this.apiUrl + "/admin/project", data, { headers });
+ 
+    return this.http.post(this.apiUrl + "/admin/project", data, { headers: this.headers });
   }
 
   // Assign Employee To Project
@@ -194,43 +150,33 @@ export class AdminService {
 
   // Get all Projects
   getAllProjectsList() {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.get(this.apiUrl + "/admin/project", { headers });
+   
+    return this.http.get(this.apiUrl + "/admin/project", { headers: this.headers });
   }
 
 
   // Get Project Details
   getProjectDetails(id: number) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    // return this.http.get(`${this.apiUrl}/admin/project/${id}`, { headers });
-    return this.http.get(this.apiUrl + "/admin/project/${id}", { headers });
+   
+    return this.http.get(this.apiUrl + "/admin/project/${id}", { headers: this.headers });
 
 
   }
 
   // Update Project
   updateProject(data: any) {
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.put(this.apiUrl + "/admin/project", data, { headers });
+ 
+    return this.http.put(this.apiUrl + "/admin/project", data, { headers: this.headers });
   }
 
   // Delete Project
   deleteProject(projId: any) {
-    debugger;
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
-    return this.http.delete(`${this.apiUrl}/admin/project/${projId}`, { headers });
+    
+    return this.http.delete(`${this.apiUrl}/admin/project/${projId}`, { headers: this.headers });
   }
 
   //API for GET History
   getHistory(employeeId: any): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/history/${employeeId}`);
+    return this.http.get<any[]>(`${this.apiUrl}/history/${employeeId}`, {headers: this.headers});
   }
 }

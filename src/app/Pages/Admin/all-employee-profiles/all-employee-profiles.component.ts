@@ -11,8 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinnerModule
-import { LoaderComponent } from '../../Components/loader/loader.component';
+import { ProgressSpinnerModule } from 'primeng/progressspinner'; 
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
@@ -24,7 +23,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
     styleUrls: ['./all-employee-profiles.component.css'],
     standalone: true,
     imports: [ReactiveFormsModule, CommonModule, ButtonModule, PaginatorModule,
-        LoaderComponent, ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
+        ConfirmDialogModule, DialogModule, TableModule, CalendarModule, InputTextModule, DropdownModule, ToastModule, ProgressSpinnerModule], // Add ProgressSpinnerModule here
     providers: [MessageService, ConfirmationService]
 })
 export class AllEmployeeProfilesComponent implements OnInit {
@@ -45,7 +44,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
     ) {
-       
+
     }
 
     ngOnInit(): void {
@@ -57,9 +56,9 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
 
-    loadForm(){
-         // Create the employee form
-         this.employeeForm = this.formBuilder.group({
+    loadForm() {
+        // Create the employee form
+        this.employeeForm = this.formBuilder.group({
             firstName: ['', [Validators.required]],
             lastName: ['', [Validators.required]],
             emailId: ['', [Validators.required, Validators.email]],
@@ -97,7 +96,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         debugger;
         if (this.employeeForm.valid) {
             debugger;
-            let employeeForm = {...this.employeeForm.value, password: 'Gfss@2024'}
+            let employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' }
             debugger;
             this.employeeService.addEmployee(employeeForm).subscribe({
                 next: () => {
@@ -146,8 +145,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
 
     // Method to confirm deletion with an alert
     deleteEmployee(employee: any) {
-        console.log('Employee: ', employee);
-        debugger;
+
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete this employee?',
             header: 'Delete Confirmation',
@@ -192,8 +190,8 @@ export class AllEmployeeProfilesComponent implements OnInit {
         return control ? control.invalid && (control.touched || control.dirty) : false;
     }
 
-    loadDepartments(){
-        this.adminService.getAllDepartmentsList().subscribe((data) =>{
+    loadDepartments() {
+        this.adminService.getAllDepartmentsList().subscribe((data) => {
             this.departments = data;
         })
     }

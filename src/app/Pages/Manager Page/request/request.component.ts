@@ -4,7 +4,6 @@ import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { LoaderComponent } from '../../Components/loader/loader.component';
 import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 
 @Component({
@@ -15,8 +14,7 @@ import { ManagerService } from '../../../Core/Services/Manager/manager.service';
     ButtonModule,
     FormsModule,
     CommonModule,
-    ProgressSpinnerModule,
-    LoaderComponent  // Register the loader component
+    ProgressSpinnerModule
   ],
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
@@ -42,7 +40,7 @@ export class RequestComponent implements OnInit {
         this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
       },
       error: (error) => {
-        console.error('Error fetching leave data:', error);
+        
         this.leaveRequests = [];
       },
       complete: () => {
@@ -53,23 +51,16 @@ export class RequestComponent implements OnInit {
   
 
   approveLeave(request: any) {
-    console.log('Leave approved for:', request);
-    debugger;
     if (request.employeeLeaveId) {
       this.leaveService.approveLeave(request.leaveId).subscribe((data) => {
-        console.log('Approve Leave: ', data);
         this.getAllPendingLeaves();
       })
     }
-
-
   }
 
   rejectLeave(request: any) {
-    console.log('Leave rejected for:', request);
     if (request.employeeLeaveId) {
       this.leaveService.rejectLeave(request.leaveId).subscribe((data) => {
-        console.log('Reject Leave: ', data);
         this.getAllPendingLeaves();
       })
     }
