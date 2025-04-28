@@ -14,22 +14,25 @@
             <p-accordion> 
               <p-accordionTab header="How do I request a leave?" (selectedChange)="onTabSelect($event, 0)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>Click on the "Request Leave" button on the dashboard, fill in the required details, and submit the request.</p>
+                <p>
+                  To request a leave, navigate to the "Leave" option available on your Navbar and then 
+                  Click the Leave Application Form button, select the appropriate leave type, and fill in all the necessary fields such as start date, end date, and reason for leave. 
+                  Once you have completed the form, submit the request. and thereafter, Manager will Approve or Reject the leave.</p>
               </p-accordionTab>
   
               <p-accordionTab header="How can I check the status of my leave request?" (selectedChange)="onTabSelect($event, 1)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>Go to the "Leave Status" section under your profile. Here, you can view the status of all your leave requests, including those that are pending, approved, or rejected.</p>
+                <p>Go to the "Leave" section, Here you can view the status of all your leave requests, including those that are pending, approved, or rejected.</p>
               </p-accordionTab>
   
-              <p-accordionTab header="Can I cancel or modify an existing leave request?" (selectedChange)="onTabSelect($event, 2)">
+              <p-accordionTab header="Can I View Upcoming Holidays?" (selectedChange)="onTabSelect($event, 2)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>Yes, you can cancel or modify a leave request if it has not yet been approved. Go to the "Leave History" section, select the request you want to change, and follow the prompts to make modifications or cancel the request.</p>
+                <p>Yes, You can Check Upcoming Holidays in Holiday Section In which you can view the Holidays in detail in Calendar View.</p>
               </p-accordionTab>
   
               <p-accordionTab header="What types of leave are available?" (selectedChange)="onTabSelect($event, 3)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>The system typically includes various leave types such as Annual Leave, Sick Leave, Casual Leave, Maternity/Paternity Leave, and Unpaid Leave. For specific details on each type and eligibility criteria, check the "Leave Policies" section.</p>
+                <p>The system typically includes various leave types such as Sick Leave, Paid Leave and Unpaid Leave.</p>
               </p-accordionTab>
   
               <p-accordionTab header="Who can approve my leave requests?" (selectedChange)="onTabSelect($event, 4)">

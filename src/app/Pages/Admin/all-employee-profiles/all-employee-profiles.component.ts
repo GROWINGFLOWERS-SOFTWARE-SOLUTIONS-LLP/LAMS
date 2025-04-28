@@ -30,6 +30,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
 export class AllEmployeeProfilesComponent implements OnInit {
     employees: any = [];
     departments: any = [];
+    managers: any = [];
     roles: any = [];
     employeeForm!: FormGroup;
     showDialog: boolean = false;
@@ -50,6 +51,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     ngOnInit(): void {
         this.loadEmployees();
         this.loadDepartments();
+        this.loadManagers();
         this.loadRoles();
         this.loadForm()
     }
@@ -64,7 +66,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
             mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', [Validators.required]],
             role: ['', [Validators.required]],
-            // manager: [''],
+            manager: ['', [Validators.required]],
             joiningDate: ['', [Validators.required]],
             address: ['', [Validators.required]],
         });
@@ -196,6 +198,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
         })
     }
 
+    loadManagers(){
+        this.adminService.getAllManagersList().subscribe((data) =>{
+            this.managers = data;
+        })
+    }
     loadRoles(){
         this.adminService.getAllRolesList().subscribe((data) =>{
             this.roles = data;
