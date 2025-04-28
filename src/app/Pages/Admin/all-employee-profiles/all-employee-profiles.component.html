@@ -7,7 +7,7 @@
         <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()"></p-button>
     </div>
 
-    <app-loader [loading]="loading"></app-loader> <!-- Reusable loader component -->
+    <!-- <app-loader [loading]="loading"></app-loader> Reusable loader component -->
 
     <!-- Employee Table (loading = false) -->
     <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
@@ -124,9 +124,23 @@
                             </div>
                         </div>
 
+
+                        <div class="field col-12 md:col-6">
+                            <label for="manager" class="font-semibold">Manager</label>
+                            <select formControlName="manager"
+                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Select Manager name">
+                                <option value="">Select Manager</option>
+        
+                                <option *ngFor="let manager of managers" value="{{manager.managerName}}">
+                                    {{manager.managerName}} </option>
+                            </select>
+                            <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
+                                Manager is required.
+                            </div>
+                        </div>
                         <!-- Role -->
                         <div class="field col-12 md:col-6">
-                            <label for="department" class="font-semibold">Role</label>
+                            <label for="role" class="font-semibold">Role</label>
                             <select formControlName="role"
                                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
                                 <option value="">Select Role</option>
@@ -169,6 +183,5 @@
                 </form>
             </div>
         </p-dialog>
-
     </div>
 </div>

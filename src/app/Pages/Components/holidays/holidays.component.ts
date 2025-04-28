@@ -4,17 +4,15 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import { ApiService } from '../../../Core/Services/api.service';
 import { Holiday } from '../../../Core/Interfaces/holiday';
 import { CommonModule } from "@angular/common";
-import { LoaderComponent } from '../loader/loader.component';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 
 
 @Component({
   selector: 'app-holidays',
   standalone: true,
-  imports: [FullCalendarModule, CommonModule,LoaderComponent],
+  imports: [FullCalendarModule, CommonModule],
   templateUrl: './holidays.component.html',
   styleUrls: ['./holidays.component.css'] // Fixed the styleUrl to styleUrls
 })

@@ -11,12 +11,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
-import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { LoaderComponent } from '../loader/loader.component'; // Import the LoaderComponent
+import { LoaderComponent } from '../loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { EmployeeService } from '../../../Core/Services/Employee/employee.service'; 
+import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
+import { ApiService } from '../../../Core/Services/api.service';
 
 @Component({
   selector: 'app-attendance',
@@ -33,7 +33,8 @@ import { EmployeeService } from '../../../Core/Services/Employee/employee.servic
     InputTextModule,
     RippleModule,
     ToastModule,
-    LoaderComponent // Include the LoaderComponent here
+    LoaderComponent,
+    ProgressSpinnerModule
   ],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
@@ -47,20 +48,41 @@ export class AttendanceComponent implements OnInit {
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
   loading: boolean = true;
-  attendance: any ;// State to control loader visibility
+  attendance: any;
 
-  constructor(private authService: AuthService, private apiService: ApiService, 
-    private employeeService: EmployeeService, private router: Router, private messageService: MessageService,) {}
+  constructor(
+    private authService: AuthService,
+    private apiService: ApiService,
+    private employeeService: EmployeeService,
+    private router: Router,
+    private messageService: MessageService
+  ) {}
 
   ngOnInit(): void {
     this.updateCurrentTime();
+    this.attendance = JSON.parse(localStorage.getItem("userValue") || "null");
     this.loadAttendanceRecords();
     this.checkPunchInStatus();
 
     this.authService.logoutObservable.subscribe(() => {
       this.checkout();
-      sessionStorage.removeItem('hasPunchedIn'); 
+      sessionStorage.removeItem('hasPunchedIn');
     });
+  }
+
+  updateCurrentTime() {
+    const currentDate = new Date();
+    this.attendance_date = currentDate.toLocaleDateString('en-GB');
+    this.currentTime = currentDate.toLocaleTimeString();
+  }
+
+  getCurrentTime() {
+    return new Date().toLocaleTimeString();
+  }
+
+  getCurrentDateTime(): string {
+    const now = new Date();
+    return `${now.getFullYear()}-${(now.getMonth() + 1).toString().padStart(2, '0')}-${now.getDate().toString().padStart(2, '0')} ${now.toTimeString().split(' ')[0]}`;
   }
 
   showPunchInDialog() {
@@ -72,60 +94,98 @@ export class AttendanceComponent implements OnInit {
 
   punchIn() {
     this.Punch_in_time = this.currentTime;
-    const attendance_date = new Date();
-    debugger
-    const newRecord = {
-      checkIn: String(this.Punch_in_time), // Ensure it's a string
-      date: attendance_date.toLocaleDateString('en-GB'),
-      checkOut: '',
-      employeeId: this.attendance.empId,
-      breaktime: '',
-    };
-    console.log(newRecord);
+    const attendance_date = new Date().toLocaleDateString('en-GB');
+    const empId = this.attendance?.empId;
 
-    this.attendanceRecords.push(newRecord);
-    this.hasPunchedIn = true;
-    debugger
+    const existingRecord = this.attendanceRecords.find(
+      (record) => record.date === attendance_date && record.employeeId === empId
+    );
 
-    // this.employeeService.markAttendance(newRecord).subscribe(
-    //   (response) => {
-    //     console.log('Attendance record posted successfully:', response);
-    //     this.messageService.add({ severity: 'success', summary: 'Success', detail: 'You have successfully punched in!' });
-    //   },
-    //   (error) => {
-    //     console.error('Error posting attendance record:', error);
-    //     this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to punch in. Please try again.' });
-    //   }
-    // );
-    this.employeeService.markAttendance({
-      employeeId: newRecord.employeeId,
-      date: newRecord.date,
-      checkIn: newRecord.checkIn,
-      checkOut: null,
-      breaktime: null
-    }).subscribe((data: any) =>  {
-      console.log("data", data);
-      // this.displayPunchInDialog = false;
-      // sessionStorage.setItem('hasPunchedIn', 'true'); 
-      // this.router.navigate(['/dashboard']);
-    });
-    debugger
-    
-    this.displayPunchInDialog = false;
-    sessionStorage.setItem('hasPunchedIn', 'true'); 
-    this.router.navigate(['/dashboard']);
-    this.saveAttendanceRecords();
+    if (!existingRecord) {
+      const newRecord = {
+        checkIn: this.Punch_in_time,
+        date: attendance_date,
+        checkOut: '',
+        employeeId: empId,
+        breaktime: '',
+        creationDate: this.getCurrentDateTime(),
+        updationDate: '',
+        createdBy: 'System',
+        modifiedBy: 'System'
+      };
 
+      this.attendanceRecords.push(newRecord);
+      this.hasPunchedIn = true;
+
+      this.employeeService.markAttendance({
+        employeeId: newRecord.employeeId,
+        date: newRecord.date,
+        checkIn: newRecord.checkIn,
+        checkOut: null,
+        breaktime: null,
+        creationDate: newRecord.creationDate,
+        updationDate: null,
+        createdBy: 'System',
+        modifiedBy: 'System',
+        check: 0
+      }).subscribe((data) => {
+        console.log("Attendance record posted successfully:", data);
+      });
+
+      this.displayPunchInDialog = false;
+      sessionStorage.setItem('hasPunchedIn', 'true');
+      this.saveAttendanceRecords();
+      this.router.navigate(['/dashboard']);
+    } else {
+      this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'You have already punched in today.' });
+      this.displayPunchInDialog = false;
+
+    }
   }
 
   checkout() {
     const Punch_out_time = this.getCurrentTime();
-    const lastRecord = this.attendanceRecords[this.attendanceRecords.length - 1];
-    if (lastRecord && !lastRecord.checkOut) {
-      lastRecord.checkOut = Punch_out_time;
-      lastRecord.breaktime = this.calculateBreakTime(lastRecord.checkIn, lastRecord.checkOut);
+    const todayDate = new Date().toLocaleDateString('en-GB');
+    const empId = this.attendance?.empId;
 
-      this.employeeService.markAttendance(lastRecord).subscribe(
+    const todayRecordIndex = this.attendanceRecords.findIndex(
+      (record) => record.date === todayDate && record.employeeId === empId
+    );
+
+    if (todayRecordIndex !== -1) {
+      const todayRecord = this.attendanceRecords[todayRecordIndex];
+
+      const checkInTime = new Date(`01/01/2024 ${todayRecord.checkIn}`);
+      const checkOutTime = new Date(`01/01/2024 ${Punch_out_time}`);
+
+      if (checkOutTime <= checkInTime) {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Invalid Checkout',
+          detail: 'Checkout time cannot be earlier than check-in time.'
+        });
+        return;
+      }
+
+      todayRecord.checkOut = Punch_out_time;
+      todayRecord.breaktime = this.calculateBreakTime(todayRecord.checkIn, todayRecord.checkOut);
+      todayRecord.updationDate = this.getCurrentDateTime();
+
+      this.attendanceRecords[todayRecordIndex] = todayRecord;
+      this.saveAttendanceRecords();
+
+      this.employeeService.markAttendance({
+        employeeId: empId,
+        date: todayRecord.date,
+        checkIn: todayRecord.checkIn,
+        checkOut: todayRecord.checkOut,
+        breaktime: todayRecord.breaktime,
+        creationDate: todayRecord.creationDate,
+        updationDate: todayRecord.updationDate,
+        createdBy: 'System',
+        modifiedBy: 'System',
+        check: 1
+      }).subscribe(
         (response) => {
           console.log('Updated attendance record posted successfully:', response);
         },
@@ -133,22 +193,13 @@ export class AttendanceComponent implements OnInit {
           console.error('Error posting updated attendance record:', error);
         }
       );
-      debugger
-      this.saveAttendanceRecords();
     } else {
-      console.log("Error.");
+      this.messageService.add({
+        severity: 'warn',
+        summary: 'No Check-in Found',
+        detail: 'You haven’t checked in today.'
+      });
     }
-  }
-
-  updateCurrentTime() {
-    const currentDate = new Date();
-    this.attendance_date = currentDate.toLocaleDateString('en-GB');
-    this.currentTime = currentDate.toLocaleTimeString();
-  }
-
-  getCurrentTime() {
-    const attendance_date = new Date();
-    return attendance_date.toLocaleTimeString();
   }
 
   calculateBreakTime(checkIn: string, checkOut: string): string {
@@ -169,49 +220,64 @@ export class AttendanceComponent implements OnInit {
 
   loadAttendanceRecords() {
     this.loading = true;
-    this.attendance = JSON.parse(localStorage.getItem("userValue") || "null");
+
     const savedRecords = localStorage.getItem('attendanceRecords');
   
     if (savedRecords) {
-      let parsedRecords = JSON.parse(savedRecords);
+      const parsedRecords = JSON.parse(savedRecords);
+      const empId = this.attendance?.empId;
   
-      // Get today's date in the correct format
+      // Filter only logged-in employee's data
+      const employeeRecords = parsedRecords.filter((record: any) => record.employeeId === empId);
+  
       const todayDate = new Date().toLocaleDateString('en-GB');
-  
-      // Find today's attendance record
-      const todayRecord = parsedRecords.find((record: any) => record.date === todayDate);
+      const todayRecord = employeeRecords.find(
+        (record: any) => record.date === todayDate
+      );
   
       if (todayRecord) {
-        this.hasPunchedIn = true;  // Ensure UI knows that user has punched in today
+        this.hasPunchedIn = true;
       }
   
-      // Keep only the latest entry for each date
+      // Optional: remove duplicate entries (same date & empId)
       const uniqueRecordsMap = new Map<string, any>();
-      parsedRecords.forEach((record: any) => {
-        uniqueRecordsMap.set(record.date, record);
+      employeeRecords.forEach((record: any) => {
+        const key = `${record.date}-${record.employeeId}`;
+        if (!uniqueRecordsMap.has(key)) {
+          uniqueRecordsMap.set(key, record);
+        }
       });
   
       this.attendanceRecords = Array.from(uniqueRecordsMap.values());
-    } else {
-      console.log("No attendance records found.");
     }
   
-    setTimeout(() => {
       this.loading = false;
-    }, 1500);
+
   }
   
-  
-  
-
   checkPunchInStatus() {
-    const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
-    this.hasPunchedIn = hasPunchedInSession === 'true';
-
-    if (!this.hasPunchedIn) {
-      this.showPunchInDialog();
+    const empId = this.attendance?.empId;
+    const todayDate = new Date().toLocaleDateString('en-GB');
+  
+    // Check if today's attendance record exists for logged-in employee
+    const existingRecord = this.attendanceRecords.find(
+      (record) => record.date === todayDate && record.employeeId === empId
+    );
+  
+    if (existingRecord) {
+      this.hasPunchedIn = true;
+      console.log("You have already punched in for today.");
+      // 👇 Don't show dialog if already punched in
+      this.displayPunchInDialog = false;
     } else {
-      console.log("You have already punched in for this session.");
+      this.hasPunchedIn = false;
+      const punchInDialogShown = sessionStorage.getItem('punchInDialogShown');
+      if (!punchInDialogShown) {
+        // 👇 Show dialog only if not shown yet in this session
+        this.showPunchInDialog();
+        sessionStorage.setItem('punchInDialogShown', 'true');
+      }
     }
   }
+  
 }

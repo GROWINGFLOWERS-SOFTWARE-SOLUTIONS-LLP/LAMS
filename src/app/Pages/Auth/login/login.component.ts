@@ -10,19 +10,16 @@ import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinner
 import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
-import { LoaderComponent } from '../../Components/loader/loader.component';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
-import { ChangePasswordComponent } from '../change-password/change-password.component';
 import { CardModule } from 'primeng/card';
-
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
-import { SelectButtonModule } from 'primeng/selectbutton';
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
-    ChangePasswordComponent, CardModule, ImageModule,FormsModule,
+    CardModule, ImageModule,FormsModule,
     FormsModule,
     RouterModule,
     ReactiveFormsModule,
@@ -30,9 +27,9 @@ import { SelectButtonModule } from 'primeng/selectbutton';
     InputTextModule,
     PasswordModule,
     ButtonModule,
-    ProgressSpinnerModule, // Include ProgressSpinnerModule here
+    ProgressSpinnerModule,
     ToastModule
-  ],
+],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: [MessageService] // Provide MessageService here

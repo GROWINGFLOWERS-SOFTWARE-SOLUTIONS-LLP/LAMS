@@ -5,12 +5,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { CommonModule, DatePipe } from '@angular/common';
-import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe, LoaderComponent],
+  imports: [AvatarModule, ButtonModule, CardModule, CommonModule, DatePipe],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -30,13 +29,13 @@ export class ProfileComponent implements OnInit {
     if (user?.empId) {
       this.apiService.getProfile(user.empId).subscribe((data: any) => {
         this.employee = data;
-        console.log(this.employee)
         this.loading = false;
       });
     }
   }
 
   updateProfile() {
-    this.router.navigateByUrl('profile-form', { state: { employee: this.employee } });
+    // this.router.navigateByUrl('profile-form', { state: { employee: this.employee } });
+    this.router.navigate(['profile-form']);
   }
 }

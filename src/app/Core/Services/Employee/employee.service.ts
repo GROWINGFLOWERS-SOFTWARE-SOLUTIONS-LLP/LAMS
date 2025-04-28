@@ -43,10 +43,7 @@ export class EmployeeService {
       );
   }
 
-
-
   //-------------------//
-
   getAttendanceById(employeeId: string) {
     return this.http.get(`${this.apiUrl}/attendance/${employeeId}`);
   }
@@ -63,11 +60,11 @@ export class EmployeeService {
   }
 
 
-  getAllAttendance(currentMonth: number, currentYear: number, employeeId: string): Observable<any> {
+  getAllAttendance(): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
     });
-    return this.http.get(`${this.apiUrl}/attendance/all?employeeId=${employeeId}`);
+    return this.http.get(`${this.apiUrl}/attendance/all`);
   }
 
 
