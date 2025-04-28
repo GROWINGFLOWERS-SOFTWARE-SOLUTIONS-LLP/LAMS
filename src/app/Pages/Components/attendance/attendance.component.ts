@@ -220,6 +220,7 @@ export class AttendanceComponent implements OnInit {
 
   loadAttendanceRecords() {
     this.loading = true;
+
     const savedRecords = localStorage.getItem('attendanceRecords');
   
     if (savedRecords) {
@@ -255,13 +256,28 @@ export class AttendanceComponent implements OnInit {
   }
   
   checkPunchInStatus() {
-    const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
-    this.hasPunchedIn = hasPunchedInSession === 'true';
-
-    if (!this.hasPunchedIn) {
-      this.showPunchInDialog();
+    const empId = this.attendance?.empId;
+    const todayDate = new Date().toLocaleDateString('en-GB');
+  
+    // Check if today's attendance record exists for logged-in employee
+    const existingRecord = this.attendanceRecords.find(
+      (record) => record.date === todayDate && record.employeeId === empId
+    );
+  
+    if (existingRecord) {
+      this.hasPunchedIn = true;
+      console.log("You have already punched in for today.");
+      // 👇 Don't show dialog if already punched in
+      this.displayPunchInDialog = false;
     } else {
-      console.log("You have already punched in for this session.");
+      this.hasPunchedIn = false;
+      const punchInDialogShown = sessionStorage.getItem('punchInDialogShown');
+      if (!punchInDialogShown) {
+        // 👇 Show dialog only if not shown yet in this session
+        this.showPunchInDialog();
+        sessionStorage.setItem('punchInDialogShown', 'true');
+      }
     }
   }
+  
 }
