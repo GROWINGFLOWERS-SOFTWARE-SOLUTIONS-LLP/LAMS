@@ -32,13 +32,13 @@ export class ManagerService {
   }
   
   // Approve Leave
-  approveLeave(employeeId:any){
-    return this.http.put(`${this.apiURL}/api/leave/${employeeId}/approve`, {headers: this.headers});
+  approveLeave(employeeData:any){
+    return this.http.put(`${this.apiURL}/api/leave/approve`,employeeData, {headers: this.headers});
   }
 
   // Reject Leave
-  rejectLeave(employeeId:any){
-    return this.http.put(`${this.apiURL}/api/leave/${employeeId}/reject`, {headers: this.headers});
+  rejectLeave(employeeData:any){
+    return this.http.put(`${this.apiURL}/api/leave/reject`,employeeData, {headers: this.headers});
   }
 
 

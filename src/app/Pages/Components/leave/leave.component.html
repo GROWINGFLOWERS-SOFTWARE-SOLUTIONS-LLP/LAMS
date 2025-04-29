@@ -83,6 +83,7 @@
               <th>Total Leaves</th>
               <th>Status</th>
               <th>Reason</th>
+              <th>Manager Comment</th>
             </tr>
           </ng-template>
 
@@ -99,6 +100,7 @@
                 <span *ngIf="request.status === 'REJECTED'" class="p-tag p-tag-warning">{{request.status}}</span>
               </td>
               <td>{{ request.reason }}</td>
+              <td class="">{{  request.managerComment != null ? request.managerComment : '-'  }}</td>
             </tr>
           </ng-template>
 

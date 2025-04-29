@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ManagerService } from '../../../Core/Services/Manager/manager.service';
-
+import { DialogModule } from 'primeng/dialog';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-request',
   standalone: true,
@@ -14,20 +15,26 @@ import { ManagerService } from '../../../Core/Services/Manager/manager.service';
     ButtonModule,
     FormsModule,
     CommonModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    DialogModule
   ],
+  providers: [MessageService],
   templateUrl: './request.component.html',
   styleUrls: ['./request.component.css']
 })
 export class RequestComponent implements OnInit {
-  leaveRequests: any = [];
+  leaveRequests: any[] = []; // Your leave data here
+  isLoading: boolean = false; // Show loader if needed
 
-  isLoading = true;
-  
+  displayDialog: boolean = false;
+  actionType: 'approve' | 'reject' = 'approve';
+  selectedRequest: any;
+  reason: string = '';
+
   constructor(
-    private leaveService: ManagerService
-  ) { }
-
+    private leaveService: ManagerService,
+    private messageService: MessageService
+  ) {}
   ngOnInit() {
 
     this.getAllPendingLeaves()
@@ -39,7 +46,7 @@ export class RequestComponent implements OnInit {
         // Check if data is valid and the role is not 'Manager'
         this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
       },
-      error: (error) => {
+      error: (error: any) => {
         
         this.leaveRequests = [];
       },
@@ -48,21 +55,66 @@ export class RequestComponent implements OnInit {
       }
     });
   }
-  
 
-  approveLeave(request: any) {
-    if (request.employeeLeaveId) {
-      this.leaveService.approveLeave(request.leaveId).subscribe((data) => {
-        this.getAllPendingLeaves();
-      })
-    }
+  openDialog(type: 'approve' | 'reject', request: any) {
+    this.actionType = type;
+    this.selectedRequest = request;
+    this.reason = '';
+    this.displayDialog = true;
   }
 
-  rejectLeave(request: any) {
-    if (request.employeeLeaveId) {
-      this.leaveService.rejectLeave(request.leaveId).subscribe((data) => {
-        this.getAllPendingLeaves();
-      })
+  cancelAction() {
+    this.displayDialog = false;
+  }
+
+  submitAction() {
+    if (!this.reason.trim()) {
+      alert('Please enter a reason.');
+      return;
     }
+
+    if (this.actionType === 'approve') {
+      this.approveLeave(this.selectedRequest, this.reason);
+    } else if (this.actionType === 'reject') {
+      this.rejectLeave(this.selectedRequest, this.reason);
+    }
+
+    this.displayDialog = false;
+  }
+
+  approveLeave(request: any, reason: string) {
+   
+    request.managerComment = reason;
+    console.log('New Request: ', request);
+
+    // TODO: Call your backend API to approve leave with reason
+    this.leaveService.approveLeave(request).subscribe((data) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Leave Approve Successfully',
+      });
+
+      this.getAllPendingLeaves();
+    })
+  }
+
+  rejectLeave(request: any, reason: string) {
+    console.log('Rejected:', request);
+    console.log('Reason:', reason);
+    // TODO: Call your backend API to reject leave with reason
+    request.managerComment = reason;
+    console.log('New Request: ', request);
+
+    // TODO: Call your backend API to approve leave with reason
+    this.leaveService.rejectLeave(request).subscribe((data) => {
+      this.messageService.add({
+        severity: 'success',
+        summary: 'Success',
+        detail: 'Leave Reject Successfully',
+      });
+
+      this.getAllPendingLeaves();
+    })
   }
 }
