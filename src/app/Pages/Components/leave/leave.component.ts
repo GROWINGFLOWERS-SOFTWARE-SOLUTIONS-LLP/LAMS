@@ -40,7 +40,7 @@ export class LeaveComponent implements OnInit {
   leaveForm!: FormGroup;
   leaveRequests: Leave[] = [];
   isLoading: boolean = true;
-  showPaginator: boolean = false; // Control paginator visibility
+  showPaginator: boolean = false;
   employee: any;
 
   leaveTypes = [
@@ -50,17 +50,15 @@ export class LeaveComponent implements OnInit {
   ];
 
   constructor(
-    
     private leaveService: ManagerService,
     private fb: FormBuilder,
     private messageService: MessageService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.employee = JSON.parse(localStorage.getItem("userValue") || "null");
     this.initLeaveForm();
     this.loadLeaveRequests();
-
   }
 
   initLeaveForm(): void {
@@ -82,45 +80,43 @@ export class LeaveComponent implements OnInit {
 
   loadLeaveRequests(): void {
     this.isLoading = true;
-    this.showPaginator = false; // Hide paginator initially
+    this.showPaginator = false;
 
-
-    this.leaveService.geEmployeeleave(this.employee.empId).subscribe((data: any) => {
-     
+    this.leaveService.geEmployeeleave(this.employee.empId).subscribe({
+      next: (data: any) => {
         this.leaveRequests = data;
         this.isLoading = false;
-        this.showPaginator = true; // Show paginator after loading data
+        this.showPaginator = true;
       },
-      (error) => {
+      error: () => {
         this.isLoading = false;
         this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load leave requests.' });
       }
-    );
+    });
   }
 
   showDialog(): void {
+    this.resetLeaveRequestForm(); // Clear form before opening
     this.visible = true;
   }
 
   saveLeaveRequest(): void {
-    debugger;
     if (this.leaveForm.valid) {
-      const leaveRequest: Leave = this.leaveForm.getRawValue();  // Get form values including disabled fields
-      leaveRequest.status = 'PENDING';  // Set status to "Pending"
+      const leaveRequest: Leave = this.leaveForm.getRawValue();
+      leaveRequest.status = 'PENDING';
 
-      // Send leave request to the API
-      debugger;
-      this.leaveService.applyLeave(leaveRequest).subscribe((data) => {
-       
-        if (data) {
-          this.loadLeaveRequests();
-          this.visible = false; 
+      this.leaveService.applyLeave(leaveRequest).subscribe({
+        next: (data) => {
+          if (data) {
+            this.loadLeaveRequests();
+            this.visible = false;
+            this.resetLeaveRequestForm();
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Leave request saved successfully.' });
+          }
+        },
+        error: () => {
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to submit leave request.' });
         }
-        // this.resetLeaveRequestForm();  // Reset the form
-        //this.visible = false;  // Hide the dialog
-
-        // Show success toast
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Leave request saved successfully.' });
       });
     } else {
       this.leaveForm.markAllAsTouched();
@@ -128,29 +124,31 @@ export class LeaveComponent implements OnInit {
     }
   }
 
-  // Calculate the total number of leave days based on the start and end dates
   calculateTotalLeaves(): void {
     const startDate = this.leaveForm.get('startDate')?.value;
     const endDate = this.leaveForm.get('endDate')?.value;
 
     if (startDate && endDate) {
       const diffInMs = new Date(endDate).getTime() - new Date(startDate).getTime();
-      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;  // Include both start and end date
+      const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;
       const totalLeaves = diffInDays > 0 ? diffInDays : 0;
-      this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);  // Update total leaves
+      this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);
     } else {
-      this.leaveForm.get('totalLeaves')?.setValue(0);  // Reset total leaves if dates are invalid
+      this.leaveForm.get('totalLeaves')?.setValue(0);
     }
   }
 
-  // Reset the form after a leave request is saved or cancelled
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({
       leaveType: '',
       startDate: null,
       endDate: null,
       reason: '',
-      totalLeaves: 0
+      totalLeaves: 0,
+      employeeLeaveId: this.employee?.empId,
+      firstName: this.employee?.firstName,
+      lastname: this.employee?.lastName,
+      employeeRole: this.employee?.role
     });
   }
 }

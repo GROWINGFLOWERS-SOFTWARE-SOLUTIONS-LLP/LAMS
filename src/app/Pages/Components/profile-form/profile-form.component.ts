@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../Core/Services/api.service';
-
-// PrimeNG modules
 import { AvatarModule } from 'primeng/avatar';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -35,7 +33,6 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
   ],
 })
 export class ProfileFormComponent implements OnInit {
- 
   department = [];
   profileForm!: FormGroup;
   employeeId: any;
@@ -46,7 +43,7 @@ export class ProfileFormComponent implements OnInit {
     private messageService: MessageService,
     private adminService: AdminService,
     private fb: FormBuilder
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     const userValue = localStorage.getItem('userValue');
@@ -54,49 +51,48 @@ export class ProfileFormComponent implements OnInit {
 
     this.getProfileForm();
     this.getDepartments();
-    
-      this.getProfile()
-   
+    this.getProfile();
   }
 
-  getProfileForm(){
+  getProfileForm() {
     this.profileForm = this.fb.group({
       empId: [this.employeeId],
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      emailId: ['', [Validators.required, Validators.email]],
+      firstName: [{ value: '', disabled: true }],
+      lastName: [{ value: '', disabled: true }],
+      emailId: [{ value: '', disabled: true }],
       mobile: ['', Validators.required],
       department: ['', Validators.required],
       role: ['', Validators.required],
-      joiningDate: [''],
+      joiningDate: [{ value: '', disabled: true }],
       address: ['', Validators.required]
     });
   }
 
   getProfile() {
     this.apiService.getProfile(this.employeeId).subscribe((data: any) => {
+      if (data.joiningDate) {
+        data.joiningDate = new Date(data.joiningDate);
+      }
       this.profileForm.patchValue(data);
     });
   }
-
+  
   getDepartments() {
     this.adminService.getAllDepartmentsList().subscribe((data: any) => {
       this.department = data;
-    })
+    });
   }
 
   onSubmit() {
     if (this.profileForm.valid) {
-      console.log('Form Data; ', this.profileForm.value);
-      debugger;
-      this.apiService.updateProfile(this.profileForm.value).subscribe(
+      const formData = { ...this.profileForm.getRawValue() }; // include disabled fields
+      this.apiService.updateProfile(formData).subscribe(
         () => {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',
             detail: 'Profile updated successfully',
           });
-
           this.router.navigate(['profile']);
         },
         error => {
