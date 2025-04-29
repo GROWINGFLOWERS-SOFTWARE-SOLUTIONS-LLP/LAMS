@@ -11,12 +11,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { RippleModule } from 'primeng/ripple';
 import { Router } from '@angular/router';
 import { AuthService } from '../../../Core/Services/auth.service';
+import { ApiService } from '../../../Core/Services/api.service';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { LoaderComponent } from '../loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
-import { ApiService } from '../../../Core/Services/api.service';
 
 @Component({
   selector: 'app-attendance',
@@ -220,7 +220,6 @@ export class AttendanceComponent implements OnInit {
 
   loadAttendanceRecords() {
     this.loading = true;
-
     const savedRecords = localStorage.getItem('attendanceRecords');
   
     if (savedRecords) {
@@ -251,33 +250,20 @@ export class AttendanceComponent implements OnInit {
       this.attendanceRecords = Array.from(uniqueRecordsMap.values());
     }
   
+    setTimeout(() => {
       this.loading = false;
-
+    }, 1500);
   }
   
+
   checkPunchInStatus() {
-    const empId = this.attendance?.empId;
-    const todayDate = new Date().toLocaleDateString('en-GB');
-  
-    // Check if today's attendance record exists for logged-in employee
-    const existingRecord = this.attendanceRecords.find(
-      (record) => record.date === todayDate && record.employeeId === empId
-    );
-  
-    if (existingRecord) {
-      this.hasPunchedIn = true;
-      console.log("You have already punched in for today.");
-      // 👇 Don't show dialog if already punched in
-      this.displayPunchInDialog = false;
+    const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');
+    this.hasPunchedIn = hasPunchedInSession === 'true';
+
+    if (!this.hasPunchedIn) {
+      this.showPunchInDialog();
     } else {
-      this.hasPunchedIn = false;
-      const punchInDialogShown = sessionStorage.getItem('punchInDialogShown');
-      if (!punchInDialogShown) {
-        // 👇 Show dialog only if not shown yet in this session
-        this.showPunchInDialog();
-        sessionStorage.setItem('punchInDialogShown', 'true');
-      }
+      console.log("You have already punched in for this session.");
     }
   }
-  
 }
