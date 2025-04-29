@@ -100,12 +100,12 @@
 
                     <div *ngIf="!isLoading">
                         <div class="flex justify-content-end mb-4">
-                            <p-button label="{{ showRoleList ? 'Add Role' : 'List of Roles' }}"
+                            <p-button label="{{ !showRoleList ? 'Add Role' : '  List of Roles' }}"
                                 class="p-button-secondary p-button-sm" severity="secondary" (click)="toggleRoleList()">
                             </p-button>
                         </div>
 
-                        <div class="flex justify-content-center mb-4" *ngIf="!showRoleList">
+                        <div class="flex justify-content-center mb-4" *ngIf="showRoleList">
                             <div class="p-fluid w-full md:w-8 lg:w-6">
                                 <div class="border-1 border-round p-3 shadow-2 bg-white">
                                     <h2 class="text-2xl font-bold text-center mb-3">
@@ -135,7 +135,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="showRoleList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
+                        <div *ngIf="!showRoleList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
                             <h3 class="text-xl font-bold text-center mb-3">Role List</h3>
                             <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
                                 <p-table [value]="roles" [paginator]="true" [rows]="5" responsiveLayout="scroll">
@@ -186,13 +186,13 @@
 
                     <div *ngIf="!isLoading">
                         <div class="flex justify-content-end mb-4">
-                            <p-button label="{{ showManagerList ? 'Add Manager' : 'List of Managers' }}"
+                            <p-button label="{{ !showManagerList ? 'Add Manager' : 'List of Managers' }}"
                                 class="p-button-secondary p-button-sm" severity="secondary"
                                 (click)="toggleManagerList()">
                             </p-button>
                         </div>
 
-                        <div class="flex justify-content-center mb-4" *ngIf="!showManagerList">
+                        <div class="flex justify-content-center mb-4" *ngIf="showManagerList">
                             <div class="p-fluid w-full md:w-8 lg:w-6">
                                 <div class="border-1 border-round p-3 shadow-2 bg-white">
                                     <h2 class="text-2xl font-bold text-center mb-3">
@@ -223,7 +223,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="showManagerList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
+                        <div *ngIf="!showManagerList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
                             <h3 class="text-xl font-bold text-center mb-3">Manager List</h3>
                             <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
                                 <p-table [value]="managers" [paginator]="true" [rows]="5" responsiveLayout="scroll">
@@ -234,7 +234,7 @@
                                             <th>Delete</th>
                                         </tr>
                                     </ng-template>
-                                    <ng-template pTemplate="body" let-manager>
+                                    <ng-template pTemplate="body" let-manager >
                                         <tr>
                                             <td>{{ manager.managerName }}</td>
                                             <td>
@@ -272,7 +272,7 @@
 
                     <div *ngIf="!isLoading">
                         <div class="flex justify-content-end mb-4">
-                            <p-button label="{{ showProjectList ? 'Add Project' : 'List of Projects' }}"
+                            <p-button label="{{ !showProjectList ? 'Add Project' : 'List of Projects' }}"
                                 class="p-button-secondary p-button-sm" severity="secondary"
                                 (click)="toggleProjectList()">
                             </p-button>
@@ -280,7 +280,7 @@
 
                         <p-confirmDialog></p-confirmDialog>
 
-                        <div class="flex justify-content-center mb-4" *ngIf="!showProjectList">
+                        <div class="flex justify-content-center mb-4" *ngIf="showProjectList">
                             <div class="p-fluid w-full md:w-8 lg:w-6">
                                 <div class="border-1 border-round p-3 shadow-2 bg-white">
                                     <h2 class="text-2xl font-bold text-center mb-3">
@@ -311,7 +311,7 @@
                             </div>
                         </div>
 
-                        <div *ngIf="showProjectList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
+                        <div *ngIf="!showProjectList" class="p-fluid w-full md:w-8 lg:w-6 mx-auto mt-4">
                             <h3 class="text-xl font-bold text-center mb-3">Project List</h3>
                             <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
                                 <p-table [value]="projects" [paginator]="true" [rows]="5" responsiveLayout="scroll">

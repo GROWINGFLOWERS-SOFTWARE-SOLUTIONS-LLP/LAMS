@@ -35,7 +35,8 @@
   }
   
   .history-list time {
-    color: #000000;
+    /* color: #000000; */
+    color: #636161;
     font-weight: bold;
     display: block;
     margin-bottom: 0.5rem;
@@ -43,7 +44,8 @@
   
   .event-details h3 {
     font-size: 1.25rem;
-    color: #00bcd4;
+    /* color: #00bcd4; */
+    color: #000000;
     margin: 0;
   }
   

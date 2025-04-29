@@ -4,7 +4,17 @@
   margin: 0;
   padding: 0;
 }
-
+.active-nav-link {
+  background-color: var(--blue-500); /* your theme color */
+  color: black !important;            /* override text color */
+  border-radius: 0.5rem;              /* optional: rounded active button */
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(78, 77, 77, 0.581); /* optional: small shadow */
+}
+.page-content{
+  height: 100vh;
+  margin-top: 10px;
+}
 img {
   height: 50%;
   width: 50%;
@@ -16,6 +26,7 @@ img {
   justify-content: space-between;
   align-items: center;
   background-image: linear-gradient(to right, var(--blue-500), var(--blue-800));
+  
 }
 
 .p-toolbar .p-link {
@@ -23,11 +34,11 @@ img {
   border-radius: 0.5rem;
   background-color: transparent;
   border: none;
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 .nav-hover:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(67, 66, 66, 0.1) !important;
   transition: background-color 0.3s ease;
 }
 

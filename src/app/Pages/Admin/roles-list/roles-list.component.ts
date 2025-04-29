@@ -61,7 +61,9 @@ export class RolesListComponent implements OnInit {
     private fb: FormBuilder,
     private messageService: MessageService,
     private confirmationService: ConfirmationService
-  ) { }
+  ) { 
+
+  }
 
   ngOnInit() {
     // Initialize the reactive form
@@ -82,6 +84,15 @@ export class RolesListComponent implements OnInit {
     });
 
     this.toggleDepartmentList();
+    this.getAllRolesList();
+    this.getAllDepartmentsList();
+    this.getAllManagersList();
+    this.getAllProjectsList();
+    // this.loadDepartments();
+    // this.loadRoles();
+    // this.loadManagers();
+    // this.loadProjects();
+
   }
 
   loadDepartments() {
@@ -264,6 +275,7 @@ export class RolesListComponent implements OnInit {
         this.adminService.deleteRole(id).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role deleted successfully!' });
           this.loadRoles();
+          this.getAllRolesList();
           this.showRoleList = false;
         });
       },
