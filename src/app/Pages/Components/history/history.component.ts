@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 import { CardModule } from 'primeng/card';
 import { DividerModule } from 'primeng/divider';
+import { PaginatorModule } from 'primeng/paginator';
 
 @Component({
   selector: 'app-history',
   standalone: true,
-  imports: [CommonModule, CardModule, DividerModule],
+  imports: [CommonModule, CardModule, DividerModule, PaginatorModule],
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.css']
 })
@@ -16,11 +17,15 @@ export class HistoryComponent implements OnInit {
   historyData: any[] = [];
   isLoading = false;
 
+  // Pagination variables
+  first = 0;
+  rows = 5;
+
   constructor(private adminService: AdminService) {}
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.getHistory(); 
+    this.getHistory();
   }
 
   getHistory() {
@@ -44,5 +49,16 @@ export class HistoryComponent implements OnInit {
 
   hasHistory(): boolean {
     return this.historyData && this.historyData.length > 0;
+  }
+
+  // Called on paginator change
+  onPageChange(event: any) {
+    this.first = event.first;
+    this.rows = event.rows;
+  }
+
+  // Returns sliced data for current page
+  get paginatedHistory() {
+    return this.historyData.slice(this.first, this.first + this.rows);
   }
 }

@@ -2,7 +2,8 @@
 <p-confirmDialog></p-confirmDialog>
 
 <div class="container flex flex-column p-4 bg-gray-50 h-screen">
-    <!-- <app-loader [loading]="loading"></app-loader> Reusable loader component -->
+    <!-- Reusable loader -->
+    <!-- <app-loader [loading]="loading"></app-loader> -->
 
     <!-- Employee Table -->
     <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
@@ -16,6 +17,7 @@
                             <th class="p-3">Last Name</th>
                             <th class="p-3">Email</th>
                             <th class="p-3">Role</th>
+                            <th class="p-3">Date</th>
                             <th class="p-3">Attendance</th>
                         </tr>
                     </ng-template>
@@ -26,6 +28,7 @@
                             <td class="p-3">{{ employee.lastName }}</td>
                             <td class="p-3">{{ employee.emailId }}</td>
                             <td class="p-3">{{ employee.role }}</td>
+                            <td class="p-3">{{ currentDate }}</td>
                             <td class="p-3">
                                 <span [ngClass]="{
                                     'text-green-600 font-medium': employee.attendanceStatus === 'Present',

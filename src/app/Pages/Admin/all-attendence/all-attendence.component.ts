@@ -1,5 +1,5 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { DialogModule } from 'primeng/dialog';
 import { TableModule } from 'primeng/table';
@@ -15,12 +15,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
-
 @Component({
     selector: 'app-all-attendence',
     standalone: true,
     imports: [
-        ReactiveFormsModule,
         CommonModule,
         ButtonModule,
         PaginatorModule,
@@ -46,6 +44,7 @@ export class AllAttendenceComponent implements OnInit {
     isEditing: boolean = false;
     selectedEmployeeId: number | null = null;
     loading: boolean = false;
+    currentDate: string = this.formatDate(new Date());  // Add current date
 
     constructor(
         private employeeService: EmployeeService,
@@ -121,7 +120,7 @@ export class AllAttendenceComponent implements OnInit {
                         resolve("Absent");
                     }
                 },
-                error: (err) => {
+                error: () => {
                     resolve("Absent");
                 }
             });
@@ -153,4 +152,3 @@ export class AllAttendenceComponent implements OnInit {
         });
     }
 }
-
