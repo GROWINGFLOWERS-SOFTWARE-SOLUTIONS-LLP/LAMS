@@ -12,17 +12,17 @@
         <div class="formgrid grid">
           <div class="field col-12 md:col-6">
             <label for="firstName">First Name</label>
-            <input pInputText  formControlName="firstName" [disabled]="true" />
+            <input pInputText formControlName="firstName" [disabled]="true" />
           </div>
       
           <div class="field col-12 md:col-6">
             <label for="lastName">Last Name</label>
-            <input pInputText  formControlName="lastName" />
+            <input pInputText formControlName="lastName" [disabled]="true" />
           </div>
       
           <div class="field col-12 md:col-6">
             <label for="email">Email</label>
-            <input pInputText type="email" formControlName="emailId" />
+            <input pInputText type="email" formControlName="emailId" [disabled]="true" />
           </div>
       
           <div class="field col-12 md:col-6">
@@ -32,23 +32,23 @@
       
           <div class="field col-12 md:col-6">
             <label for="department">Department</label>
-            <p-dropdown  [options]="department" optionLabel="departmentName" optionValue="departmentName" formControlName="department" placeholder="Select Department">
+            <p-dropdown [options]="department" optionLabel="departmentName" optionValue="departmentName" formControlName="department" placeholder="Select Department">
             </p-dropdown>
           </div>
       
           <div class="field col-12 md:col-6">
             <label for="role">Designation</label>
-            <input pInputText  formControlName="role" />
+            <input pInputText formControlName="role" />
           </div>
       
           <div class="field col-12 md:col-6">
             <label for="joiningDate">Joining Date</label>
-            <p-calendar inputId="joiningDate" formControlName="joiningDate" dateFormat="yy-mm-dd"></p-calendar>
+            <p-calendar inputId="joiningDate" formControlName="joiningDate" dateFormat="yy-mm-dd" [disabled]="true"></p-calendar>
           </div>
       
           <div class="field col-12">
             <label for="address">Address</label>
-            <textarea pInputTextarea  formControlName="address" rows="3"></textarea>
+            <textarea pInputTextarea formControlName="address" rows="3"></textarea>
           </div>
         </div>
       
