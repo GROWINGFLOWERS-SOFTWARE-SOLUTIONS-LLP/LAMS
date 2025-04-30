@@ -11,6 +11,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-manage-holidays',
@@ -69,16 +70,20 @@ export class ManageHolidaysComponent implements OnInit {
     };
 
       // Show the loader when the form is being submitted
-      this.isLoading = true;
+      // this.isLoading = true;
 
       // If we're editing an existing holiday (selectedHolidayId is set)
       if (this.selectedHolidayId) {
         // Call the API to update the holiday
         this.adminService.updateHoliday( holiday).subscribe((data: any) => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday updated successfully!' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: data });
           this.clearForm();
-          this.loadHolidays(); // Reload holidays and hide the loader
-          this.showHolidayList = true; // Show the holiday list after updating
+          // this.loadHolidays(); // Reload holidays and hide the loader
+          this.getAllHolidaysList();
+          // this.isLoading = false;
+          
+          this.showHolidayList = !this.showHolidayList;
+          
         });
       } else {
         // If no selectedHolidayId, we are adding a new holiday
@@ -86,7 +91,7 @@ export class ManageHolidaysComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Holiday added successfully!' });
           this.clearForm();
           this.loadHolidays(); // Reload holidays and hide the loader
-          this.showHolidayList = true; // Show the holiday list after adding
+          this.showHolidayList = !this.showHolidayList;// Show the holiday list after adding
         });
       }
     }
@@ -143,7 +148,7 @@ export class ManageHolidaysComponent implements OnInit {
       holidayDate: holiday.holidayDate
     });
     this.selectedHolidayId = holiday.holidId;
-    this.showHolidayList = false; // Hide list and show the form
+    this.showHolidayList = true; // Hide list and show the form
   }
   
 

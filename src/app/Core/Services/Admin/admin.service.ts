@@ -26,7 +26,7 @@ export class AdminService {
   // Holidays Api methods
   createHoliday(data: any) {
 
-    return this.http.post(this.apiUrl + "/admin/holiday", data, { headers: this.headers });
+    return this.http.post(this.apiUrl + "/admin/holiday", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   getAllHolidaysList() {
@@ -36,12 +36,12 @@ export class AdminService {
 
   updateHoliday(data: any) {
  
-    return this.http.put(this.apiUrl + "/admin/holiday", data, { headers: this.headers });
+    return this.http.put(this.apiUrl + "/admin/holiday", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   deleteHoliday(id: number) {
     
-    return this.http.delete(`${this.apiUrl}/admin/holiday/${id}`, { headers:this.headers });
+    return this.http.delete(`${this.apiUrl}/admin/holiday/${id}`, { headers:this.headers ,responseType: 'text' as 'json'});
   }
 
   // Attendance api methods
@@ -60,7 +60,7 @@ export class AdminService {
   // Add Department
   createDepartment(data: any) {
  
-    return this.http.post(this.apiUrl + "/admin/department", data, { headers: this.headers });
+    return this.http.post(this.apiUrl + "/admin/department", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Get All Departments
@@ -72,13 +72,13 @@ export class AdminService {
   // Update Department
   updateDepartment(data: any) {
    
-    return this.http.put(this.apiUrl + "/admin/department", data, { headers: this.headers });
+    return this.http.put(this.apiUrl + "/admin/department", data, { headers: this.headers ,responseType: 'text' as 'json' });
   }
 
   // Delete Department
   deleteDepartment(depId: string) {
   
-    return this.http.delete(`${this.apiUrl}/admin/department/${depId}`, { headers: this.headers });
+    return this.http.delete(`${this.apiUrl}/admin/department/${depId}`, { headers: this.headers,responseType: 'text' as 'json' });
 
   }
 
@@ -91,26 +91,26 @@ export class AdminService {
   // Roles CRUD Operations
   createRole(data: any) {
 
-    return this.http.post(this.apiUrl + "/admin/role", data, { headers: this.headers });
+    return this.http.post(this.apiUrl + "/admin/role", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Update Role
   updateRole(data: any) {
  
-    return this.http.put(this.apiUrl + "/admin/role", data, { headers: this.headers });
+    return this.http.put(this.apiUrl + "/admin/role", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Delete Role
   deleteRole(rolId: string) {
     
-    return this.http.delete(`${this.apiUrl}/admin/role/${rolId}`, { headers: this.headers });
+    return this.http.delete(`${this.apiUrl}/admin/role/${rolId}`, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Manager CRUD Operations
   // Add Manager
   createManager(data: any) {
    
-    return this.http.post(`${this.apiUrl}/admin/manager`, data, { headers: this.headers });
+    return this.http.post(`${this.apiUrl}/admin/manager`, data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Get All Managers
@@ -122,13 +122,13 @@ export class AdminService {
   // Update Manager
   updateManager(data: any) {
    
-    return this.http.put(this.apiUrl + "/admin/manager", data, { headers: this.headers });
+    return this.http.put(this.apiUrl + "/admin/manager", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Delete Manager
   deleteManager(managId: string) {
   
-    return this.http.delete(`${this.apiUrl}/admin/manager/${managId}`, { headers: this.headers });
+    return this.http.delete(`${this.apiUrl}/admin/manager/${managId}`, { headers: this.headers,responseType: 'text' as 'json' });
 
   }
 
@@ -136,7 +136,7 @@ export class AdminService {
   // Add project 
   createProject(data: any) {
  
-    return this.http.post(this.apiUrl + "/admin/project", data, { headers: this.headers });
+    return this.http.post(this.apiUrl + "/admin/project", data, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   // Assign Employee To Project
@@ -166,13 +166,13 @@ export class AdminService {
   // Update Project
   updateProject(data: any) {
  
-    return this.http.put(this.apiUrl + "/admin/project", data, { headers: this.headers });
+    return this.http.put(this.apiUrl + "/admin/project", data, { headers: this.headers ,responseType: 'text' as 'json'});
   }
 
   // Delete Project
   deleteProject(projId: any) {
     
-    return this.http.delete(`${this.apiUrl}/admin/project/${projId}`, { headers: this.headers });
+    return this.http.delete(`${this.apiUrl}/admin/project/${projId}`, { headers: this.headers,responseType: 'text' as 'json' });
   }
 
   //API for GET History

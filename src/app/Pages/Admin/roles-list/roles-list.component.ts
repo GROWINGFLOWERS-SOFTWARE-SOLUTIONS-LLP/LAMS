@@ -135,18 +135,19 @@ export class RolesListComponent implements OnInit {
         let updateDepartment = { ...this.departmentForm.value, departmentId: this.selectedDepartmentId ? this.selectedDepartmentId : null };
         this.adminService.updateDepartment(updateDepartment).subscribe((data: any) => {
 
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Department updated successfully!' });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: data });
           this.clearDepartmentForm();
-          this.loadDepartments();
-          this.showDepartmentList = true;
+          // this.loadDepartments();
+          this.getAllDepartmentsList();
+          this.showDepartmentList =  !this.showDepartmentList;
         });
       } else {
         // If no selectedDepartmentId, we are adding a new department
         this.adminService.createDepartment(department).subscribe((data: any) => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: data.message });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: data });
           this.clearDepartmentForm();
           this.loadDepartments();
-          this.showDepartmentList = true;
+          this.showDepartmentList =  !this.showDepartmentList;
         });
       }
     }
@@ -176,8 +177,9 @@ export class RolesListComponent implements OnInit {
 
         this.adminService.deleteDepartment(id).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Department deleted successfully!' });
-          this.loadDepartments();
-          this.showDepartmentList = false;
+          
+          this.getAllDepartmentsList();
+          // this.showDepartmentList = false;
           //  this.isLoading = false;
         });
       },
@@ -214,18 +216,18 @@ export class RolesListComponent implements OnInit {
   // Method to add or update a role
   submitRole() {
     if (this.roleForm.valid) {
-      debugger;
+      
       let role = { ...this.roleForm.value };
 
       this.isLoading = true;
-      debugger;
+      
       if (this.selectedRoleId) {
         let updateRole = { ...this.roleForm.value, roleId: this.selectedRoleId ? this.selectedRoleId : null };
         this.adminService.updateRole(updateRole).subscribe((data: any) => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role updated successfully!' });
           this.clearRoleForm();
           this.loadRoles();
-          this.showRoleList = true;
+          this.showRoleList = !this.showRoleList;
         });
       } else {
         // If no selectedRoleId, we are adding a new role
@@ -233,7 +235,7 @@ export class RolesListComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Role added successfully!' });
           this.clearRoleForm();
           this.loadRoles();
-          this.showRoleList = true;
+          this.showRoleList = !this.showRoleList;
         });
       }
     }
@@ -242,12 +244,12 @@ export class RolesListComponent implements OnInit {
 
   // Method to edit a role
   editRole(role: any) {
-    debugger;
+    
     this.roleForm.patchValue({
       roleName: role.roleName,
     });
     this.selectedRoleId = role.rolId;
-    this.showRoleList = false; // Hide list and show the form
+    this.showRoleList = true; // Hide list and show the form
   }
 
   // Method to toggle the role list visibility
@@ -313,14 +315,14 @@ export class RolesListComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Manager updated successfully!' });
           this.clearMangerForm();
           this.loadManagers();
-          this.showManagerList = true;
+          this.showManagerList = !this.showManagerList;
         });
       } else {
         this.adminService.createManager(manager).subscribe((data: any) => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Manager added successfully!' });
           this.clearMangerForm();
           this.loadManagers();
-          this.showManagerList = true;
+          this.showManagerList = !this.showManagerList;
         });
       }
     }
@@ -367,7 +369,7 @@ export class RolesListComponent implements OnInit {
       managerName: manager.managerName,
     });
     this.selectedManagerId = manager.managId;
-    this.showManagerList = false; // Hide list and show the form
+    this.showManagerList = true; // Hide list and show the form
   }
 
 
@@ -401,7 +403,7 @@ export class RolesListComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project updated successfully!' });
           this.clearProjectForm();
           this.loadProjects();
-          this.showProjectList = true;
+          this.showProjectList =  !this.showProjectList;
         });
       } else {
         console.log('Project: ', project)
@@ -409,7 +411,7 @@ export class RolesListComponent implements OnInit {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project added successfully!' });
           this.clearProjectForm();
           this.loadProjects();
-          this.showProjectList = true;
+          this.showProjectList =  !this.showProjectList;
         });
       }
     }
@@ -430,7 +432,7 @@ export class RolesListComponent implements OnInit {
   // Method to delete a project with confirmation
   deleteProject(id: any) {
     console.log('Project ID: ', id);
-    debugger;
+    
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this project?',
       header: 'Delete Confirmation',
@@ -440,12 +442,13 @@ export class RolesListComponent implements OnInit {
       acceptIcon: "none",
       rejectIcon: "none",
       accept: () => {
-        debugger;
+        
         console.log('Accept button clicked. Deleting project...');
         // Call the API to delete the project
         this.adminService.deleteProject(id).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project deleted successfully!' });
-          this.loadProjects();
+          // this.loadProjects();
+          this.getAllProjectsList();
           this.showProjectList = false;
         });
       },
@@ -461,7 +464,7 @@ export class RolesListComponent implements OnInit {
       projectName: project.projectName,
     });
     this.selectedProjectId = project.projId;
-    this.showProjectList = false; // Hide list and show the form
+    this.showProjectList = true; // Hide list and show the form
   }
 
 
