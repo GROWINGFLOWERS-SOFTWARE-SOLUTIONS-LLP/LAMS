@@ -12,7 +12,7 @@
   box-shadow: 0 2px 8px rgba(78, 77, 77, 0.581); /* optional: small shadow */
 }
 .page-content{
-  height: 82vh;
+  height: 100vh;
   margin-top: 10px;
 }
 img {
