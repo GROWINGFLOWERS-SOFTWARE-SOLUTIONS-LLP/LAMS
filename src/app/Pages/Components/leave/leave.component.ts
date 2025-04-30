@@ -68,6 +68,7 @@ export class LeaveComponent implements OnInit {
       endDate: [null, Validators.required],
       reason: ['', Validators.required],
       totalLeaves: [{ value: 0, disabled: true }],
+      totalLeavesTaken:[''],
       employeeLeaveId: [this.employee?.empId],
       firstName: [this.employee?.firstName],
       lastname: [this.employee?.lastName],
@@ -127,16 +128,48 @@ export class LeaveComponent implements OnInit {
   calculateTotalLeaves(): void {
     const startDate = this.leaveForm.get('startDate')?.value;
     const endDate = this.leaveForm.get('endDate')?.value;
-
+    const totalLeavesTaken = this.leaveForm.get('totalLeavesTaken')?.value;
+  
+    // Check if both startDate and endDate are provided
     if (startDate && endDate) {
-      const diffInMs = new Date(endDate).getTime() - new Date(startDate).getTime();
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+  
+      // Ensure the endDate is after the startDate
+      if (end < start) {
+        this.leaveForm.get('totalLeaves')?.setValue(0); // Or show an error message if needed
+        return;
+      }
+  
+      const diffInMs = end.getTime() - start.getTime();
       const diffInDays = Math.ceil(diffInMs / (1000 * 60 * 60 * 24)) + 1;
       const totalLeaves = diffInDays > 0 ? diffInDays : 0;
+  
+      // Update totalLeaves in the form
       this.leaveForm.get('totalLeaves')?.setValue(totalLeaves);
-    } else {
-      this.leaveForm.get('totalLeaves')?.setValue(0);
+      console.log('loadLeave: ', this.leaveRequests);
+
+      let updatedTotalLeavesTaken:any = "0";
+      debugger
+      if (Array.isArray(this.leaveRequests) && this.leaveRequests.length > 0) {
+        const total = this.leaveRequests.reduce((acc: number, leave: any) => {
+          const taken = Number(leave.totalLeavesTaken) || 0;
+          const current = Number(leave.totalLeaves) || 0;
+          console.log( "current: ", current, 'taken: ', taken, 'Total Leaves; ',totalLeaves );
+          return  taken + totalLeaves;
+        }, 0);
+        updatedTotalLeavesTaken = total.toString();
+      } 
+      else {
+        updatedTotalLeavesTaken = totalLeaves;
+      }
+
+      console.log('updatedTotalLeavesTaken: ', updatedTotalLeavesTaken.toString());
+      debugger;
+      this.leaveForm.get('totalLeavesTaken')?.setValue(updatedTotalLeavesTaken.toString());
     }
   }
+  
 
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({

@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
         this.loadProjects(); // Load and count active projects
     }
 
-    private loadProjects(): Promise<void> {
+    loadProjects(): Promise<void> {
         return new Promise(resolve => {
             this.adminService.getAllProjectsList().subscribe((projects: any) => {
                 this.projects = projects;
@@ -67,7 +67,7 @@ export class DashboardComponent implements OnInit {
     }
 
     showProjectDetails(project: any): void {
-        console.log(project);
+
         this.selectedProject = project;
     }
 
@@ -77,7 +77,7 @@ export class DashboardComponent implements OnInit {
     }
 
     assignProjectToEmployee() {
-        console.log('Assigned Employees:', this.selectedEmployee);
+        
         this.isProjectListVisible = false;
     }
 

@@ -35,7 +35,8 @@ export class AllEmployeeProfilesComponent implements OnInit {
     showDialog: boolean = false;
     isEditing: boolean = false;
     selectedEmployeeId: number | null = null;
-    loading: boolean = false; // Add loading property
+    loading: boolean = false;
+    setPassword: any;
 
     constructor(
         private employeeService: EmployeeService,
@@ -67,7 +68,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
             role: ['', [Validators.required]],
             manager: ['', [Validators.required]],
             joiningDate: ['', [Validators.required]],
-            address: ['', [Validators.required]],
+            address: ['', [Validators.required]]
         });
     }
     loadEmployees() {
@@ -116,7 +117,9 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     editEmployee(employee: any) {
+        debugger;
         this.employeeForm.patchValue(employee);
+        this.setPassword = employee.password
         this.isEditing = true;
         this.showDialog = true;
         this.selectedEmployeeId = employee.empId;
@@ -125,7 +128,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     updateEmployee() {
         if (this.employeeForm.valid) {
             debugger;
-            const employeeData = { ...this.employeeForm.value, employeeId: this.selectedEmployeeId };
+            const employeeData = { ...this.employeeForm.value, employeeId: this.selectedEmployeeId, password: this.setPassword };
             debugger;
             this.employeeService.updateEmployee(employeeData).subscribe({
                 next: () => {
