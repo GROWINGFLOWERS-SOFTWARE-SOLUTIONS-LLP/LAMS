@@ -13,6 +13,7 @@
 }
 .page-content{
   height: 100vh;
+  /* height: calc(100% - 140px); */
   margin-top: 10px;
 }
 img {

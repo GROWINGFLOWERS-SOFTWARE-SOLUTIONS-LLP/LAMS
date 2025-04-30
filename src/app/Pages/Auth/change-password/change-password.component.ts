@@ -2,24 +2,38 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CardModule } from 'primeng/card';
-import { Password, PasswordModule } from 'primeng/password';
+import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
-
-import {  Router } from '@angular/router';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
 @Component({
   selector: 'app-change-password',
   standalone: true,
-  imports: [CommonModule, CardModule, PasswordModule, ButtonModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    CardModule,
+    PasswordModule,
+    ButtonModule,
+    ReactiveFormsModule,
+    ToastModule,
+  ],
   templateUrl: './change-password.component.html',
-  styleUrls: ['./change-password.component.css'], 
+  styleUrls: ['./change-password.component.css'],
+  providers: [MessageService],
 })
 export class ChangePasswordComponent {
   passwordForm: FormGroup;
-  getEmailId:any;
-  
-  constructor(private fb: FormBuilder,private adminService:AdminService, private router:Router) {
+  getEmailId: any;
+
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService,
+    private router: Router,
+    private messageService: MessageService
+  ) {
     this.passwordForm = this.fb.group(
       {
         currentPassword: ['', Validators.required],
@@ -38,18 +52,25 @@ export class ChangePasswordComponent {
 
   onSubmit() {
     if (this.passwordForm.valid) {
-      let email:any = localStorage.getItem('userValue');
-       this.getEmailId= JSON.parse(email);
-      let obj={
-        emailId:this.getEmailId.emailId,
-        password:this.passwordForm.value.newPassword,
-        oldpassword:this.passwordForm.value.currentPassword
-      }
-      this.adminService.changePassword(obj).subscribe((res:any)=>{
-        if(res && res?.success){
-          this.router.navigate(['/login']);
+      let email: any = localStorage.getItem('userValue');
+      this.getEmailId = JSON.parse(email);
+      let obj = {
+        emailId: this.getEmailId.emailId,
+        password: this.passwordForm.value.newPassword,
+        oldpassword: this.passwordForm.value.currentPassword,
+      };
+      this.adminService.changePassword(obj).subscribe((res: any) => {
+        if (res && res?.success) {
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Password changed successfully',
+          });
+          setTimeout(() => {
+            this.router.navigate(['/login']);
+          }, 1500);
         }
-      })
+      });
     }
   }
 }
