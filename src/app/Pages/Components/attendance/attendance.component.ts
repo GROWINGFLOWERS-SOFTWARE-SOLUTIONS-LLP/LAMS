@@ -44,7 +44,6 @@ export class AttendanceComponent implements OnInit {
   displayPunchInDialog: boolean = false;
   currentTime: string = '';
   attendance_date: string = '';
-  Punch_in_time: string | null = null;
   attendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
   loading: boolean = true;
@@ -93,70 +92,70 @@ export class AttendanceComponent implements OnInit {
   }
 
   punchIn() {
-    this.Punch_in_time = this.currentTime;
-    const attendance_date = new Date().toLocaleDateString('en-GB');
+    const punchInTime = this.currentTime;
+    const attendanceDate = new Date().toLocaleDateString('en-GB');
     const empId = this.attendance?.empId;
 
     const existingRecord = this.attendanceRecords.find(
-      (record) => record.date === attendance_date && record.employeeId === empId
+      (record) => record.date === attendanceDate && record.employeeId == empId
     );
 
     if (!existingRecord) {
       const newRecord = {
-        checkIn: this.Punch_in_time,
-        date: attendance_date,
-        checkOut: '',
         employeeId: empId,
-        breaktime: '',
-        creationDate: this.getCurrentDateTime(),
-        updationDate: '',
-        createdBy: 'System',
-        modifiedBy: 'System'
-      };
-
-      this.attendanceRecords.push(newRecord);
-      this.hasPunchedIn = true;
-
-      this.employeeService.markAttendance({
-        employeeId: newRecord.employeeId,
-        date: newRecord.date,
-        checkIn: newRecord.checkIn,
+        date: attendanceDate,
+        checkIn: punchInTime,
         checkOut: null,
         breaktime: null,
-        creationDate: newRecord.creationDate,
+        creationDate: this.getCurrentDateTime(),
         updationDate: null,
         createdBy: 'System',
         modifiedBy: 'System',
         check: 0
-      }).subscribe((data) => {
-        console.log("Attendance record posted successfully:", data);
-      });
+      };
+
+      this.hasPunchedIn = true;
+
+      this.employeeService.markAttendance(newRecord).subscribe(
+        (response) => {
+          console.log("Punch In successful:", response);
+          this.loadAttendanceRecords(); 
+        },
+        (error) => {
+          console.error('Error during punch in:', error);
+        }
+      );
 
       this.displayPunchInDialog = false;
       sessionStorage.setItem('hasPunchedIn', 'true');
-      this.saveAttendanceRecords();
       this.router.navigate(['/dashboard']);
     } else {
       this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'You have already punched in today.' });
       this.displayPunchInDialog = false;
-
     }
   }
 
   checkout() {
-    const Punch_out_time = this.getCurrentTime();
+    const checkoutTime = this.getCurrentTime();
     const todayDate = new Date().toLocaleDateString('en-GB');
     const empId = this.attendance?.empId;
 
-    const todayRecordIndex = this.attendanceRecords.findIndex(
-      (record) => record.date === todayDate && record.employeeId === empId
+    const todayRecord = this.attendanceRecords.find(
+      (record) => record.date === todayDate && record.employeeId == empId
     );
 
-    if (todayRecordIndex !== -1) {
-      const todayRecord = this.attendanceRecords[todayRecordIndex];
+    if (todayRecord) {
+      if (!todayRecord.checkIn) {
+        this.messageService.add({
+          severity: 'warn',
+          summary: 'Cannot Checkout',
+          detail: 'You must check in before checkout.'
+        });
+        return;
+      }
 
       const checkInTime = new Date(`01/01/2024 ${todayRecord.checkIn}`);
-      const checkOutTime = new Date(`01/01/2024 ${Punch_out_time}`);
+      const checkOutTime = new Date(`01/01/2024 ${checkoutTime}`);
 
       if (checkOutTime <= checkInTime) {
         this.messageService.add({
@@ -167,30 +166,22 @@ export class AttendanceComponent implements OnInit {
         return;
       }
 
-      todayRecord.checkOut = Punch_out_time;
+      todayRecord.checkOut = checkoutTime;
       todayRecord.breaktime = this.calculateBreakTime(todayRecord.checkIn, todayRecord.checkOut);
       todayRecord.updationDate = this.getCurrentDateTime();
 
-      this.attendanceRecords[todayRecordIndex] = todayRecord;
-      this.saveAttendanceRecords();
+      const updatedRecord = {
+        ...todayRecord,
+        check: 1 
+      };
 
-      this.employeeService.markAttendance({
-        employeeId: empId,
-        date: todayRecord.date,
-        checkIn: todayRecord.checkIn,
-        checkOut: todayRecord.checkOut,
-        breaktime: todayRecord.breaktime,
-        creationDate: todayRecord.creationDate,
-        updationDate: todayRecord.updationDate,
-        createdBy: 'System',
-        modifiedBy: 'System',
-        check: 1
-      }).subscribe(
+      this.employeeService.markAttendance(updatedRecord).subscribe(
         (response) => {
-          console.log('Updated attendance record posted successfully:', response);
+          console.log('Checkout updated successfully:', response);
+          this.loadAttendanceRecords(); // Refresh data
         },
         (error) => {
-          console.error('Error posting updated attendance record:', error);
+          console.error('Error updating checkout:', error);
         }
       );
     } else {
@@ -214,45 +205,44 @@ export class AttendanceComponent implements OnInit {
     return `${hours}h ${minutes}m ${seconds}s`;
   }
 
-  saveAttendanceRecords() {
-    localStorage.setItem('attendanceRecords', JSON.stringify(this.attendanceRecords));
-  }
-
   loadAttendanceRecords() {
     this.loading = true;
-    const savedRecords = localStorage.getItem('attendanceRecords');
+    const empId = this.attendance?.empId;
   
-    if (savedRecords) {
-      const parsedRecords = JSON.parse(savedRecords);
-      const empId = this.attendance?.empId;
+    this.employeeService.getAllAttendance().subscribe({
+      next: (response) => {
+        if (response && Array.isArray(response.data)) {
+          const employeeRecords = response.data.filter((record: any) => record.employeeId == empId);
   
-      // Filter only logged-in employee's data
-      const employeeRecords = parsedRecords.filter((record: any) => record.employeeId === empId);
+          this.attendanceRecords = employeeRecords
+            .map((record: any) => ({
+              date: record.date,
+              checkIn: record.checkIn,
+              checkOut: record.checkOut,
+              breaktime: record.breaktime,
+              employeeId: record.employeeId
+            }))
+            .sort((a: any, b: any) => {
+              const [dayA, monthA, yearA] = a.date.split('/').map(Number);
+              const [dayB, monthB, yearB] = b.date.split('/').map(Number);
+              const dateA = new Date(yearA, monthA - 1, dayA);
+              const dateB = new Date(yearB, monthB - 1, dayB);
+              return dateB.getTime() - dateA.getTime(); // Descending sort
+            });
   
-      const todayDate = new Date().toLocaleDateString('en-GB');
-      const todayRecord = employeeRecords.find(
-        (record: any) => record.date === todayDate
-      );
-  
-      if (todayRecord) {
-        this.hasPunchedIn = true;
-      }
-  
-      // Optional: remove duplicate entries (same date & empId)
-      const uniqueRecordsMap = new Map<string, any>();
-      employeeRecords.forEach((record: any) => {
-        const key = `${record.date}-${record.employeeId}`;
-        if (!uniqueRecordsMap.has(key)) {
-          uniqueRecordsMap.set(key, record);
+          const todayDate = new Date().toLocaleDateString('en-GB');
+          const todayRecord = this.attendanceRecords.find((record: any) => record.date === todayDate);
+          if (todayRecord && todayRecord.checkIn && !todayRecord.checkOut) {
+            this.hasPunchedIn = true;
+          }
         }
-      });
-  
-      this.attendanceRecords = Array.from(uniqueRecordsMap.values());
-    }
-  
-    setTimeout(() => {
-      this.loading = false;
-    }, 1500);
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Error loading attendance records:', error);
+        this.loading = false;
+      }
+    });
   }
   
 
