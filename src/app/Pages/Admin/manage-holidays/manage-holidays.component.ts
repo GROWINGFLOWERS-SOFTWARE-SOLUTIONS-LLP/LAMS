@@ -100,7 +100,7 @@ export class ManageHolidaysComponent implements OnInit {
   // Method to fetch the list of holidays from the API
   getAllHolidaysList() {
     this.adminService.getAllHolidaysList().subscribe((data: any) => {
-      this.holidays = data;
+      this.holidays = data.data;
     });
   }
 

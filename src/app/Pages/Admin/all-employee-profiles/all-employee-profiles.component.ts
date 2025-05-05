@@ -49,11 +49,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.loadForm()
         this.loadEmployees();
         this.loadDepartments();
         this.loadManagers();
         this.loadRoles();
-        this.loadForm()
     }
 
 
@@ -71,12 +71,14 @@ export class AllEmployeeProfilesComponent implements OnInit {
             address: ['', [Validators.required]]
         });
     }
+
     loadEmployees() {
         debugger
         this.loading = true; // Set loading to true
         this.employeeService.getEmployees().subscribe((data) => {
             debugger
             this.employees = data;
+            console.log('All Employee; ', this.employees)
             this.loading = false; // Set loading to false when data is loaded
         }, (error) => {
             console.error('Error loading employees:', error);
@@ -194,19 +196,19 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     loadDepartments() {
-        this.adminService.getAllDepartmentsList().subscribe((data) => {
-            this.departments = data;
+        this.adminService.getAllDepartmentsList().subscribe((data:any) => {
+            this.departments = data.data;
         })
     }
 
     loadManagers(){
-        this.adminService.getAllManagersList().subscribe((data) =>{
-            this.managers = data;
+        this.adminService.getAllManagersList().subscribe((data:any) =>{
+            this.managers = data.data;
         })
     }
     loadRoles(){
-        this.adminService.getAllRolesList().subscribe((data) =>{
-            this.roles = data;
+        this.adminService.getAllRolesList().subscribe((data:any) =>{
+            this.roles = data.data;
         })
     }
 }
