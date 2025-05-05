@@ -87,7 +87,7 @@ export class ProfileFormComponent implements OnInit {
     if (this.profileForm.valid) {
       const formData = { ...this.profileForm.getRawValue() }; // include disabled fields
       this.apiService.updateProfile(formData).subscribe(
-        () => {
+        (data:any) => {
           this.messageService.add({
             severity: 'success',
             summary: 'Success',

@@ -119,7 +119,9 @@ export class RolesListComponent implements OnInit {
   // Method to fetch the list of departments from the API
   getAllDepartmentsList() {
     this.adminService.getAllDepartmentsList().subscribe((data: any) => {
-      this.departments = data;
+      if (data.status =="success" && data.data != null) {
+        this.departments = data.data;
+      }
     });
   }
 
@@ -135,7 +137,7 @@ export class RolesListComponent implements OnInit {
         let updateDepartment = { ...this.departmentForm.value, departmentId: this.selectedDepartmentId ? this.selectedDepartmentId : null };
         this.adminService.updateDepartment(updateDepartment).subscribe((data: any) => {
 
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: data });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: data.message });
           this.clearDepartmentForm();
           // this.loadDepartments();
           this.getAllDepartmentsList();
@@ -144,7 +146,7 @@ export class RolesListComponent implements OnInit {
       } else {
         // If no selectedDepartmentId, we are adding a new department
         this.adminService.createDepartment(department).subscribe((data: any) => {
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: data });
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: data.message });
           this.clearDepartmentForm();
           this.loadDepartments();
           this.showDepartmentList =  !this.showDepartmentList;
@@ -209,7 +211,10 @@ export class RolesListComponent implements OnInit {
   // Method to fetch the list of roles from the API
   getAllRolesList() {
     this.adminService.getAllRolesList().subscribe((data: any) => {
-      this.roles = data;
+      if (data.status == "success" && data.data != null) {
+        this.roles = data.data;
+        
+      }
     });
   }
 
@@ -299,7 +304,9 @@ export class RolesListComponent implements OnInit {
   // Method to fetch the list of managers from the API
   getAllManagersList() {
     this.adminService.getAllManagersList().subscribe((data: any) => {
-      this.managers = data;
+      if (data.status == "success" && data.data != null) {
+        this.managers = data.data;
+      }
     });
   }
 
@@ -384,7 +391,10 @@ export class RolesListComponent implements OnInit {
   // Method to fetch the list of projects from the API
   getAllProjectsList() {
     this.adminService.getAllProjectsList().subscribe((data: any) => {
-      this.projects = data;
+      if (data.status == "success" && data.data != null) {
+        this.projects = data.data;
+        console.log('this.projects: ', this.projects);
+      }
     });
   }
 
@@ -406,7 +416,6 @@ export class RolesListComponent implements OnInit {
           this.showProjectList =  !this.showProjectList;
         });
       } else {
-        console.log('Project: ', project)
         this.adminService.createProject(project).subscribe((data: any) => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project added successfully!' });
           this.clearProjectForm();
@@ -430,8 +439,9 @@ export class RolesListComponent implements OnInit {
   }
 
   // Method to delete a project with confirmation
-  deleteProject(id: any) {
-    console.log('Project ID: ', id);
+  deleteProject(project: any) {
+    debugger;
+    console.log('Project ID: ', project.projId);
     
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete this project?',
@@ -442,10 +452,9 @@ export class RolesListComponent implements OnInit {
       acceptIcon: "none",
       rejectIcon: "none",
       accept: () => {
-        
-        console.log('Accept button clicked. Deleting project...');
+        console.log('Project Id: ', project.projId);
         // Call the API to delete the project
-        this.adminService.deleteProject(id).subscribe(() => {
+        this.adminService.deleteProject(project.projId).subscribe(() => {
           this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Project deleted successfully!' });
           // this.loadProjects();
           this.getAllProjectsList();
@@ -460,6 +469,7 @@ export class RolesListComponent implements OnInit {
 
   // Method to edit a project
   editProject(project: any) {
+    debugger;
     this.projectForm.patchValue({
       projectName: project.projectName,
     });
