@@ -58,9 +58,10 @@ export class DashboardComponent implements OnInit {
     loadProjects(): Promise<void> {
         return new Promise(resolve => {
             this.adminService.getAllProjectsList().subscribe((projects: any) => {
-                this.projects = projects;
+                this.projects = projects.data;
+                console.log('Projects:', this.projects);
                 // Count only active projects
-                this.activeProjectsCount = projects.filter((project: any) => project.status === 'active').length;
+                this.activeProjectsCount = projects.data.filter((project: any) => project.status === 'active').length;
                 resolve();
             });
         });

@@ -79,7 +79,7 @@ export class ProfileFormComponent implements OnInit {
   
   getDepartments() {
     this.adminService.getAllDepartmentsList().subscribe((data: any) => {
-      this.department = data;
+      this.department = data.data;
     });
   }
 

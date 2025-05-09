@@ -75,7 +75,7 @@ export class HolidaysComponent implements OnInit {
 
   async getEvents(): Promise<any[]> {
     // Wait for the holidays list to be fetched
-    await this.loadFixedEvents();
+    // await this.loadFixedEvents();
 
     // Generate weekly off events
     const weeklyOffEvents = this.getWeeklyOffEvents();
@@ -83,15 +83,15 @@ export class HolidaysComponent implements OnInit {
     return [...this.fixedEvents, ...weeklyOffEvents];
   }
 
-  async loadFixedEvents(): Promise<void> {
-    // Fetch the holidays list and assign to fixedEvents
-    const holidays: Holiday[] = await this.employeeService.getAllHolidays().toPromise();
-    this.fixedEvents = holidays.map(holiday => ({
-      title: holiday.holidayName,
-      start: holiday.holidayDate,
-      color: '#90EE90' // You can adjust the color as needed
-    }));
-  }
+  // async loadFixedEvents(): Promise<void> {
+  //   // Fetch the holidays list and assign to fixedEvents
+  //   const holidays: Holiday[] = await this.employeeService.getAllHolidays().toPromise();
+  //   this.fixedEvents = holidays.map(holiday => ({
+  //     title: holiday.holidayName,
+  //     start: holiday.holidayDate,
+  //     color: '#90EE90' // You can adjust the color as needed
+  //   }));
+  // }
 
   getWeeklyOffEvents() {
     const events = [];
@@ -121,11 +121,8 @@ export class HolidaysComponent implements OnInit {
   // Add 3-second delay before fetching data
   getAllHolidaysListWithDelay() {
     this.isLoading = true; // Show loader
-
-    // Introduce a 3-second delay before fetching data
-    setTimeout(() => {
-      this.employeeService.getAllHolidays().subscribe((holidays: Holiday[]) => {
-        this.fixedEvents = holidays.map(holiday => ({
+      this.employeeService.getAllHolidays().subscribe((holidays: Holiday) => {
+        this.fixedEvents = holidays?.data.map((holiday:any) => ({
           title: holiday.holidayName,
           start: holiday.holidayDate,
           color: '#90EE90' // You can adjust the color as needed
@@ -133,6 +130,6 @@ export class HolidaysComponent implements OnInit {
         this.updateLayout();
         this.isLoading = false; // Hide loader after loading holidays
       });
-    }, this.loadingTime * 1000); // 3-second delay
+
   }
 }

@@ -52,7 +52,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         this.loadForm()
         this.loadEmployees();
         this.loadDepartments();
-        this.loadManagers();
+        // this.loadManagers();
         this.loadRoles();
     }
 
@@ -66,7 +66,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
             mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', [Validators.required]],
             role: ['', [Validators.required]],
-            manager: ['', [Validators.required]],
+            // manager: ['', [Validators.required]],
             joiningDate: ['', [Validators.required]],
             address: ['', [Validators.required]]
         });

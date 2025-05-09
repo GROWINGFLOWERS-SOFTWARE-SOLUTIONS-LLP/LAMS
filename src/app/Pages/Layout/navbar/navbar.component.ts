@@ -26,7 +26,7 @@ export class NavbarComponent implements OnInit {
     { label: 'Employees', link: 'employeeprofile' },
     { label: 'H-Manage', link: 'manageHolidays' },
     { label: 'Add Roles', link: 'roleslist' },
-    { label: 'History', link: 'history' },
+    // { label: 'History', link: 'history' },
 
   ];
 
@@ -35,17 +35,17 @@ export class NavbarComponent implements OnInit {
     { label: 'Attendance', link: 'attendance' },
     { label: 'Leave', link: 'leave' },
     { label: 'Holidays', link: 'holidays' },
-    { label: 'History', link: 'history' },
+    // { label: 'History', link: 'history' },
     { label: 'Help', link: 'help' },
   ];
 
   managerItems: any[] = [
     { label: 'Dashboard', link: 'dashboard' },
     { label: 'Attendance', link: 'attendance' },
-    { label: 'Leave Request', link: 'managerRequest' },
+    { label: 'L-Request', link: 'managerRequest' },
     { label: 'Leave', link: 'leave' },
     { label: 'Holidays', link: 'holidays' },
-    { label: 'History', link: 'history' },
+    // { label: 'History', link: 'history' },
     { label: 'Help', link: 'help' }, 
   ];
 

@@ -23,7 +23,7 @@
                             <th class="p-3 center-text">Phone Number</th>
                             <th class="p-3 center-text">Address</th>
                             <th class="p-3 center-text">Department</th>
-                            <th class="p-3 center-text">Manager</th>
+                            <!-- <th class="p-3 center-text">Manager</th> -->
                             <th class="p-3 center-text">Employee Role</th>
                             <th class="p-3 center-text">Joining Date</th>
                             <th class="p-3 center-text">Actions</th>
@@ -38,7 +38,7 @@
                             <td class="p-3 center-text">{{ employee.mobile || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.address || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.department || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.manager || '–' }}</td>
+                            <!-- <td class="p-3 center-text">{{ employee.manager || '–' }}</td> -->
                             <td class="p-3 center-text">{{ employee.role || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.joiningDate ? (employee.joiningDate | date:'yyyy-MM-dd') : '–' }}</td>
 
@@ -125,7 +125,7 @@
                         </div>
 
 
-                        <div class="field col-12 md:col-6">
+                        <!-- <div class="field col-12 md:col-6">
                             <label for="manager" class="font-semibold">Manager</label>
                             <select formControlName="manager"
                                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Select Manager name">
@@ -137,7 +137,7 @@
                             <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
                                 Manager is required.
                             </div>
-                        </div>
+                        </div> -->
                         <!-- Role -->
                         <div class="field col-12 md:col-6">
                             <label for="role" class="font-semibold">Role</label>
