@@ -25,6 +25,7 @@ export class NavbarComponent implements OnInit {
     { label: 'Attendance', link: 'allattendance' },
     { label: 'Employees', link: 'employeeprofile' },
     { label: 'H-Manage', link: 'manageHolidays' },
+    { label: 'M-Request', link: 'manager-leave-request' },
     { label: 'Add Roles', link: 'roleslist' },
     // { label: 'History', link: 'history' },
 

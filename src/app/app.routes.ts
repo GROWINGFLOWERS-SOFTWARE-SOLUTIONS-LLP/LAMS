@@ -15,6 +15,7 @@ import { RequestComponent } from './Pages/Manager Page/request/request.component
 import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-holidays.component';
 import { RolesListComponent } from './Pages/Admin/roles-list/roles-list.component';
 import { ChangePasswordComponent } from './Pages/Auth/change-password/change-password.component';
+import { AdminLeaveRequestComponent } from './Pages/Admin/admin-leave-request/admin-leave-request.component';
 
 
 
@@ -49,8 +50,11 @@ export const routes: Routes = [
       { path: 'employeeprofile', component: AllEmployeeProfilesComponent },
       { path: 'managerRequest', component: RequestComponent },
       { path: 'manageHolidays', component: ManageHolidaysComponent },
-      { path: 'roleslist', component : RolesListComponent }
-
+      { path: 'roleslist', component : RolesListComponent },
+      {
+        path: 'manager-leave-request',
+        component:AdminLeaveRequestComponent
+      }
     ]
   },
   

@@ -1,28 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ManagerService } from '../../../Core/Services/Manager/manager.service';
+import { MessageService } from 'primeng/api';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 import { DialogModule } from 'primeng/dialog';
-import { MessageService } from 'primeng/api';
+
 @Component({
-  selector: 'app-request',
+  selector: 'app-admin-leave-request',
   standalone: true,
-  imports: [
-    TableModule,
+  imports: [TableModule,
     ButtonModule,
     FormsModule,
     CommonModule,
     ProgressSpinnerModule,
-    DialogModule
-  ],
+    DialogModule],
   providers: [MessageService],
-  templateUrl: './request.component.html',
-  styleUrls: ['./request.component.css']
+  templateUrl: './admin-leave-request.component.html',
+  styleUrl: './admin-leave-request.component.css'
 })
-export class RequestComponent implements OnInit {
+export class AdminLeaveRequestComponent {
   leaveRequests: any[] = []; // Your leave data here
   isLoading: boolean = false; // Show loader if needed
 
@@ -34,7 +33,7 @@ export class RequestComponent implements OnInit {
   constructor(
     private leaveService: ManagerService,
     private messageService: MessageService
-  ) {}
+  ) { }
   ngOnInit() {
 
     this.getAllPendingLeaves()
@@ -43,8 +42,8 @@ export class RequestComponent implements OnInit {
   getAllPendingLeaves(): void {
     this.leaveService.getAllPendingLeaves().subscribe({
       next: (data: any) => {
-        // Check if data is valid and the role is not 'Manager'
-        this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
+        // Check if data is valid and the role is not 'Employee'
+        this.leaveRequests = data.filter((item: any) => item.employeeRole !== 'Employee');
       },
       error: (error: any) => {
         this.leaveRequests = [];
@@ -82,7 +81,7 @@ export class RequestComponent implements OnInit {
   }
 
   approveLeave(request: any, reason: string) {
-   
+
     request.managerComment = reason;
     console.log('New Request: ', request);
 
@@ -106,7 +105,7 @@ export class RequestComponent implements OnInit {
     console.log('New Request: ', request);
 
     // TODO: Call your backend API to approve leave with reason
-    this.leaveService.rejectLeave(request).subscribe((data) => {
+    this.leaveService.rejectLeave(request).subscribe((data: any) => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
