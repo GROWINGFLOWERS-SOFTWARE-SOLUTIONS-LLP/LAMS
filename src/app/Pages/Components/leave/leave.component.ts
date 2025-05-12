@@ -46,7 +46,8 @@ export class LeaveComponent implements OnInit {
   leaveTypes = [
     { label: 'Sick Leave', value: 'Sick Leave' },
     { label: 'Paid Leave', value: 'Paid Leave' },
-    { label: 'Unpaid Leave', value: 'Unpaid Leave' }
+    { label: 'Unpaid Leave', value: 'Unpaid Leave' },
+    { label: 'Casual Leave', value: 'Casual Leave' }
   ];
 
   constructor(
@@ -150,7 +151,7 @@ export class LeaveComponent implements OnInit {
       console.log('loadLeave: ', this.leaveRequests);
 
       let updatedTotalLeavesTaken:any = "0";
-      debugger
+      
       if (Array.isArray(this.leaveRequests) && this.leaveRequests.length > 0) {
         const total = this.leaveRequests.reduce((acc: number, leave: any) => {
           const taken = Number(leave.totalLeavesTaken) || 0;
@@ -165,7 +166,7 @@ export class LeaveComponent implements OnInit {
       }
 
       console.log('updatedTotalLeavesTaken: ', updatedTotalLeavesTaken.toString());
-      debugger;
+     
       this.leaveForm.get('totalLeavesTaken')?.setValue(updatedTotalLeavesTaken.toString());
     }
   }
