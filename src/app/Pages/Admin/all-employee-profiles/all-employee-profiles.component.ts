@@ -37,6 +37,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
     selectedEmployeeId: number | null = null;
     loading: boolean = false;
     setPassword: any;
+    first: number =0;
 
     constructor(
         private employeeService: EmployeeService,
@@ -52,7 +53,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         this.loadForm()
         this.loadEmployees();
         this.loadDepartments();
-        // this.loadManagers();
+         this.loadManagers();
         this.loadRoles();
     }
 
@@ -66,17 +67,16 @@ export class AllEmployeeProfilesComponent implements OnInit {
             mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', [Validators.required]],
             role: ['', [Validators.required]],
-            // manager: ['', [Validators.required]],
+             manager: ['', [Validators.required]],
             joiningDate: ['', [Validators.required]],
             address: ['', [Validators.required]]
         });
     }
 
     loadEmployees() {
-        debugger
         this.loading = true; // Set loading to true
         this.employeeService.getEmployees().subscribe((data) => {
-            debugger
+            
             this.employees = data;
             console.log('All Employee; ', this.employees)
             this.loading = false; // Set loading to false when data is loaded
@@ -96,11 +96,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     addEmployee() {
-        debugger;
+       console.log("employeeForm    " , this.employeeForm.value);
         if (this.employeeForm.valid) {
-            debugger;
+          
             let employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' }
-            debugger;
+           
             this.employeeService.addEmployee(employeeForm).subscribe({
                 next: () => {
                     debugger;

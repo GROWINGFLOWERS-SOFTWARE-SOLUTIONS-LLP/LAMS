@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 })
 export class ManagerService {
 
-  apiURL: string = "http://localhost:8442";
+  apiURL: string = "http://localhost:8001";
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',

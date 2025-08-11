@@ -82,6 +82,8 @@ export class LoginComponent implements OnInit {
     this.apiService.loginValidation(this.loginForm.value).subscribe(
       (data: any) => {
         if (data) {
+
+          console.log("data ", data);
           localStorage.setItem("userValue", JSON.stringify(data));
           
           if (data.password === 'Gfss@2024') {

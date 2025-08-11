@@ -4,7 +4,22 @@
 <div class="container flex flex-column p-4 bg-gray-50 h-screen">
     <!-- Reusable loader -->
     <!-- <app-loader [loading]="loading"></app-loader> -->
-
+<div class="p-grid mb-4">
+  <div class="p-col">
+    <label>From Date:</label>
+    <input type="date" [(ngModel)]="fromDate" class="p-inputtext p-component" />
+  </div>
+  <div class="p-col">
+    <label>To Date:</label>
+    <input type="date" [(ngModel)]="toDate" class="p-inputtext p-component" />
+  </div>
+  <div class="p-col">
+    <button (click)="filterByDateRange()" class="p-button p-component">Filter</button>
+  </div>
+  <div class="p-col">
+    <button (click)="downloadFilteredData()" class="p-button p-component">Download</button>
+  </div>
+</div>
     <!-- Employee Table -->
     <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
         <div class="p-grid">
@@ -28,7 +43,7 @@
                             <td class="p-3">{{ employee.lastName }}</td>
                             <td class="p-3">{{ employee.emailId }}</td>
                             <td class="p-3">{{ employee.role }}</td>
-                            <td class="p-3">{{ currentDate }}</td>
+                            <td class="p-3">{{ employee.joiningDate }}</td>
                             <td class="p-3">
                                 <span [ngClass]="{
                                     'text-green-600 font-medium': employee.attendanceStatus === 'Present',

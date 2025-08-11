@@ -13,32 +13,34 @@
     <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
         <div class="p-grid">
             <div class="p-col-12">
-                <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true"
+                <p-table [value]="employees" [paginator]="true" [(first)]="first" [rows]="10" [scrollable]="true"
                     class="shadow-md rounded-lg border border-gray-300 mb-4">
                     <ng-template pTemplate="header">
                         <tr class="bg-gray-200 text-gray-700">
+                            <th class="p-3 center-text">Sr.No</th>
                             <th class="p-3 center-text">First Name</th>
                             <th class="p-3 center-text">Last Name</th>
                             <th class="p-3 center-text">Email</th>
                             <th class="p-3 center-text">Phone Number</th>
                             <th class="p-3 center-text">Address</th>
                             <th class="p-3 center-text">Department</th>
-                            <!-- <th class="p-3 center-text">Manager</th> -->
+                            <th class="p-3 center-text">Manager</th>
                             <th class="p-3 center-text">Employee Role</th>
                             <th class="p-3 center-text">Joining Date</th>
                             <th class="p-3 center-text">Actions</th>
                         </tr>
                     </ng-template>
 
-                    <ng-template pTemplate="body" let-employee>
+                    <ng-template pTemplate="body" let-employee  let-i="rowIndex" >
                         <tr class="text-gray-600 hover:bg-gray-100 transition">
+                            <td class="p-3 center-text">{{ first + i + 1 }}</td>
                             <td class="p-3 center-text">{{ employee.firstName  || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.lastName || '–'  }}</td>
                             <td class="p-3 center-text">{{ employee.emailId || '–'  }}</td>
                             <td class="p-3 center-text">{{ employee.mobile || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.address || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.department || '–' }}</td>
-                            <!-- <td class="p-3 center-text">{{ employee.manager || '–' }}</td> -->
+                            <td class="p-3 center-text">{{ employee.manager || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.role || '–' }}</td>
                             <td class="p-3 center-text">{{ employee.joiningDate ? (employee.joiningDate | date:'yyyy-MM-dd') : '–' }}</td>
 
@@ -69,6 +71,8 @@
                 <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()"
                     class="p-fluid">
                     <div class="formgrid grid">
+                       
+                       
                         <!-- First Name and Last Name Fields -->
                         <div class="field col-12 md:col-6">
                             <label for="firstName" class="font-semibold text-gray-700">First Name</label>
@@ -125,9 +129,9 @@
                         </div>
 
 
-                        <!-- <div class="field col-12 md:col-6">
+                        <div class="field col-12 md:col-6">
                             <label for="manager" class="font-semibold">Manager</label>
-                            <select formControlName="manager"
+                            <select  id="manager" formControlName="manager"
                                 class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Select Manager name">
                                 <option value="">Select Manager</option>
         
@@ -137,7 +141,7 @@
                             <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
                                 Manager is required.
                             </div>
-                        </div> -->
+                        </div>
                         <!-- Role -->
                         <div class="field col-12 md:col-6">
                             <label for="role" class="font-semibold">Role</label>
