@@ -1,50 +1,184 @@
-<p-toolbar styleClass=" shadow-4 custom-toolbar p-2 "
-[style]="{ 
-    'background-image': 'linear-gradient(to left, var(--blue-400), var(--blue-600))', 
-    'padding': '2px' 
-}">
-   
-    <div class="flex justify-content-between align-items-center w-full px-3">
+<!-- <p-toolbar
+  styleClass="shadow-4 p-2"
+  [style]="{
+    position: 'sticky',
+    top: '0',
+    'z-index': '999',
+    'background-image': 'linear-gradient(to left, var(--blue-600), var(--blue-600))',
+    'padding': '2px'
+  }"
+>
+  <div class="flex flex-column sm:flex-row justify-content-between align-items-center w-full gap-3 px-3 py-2">
 
-        <!-- Logo -->
-        <div class="flex align-items-center">
-            <img class="w-6rem h-auto"
-                src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95
-                " />
-        </div>
-        <!-- https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95 -->
-        <!-- Center Navigation Buttons -->
-        <div class="flex align-items-center gap-3 flex-wrap justify-content-center">
-            <button *ngFor="let item of navItems" routerLinkActive="active-nav-link"
-            [routerLinkActiveOptions]="{ exact: true }"
-            class="p-link nav-hover inline-flex justify-content-center align-items-center text-white transition-all transition-duration-200 m-1 p-2 square-btn sm:w-5rem md:w-6rem"
-                [routerLink]="item.link">
-                {{ item.label }}
-            </button>
-        </div>
+    <div class="flex justify-content-between align-items-center w-full sm:w-auto">
+      <img class="w-6rem h-auto"
+        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95" />
 
-        <!-- Right Account Section -->
-        <div class="flex align-items-center gap-1 cursor-pointer" (click)="toggleDropdown($event, overlayPanel)">
-            <p-avatar
-                image="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
-                shape="circle" styleClass="mt-1" />
-            <span class="text-white font-bold ml-1 mt-1">My Account</span>
+      <button
+        type="button"
+        class="block sm:hidden text-white text-xl border-none bg-transparent"
+        (click)="isMenuOpen = !isMenuOpen"
+      >
+        <i class="pi" [ngClass]="{ 'pi-bars': !isMenuOpen, 'pi-times': isMenuOpen }"></i>
+      </button>
+    </div>
 
-            <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body" styleClass="card-overlay">
-                <div class="p-card-body">
-                    <div class="mt-2">
-                        <button pButton label="My Profile" class="p-button-text profile-button"
-                            routerLink="profile"></button>
-                        <br>
-                        <button pButton label="Logout" class="p-button-text profile-button"
-                            (click)="navigateTo('logout')"></button>
-                    </div>
-                </div>
-            </p-overlayPanel>
-        </div>
+    <div
+      class="w-full sm:w-auto"
+      [ngClass]="{
+        'hidden': !isMenuOpen && isScreenSmall(),
+        'flex': isMenuOpen || !isScreenSmall()
+      }"
+    >
+      <div class="flex flex-column sm:flex-row flex-wrap justify-content-center sm:justify-content-center align-items-center gap-3 text-lg mt-2 sm:mt-0">
+        <a
+          *ngFor="let item of navItems"
+          routerLinkActive="font-bold shadow-3"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="p-ripple cursor-pointer text-white transition-duration-200 p-2 text-center w-8rem border-none no-underline"
+          [routerLink]="item.link"
+        >
+          {{ item.label }}
+        </a>
+      </div>
+    </div>
+
+    <div
+      class="flex align-items-center justify-content-center gap-2 cursor-pointer"
+      (click)="toggleDropdown($event, overlayPanel)"
+    >
+      <p-avatar
+        image="https://static.vecteezy.com/system/resources/previews/018/765/757/original/user-profile-icon-in-flat-style-member-avatar-illustration-on-isolated-background-human-permission-sign-business-concept-vector.jpg"
+        shape="circle"
+        styleClass="mt-1"
+      />
+      <span class="text-white font-bold mt-1">My Account</span>
+
+    <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body" styleClass="custom-overlay">
+  <div class="flex flex-column gap-1">
+    <button pButton label="My Profile" class="p-button-text text-black-alpha-80" routerLink="profile"></button>
+    <button pButton label="Logout" class="p-button-text text-black-alpha-80" (click)="navigateTo('logout')"></button>
+  </div>
+</p-overlayPanel>
 
     </div>
-</p-toolbar>
-<div class="page-content">
-    <router-outlet></router-outlet>
   </div>
+</p-toolbar> -->
+
+<p-toolbar styleClass="shadow-4 p-2" [style]="{
+    position: 'sticky',
+    top: '0',
+    'z-index': '999',
+    'background-image': 'linear-gradient(to left, var(--blue-600), var(--blue-600))',
+    'padding': '2px'
+  }">
+  <div class="flex justify-content-between align-items-center w-full px-3 gap-3">
+
+    <!-- Left: Menu + Logo -->
+    <div class="flex align-items-center gap-2">
+      <button pButton icon="pi pi-bars" (click)="sidebarVisible = true" class="p-button-text text-white"></button>
+      <img
+        src="https://img1.wsimg.com/isteam/ip/957d1ef6-9f8d-4653-a4c2-121d6b896ba7/blob.png/:/rs=h:100,cg=true,m/qt=q:95"
+        alt="Logo" class="w-6rem h-auto" />
+    </div>
+
+    <!-- Right: Notification + Account -->
+    <div class="flex align-items-center gap-3">
+
+      <!-- 🔔 Notification Icon with Badge and Overlay -->
+      <div class="relative cursor-pointer flex align-items-center" (click)="notificationOverlay.toggle($event)">
+        <i class="pi pi-bell text-white text-2xl"></i>
+
+        <span *ngIf="notificationCount > 0"
+          class="absolute top-0 right-0 -mt-2 -mr-2 bg-red-500 text-white text-xs font-bold px-2 py-0 border-circle shadow-2"
+          style="min-width: 1.25rem; height: 1.25rem; display: flex; align-items: center; justify-content: center;">
+          {{ notificationCount }}
+        </span>
+
+        <!-- 🔽 Notification Overlay Panel -->
+      <p-overlayPanel #notificationOverlay [dismissable]="true" appendTo="body"
+  styleClass="custom-overlay surface-overlay shadow-4 border-round">
+
+  <div style="max-width: 90vw; width: 250px; word-wrap: break-word; max-height: 300px; overflow-y: auto;">
+
+    <!-- Check if there are notifications -->
+    <ng-container *ngIf="notifications.length > 0; else noNotifications">
+      
+      <!-- Loop through notifications -->
+      <div *ngFor="let notif of notifications" class="mb-3 pb-2 border-bottom-1 border-gray-200">
+        <div class="flex justify-content-between align-items-center mb-1">
+          <h4 class="m-0 text-cyan-500 text-base font-semibold">{{ notif.title }}</h4>
+          <span class="text-sm text-color-secondary">{{ notif.date | date:'dd/MM/yyyy' }}</span>
+        </div>
+        <p class="m-0 text-sm text-black-alpha-90">
+          {{ notif.description }}
+        </p>
+      </div>
+
+    </ng-container>
+
+    <!-- No notifications fallback -->
+    <ng-template #noNotifications>
+      <div class="text-center text-sm text-color-secondary p-2">
+        No notifications available
+      </div>
+    </ng-template>
+
+  </div>
+</p-overlayPanel>
+
+
+      </div>
+
+      <!-- 👤 Account Dropdown -->
+      <div class="flex align-items-center gap-2 cursor-pointer" (click)="toggleDropdown($event, overlayPanel)">
+        <p-avatar
+          image="https://img.freepik.com/premium-vector/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-vector-illustration_561158-4215.jpg"
+          shape="circle" />
+
+        <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body" styleClass="custom-overlay">
+          <div class="flex flex-column gap-1">
+            <button pButton label="My Profile" class="p-button-text text-black-alpha-80" routerLink="profile"></button>
+            <button pButton label="Logout" class="p-button-text text-black-alpha-80"
+              (click)="navigateTo('logout')"></button>
+          </div>
+        </p-overlayPanel>
+      </div>
+
+    </div>
+
+
+
+  </div>
+</p-toolbar>
+
+<p-sidebar [(visible)]="sidebarVisible" [modal]="false" styleClass="p-sidebar-sm custom-sidebar" position="left">
+  <div class="p-2">
+
+    <ul class="list-none p-0 m-0">
+      <li *ngFor="let item of navItems" class="mb-3">
+        <a [routerLink]="item.link" routerLinkActive="bg-primary text-white font-bold shadow-3 active-link-blue"
+          [routerLinkActiveOptions]="{ exact: true }" (click)="sidebarVisible = false"
+          class="flex align-items-center gap-3 p-3 border-round surface-card shadow-1 transition-all transition-duration-200 hover:shadow-4 hover:bg-blue-100 hover:text-black-alpha-60 p-ripple no-underline">
+          <div class="w-3rem h-3rem flex align-items-center justify-content-center border-round font-bold shadow-2"
+            [ngStyle]="{
+          'background-image': 'linear-gradient(135deg, #6a11cb, #2575fc)'
+        }">
+            <i [class]="item.icon + ' text-xl text-white'"></i>
+          </div>
+
+          <div class="flex flex-column">
+            <span class="text-lg font-semibold">{{ item.label }}</span>
+          </div>
+        </a>
+      </li>
+    </ul>
+
+  </div>
+</p-sidebar>
+
+
+
+<div class="p-3">
+  <router-outlet></router-outlet>
+</div>

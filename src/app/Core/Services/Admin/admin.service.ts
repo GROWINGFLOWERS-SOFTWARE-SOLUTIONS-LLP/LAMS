@@ -10,7 +10,10 @@ export class AdminService {
   headers: HttpHeaders | { [header: string]: string | string[]; } | undefined;
 
   constructor(private http: HttpClient) {
-
+ this.headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+      // 'Authorization': 'Bearer your-token' // Uncomment and use if needed
+    });
   }
   // Login Api
   loginValidation(data: any) {
@@ -170,4 +173,27 @@ export class AdminService {
   getHistory(employeeId: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/history/${employeeId}`, {headers: this.headers});
   }
+
+  // Assign Project to Manager
+// src/app/Core/Services/admin.service.ts
+assignProjectToManager(projId: string, managId: string) {
+  return this.http.post<any>(`http://localhost:8442/api/assignments/project-to-manager`, null, {
+    params: {
+      projId,
+      managId
+    }
+  });
+}
+
+assignEmployeeToProject(empId: string, projId: string) {
+  return this.http.post<any>(`${this.apiUrl}/api/assignments/assign-employee-to-project`, null, {
+    params: {
+      empId,
+      projId  // changed from projectId to projId
+    }
+  });
+}
+
+
+
 }

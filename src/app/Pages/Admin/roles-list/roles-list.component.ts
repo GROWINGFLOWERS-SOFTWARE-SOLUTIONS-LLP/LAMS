@@ -11,6 +11,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
+import { CardModule } from 'primeng/card';
 
 // import { ApiService } from '../../../Core/Services/api.service';
 
@@ -20,6 +21,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
   imports: [
     TabViewModule,
     ButtonModule,
+    CardModule,
     TableModule,
     InputTextModule,
     ConfirmDialogModule,
@@ -34,6 +36,7 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
   providers: [ConfirmationService, MessageService],
 })
 export class RolesListComponent implements OnInit {
+  
   departmentForm !: FormGroup;
   departments: any = [];
   selectedDepartmentId: string | null = null;

@@ -1,129 +1,20 @@
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-.active-nav-link {
-  background-color: var(--blue-500); /* your theme color */
-  color: black !important;            /* override text color */
-  border-radius: 0.5rem;              /* optional: rounded active button */
-  font-weight: bold;
-  box-shadow: 0 2px 8px rgba(78, 77, 77, 0.581); /* optional: small shadow */
-}
-.page-content{
-  height: 100vh;
-  /* height: calc(100% - 140px); */
-  margin-top: 10px;
-}
-img {
-  height: 50%;
-  width: 50%;
-  object-fit: cover;
-}
-
-.p-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-image: linear-gradient(to right, var(--blue-500), var(--blue-800));
-  
-}
-
-.p-toolbar .p-link {
-  margin-right: 1rem;
-  border-radius: 0.5rem;
-  background-color: transparent;
-  border: none;
-  cursor: pointer !important;
-}
-
-.nav-hover:hover {
-  background-color: rgba(67, 66, 66, 0.1) !important;
-  transition: background-color 0.3s ease;
-}
-
-.square-btn {
-  height: 3rem;
-  width: 6rem;
-  border-radius: 0.5rem; /* Optional: soften the edges */
-  background-color: transparent;
-}
-
-.square-btn:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-
-.p-toolbar .p-avatar {
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-}
-
-.text-white {
-  color: #ffffff;
-}
-
-.font-bold {
-  font-weight: bold;
-}
-
-.ml-1 {
-  margin-left: 0.25rem;
-}
-
-.mt-1 {
-  margin-top: 0.25rem;
-}
-
-.card-overlay .p-card {
-  padding: 1rem;
-  width: 200px;
+::ng-deep .custom-overlay {
+  /* background-color: #679de4 !important;
   border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
+  margin: 0;
 }
 
-.card-overlay .p-card-body {
-  display: flex;
-  flex-direction: column;
+.active-link-blue {
+  color: black !important; /* Tailwind's blue-600 hex or pick your blue */
 }
+/* ::ng-deep .custom-sidebar {
+  top: 64px !important; 
+  height: calc(100% - 64px) !important;
+} */
 
-.card-overlay .p-button-text {
-  width: 100%;
-  text-align: left;
-  margin-bottom: 1rem;
-  color: #000;
-}
-
-.card-overlay .p-button-text:hover {
-  background-color: #000;
-  color: #fff;
-}
-
-.small-dropdown {
-  border: none;
-  padding: 0;
-  background-color: transparent; 
-}
-
-.small-dropdown .p-dropdown-label {
-  font-weight: bold;
-  color: var(--bluegray-50);
-}
-
-.small-dropdown .p-dropdown-item {
-  background-color: #fff;
-  color: #333;
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
-}
-
-.small-dropdown .p-dropdown-item:hover {
-  background-color: #f5f5f5;
-}
-
-.profile-button, .logout-button {
-  margin-bottom: 1rem;
-  color: #000;
+::ng-deep .custom-sidebar {
+  top: 73px !important; /* Adjust to your actual toolbar height */
+  height: calc(100% - 73px); /* Adjust height so it doesn’t overflow */
 }

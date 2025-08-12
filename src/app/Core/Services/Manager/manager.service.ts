@@ -41,5 +41,43 @@ export class ManagerService {
     return this.http.put(`${this.apiURL}/api/leave/reject`,employeeData, {headers: this.headers});
   }
 
+ deleteLeave(leaveId: any) {
+  console.log("Leave ID", leaveId);
+  return this.http.delete(`${this.apiURL}/api/leave/cancel/${leaveId}`, {
+    headers: this.headers,
+    responseType: 'text' as 'json' 
+  });
+}
+
+
+// Notification API Call
+
+// Create a new notification
+createNotification(data: any) {
+  return this.http.post(`${this.apiURL}/api/notifications`, data, { headers: this.headers });
+}
+
+// Get all notifications
+getAllNotifications() {
+  return this.http.get(`${this.apiURL}/api/notifications`, { headers: this.headers });
+}
+
+// Get a specific notification by ID
+getNotificationById(notificationId: string) {
+  return this.http.get(`${this.apiURL}/api/notifications/${notificationId}`, { headers: this.headers });
+}
+
+// Update a notification by ID
+updateNotification(notificationId: string, data: any) {
+  return this.http.put(`${this.apiURL}/api/notifications/${notificationId}`, data, { headers: this.headers });
+}
+
+// Delete a notification by ID
+deleteNotification(notificationId: string) {
+  return this.http.delete(`${this.apiURL}/api/notifications/${notificationId}`, {
+    headers: this.headers,
+    responseType: 'text' as 'json'
+  });
+}
 
 }

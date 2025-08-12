@@ -3,88 +3,92 @@
 <div class="container h-screen">
   <div class="p-fluid">
     <div class="p-card">
-      <div class="flex justify-content-end mb-3">
+      <div class="flex justify-content-between align-items-center p-4 flex-wrap gap-2">
+        <!-- Heading -->
+        <h2 class="m-0 text-2xl font-semibold text-blue-700">Leave Requests</h2>
+
+        <!-- Button -->
         <p-button label="Leave Application Form" (onClick)="showDialog()"></p-button>
       </div>
 
-      <!-- Dialog for the leave application form -->
       <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false"
         [style]="{ width: '50rem' }" [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-        <form [formGroup]="leaveForm">
-          <div class="p-fluid grid">
+
+        <form [formGroup]="leaveForm" class="p-fluid">
+          <div class="grid p-3">
+
             <!-- Start Date -->
-            <div class="field col-12 lg:col-6">
+            <div class="col-12 md:col-6">
               <label for="startDate">Start Date <span class="text-red-500">*</span></label>
               <p-calendar formControlName="startDate" [minDate]="today" [showIcon]="true" appendTo="body"
-                dateFormat="yy-mm-dd"></p-calendar>
+                dateFormat="yy-mm-dd">
+              </p-calendar>
               <small *ngIf="leaveForm.get('startDate')?.invalid && leaveForm.get('startDate')?.touched" class="p-error">
                 Start Date is required.
               </small>
             </div>
 
             <!-- End Date -->
-            <div class="field col-12 lg:col-6">
+            <div class="col-12 md:col-6">
               <label for="endDate">End Date <span class="text-red-500">*</span></label>
               <p-calendar formControlName="endDate" [minDate]="leaveForm.get('startDate')?.value || today"
-                [showIcon]="true" appendTo="body" dateFormat="yy-mm-dd"></p-calendar>
+                [showIcon]="true" appendTo="body" dateFormat="yy-mm-dd">
+              </p-calendar>
               <small *ngIf="leaveForm.get('endDate')?.invalid && leaveForm.get('endDate')?.touched" class="p-error">
                 End Date is required.
               </small>
             </div>
 
             <!-- Leave Type -->
-            <div class="col-12 lg:col-6">
-              <div class="p-field">
-                <label for="leaveType">Leave Type <span class="text-red-500">*</span></label>
-                <p-dropdown formControlName="leaveType" [options]="leaveTypes"
-                  placeholder="Select Leave Type"></p-dropdown>
-                <small *ngIf="leaveForm.get('leaveType')?.invalid && leaveForm.get('leaveType')?.touched"
-                  class="p-error">Leave Type is required.</small>
-              </div>
+            <div class="col-12 md:col-6">
+              <label for="leaveType">Leave Type <span class="text-red-500">*</span></label>
+              <p-dropdown formControlName="leaveType" [options]="leaveTypes" placeholder="Select Leave Type">
+              </p-dropdown>
+              <small *ngIf="leaveForm.get('leaveType')?.invalid && leaveForm.get('leaveType')?.touched" class="p-error">
+                Leave Type is required.
+              </small>
             </div>
 
             <!-- Total Leaves -->
-            <div class="col-12 lg:col-6">
-              <div class="p-field">
-                <label for="totalLeaves">Total Leaves <span class="text-red-500">*</span></label>
-                <input pInputText formControlName="totalLeaves" type="number" [readonly]="true" />
-              </div>
+            <div class="col-12 md:col-6">
+              <label for="totalLeaves">Total Leaves <span class="text-red-500">*</span></label>
+              <input pInputText formControlName="totalLeaves" type="number" readonly />
             </div>
 
-             <!-- Total Leaves -->
-             <div class="col-12 lg:col-6 d-none">
-              <div class="p-field">
-                <label for="totalLeaves">Total Leaves Taken <span class="text-red-500">*</span></label>
-                <input pInputText formControlName="totalLeavesTaken" type="number" [readonly]="true" />
-              </div>
+            <!-- Hidden: Total Leaves Taken -->
+            <div class="col-12 md:col-6 d-none">
+              <label for="totalLeavesTaken">Total Leaves Taken</label>
+              <input pInputText formControlName="totalLeavesTaken" type="number" readonly />
             </div>
-          </div>
 
-          
-
-          <!-- Reason -->
-          <div class="col-12">
-            <div class="p-field">
+            <!-- Reason -->
+            <div class="col-12">
               <label for="reason">Reason <span class="text-red-500">*</span></label>
-              <textarea pInputTextarea formControlName="reason" rows="3"></textarea>
+              <textarea pInputTextarea formControlName="reason" id="reason" rows="4"
+                class="w-full text-base p-2 border-1 border-solid border-round outline-none focus:border-primary"
+                autoResize>
+        </textarea>
               <small *ngIf="leaveForm.get('reason')?.invalid && leaveForm.get('reason')?.touched" class="p-error">
                 Reason is required.
               </small>
             </div>
           </div>
-        </form>
 
-        <!-- Dialog Footer -->
-        <div class="p-dialog-footer flex justify-content-center gap-3 p-3">
-          <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
-          <p-button label="Save" icon="pi pi-check" (onClick)="saveLeaveRequest()"
-            [disabled]="!leaveForm.valid"></p-button>
-        </div>
+          <!-- Dialog Footer -->
+          <div class="p-dialog-footer flex justify-content-center gap-3 px-3 pb-3">
+            <p-button label="Cancel" icon="pi pi-times" class="p-button-text" (onClick)="visible = false"></p-button>
+            <p-button label="Save" icon="pi pi-check" (onClick)="saveLeaveRequest()"
+              [disabled]="!leaveForm.valid"></p-button>
+          </div>
+        </form>
       </p-dialog>
 
-      <div class="mt-3" style="position: relative;">
+
+      <div class=" p-4">
         <p-table [value]="leaveRequests" [paginator]="showPaginator" [rows]="8" [scrollable]="true"
           responsiveLayout="scroll" class="responsive-table">
+
+          <!-- Table Header -->
           <ng-template pTemplate="header">
             <tr>
               <th>Start Date</th>
@@ -94,10 +98,11 @@
               <th>Status</th>
               <th>Reason</th>
               <th>Manager Comment</th>
+              <th>Actions</th>
             </tr>
           </ng-template>
 
-          <!-- Table Body with Loading Overlay -->
+          <!-- Table Body -->
           <ng-template pTemplate="body" let-request>
             <tr *ngIf="!isLoading">
               <td>{{ request.startDate | date:'yyyy-MM-dd' }}</td>
@@ -105,21 +110,33 @@
               <td>{{ request.leaveType }}</td>
               <td>{{ request.totalLeaves }}</td>
               <td>
-                <span *ngIf="request.status === 'PENDING'" class="p-tag p-tag-warning">{{request.status}}</span>
-                <span *ngIf="request.status === 'APPROVED'" class="p-tag p-tag-success">{{request.status}}</span>
-                <span *ngIf="request.status === 'REJECTED'" class="p-tag p-tag-warning">{{request.status}}</span>
+                <span *ngIf="request.status === 'PENDING'" class="p-tag p-tag-warning">{{ request.status }}</span>
+                <span *ngIf="request.status === 'APPROVED'" class="p-tag p-tag-success">{{ request.status }}</span>
+                <span *ngIf="request.status === 'REJECTED'" class="p-tag p-tag-danger">{{ request.status }}</span>
               </td>
               <td>{{ request.reason }}</td>
-              <td class="">{{  request.managerComment != null ? request.managerComment : '-'  }}</td>
+              <td>{{ request.managerComment ?? '-' }}</td>
+              <td>
+                <ng-container *ngIf="request.status === 'PENDING'; else noAction">
+                  <p-button label="Cancel" size="small" [rounded]="true" [text]="true" [raised]="true" severity="danger"
+                    (click)="deleteLeave(request.leaveId)">
+                  </p-button>
+                </ng-container>
+                <ng-template #noAction>-</ng-template>
+              </td>
+
             </tr>
           </ng-template>
 
+          <!-- Empty Message -->
           <ng-template pTemplate="emptymessage">
             <tr>
-              <td colspan="6" class="text-center text-gray-500">No data present</td>
+              <td colspan="8" class="text-center text-gray-500">No data present</td>
             </tr>
           </ng-template>
+
         </p-table>
+
 
         <!-- <div *ngIf="isLoading" class="table-loader-overlay">
           <app-loader [loading]="isLoading"></app-loader>

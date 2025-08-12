@@ -6,7 +6,6 @@ import { DropdownModule } from 'primeng/dropdown';
 import { CalendarModule } from 'primeng/calendar';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { TableModule } from 'primeng/table';
 import { Leave } from '../../../Core/Interfaces/leave';
 import { ToastModule } from 'primeng/toast';
@@ -25,7 +24,6 @@ import { ManagerService } from '../../../Core/Services/Manager/manager.service';
     InputTextModule,
     DropdownModule,
     CalendarModule,
-    InputTextareaModule,
     TableModule,
     ToastModule,
     ProgressSpinnerModule
@@ -170,7 +168,7 @@ export class LeaveComponent implements OnInit {
       this.leaveForm.get('totalLeavesTaken')?.setValue(updatedTotalLeavesTaken.toString());
     }
   }
-  
+ 
 
   resetLeaveRequestForm(): void {
     this.leaveForm.reset({
@@ -183,6 +181,34 @@ export class LeaveComponent implements OnInit {
       firstName: this.employee?.firstName,
       lastname: this.employee?.lastName,
       employeeRole: this.employee?.role
+    });
+  }
+
+  // Delete API
+   deleteLeave(leaveId: string): void {
+    if (!leaveId) return;
+
+    this.leaveService.deleteLeave(leaveId).subscribe({
+      next: (res) => {
+        console.log('Deleted:', res);
+
+        // ✅ Optionally show a success message
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Deleted',
+          detail: 'Leave request cancelled successfully'
+        });
+
+        this.loadLeaveRequests();
+      },
+      error: (err) => {
+        console.error('Delete error:', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to cancel leave'
+        });
+      }
     });
   }
 }

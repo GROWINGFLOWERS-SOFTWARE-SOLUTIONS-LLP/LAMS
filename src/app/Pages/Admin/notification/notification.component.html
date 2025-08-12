@@ -1,0 +1,124 @@
+<p-toast></p-toast>
+
+<p-card class="w-full md:w-6 mx-auto mt-4 shadow-3">
+  <div class="flex justify-content-end mb-3">
+    <button
+      pButton
+      icon="pi pi-bell"
+      label="New Notification"
+      class="p-button-sm p-button-rounded p-button-info"
+      (click)="dialogVisible = true; isEditMode = false; notificationForm.reset();">
+    </button>
+  </div>
+
+  <!-- Dialog Form -->
+  <p-dialog
+    header="{{ isEditMode ? 'Edit Notification' : 'Add Notification' }}"
+    [(visible)]="dialogVisible"
+    [modal]="true"
+    [style]="{ width: '400px' }"
+    [closable]="true">
+
+    <form [formGroup]="notificationForm" (ngSubmit)="submitNotification()" class="p-fluid">
+      <!-- Title Field -->
+      <div class="field">
+        <label for="title" class="block text-sm font-medium mb-2">Title</label>
+        <input id="title" type="text" pInputText formControlName="title" class="w-full" />
+      </div>
+
+      <!-- Description Field -->
+      <div class="field">
+        <label for="description" class="block text-sm font-medium mb-2">Description</label>
+        <textarea id="description" pInputTextarea formControlName="description" rows="3" class="w-full"></textarea>
+      </div>
+
+      <!-- Date Field -->
+      <div class="field">
+        <label for="date" class="block text-sm font-medium mb-2">Date</label>
+        <p-calendar
+          id="date"
+          formControlName="date"
+          class="w-full"
+          showIcon="true"
+          appendTo="body"
+          dateFormat="yy-mm-dd" [showTime]="false"
+          [inputStyle]="{ width: '100%', height: '45px' }">
+        </p-calendar>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex justify-content-end gap-2 mt-3">
+        <button
+          pButton
+          label="Cancel"
+          type="button"
+          class="p-button-text"
+          (click)="resetForm()">
+        </button>
+        <button
+          pButton
+          [label]="isEditMode ? 'Update' : 'Submit'"
+          type="submit"
+          [disabled]="notificationForm.invalid">
+        </button>
+      </div>
+    </form>
+  </p-dialog>
+
+  <!-- Notification List -->
+  <h3 class="mt-4 mb-2">Notification List</h3>
+
+  <p-table
+    #notificationTable
+    [value]="notifications"
+    *ngIf="notifications.length > 0; else noNotifications"
+    class="p-datatable-sm"
+    [responsiveLayout]="'scroll'">
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th style="width: 25%">Title</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th style="width: 120px">Actions</th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-notification let-i="rowIndex">
+      <tr>
+        <td class="text-cyan-500 font-medium">{{ notification.title }}</td>
+        <td>{{ notification.description }}</td>
+        <td>{{ notification.date | date: 'dd/MM/yyyy' }}</td>
+        <td>
+          <div class="flex gap-2 justify-content-start">
+            <button
+              pButton
+              icon="pi pi-pen-to-square"
+              [rounded]="true"
+              [text]="true"
+              [raised]="true"
+              severity="success"
+              (click)="editNotification(i)">
+            </button>
+            <button
+              pButton
+              icon="pi pi-trash"
+              [rounded]="true"
+              [text]="true"
+              [raised]="true"
+              severity="danger"
+              (click)="deleteNotification(i)">
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+
+  <!-- Empty State -->
+  <ng-template #noNotifications>
+    <p class="text-center text-base text-color-secondary">No notifications added yet.</p>
+  </ng-template>
+ 
+
+</p-card>

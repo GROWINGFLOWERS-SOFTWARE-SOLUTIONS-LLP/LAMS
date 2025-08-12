@@ -7,23 +7,32 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-admin-leave-request',
   standalone: true,
-  imports: [TableModule,
+  imports: [
+    TableModule,
+    CardModule,
     ButtonModule,
     FormsModule,
     CommonModule,
     ProgressSpinnerModule,
-    DialogModule],
+    InputTextModule,
+    DialogModule
+  ],
   providers: [MessageService],
   templateUrl: './admin-leave-request.component.html',
   styleUrl: './admin-leave-request.component.css'
 })
 export class AdminLeaveRequestComponent {
-  leaveRequests: any[] = []; // Your leave data here
-  isLoading: boolean = false; // Show loader if needed
+  leaveRequests: any[] = [];
+  filteredLeaveRequests: any[] = [];
+  isLoading: boolean = false;
+
+  searchTerm: string = '';
 
   displayDialog: boolean = false;
   actionType: 'approve' | 'reject' = 'approve';
@@ -33,25 +42,35 @@ export class AdminLeaveRequestComponent {
   constructor(
     private leaveService: ManagerService,
     private messageService: MessageService
-  ) { }
-  ngOnInit() {
+  ) {}
 
-    this.getAllPendingLeaves()
+  ngOnInit() {
+    this.getAllPendingLeaves();
   }
 
   getAllPendingLeaves(): void {
+    this.isLoading = true;
     this.leaveService.getAllPendingLeaves().subscribe({
       next: (data: any) => {
-        // Check if data is valid and the role is not 'Employee'
-        this.leaveRequests = data.filter((item: any) => item.employeeRole !== 'Employee');
+        const nonEmployeeLeaves = data.filter((item: any) => item.employeeRole !== 'Employee');
+        this.leaveRequests = nonEmployeeLeaves;
+        this.filteredLeaveRequests = [...nonEmployeeLeaves];
       },
       error: (error: any) => {
         this.leaveRequests = [];
+        this.filteredLeaveRequests = [];
       },
       complete: () => {
         this.isLoading = false;
       }
     });
+  }
+
+  filterLeavesByName() {
+    const term = this.searchTerm.trim().toLowerCase();
+    this.filteredLeaveRequests = this.leaveRequests.filter(request =>
+      (`${request.firstName} ${request.lastName}`).toLowerCase().includes(term)
+    );
   }
 
   openDialog(type: 'approve' | 'reject', request: any) {
@@ -81,38 +100,26 @@ export class AdminLeaveRequestComponent {
   }
 
   approveLeave(request: any, reason: string) {
-
     request.managerComment = reason;
-    console.log('New Request: ', request);
-
-    // TODO: Call your backend API to approve leave with reason
-    this.leaveService.approveLeave(request).subscribe((data) => {
+    this.leaveService.approveLeave(request).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'Leave Approve Successfully',
+        detail: 'Leave Approved Successfully',
       });
-
       this.getAllPendingLeaves();
-    })
+    });
   }
 
   rejectLeave(request: any, reason: string) {
-    console.log('Rejected:', request);
-    console.log('Reason:', reason);
-    // TODO: Call your backend API to reject leave with reason
     request.managerComment = reason;
-    console.log('New Request: ', request);
-
-    // TODO: Call your backend API to approve leave with reason
-    this.leaveService.rejectLeave(request).subscribe((data: any) => {
+    this.leaveService.rejectLeave(request).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'Leave Reject Successfully',
+        detail: 'Leave Rejected Successfully',
       });
-
       this.getAllPendingLeaves();
-    })
+    });
   }
 }

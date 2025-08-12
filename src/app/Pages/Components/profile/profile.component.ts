@@ -38,4 +38,5 @@ export class ProfileComponent implements OnInit {
     // this.router.navigateByUrl('profile-form', { state: { employee: this.employee } });
     this.router.navigate(['profile-form']);
   }
+  
 }

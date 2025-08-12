@@ -1,63 +1,129 @@
-<div class="container">
+<!-- <div class="container">
   <div class="help-page p-fluid">
-    
-  
-    <!-- Content, shown once loading is complete -->
+
     <div *ngIf="!loading">
       <h1 class="text-center">Frequently asked <span class="highlight">questions</span></h1>
       <p class="text-center">Do you need some help with something or do you have questions on some features?</p>
-  
-      <div class="p-grid p-justify-center"> 
-        <div class="p-col-10 p-md-6 p-lg-4"> 
+
+      <div class="p-grid p-justify-center">
+        <div class="p-col-10 p-md-6 p-lg-4">
           <p-card class="faq-card">
-            <p-accordion> 
+            <p-accordion>
               <p-accordionTab header="How do I request a leave?" (selectedChange)="onTabSelect($event, 0)">
                 <ng-template pTemplate="header"></ng-template>
                 <p>
-                  To request a leave, navigate to the "Leave" option available on your Navbar and then 
-                  Click the Leave Application Form button, select the appropriate leave type, and fill in all the necessary fields such as start date, end date, and reason for leave. 
-                  Once you have completed the form, submit the request. and thereafter, Manager will Approve or Reject the leave.</p>
+                  To request a leave, navigate to the "Leave" option available on your Navbar and then
+                  Click the Leave Application Form button, select the appropriate leave type, and fill in all the
+                  necessary fields such as start date, end date, and reason for leave.
+                  Once you have completed the form, submit the request. and thereafter, Manager will Approve or Reject
+                  the leave.</p>
               </p-accordionTab>
-  
-              <p-accordionTab header="How can I check the status of my leave request?" (selectedChange)="onTabSelect($event, 1)">
+
+              <p-accordionTab header="How can I check the status of my leave request?"
+                (selectedChange)="onTabSelect($event, 1)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>Go to the "Leave" section, Here you can view the status of all your leave requests, including those that are pending, approved, or rejected.</p>
+                <p>Go to the "Leave" section, Here you can view the status of all your leave requests, including those
+                  that are pending, approved, or rejected.</p>
               </p-accordionTab>
-  
+
               <p-accordionTab header="Can I View Upcoming Holidays?" (selectedChange)="onTabSelect($event, 2)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>Yes, You can Check Upcoming Holidays in Holiday Section In which you can view the Holidays in detail in Calendar View.</p>
+                <p>Yes, You can Check Upcoming Holidays in Holiday Section In which you can view the Holidays in detail
+                  in Calendar View.</p>
               </p-accordionTab>
-  
+
               <p-accordionTab header="What types of leave are available?" (selectedChange)="onTabSelect($event, 3)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>The system typically includes various leave types such as Sick Leave, Paid Leave and Unpaid Leave.</p>
+                <p>The system typically includes various leave types such as Sick Leave, Paid Leave and Unpaid Leave.
+                </p>
               </p-accordionTab>
-  
+
               <p-accordionTab header="Who can approve my leave requests?" (selectedChange)="onTabSelect($event, 4)">
                 <ng-template pTemplate="header"></ng-template>
-                <p>Leave requests are usually approved by your direct supervisor or manager. The system will route your request to the appropriate approver based on your organization's approval workflow.</p>
+                <p>Leave requests are usually approved by your direct supervisor or manager. The system will route your
+                  request to the appropriate approver based on your organization's approval workflow.</p>
               </p-accordionTab>
             </p-accordion>
           </p-card>
         </div>
       </div>
-  
+
       <div class="p-grid p-justify-center">
         <div class="p-col-10 p-md-6 p-lg-4">
           <p-card class="contact-card">
             <h2 class="text-center">Have any other questions?</h2>
             <p class="text-center">
               Don't hesitate to send us an email with your inquiry or statement at:
-              <a href="mailto:contact&#64;growing-flowers-softwaresolutions.com">contact&#64;growing-flowers-softwaresolutions.com</a>
+              <a
+                href="mailto:contact&#64;growing-flowers-softwaresolutions.com">contact&#64;growing-flowers-softwaresolutions.com</a>
               <button pButton type="button" icon="pi pi-copy" (click)="copyEmail()"></button>
             </p>
           </p-card>
         </div>
       </div>
-  
-      <!-- Toast Notification -->
       <p-toast></p-toast>
     </div>
   </div>
+</div> -->
+
+<div *ngIf="!loading">
+
+  <!-- First Card: FAQ -->
+  <p-card class="shadow-4 surface-card border-round m-3">
+    <div class="grid align-items-center justify-content-center">
+
+      <!-- Left Column: Image -->
+      <div class="col-12 md:col-6 text-center p-3">
+        <img src="https://fatora.io/wp-content/uploads/2023/10/faq-header-1.png" alt="FAQ Help Image"
+          class="w-full md:w-10 max-w-30rem mx-auto" />
+      </div>
+
+      <!-- Right Column: Content + Accordion -->
+      <div class="col-12 md:col-6 p-4">
+        <div class="text-4xl font-bold mb-3">Frequently Asked Questions</div>
+        <p class="text-lg line-height-3 mb-4">
+          Do you need some help with something or do you have questions on some features?
+        </p>
+
+        <p-accordion [multiple]="true" class="shadow-1 surface-100 border-round">
+          <p-accordionTab header="How do I request a leave?" (selectedChange)="onTabSelect($event, 0)">
+            <p>To request a leave, navigate to the "Leave" option...</p>
+          </p-accordionTab>
+          <p-accordionTab header="How can I check the status of my leave request?"
+            (selectedChange)="onTabSelect($event, 1)">
+            <p>Go to the "Leave" section...</p>
+          </p-accordionTab>
+          <p-accordionTab header="Can I View Upcoming Holidays?" (selectedChange)="onTabSelect($event, 2)">
+            <p>Yes, you can check upcoming holidays...</p>
+          </p-accordionTab>
+          <p-accordionTab header="What types of leave are available?" (selectedChange)="onTabSelect($event, 3)">
+            <p>The system includes Sick Leave, Paid Leave...</p>
+          </p-accordionTab>
+          <p-accordionTab header="Who can approve my leave requests?" (selectedChange)="onTabSelect($event, 4)">
+            <p>Requests are approved by your supervisor...</p>
+          </p-accordionTab>
+        </p-accordion>
+      </div>
+    </div>
+  </p-card>
+
+  <!-- Second Card: Example Content -->
+  <p-card class="shadow-3 text-center surface-card border-round m-3">
+    <div class="p-4">
+      <div class="text-2xl font-semibold mb-2">Need More Help?</div>
+      <div class="flex flex-wrap align-items-center justify-content-center gap-2 text-base line-height-3 mb-3"
+        style="max-width: 100%;">
+        <span class="min-w-0">
+         If you require any additional support or have questions, please don’t hesitate to contact us by emailing
+        </span>
+        <a href="mailto:contact@growing-flowers-softwaresolutions.com" class="text-primary text-base">
+          contact&#64;growing-flowers-softwaresolutions.com
+        </a>
+        <p-button icon="pi pi-copy" [rounded]="true" [text]="true" [raised]="true" severity="info"
+          (click)="copyEmail()"></p-button>
+      </div>
+    </div>
+      <p-toast></p-toast>
+  </p-card>
+
 </div>

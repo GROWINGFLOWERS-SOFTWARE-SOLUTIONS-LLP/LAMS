@@ -1,7 +1,6 @@
-<div class="container">
+<!-- <div class="container">
   <section>
   
-    <!-- Profile Card -->
     <p-card *ngIf="!loading && employee">
       <div class="center-container">
         <div class="text-center">
@@ -45,4 +44,131 @@
       </div>
     </p-card>
   </section>
+</div> -->
+
+ <div class="flex justify-content-center mt-3 px-3 mb-3">
+  <p-card *ngIf="!loading && employee" class="w-full sm:w-10 md:w-8 lg:w-6 xl:w-5 shadow-4 ">
+    <ng-template pTemplate="content">
+
+      <!-- Profile Picture and Name/Role Responsive -->
+      <div class="flex flex-column md:flex-row align-items-center md:align-items-start gap-3 mb-4">
+        <!-- Square Profile Picture -->
+        <img
+          src="https://as1.ftcdn.net/jpg/01/68/80/20/1000_F_168802088_1msBk8PpBRCCVo012WJTpWG90KHvoMWf.jpg"
+          alt="Profile Picture"
+          class="w-10rem h-10rem border-1 surface-border shadow-2"
+        />
+
+        <!-- Name & Role block -->
+        <div class=" md:pl-8 mt-5">
+          <div class="text-2xl md:text-2xl font-bold mb-2">{{ employee.firstName }} {{ employee.lastName }}</div>
+          <div class="text-center text-blue-400 text-sm font-bold md:text-base">{{ employee.role }}</div>
+        </div>
+      </div>
+
+      <!-- Details Grid -->
+      <div class="grid">
+        <div class="col-12 sm:col-6 mb-3 flex align-items-start gap-2">
+          <i class="pi pi-envelope mt-1"></i>
+          <div>
+            <strong>Email:</strong>
+            <p class="m-0 break-word">{{ employee.emailId }}</p>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 mb-3 flex align-items-start gap-2">
+          <i class="pi pi-phone mt-1"></i>
+          <div>
+            <strong>Phone:</strong>
+            <p class="m-0"> {{ employee.mobile }}</p>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 mb-3 flex align-items-start gap-2">
+          <i class="pi pi-briefcase mt-1"></i>
+          <div>
+            <strong>Joining Date:</strong>
+            <p class="m-0">{{ employee.joiningDate | date }}</p>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 mb-3 flex align-items-start gap-2">
+          <i class="pi pi-briefcase mt-1"></i>
+          <div>
+            <strong>Department:</strong>
+            <p class="m-0">{{ employee.department }}</p>
+          </div>
+        </div>
+
+        <div class="col-12 sm:col-6 mb-3 flex align-items-start gap-2">
+          <i class="pi pi-map-marker mt-1"></i>
+          <div>
+            <strong>Address:</strong>
+            <p class="m-0">{{ employee.address }}</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Update Button -->
+      <div class="flex justify-content-center mt-4">
+        <button pButton type="button" label="Update Your Details" class="p-button-rounded p-button-primary" (click)="updateProfile()"></button>
+      </div>
+
+    </ng-template>
+  </p-card>
 </div>
+
+
+ <!-- <div class="p-4">
+  <div class="flex justify-content-center">
+    <p-card class="w-full sm:w-10 md:w-8 lg:w-6 xl:w-6 shadow-4">
+      <div class="grid">
+     
+        <div class="col-12 md:col-4 bg-gradient text-white text-center p-3 border-round-left">
+          <img src="https://as1.ftcdn.net/jpg/01/68/80/20/1000_F_168802088_1msBk8PpBRCCVo012WJTpWG90KHvoMWf.jpg" alt="Profile" class="w-8rem h-8rem mb-3" />
+          <div class="font-bold text-2xl">Hembo Tingor</div>
+          <p class="mt-2 text-base">Web Designer</p>
+          <i class="pi pi-pencil mt-3 text-xl"></i>
+        </div>
+
+   
+        <div class="col-12 md:col-8 p-3">
+          <h6 class="mb-2 font-semibold border-bottom-1 surface-border pb-2">Information</h6>
+          <div class="grid mb-4">
+            <div class="col-6">
+              <p class="font-semibold mb-1">Email</p>
+              <p class="text-color-secondary">rntnggmail.com</p>
+            </div>
+            <div class="col-6">
+              <p class="font-semibold mb-1">Phone</p>
+              <p class="text-color-secondary">98979989898</p>
+            </div>
+          </div>
+
+          <h6 class="mb-2 font-semibold border-bottom-1 surface-border pb-2">Projects</h6>
+          <div class="grid">
+            <div class="col-6">
+              <p class="font-semibold mb-1">Recent</p>
+              <p class="text-color-secondary">Sam Disuja</p>
+            </div>
+            <div class="col-6">
+              <p class="font-semibold mb-1">Most Viewed</p>
+              <p class="text-color-secondary">Dinoter husainm</p>
+            </div>
+          </div>
+
+          <div class="flex gap-3 mt-4">
+            <a href="#" class="text-blue-500"><i class="pi pi-facebook text-xl"></i></a>
+            <a href="#" class="text-cyan-500"><i class="pi pi-twitter text-xl"></i></a>
+            <a href="#" class="text-pink-500"><i class="pi pi-instagram text-xl"></i></a>
+          </div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div> -->
+
+
+
+
+

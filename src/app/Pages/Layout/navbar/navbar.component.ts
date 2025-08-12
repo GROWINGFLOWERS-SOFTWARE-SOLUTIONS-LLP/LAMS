@@ -8,58 +8,95 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { AuthService } from '../../../Core/Services/auth.service';
+import { MenuItem } from 'primeng/api';
+import { MegaMenuItem } from 'primeng/api';
+import { MegaMenu } from 'primeng/megamenu';
+import { SidebarModule } from 'primeng/sidebar';
+import { TieredMenuModule } from 'primeng/tieredmenu';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 
 @Component({
-  selector: 'app-navbar', 
+  selector: 'app-navbar',
   standalone: true,
-  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule],
+  imports: [ToolbarModule, AvatarModule, OverlayPanelModule, ButtonModule, CommonModule, RouterModule, SidebarModule, TieredMenuModule],
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css'] 
-}) 
+  styleUrls: ['./navbar.component.css']
+})
 export class NavbarComponent implements OnInit {
-  isEmployee: boolean = false;
+  isMenuOpen: boolean = false;
 
-  // Define nav items for each role
+  isScreenSmall(): boolean {
+    return window.innerWidth < 1024;
+  }
+  notifications: any[] = [];
+  notificationCount: number = 0;
+
+  onNotificationsClick() {
+
+  }
+
+  sidebarVisible: boolean = false;
+  isScreenMdOrLarger(): boolean {
+    return this.breakpointObserver.isMatched('(min-width: 768px)');
+  }
+
+  isEmployee: boolean = false;
+  accountItems: MenuItem[] = [];
   adminItems: any[] = [
-    { label: 'Dashboard', link: 'dashboard' },
-    { label: 'Attendance', link: 'allattendance' },
-    { label: 'Employees', link: 'employeeprofile' },
-    { label: 'H-Manage', link: 'manageHolidays' },
-    { label: 'M-Request', link: 'manager-leave-request' },
-    { label: 'Add Roles', link: 'roleslist' },
-    // { label: 'History', link: 'history' },
+    { label: 'Dashboard', link: 'dashboard', icon: 'pi pi-home' },
+    { label: 'Attendance', link: 'allattendance', icon: 'pi pi-calendar' },
+    { label: 'Employees', link: 'employeeprofile', icon: 'pi pi-users' },
+    { label: 'H-Manage', link: 'manageHolidays', icon: 'pi pi-calendar-times' },
+    { label: 'M-Request', link: 'manager-leave-request', icon: 'pi pi-file' },
+    { label: 'Add Roles', link: 'roleslist', icon: 'pi pi-user-edit' },
+    { label: 'Notification', link: 'notification', icon: 'pi pi-bell' },
 
   ];
 
   employeeItems: any[] = [
-    { label: 'Dashboard', link: 'dashboard' },
-    { label: 'Attendance', link: 'attendance' },
-    { label: 'Leave', link: 'leave' },
-    { label: 'Holidays', link: 'holidays' },
-    // { label: 'History', link: 'history' },
-    { label: 'Help', link: 'help' },
+    { label: 'Dashboard', link: 'dashboard', icon: 'pi pi-home' },
+    { label: 'Attendance', link: 'attendance', icon: 'pi pi-calendar' },
+    { label: 'Leave', link: 'leave', icon: 'pi pi-briefcase' },
+    { label: 'Holidays', link: 'holidays', icon: 'pi pi-calendar-times' },
+    { label: 'Help', link: 'help', icon: 'pi pi-info-circle' }
   ];
 
   managerItems: any[] = [
-    { label: 'Dashboard', link: 'dashboard' },
-    { label: 'Attendance', link: 'attendance' },
-    { label: 'L-Request', link: 'managerRequest' },
-    { label: 'Leave', link: 'leave' },
-    { label: 'Holidays', link: 'holidays' },
-    // { label: 'History', link: 'history' },
-    { label: 'Help', link: 'help' }, 
+    { label: 'Dashboard', link: 'dashboard', icon: 'pi pi-home' },
+    { label: 'Attendance', link: 'attendance', icon: 'pi pi-calendar' },
+    { label: 'L-Request', link: 'managerRequest', icon: 'pi pi-file' },
+    { label: 'Leave', link: 'leave', icon: 'pi pi-briefcase' },
+    { label: 'Holidays', link: 'holidays', icon: 'pi pi-calendar-times' },
+    { label: 'Notification', link: 'notification', icon: 'pi pi-bell' },
+    { label: 'Help', link: 'help', icon: 'pi pi-info-circle' }
   ];
 
-  
+
   navItems: any[] = [];
 
   loginCredentials: any = {};
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService, private breakpointObserver: BreakpointObserver, private managerService: ManagerService) { }
 
   ngOnInit() {
     this.checkUserRole();
+    this.fetchNotifications();
   }
+
+  fetchNotifications() {
+    this.managerService.getAllNotifications().subscribe({
+      next: (response: any) => {
+        console.log('Notification API Response:', response);
+        this.notifications = response.data || response;
+        this.notificationCount = this.notifications.length;
+      },
+      error: (error) => {
+        console.error("Failed to load notifications", error);
+      }
+    });
+  }
+
 
   checkUserRole() {
     const loginData = localStorage.getItem('userValue');

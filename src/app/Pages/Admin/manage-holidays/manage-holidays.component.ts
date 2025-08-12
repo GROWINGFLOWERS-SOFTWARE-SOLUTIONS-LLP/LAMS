@@ -12,11 +12,12 @@ import { ToastModule } from 'primeng/toast';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 import { Observable } from 'rxjs';
+import { CardModule } from 'primeng/card';
 
 @Component({
   selector: 'app-manage-holidays',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, CommonModule, ButtonModule, TableModule, ToastModule, ConfirmDialogModule, ProgressSpinnerModule],
+  imports: [FormsModule, ReactiveFormsModule,CardModule, CommonModule, ButtonModule, TableModule, ToastModule, ConfirmDialogModule, ProgressSpinnerModule],
   templateUrl: './manage-holidays.component.html',
   styleUrls: ['./manage-holidays.component.css'],
   providers: [ConfirmationService, MessageService], // Add MessageService to providers

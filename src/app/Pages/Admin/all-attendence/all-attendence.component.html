@@ -1,46 +1,90 @@
 <p-toast></p-toast>
 <p-confirmDialog></p-confirmDialog>
 
-<div class="container flex flex-column p-4 bg-gray-50 h-screen">
-    <!-- Reusable loader -->
-    <!-- <app-loader [loading]="loading"></app-loader> -->
 
-    <!-- Employee Table -->
-    <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
-        <div class="p-grid">
-            <div class="p-col-12">
-                <p-table [value]="employees" [paginator]="true" [rows]="5" [scrollable]="true"
-                    class="shadow-md rounded-lg border border-gray-300 mb-4">
-                    <ng-template pTemplate="header">
-                        <tr class="bg-gray-200 text-gray-700">
-                            <th class="p-3">First Name</th>
-                            <th class="p-3">Last Name</th>
-                            <th class="p-3">Email</th>
-                            <th class="p-3">Role</th>
-                            <th class="p-3">Date</th>
-                            <th class="p-3">Attendance</th>
-                        </tr>
-                    </ng-template>
 
-                    <ng-template pTemplate="body" let-employee>
-                        <tr class="text-gray-600 hover:bg-gray-100 transition">
-                            <td class="p-3">{{ employee.firstName }}</td>
-                            <td class="p-3">{{ employee.lastName }}</td>
-                            <td class="p-3">{{ employee.emailId }}</td>
-                            <td class="p-3">{{ employee.role }}</td>
-                            <td class="p-3">{{ currentDate }}</td>
-                            <td class="p-3">
-                                <span [ngClass]="{
-                                    'text-green-600 font-medium': employee.attendanceStatus === 'Present',
-                                    'text-red-500 font-medium': employee.attendanceStatus === 'Absent'
-                                }">
-                                    {{ employee.attendanceStatus }}
-                                </span>
-                            </td>
-                        </tr>
-                    </ng-template>
-                </p-table>
-            </div>
-        </div>
+  <p-card class="flex-grow-1 overflow-auto shadow-3 surface-card border-round-lg" *ngIf="!loading">
+  
+    <div class="p-2">
+      <div class="flex flex-wrap justify-content-end gap-2">
+        <span class="p-input-icon-left w-full sm:w-20rem">
+          <i class="pi pi-search"></i>
+          <input
+            type="text"
+            pInputText
+            placeholder="Search Employee Name"
+            class="w-full sm:w-20rem"
+            [(ngModel)]="searchText"
+            (input)="filterEmployees()"
+          />
+        </span>
+      </div>
     </div>
-</div>
+
+    <div class="p-grid mt-4">
+      <div class="p-col-12">
+        <p-table
+          showGridlines
+          [value]="filteredEmployees"
+          [paginator]="true"
+          [rows]="5"
+          [scrollable]="true"
+          class="shadow-md rounded-lg border border-gray-300 p-datatable-striped p-datatable-hoverable"
+          [sortMode]="'multiple'"
+        >
+          <ng-template pTemplate="header">
+            <tr class="bg-indigo-100 text-indigo-900 font-semibold">
+              <th pSortableColumn="firstName" class="p-3 cursor-pointer">
+                First Name
+                <p-sortIcon field="firstName"></p-sortIcon>
+              </th>
+              <th pSortableColumn="lastName" class="p-3 cursor-pointer">
+                Last Name
+                <p-sortIcon field="lastName"></p-sortIcon>
+              </th>
+              <th pSortableColumn="emailId" class="p-3 cursor-pointer">
+                Email
+                <p-sortIcon field="emailId"></p-sortIcon>
+              </th>
+              <th pSortableColumn="role" class="p-3 cursor-pointer">
+                Role
+                <p-sortIcon field="role"></p-sortIcon>
+              </th>
+              <th class="p-3">Date</th>
+              <th class="p-3">Attendance</th>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="body" let-employee>
+            <tr class="text-gray-700 hover:bg-indigo-50 transition-colors duration-200">
+              <td class="p-3">{{ employee.firstName }}</td>
+              <td class="p-3">{{ employee.lastName }}</td>
+              <td class="p-3">{{ employee.emailId }}</td>
+              <td class="p-3">{{ employee.role }}</td>
+              <td class="p-3">{{ currentDate }}</td>
+              <td class="p-3">
+                <span
+                  class="px-3 py-1 rounded-3xl text-sm"
+                  [ngClass]="{
+                    'bg-green-100 text-green-800': employee.attendanceStatus === 'Present',
+                    'bg-red-100 text-red-800': employee.attendanceStatus === 'Absent',
+                    'bg-gray-200 text-gray-700': employee.attendanceStatus !== 'Present' && employee.attendanceStatus !== 'Absent'
+                  }"
+                >
+                  {{ employee.attendanceStatus }}
+                </span>
+              </td>
+            </tr>
+          </ng-template>
+
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="6" class="text-center p-4 text-gray-500 italic">No employees found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </div>
+
+  </p-card>
+

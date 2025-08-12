@@ -1,11 +1,46 @@
-<div class="container">
-  <!-- Loader - Initially visible -->
-  <!-- <div *ngIf="isLoading" class="loader-wrapper">
-    <div class="loader"></div>
-  </div> -->
-
-  <!-- Full Calendar - Initially hidden, shown after loading completes -->
+<!-- <div class="container">
   <div *ngIf="!isLoading">
     <full-calendar class="full-calendar" [options]="calendarOptions"></full-calendar>
   </div>
+</div> -->
+
+<div class="flex align-items-center justify-content-center px-3 py-2 mt-5 mb-5">
+  <h2 class="m-0 text-2xl font-semibold text-blue-700">📅 Holiday List</h2>
 </div>
+<!-- <div *ngIf="!isLoading" class="grid p-4">
+  <div class="col-12 md:col-6 lg:col-3">
+    <p-card class="shadow-3 surface-card border-round-xl overflow-hidden">
+      <div class="flex align-items-center gap-3">
+  
+        <img [src]="card.image"
+             alt="card image"
+             class="w-5rem h-5rem border object-cover" />
+
+        <div class="flex flex-column">
+          <div class="text-lg font-bold text-gray-800 mb-1">{{ card.title }}</div>
+          <div class="text-sm text-gray-600">{{ card.description }}</div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div> -->
+
+<div *ngIf="!isLoading" class="grid p-2">
+  <div *ngFor="let card of fixedEvents" class="col-12 md:col-6 lg:col-3">
+    <p-card class="shadow-3 surface-card border-round-xl overflow-hidden">
+      <div class="flex align-items-center gap-3">
+        <!-- Constant image for all cards -->
+        <img 
+          src="https://static.vecteezy.com/system/resources/previews/023/899/162/non_2x/party-popper-emoticon-face-vector.jpg" 
+          alt="Holiday Image" 
+          class="w-5rem h-5rem border object-cover" 
+        />
+        <div class="flex flex-column">
+          <div class="text-xl font-bold text-blue-700 mb-1 md:text-base">{{ card.title }}</div>
+          <div class="text-sm text-gray-600">{{ card.start | date:'fullDate' }}</div>
+        </div>
+      </div>
+    </p-card>
+  </div>
+</div>
+

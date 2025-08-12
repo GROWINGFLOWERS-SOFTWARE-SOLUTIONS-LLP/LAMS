@@ -1,7 +1,10 @@
 /* Spinner Centering */
-.p-progress-spinner {
+/* .p-progress-spinner {
   width: 70px !important;
   height: 70px !important;
   display: block !important;
   margin: auto !important;
+} */
+::ng-deep .p-tabPanel {
+  font-size: 8rem; /* Or use 18px, 20px, etc. */
 }

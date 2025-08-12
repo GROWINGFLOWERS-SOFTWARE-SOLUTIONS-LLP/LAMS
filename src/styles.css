@@ -1,18 +1,6 @@
 
 /* You can add global styles to this file, and also import other style files */
 *{
-    font-family:monospace;
-}
-html, body { height: 100%; }
-body { 
-    margin: 0;
-    
- }
-
-.w-50{
-    width: 50% !important;
-}
-
-.d-none{
-    display: none;
+    /* font-family: 'Poppins'; */
+     font-family: 'Poppins', sans-serif;
 }

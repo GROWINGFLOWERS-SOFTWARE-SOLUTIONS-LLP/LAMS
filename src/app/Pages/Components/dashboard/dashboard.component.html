@@ -1,195 +1,305 @@
-<!-- Loader Section -->
-<!-- <div *ngIf="isLoading" class="flex justify-content-center align-items-center p-5" style="height: 100vh;">
-    <p-progressSpinner></p-progressSpinner>
+<p-toast></p-toast>
+<div *ngIf="!isLoading" class="">
+    <div class="p-3 mb-4 border-bottom-1 surface-border">
+        <!-- <div class="text-2xl font-semibold text-gray-800 mb-1">📊 Dashboard</div> -->
+        <div class="text-2xl text-black-600 font-bold">
+            Welcome, <span class="font-bold text-primary">{{ dashboard.firstName }} {{ dashboard.lastName }}</span>!
+        </div>
+    </div>
+
+    <div class="grid px-2">
+        <div class="col-12 md:col-3 mb-2 px-2">
+            <p-card class="shadow-2 border-round-sm">
+                <div class="flex justify-content-between align-items-start">
+                    <div>
+                        <div class="text-xl font-semibold text-gray-700">Employees</div>
+                        <div class="text-2xl font-bold text-primary mt-2">{{ dashboardData.employeeCount }}</div>
+                    </div>
+                    <i class="pi pi-users text-5xl text-blue-500"></i>
+                </div>
+            </p-card>
+        </div>
+
+        <div class="col-12 md:col-3 mb-2 px-2">
+            <p-card class="shadow-2 border-round-sm">
+                <div class="flex justify-content-between align-items-start">
+                    <div>
+                        <div class="text-xl font-semibold text-gray-700">Department</div>
+                        <div class="text-2xl font-bold text-orange-500 mt-2">{{ dashboardData.departmentCount }}</div>
+                    </div>
+                    <i class="pi pi-building text-5xl text-orange-500"></i>
+                </div>
+            </p-card>
+        </div>
+
+        <div class="col-12 md:col-3 mb-2 px-2">
+            <div (click)="showProjectDetails(projects)" class="cursor-pointer">
+                <p-card class="shadow-2 border-round-sm hover:shadow-4 transition-shadow duration-200">
+                    <div class="flex justify-content-between align-items-start">
+                        <div>
+                            <div class="text-xl font-semibold text-gray-700">Projects</div>
+                            <div class="text-2xl font-bold text-green-500 mt-2">{{ dashboardData.activeProjectsCount }}
+                            </div>
+                        </div>
+                        <i class="pi pi-check-circle text-5xl text-green-500"></i>
+                    </div>
+                </p-card>
+            </div>
+        </div>
+
+        <!-- Main Dialog: Project List -->
+        <p-dialog header="Projects" [(visible)]="selectedProject" [modal]="true" [dismissableMask]="true">
+            <div *ngIf="selectedProject">
+                <p-table [value]="selectedProject" responsiveLayout="scroll" class="p-datatable-sm">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <!-- <th>project Id</th> -->
+                            <th>Project Name</th>
+                            <th *ngIf="dashboard.role !== 'Employee'">Assign</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-project>
+                        <tr>
+                            <!-- <td>{{project.projId}}</td> -->
+                            <td>{{ project.projectName }}</td>
+
+                            <td *ngIf="dashboard.role !== 'Employee'">
+                                <!-- *ngIf="dashboard.role !== 'Employee'" -->
+                                <p-button [label]="dashboard.role === 'Admin' ? 'Assign Manager' : 'Assign Employee'"
+                                    icon="pi pi-user-plus" [rounded]="true" [text]="true" [raised]="true"
+                                    severity="info" (click)="openAssignDialog(project.projectName,project.projId)" />
+                            </td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+            </div>
+        </p-dialog>
+
+        <!-- Second Dialog: Assign Employee -->
+        <p-dialog header="Assign" [(visible)]="assignDialogVisible" [modal]="true" [style]="{ width: '30vw' }">
+    <div class="mb-2 text-lg font-semibold">
+        Assign {{ isManagerList ? 'Manager' : 'Employee' }} to Project: 
+        <span class="text-primary">{{ selectedProjectName }}</span>
+    </div>
+
+    <div class="mb-2">
+        <input pInputText type="text" [(ngModel)]="searchText" placeholder="Search by Name" class="w-full" />
+    </div>
+
+    <p-table [value]="isManagerList ? managers : filteredEmployees()" [paginator]="true" [rows]="5"
+        [responsiveLayout]="'scroll'" [style]="{ 'min-height': '200px' }">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Name</th>
+                <th>Action</th>
+            </tr>
+        </ng-template>
+
+        <ng-template pTemplate="body" let-person>
+            <tr>
+                <td>
+                    <!-- Show full name depending on type -->
+                    <ng-container *ngIf="isManagerList">
+                        {{ person.managerName || '' }} {{ person.firstName || '' }} {{ person.lastName || '' }}
+                    </ng-container>
+                    <ng-container *ngIf="!isManagerList">
+                        {{ person.firstName || '' }} {{ person.lastName || '' }}
+                    </ng-container>
+                </td>
+                <td>
+                    <p-button icon="pi pi-plus" label="Assign" [rounded]="true" [text]="true" [raised]="true"
+                        severity="success" (click)="assignToProject(person)" />
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+</p-dialog>
+
+
+
+
+
+        <div class="col-12 md:col-3 mb-2 px-2">
+            <p-card class="shadow-2 border-round-sm">
+                <div class="flex justify-content-between align-items-start">
+                    <div>
+                        <div class="text-xl font-semibold text-gray-700">Reports</div>
+                        <div class="text-2xl font-bold text-purple-500 mt-2">32</div>
+                    </div>
+                    <i class="pi pi-file text-5xl text-purple-500"></i>
+                </div>
+            </p-card>
+        </div>
+    </div>
+
+
+<!-- <div class="grid p-3">
+  <div class="col-12">
+    <p-card class="w-full shadow-4">
+
+      <div class="text-2xl font-bold mb-3 text-blue-500">{{ project.name }}</div>
+
+      <div class="mb-4">
+        <div><strong>Manager:</strong> {{ project.manager }}</div>
+        <div><strong>Deadline:</strong> {{ project.deadline | date }}</div>
+        <div><strong>Status:</strong> {{ project.status }}</div>
+      </div>
+
+      <div>
+        <div class="font-semibold text-lg mb-2">Team Members</div>
+        <div class="grid">
+          <div *ngFor="let member of project.teamMembers" class="col-12 md:col-2 lg:col-2">
+            <p-card>
+              <div class="flex flex-column align-items-center gap-1">
+                
+                <div class="text-lg font-semibold">{{ member.name }}</div>
+                <div class="text-sm text-blue-500">{{ member.role }}</div>
+              </div>
+            </p-card>
+          </div>
+        </div>
+      </div>
+
+    </p-card>
+  </div>
 </div> -->
 
-<!-- Main Content (Displays only when not loading) -->
-<div *ngIf="!isLoading">
-    <!-- Welcome Message -->
-    <div class="text-xl p-2">
-        <b class="text-3xl">Welcome,</b> {{ dashboard.firstName}} {{dashboard.lastName}}!
-    </div>
-    <br>
+    <div class="grid p-3">
 
-    <!-- Summary Cards Row 1 -->
-    <div class="container mx-3">
-        <div class="grid justify-content-around">
-            <!-- Employees Card -->
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="card max-w-22rem shadow-3">
-                    <p-card header="Employees">
-                        <div class="flex justify-content-between">
-                            <p class="m-0">{{ dashboardData.employeeCount }} Employees</p>
-                            <i class="pi pi-users" style="color: #5db6fa; font-size:45px;"></i>
-                        </div>
-                    </p-card>
+        <!-- 🎉 Holiday List -->
+        <div class="col-12 md:col-6">
+            <div class="shadow-3 border-round-xl h-full overflow-hidden">
+                <!-- Custom header -->
+                <div class="bg-cyan-100 text-gray-800 font-bold text-xl p-4">
+                    🎉 Holiday List
                 </div>
-            </div>
 
-            <!-- Departments Card -->
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="card max-w-22rem shadow-3">
-                    <p-card header="Department">
-                        <div class="flex justify-content-between">
-                            <p class="m-0">{{ dashboardData.departmentCount }} Departments</p>
-                            <i class="pi pi-building" style="color: #82f784; font-size:45px;"></i>
+                <!-- Card body using p-card content only -->
+                <p-card class="m-0 border-none border-round-none">
+                    <ng-template pTemplate="content">
+                        <div style="max-height: 200px; overflow-y: auto" class="custom-scrollbar p-2">
+                            <ul class="list-none m-0 p-0">
+                                <li *ngFor="let holiday of holidays"
+                                    class="mb-3 flex align-items-center border-bottom-1 border-gray-200 pb-2">
+                                    <i class="pi pi-calendar text-blue-500 mr-3 text-lg"></i>
+                                    <div>
+                                        <div class="font-medium text-lg text-gray-800">{{ holiday.holidayName }}</div>
+                                        <div class="text-sm text-gray-500">{{ holiday.holidayDate | date: 'dd-MMM-yyyy'
+                                            }}</div>
+                                    </div>
+                                </li>
+                                <li *ngIf="holidays.length === 0" class="text-sm text-gray-500 text-center py-3">
+                                    No holidays found.
+                                </li>
+                            </ul>
                         </div>
-                    </p-card>
-                </div>
-            </div>
-
-            <!-- Projects Summary Card -->
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="card max-w-22rem shadow-3">
-                    <p-card header="Projects">
-                        <div class="flex justify-content-between">
-                            <p (click)="showProjectDetails(projects)" title="click here to show projects" class="m-0">{{dashboardData.activeProjectsCount}}
-                                Active Projects</p>
-                            <i class="pi pi-chart-pie" style="color: #ffd952; font-size:45px;"></i>
-                        </div>
-                    </p-card>
-                </div>
+                    </ng-template>
+                </p-card>
             </div>
         </div>
 
-        <!-- Project Details Modal -->
-        <p-dialog header="Project Details" [(visible)]="selectedProject" modal="true" [closable]="true"
-            styleClass="p-fluid p-dialog-max-width">
-            <div *ngIf="selectedProject">
-                <div class="card">
-                    <p-table [value]="selectedProject" [tableStyle]="{ 'min-width': '50rem' }">
-                        <ng-template pTemplate="header">
-                            <tr>
-                                <th>Project Name</th>
-                                <th>Actions</th>
-                            </tr>
-                        </ng-template>
-                        <ng-template pTemplate="body" let-project>
-                            <tr>
-                                <td>{{ project.projectName }}</td>
-                                <td><p-button label="Assign Employee" icon="pi pi-user-plus" disabled
-                                        (click)="showAssignProjectForm(project.projectName)"></p-button></td>
-                            </tr>
-                        </ng-template>
-                    </p-table>
+        <!-- 📝 Employee Leave List (already in correct format, no change needed) -->
+        <div class="col-12 md:col-6">
+            <div class="shadow-3 border-round-xl h-full overflow-hidden">
+                <div class="bg-cyan-100 text-gray-800 font-bold text-xl p-4">
+                    📝 Employee Leave List
                 </div>
-            </div>
-        </p-dialog>
-
-        <!-- Assign Project to Employees Modal -->
-        <p-dialog header="Assign Employee to {{ currentProjectName }} Project" [(visible)]="isProjectListVisible"
-            modal="true" [closable]="true" styleClass="p-fluid p-dialog-max-width">
-            <form (ngSubmit)="assignProjectToEmployee()">
-                <div class="grid">
-                    <div class="col-12 md:col-6">
-                        <!-- Employee Dropdown -->
-                        <p-dropdown [options]="employees" [(ngModel)]="selectedEmployee.employee" optionLabel="fullName"
-                            placeholder="Select Employee" [showClear]="true" [filter]="true" name="employee">
-                        </p-dropdown>
-                    </div>
-                    <div class="col-12 md:col-6">
-                        <!-- Role Input -->
-                        <p-inputText [(ngModel)]="selectedEmployee.role" placeholder="Role" name="role"
-                            class="w-full"></p-inputText>
-                    </div>
-                    <div class="col-12 md:col-6">
-                        <!-- Manager Dropdown (Optional) -->
-                        <p-dropdown [options]="managers" [(ngModel)]="selectedEmployee.manager"
-                            optionLabel="managerName" placeholder="Select Manager (Optional)" [showClear]="true"
-                            name="manager">
-                        </p-dropdown>
-                    </div>
-                </div>
-                <!-- Action Buttons -->
-                <div class="flex justify-content-end mt-4">
-                    <p-button label="Assign" type="submit" icon="pi pi-check" class="p-button-success"></p-button>
-                    <p-button label="Cancel" icon="pi pi-times" class="p-button-danger ml-3"
-                        (click)="isProjectListVisible = false"></p-button>
-                </div>
-            </form>
-        </p-dialog>
-    </div>
-
-    <!--Leave Summary Cards -->
-    <div *ngIf="dashboard.role !='Admin'" class="container mx-3 md:mx-8">
-        <div class="grid">
-            <div class="col-12 md:col-6">
-                <div class="cards max-w-42rem shadow-3 p-1">
-                    <div>
-                        <h2>Leave Summary</h2>
-                    </div>
-                    <div class="container ml-3 p-5">
-                        <tr>
-                            <td>
-                                <li>Total Leaves - {{dashboardData.totalLeaves}}</li>
-                            </td>
-                        </tr>
-                        <br>
-                        <tr>
-                            <td>
-                                <li>Leaves Applied - {{dashboardData.leaveApplied}}</li>
-                            </td>
-                        </tr>
-                        <br>
-                        <tr>
-                            <td>
-                                <li>Remaining Leaves - {{dashboardData.leaveBalance}}</li>
-                            </td>
-                        </tr>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Attendance Summary Cards -->
-            <div class="col-12 md:col-6 lg:col-6">
-                <div class="cards max-w-42rem shadow-3 p-1">
-                    <div>
-                        <h2>Attendance Summary</h2>
-                    </div>
-                    <div class="container ml-3 p-5">
-                        <tr>
-                            <td>
-                                <li>Total Attendance - {{dashboardData.totalAttendance}}</li>
-                            </td>
-                        </tr>
-                        <br>
-                        <tr>
-                            <td>
-                                <li>Absent - {{dashboardData.absentCount}}</li>
-                            </td>
-                        </tr>
-                        <br>
-                        <br>
-                    </div>
-                </div>
+                <p-card class="m-0 border-none border-round-none">
+                    <ng-template pTemplate="content">
+                        <p-table [value]="employeeLeaves" scrollable="true" scrollHeight="200px"
+                            responsiveLayout="scroll" emptyMessage="No leave records found" class="p-datatable-sm">
+                            <ng-template pTemplate="header">
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Type</th>
+                                    <th>From</th>
+                                    <th>To</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template pTemplate="body" let-leave>
+                                <tr>
+                                    <td>{{ leave.employeeName }}</td>
+                                    <td>{{ leave.leaveType }}</td>
+                                    <td>{{ leave.fromDate }}</td>
+                                    <td>{{ leave.toDate }}</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </ng-template>
+                </p-card>
             </div>
         </div>
+
     </div>
 
-    <!-- Additional Cards -->
-    <div class="container mx-3">
-        <div class="grid justify-content-around">
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="card max-w-22rem shadow-3">
-                    <p-card header="Reports">
-                        <div class="flex justify-content-between">
-                            <p class="m-0">View/Download Reports</p>
-                            <i class="pi pi-file" style="color: #72c9ac; font-size: 45px;"></i>
-                        </div>
-                    </p-card>
-                </div>
-            </div>
+    <div class="grid p-3" *ngIf="dashboard.role !='Admin'">
 
-            <div class="col-12 md:col-6 lg:col-3">
-                <div class="card max-w-22rem shadow-3">
-                    <p-card header="Settings">
-                        <div class="flex justify-content-between">
-                            <p class="m-0">Configure IceHrm</p>
-                            <i class="pi pi-cog" style="color: rgb(111, 111, 238); font-size: 45px;"></i>
-                        </div>
-                    </p-card>
+        <div class="col-12 md:col-6">
+            <div class="shadow-3 border-round-xl h-full overflow-hidden">
+                <!-- Custom header -->
+                <div class="bg-cyan-100 text-gray-800 font-bold text-xl p-4">
+                    📋 Leave Summary
                 </div>
+
+                <!-- Card body using p-card content only -->
+                <p-card class="m-0 border-none border-round-none">
+                    <ng-template pTemplate="content">
+                        <div class="flex flex-column gap-4 p-3 h-10rem">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="text-lg font-semibold text-gray-700">Total Leaves</div>
+                                <div class="text-2xl font-bold text-purple-600">
+                                    {{ dashboardData.totalLeaves }}
+                                </div>
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="text-lg font-semibold text-gray-700">Leaves Applied</div>
+                                <div class="text-2xl font-bold text-purple-600">
+                                    {{ dashboardData.leaveApplied }}
+                                </div>
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="text-lg font-semibold text-gray-700">Remaining Leaves</div>
+                                <div class="text-2xl font-bold text-purple-600">
+                                    {{ dashboardData.leaveBalance }}
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-card>
             </div>
         </div>
+
+        <div class="col-12 md:col-6">
+            <div class="shadow-3 border-round-xl h-full overflow-hidden">
+                <!-- Custom header -->
+                <div class="bg-cyan-100 text-gray-800 font-bold text-xl p-4">
+                    📅 Attendance Summary
+                </div>
+
+                <!-- Card body using p-card content only -->
+                <p-card class="m-0 border-none border-round-none">
+                    <ng-template pTemplate="content">
+                        <div class="flex flex-column gap-4 p-3 h-10rem">
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="text-lg font-semibold text-gray-700">Total Attendance</div>
+                                <div class="text-2xl font-bold text-teal-600">
+                                    {{ dashboardData.totalDaysMarked }}
+                                </div>
+                            </div>
+                            <div class="flex justify-content-between align-items-center">
+                                <div class="text-lg font-semibold text-gray-700">Absent Count</div>
+                                <div class="text-2xl font-bold text-red-600">
+                                    {{ dashboardData.totalAbsent }}
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </p-card>
+            </div>
+        </div>
+
     </div>
+
+
 </div>

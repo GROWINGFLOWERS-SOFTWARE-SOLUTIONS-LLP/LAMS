@@ -3,10 +3,6 @@ import { FormGroup, FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ApiService } from '../../../Core/Services/api.service';
 import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
-import { InputTextModule } from 'primeng/inputtext';
-import { PasswordModule } from 'primeng/password';
-import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 import { ProgressSpinnerModule } from 'primeng/progressspinner'; // Import ProgressSpinner
 import { ChangeDetectorRef } from '@angular/core'; // Import ChangeDetectorRef
@@ -15,18 +11,24 @@ import { ToastModule } from 'primeng/toast';
 import { CardModule } from 'primeng/card';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { CommonModule } from '@angular/common';
+import { AvatarModule } from 'primeng/avatar';
+
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     CardModule, ImageModule,FormsModule,
-    FormsModule,
+    FormsModule, AvatarModule,
     RouterModule,
     ReactiveFormsModule,
     CommonModule,
     InputTextModule,
     PasswordModule,
-    ButtonModule,
+   ButtonModule,
     ProgressSpinnerModule,
     ToastModule
 ],
@@ -34,7 +36,9 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
   styleUrls: ['./login.component.css'],
   providers: [MessageService] // Provide MessageService here
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit{
+
+
 
   loginForm!: FormGroup;
 

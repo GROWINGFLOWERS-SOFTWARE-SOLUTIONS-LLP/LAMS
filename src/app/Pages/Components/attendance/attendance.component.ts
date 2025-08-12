@@ -17,13 +17,16 @@ import { ToastModule } from 'primeng/toast';
 import { LoaderComponent } from '../loader/loader.component';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
-
+import { CalendarModule } from 'primeng/calendar';
+import { FormsModule } from '@angular/forms'; // <-- Make sure FormsModule is imported in your module
+import { CardModule } from 'primeng/card';
 @Component({
   selector: 'app-attendance',
   standalone: true,
   imports: [
     DialogModule,
     ButtonModule,
+    CardModule,
     TableModule,
     CommonModule,
     MenubarModule,
@@ -34,7 +37,9 @@ import { EmployeeService } from '../../../Core/Services/Employee/employee.servic
     RippleModule,
     ToastModule,
     LoaderComponent,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    CalendarModule,
+    FormsModule,
   ],
   templateUrl: './attendance.component.html',
   styleUrls: ['./attendance.component.css'],
@@ -45,9 +50,11 @@ export class AttendanceComponent implements OnInit {
   currentTime: string = '';
   attendance_date: string = '';
   attendanceRecords: any[] = [];
+  filteredAttendanceRecords: any[] = [];
   hasPunchedIn: boolean = false;
   loading: boolean = true;
   attendance: any;
+  fromDate: Date | null = null;
 
   constructor(
     private authService: AuthService,
@@ -208,15 +215,15 @@ export class AttendanceComponent implements OnInit {
   loadAttendanceRecords() {
     this.loading = true;
     const empId = this.attendance?.empId;
-  
+
     this.employeeService.getAllAttendance().subscribe({
       next: (response) => {
         if (response && Array.isArray(response.data)) {
           const employeeRecords = response.data.filter((record: any) => record.employeeId == empId);
-  
+
           this.attendanceRecords = employeeRecords
             .map((record: any) => ({
-              date: record.date,
+              date: record.date,      // date format: dd/mm/yyyy expected
               checkIn: record.checkIn,
               checkOut: record.checkOut,
               breaktime: record.breaktime,
@@ -227,9 +234,12 @@ export class AttendanceComponent implements OnInit {
               const [dayB, monthB, yearB] = b.date.split('/').map(Number);
               const dateA = new Date(yearA, monthA - 1, dayA);
               const dateB = new Date(yearB, monthB - 1, dayB);
-              return dateB.getTime() - dateA.getTime(); // Descending sort
+              return dateB.getTime() - dateA.getTime(); // Descending
             });
-  
+
+          // Show all records initially
+          this.filteredAttendanceRecords = [...this.attendanceRecords];
+
           const todayDate = new Date().toLocaleDateString('en-GB');
           const todayRecord = this.attendanceRecords.find((record: any) => record.date === todayDate);
           if (todayRecord && todayRecord.checkIn && !todayRecord.checkOut) {
@@ -244,7 +254,29 @@ export class AttendanceComponent implements OnInit {
       }
     });
   }
-  
+
+  onDateChange() {
+    if (!this.fromDate) {
+      this.filteredAttendanceRecords = [...this.attendanceRecords];
+      return;
+    }
+
+    const selectedDateStr = this.formatDateToDDMMYYYY(this.fromDate);
+
+    this.filteredAttendanceRecords = this.attendanceRecords.filter(record => record.date === selectedDateStr);
+  }
+
+  clearDateFilter() {
+    this.fromDate = null;
+    this.filteredAttendanceRecords = [...this.attendanceRecords];
+  }
+
+  formatDateToDDMMYYYY(date: Date): string {
+    const day = date.getDate().toString().padStart(2, '0');
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
 
   checkPunchInStatus() {
     const hasPunchedInSession = sessionStorage.getItem('hasPunchedIn');

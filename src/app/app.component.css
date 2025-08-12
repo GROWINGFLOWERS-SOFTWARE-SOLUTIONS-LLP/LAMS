@@ -1,16 +1,13 @@
 /* Apply flex layout to make the page fill the screen */
-body, html {
-    height: 100%;
-    margin: 0;
-  }
-  
-  app-root {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  router-outlet + * {
-    flex: 1;
-  }
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.flex-grow-1 {
+  flex-grow: 1;
+}
+
+.pb-6 {
+  padding-bottom: 30rem;
+}
   

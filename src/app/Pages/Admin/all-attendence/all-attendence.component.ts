@@ -12,19 +12,26 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { FormsModule } from '@angular/forms';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
-
+import { CardModule } from 'primeng/card';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 @Component({
     selector: 'app-all-attendence',
     standalone: true,
     imports: [
         CommonModule,
+        IconFieldModule,
+        InputIconModule,
+        FormsModule,
         ButtonModule,
         PaginatorModule,
         ConfirmDialogModule,
         DialogModule,
         TableModule,
+        CardModule,
         CalendarModule,
         InputTextModule,
         DropdownModule,
@@ -36,15 +43,17 @@ import { AdminService } from '../../../Core/Services/Admin/admin.service';
     styleUrls: ['./all-attendence.component.css']
 })
 export class AllAttendenceComponent implements OnInit {
-    employees: any = [];
-    departments: any = [];
-    roles: any = [];
+    employees: any[] = [];
+    filteredEmployees: any[] = [];
+    departments: any[] = [];
+    roles: any[] = [];
     employeeForm!: FormGroup;
     showDialog: boolean = false;
     isEditing: boolean = false;
     selectedEmployeeId: number | null = null;
     loading: boolean = false;
     currentDate: string = this.formatDate(new Date());  // Add current date
+    searchText: string = '';
 
     constructor(
         private employeeService: EmployeeService,
@@ -78,6 +87,8 @@ export class AllAttendenceComponent implements OnInit {
         this.employeeService.getEmployees().subscribe({
             next: (data) => {
                 this.employees = data.filter((emp: any) => emp.role !== 'Admin');
+                this.filteredEmployees = [...this.employees];
+
                 const attendancePromises = this.employees.map((emp: any) =>
                     this.checkAttendanceStatus(emp.empId).then(status => {
                         emp.attendanceStatus = status;
@@ -141,14 +152,44 @@ export class AllAttendenceComponent implements OnInit {
     }
 
     loadDepartments() {
-        this.adminService.getAllDepartmentsList().subscribe((data) => {
-            this.departments = data;
+        this.adminService.getAllDepartmentsList().subscribe({
+            next: (response: any) => {
+                console.log('Departments API response:', response);
+                // Adjust depending on your API shape:
+                this.departments = response.data || response || [];
+            },
+            error: (err) => {
+                console.error('Error loading departments', err);
+                this.departments = [];
+            }
         });
     }
 
     loadRoles() {
-        this.adminService.getAllRolesList().subscribe((data) => {
-            this.roles = data;
+        this.adminService.getAllRolesList().subscribe({
+            next: (response: any) => {
+                console.log('Roles API response:', response);
+                this.roles = response.data || response || [];
+            },
+            error: (err) => {
+                console.error('Error loading roles', err);
+                this.roles = [];
+            }
         });
     }
+
+
+    filterEmployees() {
+        const search = this.searchText.trim().toLowerCase();
+
+        if (!search) {
+            this.filteredEmployees = [...this.employees];
+        } else {
+            this.filteredEmployees = this.employees.filter(emp =>
+                emp.firstName.toLowerCase().includes(search) ||
+                emp.lastName.toLowerCase().includes(search)
+            );
+        }
+    }
+
 }

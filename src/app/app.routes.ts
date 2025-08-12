@@ -16,6 +16,7 @@ import { ManageHolidaysComponent } from './Pages/Admin/manage-holidays/manage-ho
 import { RolesListComponent } from './Pages/Admin/roles-list/roles-list.component';
 import { ChangePasswordComponent } from './Pages/Auth/change-password/change-password.component';
 import { AdminLeaveRequestComponent } from './Pages/Admin/admin-leave-request/admin-leave-request.component';
+import { NotificationComponent } from './Pages/Admin/notification/notification.component';
 
 
 
@@ -54,7 +55,8 @@ export const routes: Routes = [
       {
         path: 'manager-leave-request',
         component:AdminLeaveRequestComponent
-      }
+      },
+       { path: 'notification', component : NotificationComponent }
     ]
   },
   

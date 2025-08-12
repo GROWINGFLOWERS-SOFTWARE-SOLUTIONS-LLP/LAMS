@@ -7,6 +7,9 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 import { DialogModule } from 'primeng/dialog';
 import { MessageService } from 'primeng/api';
+import { InputTextModule } from 'primeng/inputtext';
+import { CardModule } from 'primeng/card';
+
 @Component({
   selector: 'app-request',
   standalone: true,
@@ -14,8 +17,10 @@ import { MessageService } from 'primeng/api';
     TableModule,
     ButtonModule,
     FormsModule,
+    InputTextModule,
     CommonModule,
     ProgressSpinnerModule,
+    CardModule,
     DialogModule
   ],
   providers: [MessageService],
@@ -25,7 +30,8 @@ import { MessageService } from 'primeng/api';
 export class RequestComponent implements OnInit {
   leaveRequests: any[] = []; // Your leave data here
   isLoading: boolean = false; // Show loader if needed
-
+filteredLeaveRequests: any[] = [];
+  searchTerm: string = '';
   displayDialog: boolean = false;
   actionType: 'approve' | 'reject' = 'approve';
   selectedRequest: any;
@@ -40,20 +46,52 @@ export class RequestComponent implements OnInit {
     this.getAllPendingLeaves()
   }
 
-  getAllPendingLeaves(): void {
-    this.leaveService.getAllPendingLeaves().subscribe({
-      next: (data: any) => {
-        // Check if data is valid and the role is not 'Manager'
-        this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
-      },
-      error: (error: any) => {
-        this.leaveRequests = [];
-      },
-      complete: () => {
-        this.isLoading = false;
-      }
+  
+  // getAllPendingLeaves(): void {
+  //   this.leaveService.getAllPendingLeaves().subscribe({
+  //     next: (data: any) => {
+  //       this.leaveRequests = data.filter((item:any) => item.employeeRole !== 'Manager');
+  //     },
+  //     error: (error: any) => {
+  //       this.leaveRequests = [];
+  //     },
+  //     complete: () => {
+  //       this.isLoading = false;
+  //     }
+  //   });
+  // }
+
+getAllPendingLeaves(): void {
+  this.isLoading = true;
+  this.leaveService.getAllPendingLeaves().subscribe({
+    next: (data: any) => {
+      this.leaveRequests = data.filter((item: any) => item.employeeRole !== 'Manager');
+      this.filterLeaveRequestsByName(); // Immediately apply filtering on load
+    },
+    error: (error: any) => {
+      this.leaveRequests = [];
+      this.filteredLeaveRequests = [];
+    },
+    complete: () => {
+      this.isLoading = false;
+    }
+  });
+}
+
+
+filterLeaveRequestsByName(): void {
+  const term = this.searchTerm.trim().toLowerCase();
+  if (term) {
+    this.filteredLeaveRequests = this.leaveRequests.filter(request => {
+      const fullName = `${request.firstName ?? ''} ${request.lastName ?? ''}`.toLowerCase();
+      return fullName.includes(term);
     });
+  } else {
+    this.filteredLeaveRequests = [...this.leaveRequests];
   }
+}
+
+
 
   openDialog(type: 'approve' | 'reject', request: any) {
     this.actionType = type;

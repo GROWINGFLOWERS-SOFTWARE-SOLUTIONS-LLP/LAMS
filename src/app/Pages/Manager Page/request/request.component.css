@@ -1,4 +1,4 @@
-/* Styling for the Leave Management page */
+/* 
 h2 {
   text-align: center;
   margin-bottom: 20px;
@@ -14,15 +14,15 @@ h2 {
   box-sizing: border-box;
 }
 
-/* Center the loader in the middle of the page */
+
 .loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 400px; /* Adjust height as per your layout */
+  height: 400px;
 }
 
 .custom-spinner {
   width: 50px;
   height: 50px;
-}
+} */
