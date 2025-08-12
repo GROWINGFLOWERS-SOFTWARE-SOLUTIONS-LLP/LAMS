@@ -34,10 +34,19 @@ export class AdminLeaveRequestComponent {
 
   searchTerm: string = '';
 
+
   displayDialog: boolean = false;
   actionType: 'approve' | 'reject' = 'approve';
   selectedRequest: any;
   reason: string = '';
+
+
+  originalData: any[] = [];
+  filterName: string = '';
+  filterStartDate: string = '';
+  filterEndDate: string = '';
+
+ 
 
   constructor(
     private leaveService: ManagerService,
@@ -52,9 +61,18 @@ export class AdminLeaveRequestComponent {
     this.isLoading = true;
     this.leaveService.getAllPendingLeaves().subscribe({
       next: (data: any) => {
+<<<<<<< HEAD
         const nonEmployeeLeaves = data.filter((item: any) => item.employeeRole !== 'Employee');
         this.leaveRequests = nonEmployeeLeaves;
         this.filteredLeaveRequests = [...nonEmployeeLeaves];
+=======
+        // Check if data is valid and the role is not 'Employee'
+        console.log("data ", data);
+        this.leaveRequests = data.filter((item: any) => item.employeeRole == 'Employee');
+        console.log("this.leaveRequests 123 ", this.leaveRequests);
+       // this.originalData = data.filter((item: any) => item.employeeRole === 'Employee');
+      this.leaveRequests = [...this.leaveRequests];
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
       },
       error: (error: any) => {
         this.leaveRequests = [];
@@ -64,6 +82,25 @@ export class AdminLeaveRequestComponent {
         this.isLoading = false;
       }
     });
+    console.log("this.leaveRequests @@@"+ this.leaveRequests);
+  }
+
+
+  applyFilters(): void {
+    this.leaveRequests = this.leaveRequests.filter((item: any) => {
+      const nameMatch = !this.filterName || item.firstName.toLowerCase().includes(this.filterName.toLowerCase());
+      const startMatch = !this.filterStartDate || new Date(item.startDate) >= new Date(this.filterStartDate);
+      const endMatch = !this.filterEndDate || new Date(item.endDate) <= new Date(this.filterEndDate);
+      return nameMatch && startMatch && endMatch;
+    });
+  }
+  
+  resetFilters(): void {
+    this.filterName = '';
+    this.filterStartDate = '';
+    this.filterEndDate = '';
+   // this.leaveRequests = [...this.leaveRequests];
+   this.getAllPendingLeaves();
   }
 
   filterLeavesByName() {

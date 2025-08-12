@@ -245,6 +245,7 @@ export class AttendanceComponent implements OnInit {
           if (todayRecord && todayRecord.checkIn && !todayRecord.checkOut) {
             this.hasPunchedIn = true;
           }
+
         }
         this.loading = false;
       },
@@ -253,6 +254,8 @@ export class AttendanceComponent implements OnInit {
         this.loading = false;
       }
     });
+
+    console.log(this.attendanceRecords);
   }
 
   onDateChange() {

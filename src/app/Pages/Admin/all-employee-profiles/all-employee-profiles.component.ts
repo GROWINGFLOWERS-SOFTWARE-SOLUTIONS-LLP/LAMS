@@ -40,7 +40,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
     selectedEmployeeId: number | null = null;
     loading: boolean = false;
     setPassword: any;
+<<<<<<< HEAD
     searchTerm: string = '';
+=======
+    first: number =0;
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
 
     constructor(
         private employeeService: EmployeeService,
@@ -54,6 +58,10 @@ export class AllEmployeeProfilesComponent implements OnInit {
         this.loadForm();
         this.loadEmployees();
         this.loadDepartments();
+<<<<<<< HEAD
+=======
+         this.loadManagers();
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
         this.loadRoles();
     }
 
@@ -65,12 +73,17 @@ export class AllEmployeeProfilesComponent implements OnInit {
             mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', [Validators.required]],
             role: ['', [Validators.required]],
+<<<<<<< HEAD
+=======
+             manager: ['', [Validators.required]],
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
             joiningDate: ['', [Validators.required]],
             address: ['', [Validators.required]]
         });
     }
 
     loadEmployees() {
+<<<<<<< HEAD
         this.loading = true;
         this.employeeService.getEmployees().subscribe({
             next: (data) => {
@@ -83,6 +96,18 @@ export class AllEmployeeProfilesComponent implements OnInit {
                 this.loading = false;
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
             }
+=======
+        this.loading = true; // Set loading to true
+        this.employeeService.getEmployees().subscribe((data) => {
+            
+            this.employees = data;
+            console.log('All Employee; ', this.employees)
+            this.loading = false; // Set loading to false when data is loaded
+        }, (error) => {
+            console.error('Error loading employees:', error);
+            this.loading = false; // Set loading to false on error
+            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
         });
     }
 
@@ -104,8 +129,16 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     addEmployee() {
+<<<<<<< HEAD
         if (this.employeeForm.valid) {
             const employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' };
+=======
+       console.log("employeeForm    " , this.employeeForm.value);
+        if (this.employeeForm.valid) {
+          
+            let employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' }
+           
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
             this.employeeService.addEmployee(employeeForm).subscribe({
                 next: () => {
                     this.loadEmployees();

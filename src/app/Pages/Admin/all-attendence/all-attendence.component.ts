@@ -15,9 +15,12 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { FormsModule } from '@angular/forms';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
+<<<<<<< HEAD
 import { CardModule } from 'primeng/card';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+=======
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
 @Component({
     selector: 'app-all-attendence',
     standalone: true,
@@ -43,10 +46,16 @@ import { InputIconModule } from 'primeng/inputicon';
     styleUrls: ['./all-attendence.component.css']
 })
 export class AllAttendenceComponent implements OnInit {
+<<<<<<< HEAD
     employees: any[] = [];
     filteredEmployees: any[] = [];
     departments: any[] = [];
     roles: any[] = [];
+=======
+    employees: any [] = [];
+    departments: any = [];
+    roles: any = [];
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
     employeeForm!: FormGroup;
     showDialog: boolean = false;
     isEditing: boolean = false;
@@ -54,6 +63,12 @@ export class AllAttendenceComponent implements OnInit {
     loading: boolean = false;
     currentDate: string = this.formatDate(new Date());  // Add current date
     searchText: string = '';
+
+
+     attendList: any[] = [];
+     fromDate: string = '';
+     toDate: string = '';
+     allEmployees: any[] = [];
 
     constructor(
         private employeeService: EmployeeService,
@@ -79,18 +94,71 @@ export class AllAttendenceComponent implements OnInit {
             role: ['', [Validators.required]],
             joiningDate: ['', [Validators.required]],
             address: ['', [Validators.required]],
+
         });
     }
+    downloadFilteredData() {
+    const headers = ['First Name', 'Last Name', 'Email', 'Role', 'Date', 'Attendance'];
+    const csvRows: string[] = [];
+    csvRows.push(headers.join(','));
+
+    this.employees.forEach(emp => {
+      const row = [
+        emp.firstName || '',
+        emp.lastName || '',
+        emp.emailId || '',
+        emp.role || '',
+        emp.joiningDate || '',
+        emp.attendanceStatus || ''
+      ];
+      csvRows.push(row.join(','));
+    });
+
+    const csvContent = 'data:text/csv;charset=utf-8,' + csvRows.join('\n');
+    const encodedUri = encodeURI(csvContent);
+    const link = document.createElement('a');
+    link.setAttribute('href', encodedUri);
+    link.setAttribute('download', 'filtered_attendance.csv');
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+    
+        filterByDateRange() {
+                if (this.fromDate && this.toDate) {
+    const from = new Date(this.fromDate);
+    const to = new Date(this.toDate);
+console.log(from);
+console.log(to);
+    this.employees = this.allEmployees.filter(emp => {
+      const empDate = new Date(emp.joiningDate); 
+      console.log("empdate joiningDate"+emp.joiningDate)
+      console.log("empdate"+empDate)
+      return empDate >= from && empDate <= to;
+
+    });
+  } else {
+   
+    this.employees = [...this.allEmployees];
+  }
+        }
 
     loadEmployees() {
         this.loading = true;
         this.employeeService.getEmployees().subscribe({
             next: (data) => {
+                console.log(data);
                 this.employees = data.filter((emp: any) => emp.role !== 'Admin');
+<<<<<<< HEAD
                 this.filteredEmployees = [...this.employees];
+=======
+
+                console.log("employees" + JSON.stringify(this.employees)  );
+                this.allEmployees = data.filter((emp: any) => emp.role !== 'Admin');
+>>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
 
                 const attendancePromises = this.employees.map((emp: any) =>
-                    this.checkAttendanceStatus(emp.empId).then(status => {
+                    this.checkAttendanceStatus(data[0].employeeId).then(status => {
                         emp.attendanceStatus = status;
                     })
                 );
@@ -108,15 +176,51 @@ export class AllAttendenceComponent implements OnInit {
                 });
             }
         });
+        console.log("this.checkAttendanceStatus");
     }
 
     async checkAttendanceStatus(employeeId: number): Promise<string> {
+        console.log("getAllAttendanceEmployee()");
         return new Promise((resolve) => {
             this.employeeService.getAllAttendanceEmployee().subscribe({
                 next: (response: any) => {
+
+
+
+
+
+
+
+
+
+
+
+                 console.log("response "+ JSON.stringify(response) );
+
+    //                  const allAttendance = response?.data || [];
+    // const today = this.formatDate(new Date());
+
+    // this.attendList = allAttendance.map((att: any) => {
+    //   return {
+    //     firstName: 'N/A',
+    //     lastName: 'N/A',
+    //     emailId: 'N/A',
+    //     role: 'Employee',
+    //     attendanceStatus: att.checkIn ? 'Present' : 'Absent',
+    //     date: att.date
+    //   };
+    // });
+
+
+
+
+
+
+
+
                     const allAttendance = response?.data || [];
                     const today = this.formatDate(new Date());
-
+console.log("employeeId "+ employeeId);
                     const attendanceForEmployeeToday = allAttendance.find((att: any) => {
                         const attId = att.employeeId;
                         const currentId = BigInt(employeeId).toString();
