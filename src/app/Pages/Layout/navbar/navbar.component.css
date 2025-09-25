@@ -1,10 +1,5 @@
 
-::ng-deep .custom-overlay {
-  /* background-color: #679de4 !important;
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); */
-  margin: 0;
-}
+
 
 .active-link-blue {
   color: black !important; /* Tailwind's blue-600 hex or pick your blue */

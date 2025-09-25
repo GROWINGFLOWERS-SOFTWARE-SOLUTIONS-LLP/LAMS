@@ -11,7 +11,7 @@ import { ToastModule } from 'primeng/toast';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
-import { ProgressSpinnerModule } from 'primeng/progressspinner'; 
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
 import { CardModule } from 'primeng/card';
@@ -37,14 +37,11 @@ export class AllEmployeeProfilesComponent implements OnInit {
     employeeForm!: FormGroup;
     showDialog: boolean = false;
     isEditing: boolean = false;
-    selectedEmployeeId: number | null = null;
+    selectedEmployeeId: String | null = null;
     loading: boolean = false;
     setPassword: any;
-<<<<<<< HEAD
     searchTerm: string = '';
-=======
-    first: number =0;
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
+    showManagerDropdown: boolean = false;  // <-- add this
 
     constructor(
         private employeeService: EmployeeService,
@@ -52,18 +49,25 @@ export class AllEmployeeProfilesComponent implements OnInit {
         private formBuilder: FormBuilder,
         private messageService: MessageService,
         private confirmationService: ConfirmationService,
-    ) {}
+    ) { }
 
     ngOnInit(): void {
         this.loadForm();
         this.loadEmployees();
         this.loadDepartments();
-<<<<<<< HEAD
-=======
-         this.loadManagers();
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
         this.loadRoles();
+        this.loadManagers();
+
+        // ✅ Watch role changes
+        this.employeeForm.get('role')?.valueChanges.subscribe(role => {
+            this.showManagerDropdown = role?.toLowerCase() === 'employee';
+            if (!this.showManagerDropdown) {
+                this.employeeForm.get('manager')?.reset();
+            }
+        });
     }
+
+
 
     loadForm() {
         this.employeeForm = this.formBuilder.group({
@@ -73,21 +77,38 @@ export class AllEmployeeProfilesComponent implements OnInit {
             mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
             department: ['', [Validators.required]],
             role: ['', [Validators.required]],
-<<<<<<< HEAD
-=======
-             manager: ['', [Validators.required]],
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
+            manager: [''],
             joiningDate: ['', [Validators.required]],
             address: ['', [Validators.required]]
         });
     }
 
+    managersMap: { [id: string]: string } = {};
+
+    loadManagers() {
+        this.employeeService.getManagers().subscribe((data: any) => {
+            this.managers = data.map((mgr: any) => ({
+                label: mgr.firstName + ' ' + mgr.lastName,
+                value: mgr.firstName + ' ' + mgr.lastName   // stored value (manager name)
+
+            }));
+
+            // Create a quick lookup map: { employeeId -> fullName }
+            this.managersMap = {};
+            data.forEach((mgr: any) => {
+
+                this.managersMap[mgr.firstName + ' ' + mgr.lastName] = mgr.firstName + ' ' + mgr.lastName;
+            });
+        });
+    }
+
+
     loadEmployees() {
-<<<<<<< HEAD
         this.loading = true;
         this.employeeService.getEmployees().subscribe({
             next: (data) => {
                 this.employees = data;
+                console.log("Employees",data );
                 this.filteredEmployees = [...data]; // clone for filtering
                 this.loading = false;
             },
@@ -96,18 +117,6 @@ export class AllEmployeeProfilesComponent implements OnInit {
                 this.loading = false;
                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
             }
-=======
-        this.loading = true; // Set loading to true
-        this.employeeService.getEmployees().subscribe((data) => {
-            
-            this.employees = data;
-            console.log('All Employee; ', this.employees)
-            this.loading = false; // Set loading to false when data is loaded
-        }, (error) => {
-            console.error('Error loading employees:', error);
-            this.loading = false; // Set loading to false on error
-            this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to load employee data.' });
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
         });
     }
 
@@ -129,16 +138,8 @@ export class AllEmployeeProfilesComponent implements OnInit {
     }
 
     addEmployee() {
-<<<<<<< HEAD
         if (this.employeeForm.valid) {
             const employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' };
-=======
-       console.log("employeeForm    " , this.employeeForm.value);
-        if (this.employeeForm.valid) {
-          
-            let employeeForm = { ...this.employeeForm.value, password: 'Gfss@2024' }
-           
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
             this.employeeService.addEmployee(employeeForm).subscribe({
                 next: () => {
                     this.loadEmployees();
@@ -155,22 +156,73 @@ export class AllEmployeeProfilesComponent implements OnInit {
         }
     }
 
+    // editEmployee(employee: any) {
+
+    //     this.employeeForm.patchValue(employee);
+    //     this.setPassword = employee.password;
+    //     this.isEditing = true;
+    //     this.showDialog = true;
+    //     this.selectedEmployeeId = employee.empId;
+    // }
+
     editEmployee(employee: any) {
-        this.employeeForm.patchValue(employee);
+        this.employeeForm.patchValue({
+            firstName: employee.firstName,
+            lastName: employee.lastName,
+            emailId: employee.emailId,
+            mobile: employee.mobile,
+            department: employee.department,
+            role: employee.role,
+            manager: employee.manager,
+            joiningDate: employee.joiningDate ? employee.joiningDate.split('T')[0] : '', // format date for input
+            address: employee.address
+        });
+
         this.setPassword = employee.password;
         this.isEditing = true;
         this.showDialog = true;
+
+        // ✅ use correct field from API
         this.selectedEmployeeId = employee.empId;
     }
+
+
+    // updateEmployee() {
+    //     if (this.employeeForm.valid) {
+    //         const employeeData = {
+    //             ...this.employeeForm.value,
+    //             employeeId: this.selectedEmployeeId,
+    //             password: this.setPassword
+    //         };
+    //         this.employeeService.updateEmployee(employeeData).subscribe({
+    //             next: () => {
+    //                 this.loadEmployees();
+    //                 this.showDialog = false;
+    //                 this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Employee updated successfully.' });
+    //             },
+    //             error: (err) => {
+    //                 console.error('Error updating employee:', err);
+    //                 this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Failed to update employee. Please try again.' });
+    //             }
+    //         });
+    //     } else {
+    //         this.messageService.add({ severity: 'warn', summary: 'Warning', detail: 'Please fill out the form correctly.' });
+    //     }
+    // }
 
     updateEmployee() {
         if (this.employeeForm.valid) {
             const employeeData = {
                 ...this.employeeForm.value,
-                employeeId: this.selectedEmployeeId,
+                empId: this.selectedEmployeeId,  // must match backend model
                 password: this.setPassword
             };
-            this.employeeService.updateEmployee(employeeData).subscribe({
+
+            console.log('Patched form values:', this.employeeForm.value);
+            console.log('Update payload:', employeeData);
+
+
+            this.employeeService.updateEmployee(employeeData.empId,employeeData).subscribe({
                 next: () => {
                     this.loadEmployees();
                     this.showDialog = false;
@@ -186,13 +238,14 @@ export class AllEmployeeProfilesComponent implements OnInit {
         }
     }
 
+
     deleteEmployee(employee: any) {
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete this employee?',
             header: 'Delete Confirmation',
             icon: 'pi pi-info-circle',
-            acceptButtonStyleClass: "p-button-danger p-button-text",
-            rejectButtonStyleClass: "p-button-text",
+            acceptButtonStyleClass: "p-button-success p-button-text",
+            rejectButtonStyleClass: "p-button-danger p-button-text",
             acceptIcon: "none",
             rejectIcon: "none",
             accept: () => {
@@ -232,11 +285,7 @@ export class AllEmployeeProfilesComponent implements OnInit {
         });
     }
 
-    loadManagers() {
-        this.adminService.getAllManagersList().subscribe((data: any) => {
-            this.managers = data.data;
-        });
-    }
+
 
     loadRoles() {
         this.adminService.getAllRolesList().subscribe((data: any) => {

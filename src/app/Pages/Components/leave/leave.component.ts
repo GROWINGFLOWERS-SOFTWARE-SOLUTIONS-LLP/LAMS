@@ -12,6 +12,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { ManagerService } from '../../../Core/Services/Manager/manager.service';
+import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 
 @Component({
   selector: 'app-leave',
@@ -40,6 +41,7 @@ export class LeaveComponent implements OnInit {
   isLoading: boolean = true;
   showPaginator: boolean = false;
   employee: any;
+ managers: any[] = [];
 
   leaveTypes = [
     { label: 'Sick Leave', value: 'Sick Leave' },
@@ -51,6 +53,7 @@ export class LeaveComponent implements OnInit {
   constructor(
     private leaveService: ManagerService,
     private fb: FormBuilder,
+    private employeeService: EmployeeService,
     private messageService: MessageService
   ) {}
 
@@ -58,31 +61,56 @@ export class LeaveComponent implements OnInit {
     this.employee = JSON.parse(localStorage.getItem("userValue") || "null");
     this.initLeaveForm();
     this.loadLeaveRequests();
+    this.loadManagers(); 
   }
 
-  initLeaveForm(): void {
+initLeaveForm(): void {
     this.leaveForm = this.fb.group({
       leaveType: ['', Validators.required],
       startDate: [null, Validators.required],
       endDate: [null, Validators.required],
       reason: ['', Validators.required],
       totalLeaves: [{ value: 0, disabled: true }],
-      totalLeavesTaken:[''],
+      totalLeavesTaken: [''],
       employeeLeaveId: [this.employee?.empId],
       firstName: [this.employee?.firstName],
-      lastname: [this.employee?.lastName],
-      employeeRole: [this.employee?.role]
+      lastName: [this.employee?.lastName],  
+      employeeRole: [this.employee?.role],
+         managerName: this.employee?.role === 'Employee' ? ['', Validators.required] : ['']
     });
+
 
     this.leaveForm.get('startDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
     this.leaveForm.get('endDate')?.valueChanges.subscribe(() => this.calculateTotalLeaves());
+  }
+
+   loadManagers(): void {
+    this.employeeService.getManagers().subscribe({
+      next: (data: any) => {
+        if (Array.isArray(data)) {
+          // Assuming your API returns [{ empId, firstName, lastName }]
+          this.managers = data.map((m: any) => ({
+            label: `${m.firstName} ${m.lastName}`,
+             value: `${m.firstName} ${m.lastName}`
+          }));
+        }
+      },
+      error: (err) => {
+        console.error('Error loading managers:', err);
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Error',
+          detail: 'Failed to load managers.'
+        });
+      }
+    });
   }
 
   loadLeaveRequests(): void {
     this.isLoading = true;
     this.showPaginator = false;
 
-    this.leaveService.geEmployeeleave(this.employee.empId).subscribe({
+    this.leaveService.getEmployeeLeaves(this.employee.empId).subscribe({
       next: (data: any) => {
         this.leaveRequests = data;
         this.isLoading = false;
@@ -179,7 +207,7 @@ export class LeaveComponent implements OnInit {
       totalLeaves: 0,
       employeeLeaveId: this.employee?.empId,
       firstName: this.employee?.firstName,
-      lastname: this.employee?.lastName,
+      lastName: this.employee?.lastName,
       employeeRole: this.employee?.role
     });
   }

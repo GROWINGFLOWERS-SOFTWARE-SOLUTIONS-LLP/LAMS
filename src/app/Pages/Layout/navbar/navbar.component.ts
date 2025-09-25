@@ -85,17 +85,33 @@ export class NavbarComponent implements OnInit {
   }
 
   fetchNotifications() {
-    this.managerService.getAllNotifications().subscribe({
-      next: (response: any) => {
-        console.log('Notification API Response:', response);
-        this.notifications = response.data || response;
-        this.notificationCount = this.notifications.length;
-      },
-      error: (error) => {
-        console.error("Failed to load notifications", error);
-      }
-    });
-  }
+  this.managerService.getAllNotifications().subscribe({
+    next: (response: any) => {
+      console.log('Notification API Response:', response);
+      const allNotifications = response.data || response;
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0); // start of today
+
+      // Filter upcoming notifications
+      this.notifications = allNotifications
+        .filter((notif: any) => {
+          const notifDate = new Date(notif.date);
+          notifDate.setHours(0, 0, 0, 0);
+          return notifDate >= today;
+        })
+        .sort((a: any, b: any) => {
+          return new Date(a.date).getTime() - new Date(b.date).getTime();
+        });
+
+      this.notificationCount = this.notifications.length;
+    },
+    error: (error) => {
+      console.error("Failed to load notifications", error);
+    }
+  });
+}
+
 
 
   checkUserRole() {

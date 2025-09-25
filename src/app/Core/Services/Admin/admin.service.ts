@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AdminService {
-  apiUrl: string = "http://localhost:8001";
+  apiUrl: string = "http://localhost:8442";
   headers: HttpHeaders | { [header: string]: string | string[]; } | undefined;
 
   constructor(private http: HttpClient) {
@@ -169,29 +169,51 @@ export class AdminService {
     return this.http.delete(`${this.apiUrl}/admin/project/${projId}`, { headers: this.headers });
   }
 
+  
+
   //API for GET History
   getHistory(employeeId: any): Observable<any[]> {
     return this.http.get<any[]>(`${this.apiUrl}/history/${employeeId}`, {headers: this.headers});
   }
 
-  // Assign Project to Manager
-// src/app/Core/Services/admin.service.ts
-assignProjectToManager(projId: string, managId: string) {
-  return this.http.post<any>(`http://localhost:8442/api/assignments/project-to-manager`, null, {
-    params: {
-      projId,
-      managId
+
+// Assign Project to Manager
+assignProjectToManager(projectId: string, managerId: string) {
+  return this.http.post<any>(
+    `http://localhost:8442/api/assignments/project-to-manager`,
+    null,
+    {
+      params: {
+        projectId,   // matches backend @RequestParam("projectId")
+        managerId    // matches backend @RequestParam("managerId")
+      }
     }
-  });
+  );
 }
 
-assignEmployeeToProject(empId: string, projId: string) {
-  return this.http.post<any>(`${this.apiUrl}/api/assignments/assign-employee-to-project`, null, {
-    params: {
-      empId,
-      projId  // changed from projectId to projId
+// Assign Employee to Project
+assignEmployeeToProject(employeeId: string, projectId: string) {
+  return this.http.post<any>(
+    `http://localhost:8442/api/assignments/employee-to-project`,
+    null,
+    {
+      params: {
+        employeeId,  // matches backend @RequestParam("employeeId")
+        projectId    // matches backend @RequestParam("projectId")
+      }
     }
-  });
+  );
+}
+
+// Get Project Details by project ID
+getProjectDetails(projId: string) {
+  return this.http.get<any>(
+    `http://localhost:8442/api/assignments/project-details`,
+    {
+      params: { projId }, // matches backend @RequestParam("projId")
+      headers: this.headers
+    }
+  );
 }
 
 

@@ -1,13 +1,15 @@
 <p-toast></p-toast>
-<div *ngIf="!isLoading" class="">
+<div *ngIf="!isLoading">
+
     <div class="p-3 mb-4 border-bottom-1 surface-border">
         <!-- <div class="text-2xl font-semibold text-gray-800 mb-1">📊 Dashboard</div> -->
         <div class="text-2xl text-black-600 font-bold">
-            Welcome, <span class="font-bold text-primary">{{ dashboard.firstName }} {{ dashboard.lastName }}</span>!
+            Welcome, <span class="font-bold text-primary">{{ dashboard.firstName }} {{ dashboard.lastName }}</span> !
         </div>
     </div>
 
     <div class="grid px-2">
+        <!-- Employees Card -->
         <div class="col-12 md:col-3 mb-2 px-2">
             <p-card class="shadow-2 border-round-sm">
                 <div class="flex justify-content-between align-items-start">
@@ -20,6 +22,7 @@
             </p-card>
         </div>
 
+        <!-- Department Card -->
         <div class="col-12 md:col-3 mb-2 px-2">
             <p-card class="shadow-2 border-round-sm">
                 <div class="flex justify-content-between align-items-start">
@@ -32,6 +35,7 @@
             </p-card>
         </div>
 
+        <!-- Project Card -->
         <div class="col-12 md:col-3 mb-2 px-2">
             <div (click)="showProjectDetails(projects)" class="cursor-pointer">
                 <p-card class="shadow-2 border-round-sm hover:shadow-4 transition-shadow duration-200">
@@ -75,51 +79,41 @@
             </div>
         </p-dialog>
 
-        <!-- Second Dialog: Assign Employee -->
-        <p-dialog header="Assign" [(visible)]="assignDialogVisible" [modal]="true" [style]="{ width: '30vw' }">
-    <div class="mb-2 text-lg font-semibold">
-        Assign {{ isManagerList ? 'Manager' : 'Employee' }} to Project: 
-        <span class="text-primary">{{ selectedProjectName }}</span>
-    </div>
+        <!-- Second Dialog: Assign Employee / Manager -->
+        <p-dialog header="Assign" [(visible)]="assignDialogVisible" [modal]="true">
+            <div class="mb-2 text-lg font-semibold">
+                Assign {{ isManagerList ? 'Manager' : 'Employee' }} to Project:
+                <span class="text-primary">{{ selectedProjectName }}</span>
+            </div>
 
-    <div class="mb-2">
-        <input pInputText type="text" [(ngModel)]="searchText" placeholder="Search by Name" class="w-full" />
-    </div>
+            <div class="mb-2">
+                <input pInputText type="text" [(ngModel)]="searchText" placeholder="Search by Name" class="w-full" />
+            </div>
 
-    <p-table [value]="isManagerList ? managers : filteredEmployees()" [paginator]="true" [rows]="5"
-        [responsiveLayout]="'scroll'" [style]="{ 'min-height': '200px' }">
+            <p-table [value]="isManagerList ? filteredManagers() : filteredEmployees()" [paginator]="true" [rows]="5"
+                [responsiveLayout]="'scroll'" [style]="{ 'min-height': '200px' }">
 
-        <ng-template pTemplate="header">
-            <tr>
-                <th>Name</th>
-                <th>Action</th>
-            </tr>
-        </ng-template>
+                <ng-template pTemplate="header">
+                    <tr>
+                        <th>Name</th>
+                        <th>Action</th>
+                    </tr>
+                </ng-template>
 
-        <ng-template pTemplate="body" let-person>
-            <tr>
-                <td>
-                    <!-- Show full name depending on type -->
-                    <ng-container *ngIf="isManagerList">
-                        {{ person.managerName || '' }} {{ person.firstName || '' }} {{ person.lastName || '' }}
-                    </ng-container>
-                    <ng-container *ngIf="!isManagerList">
-                        {{ person.firstName || '' }} {{ person.lastName || '' }}
-                    </ng-container>
-                </td>
-                <td>
-                    <p-button icon="pi pi-plus" label="Assign" [rounded]="true" [text]="true" [raised]="true"
-                        severity="success" (click)="assignToProject(person)" />
-                </td>
-            </tr>
-        </ng-template>
-    </p-table>
-</p-dialog>
+                <ng-template pTemplate="body" let-person>
+                    <tr>
+                        <td>{{ person.firstName }} {{ person.lastName }}</td>
+                        <td>
+                            <p-button icon="pi pi-plus" label="Assign" [rounded]="true" [text]="true" [raised]="true"
+                                severity="success" (click)="assignToProject(person)" />
+                        </td>
+                    </tr>
+                </ng-template>
+            </p-table>
+        </p-dialog>
 
 
-
-
-
+        <!-- Reports Card -->
         <div class="col-12 md:col-3 mb-2 px-2">
             <p-card class="shadow-2 border-round-sm">
                 <div class="flex justify-content-between align-items-start">
@@ -131,40 +125,12 @@
                 </div>
             </p-card>
         </div>
+       
     </div>
 
 
-<!-- <div class="grid p-3">
-  <div class="col-12">
-    <p-card class="w-full shadow-4">
-
-      <div class="text-2xl font-bold mb-3 text-blue-500">{{ project.name }}</div>
-
-      <div class="mb-4">
-        <div><strong>Manager:</strong> {{ project.manager }}</div>
-        <div><strong>Deadline:</strong> {{ project.deadline | date }}</div>
-        <div><strong>Status:</strong> {{ project.status }}</div>
-      </div>
-
-      <div>
-        <div class="font-semibold text-lg mb-2">Team Members</div>
-        <div class="grid">
-          <div *ngFor="let member of project.teamMembers" class="col-12 md:col-2 lg:col-2">
-            <p-card>
-              <div class="flex flex-column align-items-center gap-1">
-                
-                <div class="text-lg font-semibold">{{ member.name }}</div>
-                <div class="text-sm text-blue-500">{{ member.role }}</div>
-              </div>
-            </p-card>
-          </div>
-        </div>
-      </div>
-
-    </p-card>
-  </div>
-</div> -->
-
+  
+    <!-- Holidays and Employee Leave List-->
     <div class="grid p-3">
 
         <!-- 🎉 Holiday List -->
@@ -233,6 +199,7 @@
 
     </div>
 
+    <!-- Leave and Attendence Summery  -->
     <div class="grid p-3" *ngIf="dashboard.role !='Admin'">
 
         <div class="col-12 md:col-6">

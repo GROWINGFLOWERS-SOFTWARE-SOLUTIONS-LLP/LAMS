@@ -1,92 +1,128 @@
 <div class="container">
-
-   <p-card class="m-3 shadow-4 border-round-xl">
-      <div class="flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-      
-        <div class="m-0 font-bold text-2xl text-blue-700">Employee Leave Request</div>
-
-        <!-- Search Input with Icon -->
-        <div class="flex align-items-center w-full sm:w-auto">
-          <span class="p-input-icon-left w-full sm:w-20rem" style="max-width: 320px;">
-            <i class="pi pi-search"></i>
-           <input
-  type="text"
-  pInputText
-  placeholder="Search Employee Name"
-  class="w-full sm:w-20rem"
-  [(ngModel)]="searchTerm"
-  (input)="filterLeaveRequestsByName()"
-/>
-          </span>
-        </div>
+  <p-card class="m-3 shadow-4 border-round-xl">
+    <div class="flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
+      <div class="m-0 font-bold text-2xl text-blue-700">
+        Employee Leave Request
       </div>
 
-      <p-table *ngIf="!isLoading" class="w-full" [value]="filteredLeaveRequests">
-        <ng-template pTemplate="header">
-          <tr>
-            <th>Employee Name</th>
-            <th>Role</th>
-            <th>Leave Request</th>
-            <th>Reason</th>
-            <th>Total Leaves</th>
-            <th>Leaves Taken</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Actions</th>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="body" let-request>
-          <tr>
-            <td>{{ request.firstName }} {{ request.lastName }}</td>
-            <td>{{ request.employeeRole }}</td>
-            <td>{{ request.leaveType }}</td>
-            <td>{{ request.reason }}</td>
-            <td>{{ request.totalLeaves }}</td>
-            <td>{{ request.totalLeaves }}</td>
-            <td>{{ request.startDate | date: 'dd/MM/yyyy' }}</td>
-            <td>{{ request.endDate | date: 'dd/MM/yyyy' }}</td>
-            <td>
-              <div class="flex align-items-center gap-2">
-                <!-- <button pButton type="button" label="Approve" class="p-button-success" [outlined]="true"
-                  (click)="openDialog('approve', request)">
-                </button> -->
-                <p-button label="Approve" [rounded]="true" [text]="true" [raised]="true" severity="success" (click)="openDialog('approve', request)"/>
-                <!-- <button pButton type="button" label="Reject" class="p-button-danger" [outlined]="true"
-                  (click)="openDialog('reject', request)">
-                </button> -->
-                <p-button label="Reject" [rounded]="true" [text]="true" [raised]="true" severity="danger" (click)="openDialog('reject', request)"/>
-
-              </div>
-            </td>
-          </tr>
-        </ng-template>
-
-        <ng-template pTemplate="emptymessage">
-          <tr>
-            <td colspan="9" class="text-center text-gray-500">No Data Present</td>
-          </tr>
-        </ng-template>
-      </p-table>
-    </p-card>
-  
-</div>
-
-<!-- Approve/Reject Reason Dialog -->
-<p-dialog [(visible)]="displayDialog" [modal]="true" [closable]="false" [style]="{ width: '400px' }">
-  <div class="p-fluid">
-    <h3 class="mb-3">{{ actionType === 'approve' ? 'Approve Leave' : 'Reject Leave' }}</h3>
-
-    <div class="field">
-      <label for="reason">Reason</label>
-      <textarea id="reason" rows="4" [(ngModel)]="reason" class="p-inputtext p-component" required></textarea>
+      <!-- 🔍 Search Input -->
+      <div class="flex align-items-center w-full sm:w-auto">
+        <span class="p-input-icon-left w-full sm:w-20rem" style="max-width: 320px;">
+          <i class="pi pi-search"></i>
+          <input
+            type="text"
+            pInputText
+            placeholder="Search Employee Name"
+            class="w-full sm:w-20rem"
+            [(ngModel)]="searchTerm"
+            (input)="filterLeaveRequestsByName()"
+          />
+        </span>
+      </div>
     </div>
 
-    <div class="flex justify-content-end gap-2 mt-3">
-      <button pButton label="Cancel" class="p-button-secondary" (click)="cancelAction()"></button>
-      <button pButton [label]="actionType === 'approve' ? 'Approve' : 'Reject'"
-        [class]="actionType === 'approve' ? 'p-button-success' : 'p-button-danger'" (click)="submitAction()">
-      </button>
+    <!-- 🔹 Table -->
+    <p-table *ngIf="!isLoading" class="w-full" [value]="filteredLeaveRequests">
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Employee Name</th>
+          <th>Role</th>
+          <th>Leave Type</th>
+          <th>Reason</th>
+          <th>Total Leaves</th>
+          <th>Leaves Taken</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Actions</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-request>
+        <tr>
+          <td>{{ request.firstName }} {{ request.lastName }}</td>
+          <td>{{ request.employeeRole }}</td>
+          <td>{{ request.leaveType }}</td>
+          <td>{{ request.reason }}</td>
+          <td>{{ request.totalLeaves }}</td>
+          <td>{{ request.totalLeavesTaken }}</td> 
+          <td>{{ request.startDate | date: 'dd/MM/yyyy' }}</td>
+          <td>{{ request.endDate | date: 'dd/MM/yyyy' }}</td>
+          <td>
+            <div class="flex align-items-center gap-2">
+              <p-button
+                label="Approve"
+                [rounded]="true"
+                [text]="true"
+                [raised]="true"
+                severity="success"
+                (onClick)="openDialog('approve', request)">
+              </p-button>
+
+              <p-button
+                label="Reject"
+                [rounded]="true"
+                [text]="true"
+                [raised]="true"
+                severity="danger"
+                (onClick)="openDialog('reject', request)">
+              </p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9" class="text-center text-gray-500">
+            No Data Present
+          </td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </p-card>
+</div>
+
+<!-- 🔹 Approve/Reject Reason Dialog -->
+<p-dialog 
+  [(visible)]="displayDialog" 
+  [modal]="true" 
+  [closable]="false" 
+  [style]="{ width: '90vw', maxWidth: '400px' }" 
+  [contentStyle]="{ overflow: 'visible' }">
+
+  <div class="p-fluid flex flex-column gap-3">
+    
+    <!-- Title -->
+    <h3 class="text-xl font-semibold text-center">
+      {{ actionType === 'approve' ? 'Approve Leave' : 'Reject Leave' }}
+    </h3>
+
+    <!-- Reason Field -->
+    <div class="field flex flex-column">
+      <label for="reason" class="mb-2 font-medium">Reason</label>
+      <textarea
+        id="reason"
+        rows="4"
+        [(ngModel)]="reason"
+        pInputTextarea
+        class="w-full"
+        required>
+      </textarea>
+    </div>
+
+    <!-- Buttons -->
+    <div class="flex justify-content-end gap-2 flex-wrap">
+      <p-button 
+        label="Cancel" 
+        severity="secondary" 
+        (onClick)="cancelAction()">
+      </p-button>
+
+      <p-button
+        [label]="actionType === 'approve' ? 'Approve' : 'Reject'"
+        [severity]="actionType === 'approve' ? 'success' : 'danger'"
+        (onClick)="submitAction()">
+      </p-button>
     </div>
   </div>
 </p-dialog>

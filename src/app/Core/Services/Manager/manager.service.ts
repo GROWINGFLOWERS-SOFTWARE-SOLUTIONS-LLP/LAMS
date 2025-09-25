@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -7,47 +8,78 @@ import { Injectable } from '@angular/core';
 })
 export class ManagerService {
 
-  apiURL: string = "http://localhost:8001";
+  apiURL: string = "http://localhost:8442";
 
   headers = new HttpHeaders({
     'Content-Type': 'application/json',
   });
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient){
 
-  // Apply Leave
-  applyLeave(data: any){
-    return this.http.post(`${this.apiURL}/api/leave/apply`, data, {headers: this.headers});
   }
 
-  // Get leave for employee
-  geEmployeeleave(id:any){
-    return this.http.get(`${this.apiURL}/api/leave/employee/${id}`, {headers: this.headers});
+ // Apply Leave
+  applyLeave(data: any): Observable<any> {
+    return this.http.post(`${this.apiURL}/api/leave/apply`, data, { headers: this.headers });
   }
 
-
-  // Get All Pending Leaves
-  getAllPendingLeaves(){
-    return this.http.get(`${this.apiURL}/api/leave/pending`, {headers: this.headers});
-  }
-  
-  // Approve Leave
-  approveLeave(employeeData:any){
-    return this.http.put(`${this.apiURL}/api/leave/approve`,employeeData, {headers: this.headers});
+  // Get leaves for employee by employeeId
+  getEmployeeLeaves(employeeId: any): Observable<any> {
+    return this.http.get(`${this.apiURL}/api/leave/employee/${employeeId}`, { headers: this.headers });
   }
 
-  // Reject Leave
-  rejectLeave(employeeData:any){
-    return this.http.put(`${this.apiURL}/api/leave/reject`,employeeData, {headers: this.headers});
+  // Get all leaves under a manager (by managerName)
+  getManagerLeaves(managerName: string): Observable<any> {
+    return this.http.get(`${this.apiURL}/api/leave/manager/${managerName}`, { headers: this.headers });
   }
 
- deleteLeave(leaveId: any) {
-  console.log("Leave ID", leaveId);
-  return this.http.delete(`${this.apiURL}/api/leave/cancel/${leaveId}`, {
-    headers: this.headers,
-    responseType: 'text' as 'json' 
-  });
+  // Get all pending leaves
+  getAllPendingLeaves(): Observable<any> {
+    return this.http.get(`${this.apiURL}/api/leave/pending`, { headers: this.headers });
+  }
+
+  // // Approve leave (leaveId + optional manager comment)
+  // approveLeave(leaveId: string, managerComment?: string): Observable<any> {
+  //   return this.http.put(
+  //     `${this.apiURL}/api/leave/approve/${leaveId}?managerComment=${managerComment || ''}`,
+  //     {},
+  //     { headers: this.headers }
+  //   );
+  // }
+
+  // // Reject leave (leaveId + optional manager comment)
+  // rejectLeave(leaveId: string, managerComment?: string): Observable<any> {
+  //   return this.http.put(
+  //     `${this.apiURL}/api/leave/reject/${leaveId}?managerComment=${managerComment || ''}`,
+  //     {},
+  //     { headers: this.headers }
+  //   );
+  // }
+
+  // manager.service.ts
+approveLeave(leaveId: string, managerComment: string) {
+  return this.http.put(
+    `${this.apiURL}/api/leave/approve/${leaveId}?managerComment=${encodeURIComponent(managerComment)}`,
+    {}, // empty body because backend doesn’t need it
+    { headers: this.headers }
+  );
 }
+
+rejectLeave(leaveId: string, managerComment: string) {
+  return this.http.put(
+    `${this.apiURL}/api/leave/reject/${leaveId}?managerComment=${encodeURIComponent(managerComment)}`,
+    {}, 
+    { headers: this.headers }
+  );
+}
+
+  // Cancel leave (delete by leaveId)
+  deleteLeave(leaveId: any): Observable<any> {
+    return this.http.delete(`${this.apiURL}/api/leave/cancel/${leaveId}`, {
+      headers: this.headers,
+      responseType: 'text' as 'json'
+    });
+  }
 
 
 // Notification API Call

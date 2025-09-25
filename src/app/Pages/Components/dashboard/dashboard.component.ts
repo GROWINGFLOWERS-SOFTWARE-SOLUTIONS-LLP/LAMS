@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { AvatarModule } from 'primeng/avatar';
+import { ManagerService } from '../../../Core/Services/Manager/manager.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -59,23 +60,16 @@ export class DashboardComponent implements OnInit {
     showProjectDialog: boolean = false;
     holidays: any[] = [];
     isManagerList: boolean = false;
+    selectedProject1: any;
+    assignDialogVisible: boolean = false;
+    selectedProjectName: string = '';
+    searchText: string = '';
+    projId: string = '';
 
-    constructor(private apiService: ApiService, private adminService: AdminService, private employeeService: EmployeeService, private messageService: MessageService
+
+    constructor(private apiService: ApiService, private adminService: AdminService,
+         private employeeService: EmployeeService, private messageService: MessageService,private managerService: ManagerService, 
     ) { }
- project = {
-    name: 'AI Integration Project',
-    manager: 'John Doe',
-    deadline: new Date(2025, 8, 15),
-    status: 'In Progress',
-    teamMembers: [
-      { name: 'Alice Smith', role:'Manager'},
-      { name: 'Bob Johnson',role: 'Developer'},
-      { name: 'Charlie Davis',role: 'Developer' },
-      { name: 'Alice Smith', role: 'Developer'},
-      { name: 'Bob Johnson',role: 'Developer'},
-      { name: 'Charlie Davis', role: 'Developer'}  
-    ]
-  };
 
     ngOnInit(): void {
         this.isLoading = true;
@@ -84,8 +78,11 @@ export class DashboardComponent implements OnInit {
         this.loadHolidays();
         this.loadEmployees();
         this.loadManagers();
+      
     }
-    
+
+
+    // Managers
     loadManagers(): void {
         this.adminService.getAllManagersList().subscribe({
             next: (res: any) => {
@@ -98,6 +95,7 @@ export class DashboardComponent implements OnInit {
         });
     }
 
+    // Employees
     loadEmployees() {
         this.employeeService.getEmployees().subscribe({
             next: (res) => {
@@ -109,43 +107,38 @@ export class DashboardComponent implements OnInit {
         });
     }
 
-    // filteredEmployees(): any[] {
-    //     if (!this.searchText) return this.employees;
 
-    //     const search = this.searchText.toLowerCase();
+    // Employees Filtered - role=Employee
+    filteredEmployees(): any[] {
+        if (!this.employees) return [];
+        const search = this.searchText.toLowerCase();
 
-    //     return this.employees.filter(emp => {
-    //         const fullName = `${emp.firstName || ''} ${emp.lastName || ''}`.toLowerCase();
-    //         const email = emp.emailId?.toLowerCase() || '';
-    //         const mobile = emp.mobile?.toString() || '';
+        return this.employees
+            .filter(emp => emp.role?.toLowerCase() === 'employee')
+            .filter(emp => {
+                const fullName = `${emp.firstName || ''} ${emp.lastName || ''}`.toLowerCase();
+                const email = emp.emailId?.toLowerCase() || '';
+                const mobile = emp.mobile?.toString() || '';
+                return !this.searchText || fullName.includes(search) || email.includes(search) || mobile.includes(search);
+            });
+    }
 
-    //         return (
-    //             fullName.includes(search) ||
-    //             email.includes(search) ||
-    //             mobile.includes(search)
-    //         );
-    //     });
-    // }
-filteredEmployees(): any[] {
-    if (!this.searchText) return this.employees.filter(emp => emp.role === 'Employee');
+    // Managers Filtered - role=Manager
+    filteredManagers(): any[] {
+        if (!this.employees) return [];
+        const search = this.searchText.toLowerCase();
 
-    const search = this.searchText.toLowerCase();
+        return this.employees
+            .filter(emp => emp.role?.toLowerCase() === 'manager')
+            .filter(emp => {
+                const fullName = `${emp.firstName || ''} ${emp.lastName || ''}`.toLowerCase();
+                const email = emp.emailId?.toLowerCase() || '';
+                const mobile = emp.mobile?.toString() || '';
+                return !this.searchText || fullName.includes(search) || email.includes(search) || mobile.includes(search);
+            });
+    }
 
-    return this.employees
-      .filter(emp => emp.role === 'Employee')  // Only employees here
-      .filter(emp => {
-        const fullName = `${emp.firstName || ''} ${emp.lastName || ''}`.toLowerCase();
-        const email = emp.emailId?.toLowerCase() || '';
-        const mobile = emp.mobile?.toString() || '';
-
-        return (
-          fullName.includes(search) ||
-          email.includes(search) ||
-          mobile.includes(search)
-        );
-    });
-}
-
+    // Projects 
     loadProjects(): Promise<void> {
         return new Promise(resolve => {
             this.adminService.getAllProjectsList().subscribe((projects: any) => {
@@ -168,10 +161,10 @@ filteredEmployees(): any[] {
     }
 
     assignProjectToEmployee() {
-
         this.isProjectListVisible = false;
     }
 
+    // Dashboard Data-Employees,Departments,Projects,Reports
     getDashbaordData() {
         this.dashboard = JSON.parse(localStorage.getItem("userValue") || "null");
         console.log('Employee Id:', this.dashboard);
@@ -182,6 +175,7 @@ filteredEmployees(): any[] {
         });
     }
 
+    // Holiday List
     loadHolidays(): void {
         this.employeeService.getAllHolidays().subscribe({
             next: (response) => {
@@ -206,7 +200,7 @@ filteredEmployees(): any[] {
         });
     }
 
-
+    // Employee Leave List
     employeeLeaves = [
         {
             employeeName: 'Amit Sharma',
@@ -252,12 +246,34 @@ filteredEmployees(): any[] {
         },
     ];
 
-    selectedProject1: any;
-    assignDialogVisible: boolean = false;
-    selectedProjectName: string = '';
-    searchText: string = '';
-    projId: string = '';
 
+    // Fetch project details from backend
+    fetchProjectDetails(projId: string) {
+        if (!projId) return;
+
+        this.adminService.getProjectDetails(projId).subscribe({
+            next: (res: any) => {
+                if (res?.status === 'true' && res.data) {
+                    this.selectedProject = res.data;
+                    console.log('Project Details:', this.selectedProject);
+                } else {
+                    this.messageService.add({
+                        severity: 'warn',
+                        summary: 'Warning',
+                        detail: 'Failed to fetch project details.'
+                    });
+                }
+            },
+            error: (err) => {
+                console.error('Error fetching project details:', err);
+                this.messageService.add({
+                    severity: 'error',
+                    summary: 'Error',
+                    detail: 'Unable to fetch project details from server.'
+                });
+            }
+        });
+    }
 
     openAssignDialog(projectName: string, projId: string) {
         this.projId = projId;
@@ -266,51 +282,22 @@ filteredEmployees(): any[] {
         this.assignDialogVisible = true;
     }
 
-
-
-    // assignToProject(manager: any) {
-    //     if (!this.projId || !manager?.managId) {
-    //         console.warn('Missing project or manager selection');
-    //         return;
-    //     }
-
-    //     this.adminService.assignProjectToManager(this.projId, manager.managId)
-    //         .subscribe({
-    //             next: (res) => {
-    //                 console.log('Assignment successful:', res);
-    //                 this.messageService.add({
-    //                     severity: 'success',
-    //                     summary: 'Success',
-    //                     detail: 'Project assigned successfully.'
-    //                 });
-    //                 this.assignDialogVisible = false;
-    //             },
-    //             error: (err) => {
-    //                 console.error('Assignment failed:', err);
-    //                 this.messageService.add({
-    //                     severity: 'error',
-    //                     summary: 'Error',
-    //                     detail: 'Already assign project.'
-    //                 });
-    //             }
-    //         });
-    // }
-assignToProject(person: any) {
-    if (!this.projId) {
-        console.warn('Missing project selection');
-        return;
-    }
-
-    if (this.isManagerList) {
-        // Assign project to manager
-        if (!person?.managId) {
-            console.warn('Manager ID missing');
+    assignToProject(person: any) {
+        if (!this.projId) {
+            console.warn('Missing project selection');
             return;
         }
-        this.adminService.assignProjectToManager(this.projId, person.managId)
-            .subscribe({
+
+        if (this.isManagerList) {
+            // Manager assignment
+            if (!person?.empId) {
+                console.warn('Manager ID missing');
+                return;
+            }
+
+            // Use the corrected service method
+            this.adminService.assignProjectToManager(this.projId, person.empId).subscribe({
                 next: (res) => {
-                    console.log('Project assigned to manager:', res);
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
@@ -319,24 +306,32 @@ assignToProject(person: any) {
                     this.assignDialogVisible = false;
                 },
                 error: (err) => {
-                    console.error('Assignment failed:', err);
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Failed to assign project to manager.'
-                    });
+                    if (err.status === 409 || err.error?.message?.includes('already assigned')) {
+                        this.messageService.add({
+                            severity: 'warn',
+                            summary: 'Warning',
+                            detail: 'This project is already assigned to the selected manager.'
+                        });
+                    } else {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: 'Failed to assign project to manager.'
+                        });
+                    }
                 }
             });
-    } else {
-        // Assign project to employee
-        if (!person?.empId) {
-            console.warn('Employee ID missing');
-            return;
-        }
-        this.adminService.assignEmployeeToProject(person.empId, this.projId)
-            .subscribe({
+
+        } else {
+            // Employee assignment
+            if (!person?.empId) {
+                console.warn('Employee ID missing');
+                return;
+            }
+
+            // Use the corrected service method
+            this.adminService.assignEmployeeToProject(person.empId, this.projId).subscribe({
                 next: (res) => {
-                    console.log('Project assigned to employee:', res);
                     this.messageService.add({
                         severity: 'success',
                         summary: 'Success',
@@ -345,16 +340,26 @@ assignToProject(person: any) {
                     this.assignDialogVisible = false;
                 },
                 error: (err) => {
-                    console.error('Assignment failed:', err);
-                    this.messageService.add({
-                        severity: 'error',
-                        summary: 'Error',
-                        detail: 'Failed to assign project to employee.'
-                    });
+                    if (err.status === 409 || err.error?.message?.includes('already assigned')) {
+                        this.messageService.add({
+                            severity: 'warn',
+                            summary: 'Warning',
+                            detail: 'This employee is already assigned to the selected project.'
+                        });
+                    } else {
+                        this.messageService.add({
+                            severity: 'error',
+                            summary: 'Error',
+                            detail: 'Failed to assign project to employee.'
+                        });
+                    }
                 }
             });
+        }
     }
-}
+
+
+
 
 
 }

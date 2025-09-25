@@ -8,7 +8,12 @@
         <h2 class="m-0 text-2xl font-semibold text-blue-700">Leave Requests</h2>
 
         <!-- Button -->
-        <p-button label="Leave Application Form" (onClick)="showDialog()"></p-button>
+        <p-button label="Leave Application Form" (onClick)="showDialog()" [style]="{
+              background: 'linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)',
+              border: 'none',
+              color: 'white',
+              fontWeight: 'bold'
+            }"></p-button>
       </div>
 
       <p-dialog header="Leave Application Form" [(visible)]="visible" [modal]="true" [closable]="false"
@@ -61,6 +66,19 @@
               <input pInputText formControlName="totalLeavesTaken" type="number" readonly />
             </div>
 
+            <!-- Manager Dropdown -->
+            <div class="col-12 md:col-6" *ngIf="employee?.role === 'Employee'">
+  <label for="managerName">Manager <span class="text-red-500">*</span></label>
+  <p-dropdown 
+    formControlName="managerName" 
+    [options]="managers" 
+    placeholder="Select Manager">
+  </p-dropdown>
+  <small *ngIf="leaveForm.get('managerName')?.invalid && leaveForm.get('managerName')?.touched" class="p-error">
+    Manager is required.
+  </small>
+</div>
+
             <!-- Reason -->
             <div class="col-12">
               <label for="reason">Reason <span class="text-red-500">*</span></label>
@@ -97,6 +115,7 @@
               <th>Total Leaves</th>
               <th>Status</th>
               <th>Reason</th>
+              <th>Manager</th>
               <th>Manager Comment</th>
               <th>Actions</th>
             </tr>
@@ -115,6 +134,7 @@
                 <span *ngIf="request.status === 'REJECTED'" class="p-tag p-tag-danger">{{ request.status }}</span>
               </td>
               <td>{{ request.reason }}</td>
+              <td>{{request.managerName}}</td>
               <td>{{ request.managerComment ?? '-' }}</td>
               <td>
                 <ng-container *ngIf="request.status === 'PENDING'; else noAction">
@@ -137,10 +157,6 @@
 
         </p-table>
 
-
-        <!-- <div *ngIf="isLoading" class="table-loader-overlay">
-          <app-loader [loading]="isLoading"></app-loader>
-        </div> -->
       </div>
     </div>
   </div>

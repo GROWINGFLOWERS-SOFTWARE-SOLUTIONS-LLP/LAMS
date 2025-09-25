@@ -215,22 +215,20 @@
             </p-tabPanel>
 
             <!-- Manager Tab -->
-            <p-tabPanel header="Manager">
+            <!-- <p-tabPanel header="Manager">
                 <div class="flex justify-content-center mt-3">
                     <p-card class="w-full md:w-8 lg:w-8 xl:w-8">
                         <div class="p-fluid">
                             <div *ngIf="!isLoading">
 
-                                <!-- Top Section: Title & Toggle Button -->
                                 <div class="grid align-items-center justify-content-between mb-4">
-                                    <!-- Heading -->
+                                  
                                     <div class="col-12 md:col-6 mb-2 md:mb-0">
                                         <h2 class="text-xl md:text-2xl font-bold m-0 text-center md:text-left">
                                             {{ showManagerList ? 'Add Manager' : 'Manager List' }}
                                         </h2>
                                     </div>
 
-                                    <!-- Button -->
                                     <div class="col-12 md:col-6 flex justify-content-center md:justify-content-end">
                                         <p-button label="{{ showManagerList ? 'List of Managers' : 'Add Manager' }}"
                                             class="p-button-sm" severity="primary" (click)="toggleManagerList()">
@@ -238,8 +236,6 @@
                                     </div>
                                 </div>
 
-
-                                <!-- Manager Form -->
                                 <div class="flex justify-content-center mb-4" *ngIf="showManagerList">
                                     <div class="p-fluid w-full">
                                         <div class="border-1 border-round p-3 shadow-2 bg-white">
@@ -274,7 +270,6 @@
                                     </div>
                                 </div>
 
-                                <!-- Manager Table -->
                                 <div *ngIf="!showManagerList" class="p-fluid w-full mt-4">
                                     <div style="max-height: calc(100vh - 150px); overflow-y: auto;">
                                         <p-table [value]="managers" [paginator]="true" [rows]="5"
@@ -316,7 +311,7 @@
                     </p-card>
                 </div>
 
-            </p-tabPanel>
+            </p-tabPanel> -->
 
             <!-- Project Tab -->
             <p-tabPanel header="Project">

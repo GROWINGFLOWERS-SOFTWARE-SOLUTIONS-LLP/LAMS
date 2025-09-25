@@ -7,7 +7,7 @@ import { map, Observable } from 'rxjs';
 })
 export class EmployeeService {
 
-  apiUrl: string = "http://localhost:8001";
+  apiUrl: string = "http://localhost:8442";
 
   headers: HttpHeaders | { [header: string]: string | string[]; } | undefined;
 
@@ -19,17 +19,23 @@ export class EmployeeService {
   }
 
   addEmployee(employee: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/admin/employee`, employee, { headers: this.headers });
+    return this.http.post(`${this.apiUrl}/admin/add`, employee, { headers: this.headers });
   }
-  updateEmployee(employee: any): Observable<any> {
-    return this.http.put(`${this.apiUrl}/admin/employee`, employee, { headers: this.headers });
+
+  updateEmployee(empId:any,employee: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/admin/employee/${empId}`, employee, { headers: this.headers });
   }
 
   // In your ApiService
-  deleteEmployee(employeeId: number): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/admin/employee/${employeeId}`, { headers: this.headers });
+  deleteEmployee(empId: String): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/admin/employee/${empId}`, { headers: this.headers });
   }
 
+  // Getting role Manager
+  getManagers(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/admin/employees/managers`, { headers: this.headers });
+  }
+  
   getAttendanceByEmployee(employeeId: number, month: number, year: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/attendance?employeeId=${employeeId}&month=${month}&year=${year}`, { headers: this.headers })
       .pipe(
@@ -70,10 +76,10 @@ export class EmployeeService {
 
 
 
-  getAllAttendanceEmployee(): Observable<any> {
+  // getAllAttendanceEmployee(): Observable<any> {
   
-    return this.http.get(`${this.apiUrl}/attendance/all`, { headers: this.headers });
-  }
+  //   return this.http.get(`${this.apiUrl}/attendance/all`, { headers: this.headers });
+  // }
 
   // Holidays employee API
 

@@ -7,9 +7,16 @@
 
       <h2 class="text-2xl font-bold pl-6">Holiday List</h2>
 
-      <p-button label="{{ !showHolidayList ? 'Add Holiday' : 'List of Holidays' }}" class="p-button-primary p-button-sm"
-        severity="primary" (click)="toggleHolidayList()">
-      </p-button>
+      <!-- <p-button label="{{ !showHolidayList ? 'Add Holiday' : 'List of Holidays' }}" class="p-button-primary p-button-sm"
+        severity="primary" (click)="toggleHolidayList()" >
+
+      </p-button> -->
+       <p-button label="{{ !showHolidayList ? 'Add Holiday' : 'List of Holidays' }}" [text]="true" [raised]="true"  (click)="toggleHolidayList()" [style]="{
+              background: 'linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)',
+              border: 'none',
+              color: 'white',
+              fontWeight: 'bold'
+            }"/>
     </div>
 
 

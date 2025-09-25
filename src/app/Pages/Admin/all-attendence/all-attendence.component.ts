@@ -12,93 +12,120 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { FormsModule } from '@angular/forms';
 import { EmployeeService } from '../../../Core/Services/Employee/employee.service';
 import { AdminService } from '../../../Core/Services/Admin/admin.service';
-<<<<<<< HEAD
 import { CardModule } from 'primeng/card';
-import { IconFieldModule } from 'primeng/iconfield';
-import { InputIconModule } from 'primeng/inputicon';
-=======
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
+
 @Component({
-    selector: 'app-all-attendence',
-    standalone: true,
-    imports: [
-        CommonModule,
-        IconFieldModule,
-        InputIconModule,
-        FormsModule,
-        ButtonModule,
-        PaginatorModule,
-        ConfirmDialogModule,
-        DialogModule,
-        TableModule,
-        CardModule,
-        CalendarModule,
-        InputTextModule,
-        DropdownModule,
-        ToastModule,
-        ProgressSpinnerModule
-    ],
-    providers: [MessageService, ConfirmationService],
-    templateUrl: './all-attendence.component.html',
-    styleUrls: ['./all-attendence.component.css']
+  selector: 'app-all-attendence',
+  standalone: true,
+  imports: [
+    CommonModule,
+    ButtonModule,
+    CardModule,
+    PaginatorModule,
+    ConfirmDialogModule,
+    DialogModule,
+    TableModule,
+    CalendarModule,
+    InputTextModule,
+    DropdownModule,
+    ToastModule,
+    ProgressSpinnerModule
+  ],
+  providers: [MessageService, ConfirmationService],
+  templateUrl: './all-attendence.component.html',
+  styleUrls: ['./all-attendence.component.css']
 })
 export class AllAttendenceComponent implements OnInit {
-<<<<<<< HEAD
-    employees: any[] = [];
-    filteredEmployees: any[] = [];
-    departments: any[] = [];
-    roles: any[] = [];
-=======
-    employees: any [] = [];
-    departments: any = [];
-    roles: any = [];
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
-    employeeForm!: FormGroup;
-    showDialog: boolean = false;
-    isEditing: boolean = false;
-    selectedEmployeeId: number | null = null;
-    loading: boolean = false;
-    currentDate: string = this.formatDate(new Date());  // Add current date
-    searchText: string = '';
+  employees: any[] = [];
+  departments: any = [];
+  roles: any = [];
+  employeeForm!: FormGroup;
+  showDialog: boolean = false;
+  isEditing: boolean = false;
+  selectedEmployeeId: number | null = null;
+  loading: boolean = false;
+  currentDate: string = this.formatDate(new Date());
 
+  attendList: any[] = [];
+  fromDate: string = '';
+  toDate: string = '';
+  allEmployees: any[] = [];
+searchEmployee: string = '';
 
-     attendList: any[] = [];
-     fromDate: string = '';
-     toDate: string = '';
-     allEmployees: any[] = [];
+  constructor(
+    private employeeService: EmployeeService,
+    private adminService: AdminService,
+    private formBuilder: FormBuilder,
+    private messageService: MessageService
+  ) { }
 
-    constructor(
-        private employeeService: EmployeeService,
-        private adminService: AdminService,
-        private formBuilder: FormBuilder,
-        private messageService: MessageService
-    ) { }
+  ngOnInit(): void {
+    this.loadEmployeesAndAttendance();
+    this.loadDepartments();
+    this.loadRoles();
+    this.loadForm();
+  }
 
-    ngOnInit(): void {
-        this.loadEmployees();
-        this.loadDepartments();
-        this.loadRoles();
-        this.loadForm();
+  /**
+   * Load employees and attendance together
+   */
+  async loadEmployeesAndAttendance() {
+    this.loading = true;
+
+    try {
+      const [employees, attendanceResponse] = await Promise.all([
+        this.employeeService.getEmployees().toPromise(),
+        this.employeeService.getAllAttendance().toPromise()
+      ]);
+
+      // filter employees (remove admins)
+      this.employees = employees.filter((emp: any) => emp.role !== 'Admin');
+      this.allEmployees = [...this.employees];
+
+      // normalize attendance list
+      this.attendList = attendanceResponse?.data || attendanceResponse || [];
+      const today = this.formatDate(new Date());
+
+      // map attendance status into employees
+      this.employees.forEach(emp => {
+        const attendanceForToday = this.attendList.find((att: any) =>
+          att.employeeId === emp.employeeId && att.date === today
+        );
+        emp.attendanceStatus = attendanceForToday?.checkIn ? "Present" : "Absent";
+      });
+
+      this.loading = false;
+    } catch (error) {
+      console.error('Error loading employees/attendance:', error);
+      this.loading = false;
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Error',
+        detail: 'Failed to load employees/attendance data.'
+      });
     }
+  }
 
-    loadForm() {
-        this.employeeForm = this.formBuilder.group({
-            firstName: ['', [Validators.required]],
-            lastName: ['', [Validators.required]],
-            emailId: ['', [Validators.required, Validators.email]],
-            mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-            department: ['', [Validators.required]],
-            role: ['', [Validators.required]],
-            joiningDate: ['', [Validators.required]],
-            address: ['', [Validators.required]],
+  loadForm() {
+    this.employeeForm = this.formBuilder.group({
+      firstName: ['', [Validators.required]],
+      lastName: ['', [Validators.required]],
+      emailId: ['', [Validators.required, Validators.email]],
+      mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      department: ['', [Validators.required]],
+      role: ['', [Validators.required]],
+      joiningDate: ['', [Validators.required]],
+      address: ['', [Validators.required]],
+    });
+  }
 
-        });
-    }
-    downloadFilteredData() {
-    const headers = ['First Name', 'Last Name', 'Email', 'Role', 'Date', 'Attendance'];
+  /**
+   * Export filtered employees with attendance
+   */
+  downloadFilteredData() {
+    const headers = ['First Name', 'Last Name', 'Email', 'Role', 'Joining Date', 'Attendance'];
     const csvRows: string[] = [];
     csvRows.push(headers.join(','));
 
@@ -123,177 +150,72 @@ export class AllAttendenceComponent implements OnInit {
     link.click();
     document.body.removeChild(link);
   }
-    
-        filterByDateRange() {
-                if (this.fromDate && this.toDate) {
+
+  /**
+   * Filter employees by joining date range
+   */
+//   filterByDateRange() {
+//     if (this.fromDate && this.toDate) {
+//       const from = new Date(this.fromDate);
+//       const to = new Date(this.toDate);
+
+//       this.employees = this.allEmployees.filter(emp => {
+//         const empDate = new Date(emp.joiningDate);
+//         return empDate >= from && empDate <= to;
+//       });
+//     } else {
+//       this.employees = [...this.allEmployees];
+//     }
+//   }
+
+filterByDateRange() {
+  let filtered = [...this.attendList]; // start from full attendance list
+
+  // Filter by date range
+  if (this.fromDate && this.toDate) {
     const from = new Date(this.fromDate);
     const to = new Date(this.toDate);
-console.log(from);
-console.log(to);
-    this.employees = this.allEmployees.filter(emp => {
-      const empDate = new Date(emp.joiningDate); 
-      console.log("empdate joiningDate"+emp.joiningDate)
-      console.log("empdate"+empDate)
-      return empDate >= from && empDate <= to;
 
+    filtered = filtered.filter(att => {
+      const attDate = new Date(att.date); // ensure `att.date` is in valid format
+      return attDate >= from && attDate <= to;
     });
-  } else {
-   
-    this.employees = [...this.allEmployees];
   }
-        }
 
-    loadEmployees() {
-        this.loading = true;
-        this.employeeService.getEmployees().subscribe({
-            next: (data) => {
-                console.log(data);
-                this.employees = data.filter((emp: any) => emp.role !== 'Admin');
-<<<<<<< HEAD
-                this.filteredEmployees = [...this.employees];
-=======
+  // Filter by employee name
+  if (this.searchEmployee && this.searchEmployee.trim() !== '') {
+    const search = this.searchEmployee.toLowerCase();
+    filtered = filtered.filter(att =>
+      att.employeeName?.toLowerCase().includes(search)
+    );
+  }
 
-                console.log("employees" + JSON.stringify(this.employees)  );
-                this.allEmployees = data.filter((emp: any) => emp.role !== 'Admin');
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
+  this.attendList = filtered;
+// 👈 show filtered list
+}
 
-                const attendancePromises = this.employees.map((emp: any) =>
-                    this.checkAttendanceStatus(data[0].employeeId).then(status => {
-                        emp.attendanceStatus = status;
-                    })
-                );
-                Promise.all(attendancePromises).then(() => {
-                    this.loading = false;
-                });
-            },
-            error: (error) => {
-                console.error('Error loading employees:', error);
-                this.loading = false;
-                this.messageService.add({
-                    severity: 'error',
-                    summary: 'Error',
-                    detail: 'Failed to load employee data.'
-                });
-            }
-        });
-        console.log("this.checkAttendanceStatus");
-    }
+  formatDate(date: Date): string {
+    const day = String(date.getDate()).padStart(2, '0');
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${day}/${month}/${year}`;
+  }
 
-    async checkAttendanceStatus(employeeId: number): Promise<string> {
-        console.log("getAllAttendanceEmployee()");
-        return new Promise((resolve) => {
-            this.employeeService.getAllAttendanceEmployee().subscribe({
-                next: (response: any) => {
+  openDialog() {
+    this.showDialog = true;
+    this.isEditing = false;
+    this.employeeForm.reset();
+  }
 
+  loadDepartments() {
+    this.adminService.getAllDepartmentsList().subscribe((data) => {
+      this.departments = data;
+    });
+  }
 
-
-
-
-
-
-
-
-
-
-                 console.log("response "+ JSON.stringify(response) );
-
-    //                  const allAttendance = response?.data || [];
-    // const today = this.formatDate(new Date());
-
-    // this.attendList = allAttendance.map((att: any) => {
-    //   return {
-    //     firstName: 'N/A',
-    //     lastName: 'N/A',
-    //     emailId: 'N/A',
-    //     role: 'Employee',
-    //     attendanceStatus: att.checkIn ? 'Present' : 'Absent',
-    //     date: att.date
-    //   };
-    // });
-
-
-
-
-
-
-
-
-                    const allAttendance = response?.data || [];
-                    const today = this.formatDate(new Date());
-console.log("employeeId "+ employeeId);
-                    const attendanceForEmployeeToday = allAttendance.find((att: any) => {
-                        const attId = att.employeeId;
-                        const currentId = BigInt(employeeId).toString();
-                        const attDate = att.date;
-
-                        return attId === currentId && attDate === today;
-                    });
-
-                    if (attendanceForEmployeeToday?.checkIn) {
-                        resolve("Present");
-                    } else {
-                        resolve("Absent");
-                    }
-                },
-                error: () => {
-                    resolve("Absent");
-                }
-            });
-        });
-    }
-
-    formatDate(date: Date): string {
-        const day = String(date.getDate()).padStart(2, '0');
-        const month = String(date.getMonth() + 1).padStart(2, '0');
-        const year = date.getFullYear();
-        return `${day}/${month}/${year}`;
-    }
-
-    openDialog() {
-        this.showDialog = true;
-        this.isEditing = false;
-        this.employeeForm.reset();
-    }
-
-    loadDepartments() {
-        this.adminService.getAllDepartmentsList().subscribe({
-            next: (response: any) => {
-                console.log('Departments API response:', response);
-                // Adjust depending on your API shape:
-                this.departments = response.data || response || [];
-            },
-            error: (err) => {
-                console.error('Error loading departments', err);
-                this.departments = [];
-            }
-        });
-    }
-
-    loadRoles() {
-        this.adminService.getAllRolesList().subscribe({
-            next: (response: any) => {
-                console.log('Roles API response:', response);
-                this.roles = response.data || response || [];
-            },
-            error: (err) => {
-                console.error('Error loading roles', err);
-                this.roles = [];
-            }
-        });
-    }
-
-
-    filterEmployees() {
-        const search = this.searchText.trim().toLowerCase();
-
-        if (!search) {
-            this.filteredEmployees = [...this.employees];
-        } else {
-            this.filteredEmployees = this.employees.filter(emp =>
-                emp.firstName.toLowerCase().includes(search) ||
-                emp.lastName.toLowerCase().includes(search)
-            );
-        }
-    }
-
+  loadRoles() {
+    this.adminService.getAllRolesList().subscribe((data) => {
+      this.roles = data;
+    });
+  }
 }

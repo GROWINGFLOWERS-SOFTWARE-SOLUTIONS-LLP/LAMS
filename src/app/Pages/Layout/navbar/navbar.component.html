@@ -69,7 +69,7 @@
     position: 'sticky',
     top: '0',
     'z-index': '999',
-    'background-image': 'linear-gradient(to left, var(--blue-600), var(--blue-600))',
+    'background-image': 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
     'padding': '2px'
   }">
   <div class="flex justify-content-between align-items-center w-full px-3 gap-3">
@@ -136,10 +136,10 @@
           image="https://img.freepik.com/premium-vector/silver-membership-icon-default-avatar-profile-icon-membership-icon-social-media-user-image-vector-illustration_561158-4215.jpg"
           shape="circle" />
 
-        <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body" styleClass="custom-overlay">
+        <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body">
           <div class="flex flex-column gap-1">
-            <button pButton label="My Profile" class="p-button-text text-black-alpha-80" routerLink="profile"></button>
-            <button pButton label="Logout" class="p-button-text text-black-alpha-80"
+            <button pButton icon="pi pi-user" label="My Profile" class="p-button-text text-black-alpha-80" routerLink="profile"></button>
+            <button pButton icon="pi pi-power-off" label="Logout" class="p-button-text text-black-alpha-80"
               (click)="navigateTo('logout')"></button>
           </div>
         </p-overlayPanel>

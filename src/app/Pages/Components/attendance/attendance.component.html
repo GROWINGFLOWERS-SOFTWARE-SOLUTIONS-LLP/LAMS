@@ -2,17 +2,44 @@
 
 <div class="container">
 
-  <p-dialog [(visible)]="displayPunchInDialog" [modal]="true" [closable]="false"
-    class="flex flex-column align-items-center text-center">
-    <div class="dialog-content flex flex-column align-items-center p-3">
-      <h2>Attendance</h2>
-      <p-avatar image="https://cdn-icons-png.flaticon.com/512/1869/1869397.png" shape="circle" size="xlarge"
-        class="avatar-image mb-2"></p-avatar>
-      <div class="attendance-panel mb-2">{{ attendance_date }}</div>
-      <div class="font-size-lg mb-3">{{ currentTime }}</div>
-      <p-button label="Punch In" icon="pi pi-check" (click)="punchIn()" class="punch-in-button"></p-button>
-    </div>
-  </p-dialog>
+ <p-dialog [(visible)]="displayPunchInDialog" 
+          [modal]="true" 
+          [closable]="false"
+          [style]="{ width: '20rem', borderRadius: '1rem', textAlign: 'center', background: 'linear-gradient(135deg, #f5f0ff, #e0d4ff)' }"
+          >
+
+  <!-- Avatar & Title with pulse -->
+  <div class="flex flex-column align-items-center justify-content-center mb-3">
+    <p-avatar image="https://brewermaine.gov/wp-content/uploads/2021/06/33-337804_transparent-booking-icon-png-calendar-icon-png-blue.png" 
+              shape="circle" 
+              size="xlarge" 
+              class="mb-2 animate-pulse"></p-avatar>
+    <h2 class="m-0 text-purple-700 font-bold">Attendance</h2>
+  </div>
+
+  <!-- Date & Time badges -->
+  <div class="flex flex-column align-items-center justify-content-center mb-4 gap-2">
+    <span class="p-tag p-tag-rounded p-tag-info font-bold">{{ attendance_date }}</span>
+    <span class="p-tag p-tag-rounded p-tag-warning font-bold">{{ currentTime }}</span>
+  </div>
+
+  <!-- Punch In Button with glow effect -->
+  <p-button label="Punch In" 
+            icon="pi pi-check" 
+            (click)="punchIn()" 
+            class="p-button-rounded p-button-lg p-button-success w-full shadow-5 hover:shadow-6"
+             [style]="{
+              background: 'linear-gradient(90deg, #6a11cb 0%, #2575fc 100%)',
+              border: 'none',
+              color: 'white',
+              fontWeight: 'bold'
+            }"></p-button>
+
+  <!-- Motivational text -->
+  <div class="mt-3 text-gray-700 font-medium text-sm">
+    🌟 Have a productive day and enjoy your work!
+  </div>
+</p-dialog>
 
   <!-- Wrap filters and table inside a card -->
   <p-card class="mb-4 shadow-3 surface-card border-round-lg">
@@ -24,7 +51,6 @@
           Attendance Records
         </div>
 
-        <!-- Search Section -->
       <!-- Search Section -->
 <div class="flex flex-column sm:flex-row sm:align-items-center sm:w-auto gap-1">
 <p-calendar

@@ -8,7 +8,7 @@
 <p-card class="shadow-4 border-round w-full mb-4">
   <!-- Add Employee Button -->
   <div class="flex justify-content-between align-items-center mb-4 flex-wrap gap-3">
-     <!-- Search Input with Icon -->
+    <!-- Search Input with Icon -->
     <div class="flex align-items-center w-full sm:w-auto">
       <span class="p-input-icon-left w-full sm:w-20rem" style="max-width: 320px;">
         <i class="pi pi-search"></i>
@@ -17,12 +17,16 @@
       </span>
     </div>
     <!-- Add Employee Button -->
-    <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()"></p-button>
+    <p-button label="Add Employee" icon="pi pi-plus" class="p-button-primary p-1" (click)="openDialog()" [style]="{
+              background: 'linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)',
+              border: 'none',
+              color: 'white',
+              fontWeight: 'bold'
+            }"></p-button>
 
-   
+
   </div>
 
-<<<<<<< HEAD
   <ng-template pTemplate="header">
     <!-- <div class="text-xl font-semibold text-gray-800">Employee List</div> -->
   </ng-template>
@@ -32,7 +36,7 @@
       class="shadow-none border-none">
       <ng-template pTemplate="header">
         <tr class="bg-gray-100 text-gray-800">
-          
+          <th class="p-3 center-text">Employee ID</th>
           <th class="p-3 center-text">First Name</th>
           <th class="p-3 center-text">Last Name</th>
           <th class="p-3 center-text">Email</th>
@@ -45,52 +49,21 @@
           <th class="p-3 center-text">Actions</th>
         </tr>
       </ng-template>
-=======
-    <!-- Employee Table (loading = false) -->
-    <div class="flex-grow-1 overflow-auto p-4" *ngIf="!loading">
-        <div class="p-grid">
-            <div class="p-col-12">
-                <p-table [value]="employees" [paginator]="true" [(first)]="first" [rows]="10" [scrollable]="true"
-                    class="shadow-md rounded-lg border border-gray-300 mb-4">
-                    <ng-template pTemplate="header">
-                        <tr class="bg-gray-200 text-gray-700">
-                            <th class="p-3 center-text">Sr.No</th>
-                            <th class="p-3 center-text">First Name</th>
-                            <th class="p-3 center-text">Last Name</th>
-                            <th class="p-3 center-text">Email</th>
-                            <th class="p-3 center-text">Phone Number</th>
-                            <th class="p-3 center-text">Address</th>
-                            <th class="p-3 center-text">Department</th>
-                            <th class="p-3 center-text">Manager</th>
-                            <th class="p-3 center-text">Employee Role</th>
-                            <th class="p-3 center-text">Joining Date</th>
-                            <th class="p-3 center-text">Actions</th>
-                        </tr>
-                    </ng-template>
-
-                    <ng-template pTemplate="body" let-employee  let-i="rowIndex" >
-                        <tr class="text-gray-600 hover:bg-gray-100 transition">
-                            <td class="p-3 center-text">{{ first + i + 1 }}</td>
-                            <td class="p-3 center-text">{{ employee.firstName  || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.lastName || '–'  }}</td>
-                            <td class="p-3 center-text">{{ employee.emailId || '–'  }}</td>
-                            <td class="p-3 center-text">{{ employee.mobile || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.address || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.department || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.manager || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.role || '–' }}</td>
-                            <td class="p-3 center-text">{{ employee.joiningDate ? (employee.joiningDate | date:'yyyy-MM-dd') : '–' }}</td>
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
 
       <ng-template pTemplate="body" let-employee>
         <tr class="text-gray-700 hover:bg-gray-100 transition">
+          <td class="p-3 center-text">{{ employee.empId || '–' }}</td>
           <td class="p-3 center-text">{{ employee.firstName || '–' }}</td>
           <td class="p-3 center-text">{{ employee.lastName || '–' }}</td>
           <td class="p-3 center-text">{{ employee.emailId || '–' }}</td>
           <td class="p-3 center-text">{{ employee.mobile || '–' }}</td>
           <td class="p-3 center-text">{{ employee.address || '–' }}</td>
           <td class="p-3 center-text">{{ employee.department || '–' }}</td>
-           <td class="p-3 center-text">{{ employee.manager || '–' }}</td>
+          <!-- <td class="p-3 center-text">{{ employee.manager || '–' }}</td> -->
+          <td class="p-3 center-text">
+            {{ managersMap[employee.manager] || '–' }}
+          </td>
+
           <td class="p-3 center-text">{{ employee.role || '–' }}</td>
           <td class="p-3 center-text">{{ employee.joiningDate ? (employee.joiningDate | date:'yyyy-MM-dd') : '–' }}</td>
           <td class="p-3 center-text">
@@ -120,7 +93,7 @@
     </div>
   </ng-template>
 
-  <div class="border-2 border-gray-300 rounded-lg p-4 bg-blue-50">
+  <div class="p-2">
     <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()" class="p-fluid">
       <div class="formgrid grid">
 
@@ -138,7 +111,6 @@
           <div *ngIf="isFieldInvalid('lastName')" class="text-red-500">Required & only letters</div>
         </div>
 
-<<<<<<< HEAD
         <!-- Email & Phone -->
         <div class="field col-12 md:col-6">
           <label for="email" class="font-semibold">Email</label>
@@ -149,41 +121,6 @@
           <input type="tel" formControlName="mobile" class="p-inputtext w-full" placeholder="10-digit number"
             pattern="[0-9]{10}" />
         </div>
-=======
-        <!-- PrimeNG Dialog for Add/Edit Employee -->
-        <p-dialog [(visible)]="showDialog" modal="modal" [style]="{ width: '50rem' }"
-            [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }">
-            <ng-template pTemplate="header">
-                <div class="flex justify-content-center w-full">
-                    <h3 class="m-0">{{ isEditing ? 'Edit Employee' : 'Add Employee' }}</h3>
-                </div>
-            </ng-template>
-            <div class="border-2 border-gray-300 rounded-lg p-4 bg-blue-50">
-                <form [formGroup]="employeeForm" (ngSubmit)="isEditing ? updateEmployee() : addEmployee()"
-                    class="p-fluid">
-                    <div class="formgrid grid">
-                       
-                       
-                        <!-- First Name and Last Name Fields -->
-                        <div class="field col-12 md:col-6">
-                            <label for="firstName" class="font-semibold text-gray-700">First Name</label>
-                            <input id="firstName" type="text" formControlName="firstName"
-                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                                placeholder="Enter first name" pattern="[A-Za-z]+" />
-                            <div *ngIf="isFieldInvalid('firstName')" class="error-message text-red-600">
-                                First Name is required and must contain only letters.
-                            </div>
-                        </div>
-                        <div class="field col-12 md:col-6">
-                            <label for="lastName" class="font-semibold text-gray-700">Last Name</label>
-                            <input id="lastName" type="text" formControlName="lastName"
-                                class="text-base p-2 border border-gray-400 rounded focus:border-blue-600 w-full"
-                                placeholder="Enter last name" pattern="[A-Za-z]+" />
-                            <div *ngIf="isFieldInvalid('lastName')" class="error-message text-red-600">
-                                Last Name is required and must contain only letters.
-                            </div>
-                        </div>
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
 
         <!-- Department -->
         <div class="field col-12 md:col-6">
@@ -201,6 +138,14 @@
           </p-dropdown>
         </div>
 
+        <!-- ✅ Manager dropdown only visible when role = employee -->
+        <div class="field col-12 md:col-6" *ngIf="showManagerDropdown">
+          <label for="manager" class="font-semibold">Manager</label>
+          <p-dropdown [options]="managers" optionLabel="label" optionValue="value" placeholder="Select Manager"
+            formControlName="manager" class="w-full">
+          </p-dropdown>
+        </div>
+
         <!-- Joining Date -->
         <div class="field col-12 md:col-6">
           <label for="joiningDate" class="font-semibold">Joining Date</label>
@@ -208,47 +153,26 @@
         </div>
 
         <!-- Address -->
-        <div class="field col-12 md:col-6">
+        <div class="field col-12 md:col-12">
           <label for="address" class="font-semibold">Address</label>
           <input id="address" type="text" formControlName="address" class="p-inputtext w-full" />
         </div>
+        <!-- <div class="field col-12 md:col-12">
+          <label for="address" class="font-semibold">Address</label>
+          <textarea id="address" formControlName="address" rows="4" pInputTextarea
+            class="p-inputtext w-full border-round surface-border focus:border-primary" placeholder="Enter Address">
+          </textarea>
+        </div> -->
 
-<<<<<<< HEAD
+
       </div>
-=======
-                        <div class="field col-12 md:col-6">
-                            <label for="manager" class="font-semibold">Manager</label>
-                            <select  id="manager" formControlName="manager"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full" placeholder="Select Manager name">
-                                <option value="">Select Manager</option>
-        
-                                <option *ngFor="let manager of managers" value="{{manager.managerName}}">
-                                    {{manager.managerName}} </option>
-                            </select>
-                            <div *ngIf="isFieldInvalid('manager')" class="error-message text-red-600">
-                                Manager is required.
-                            </div>
-                        </div>
-                        <!-- Role -->
-                        <div class="field col-12 md:col-6">
-                            <label for="role" class="font-semibold">Role</label>
-                            <select formControlName="role"
-                                class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                                <option value="">Select Role</option>
-                                <option *ngFor="let role of roles" value="{{role.roleName}}">
-                                    {{role.roleName}} </option>
-                            </select>
-                            <div *ngIf="isFieldInvalid('role')" class="error-message text-red-600">
-                                Role is required.
-                            </div>
-                        </div>
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
 
       <!-- Buttons -->
       <div class="flex justify-content-center gap-2 mt-3">
-        <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" icon="pi pi-check"
-          [disabled]="!employeeForm.valid"></p-button>
-        <p-button label="Cancel" icon="pi pi-times" class="p-button-secondary" (click)="showDialog = false"></p-button>
+
+        <p-button type="submit" label="{{ isEditing ? 'Update' : 'Save' }}" [text]="true" [raised]="true"
+          severity="info" [disabled]="!employeeForm.valid" />
+        <p-button label="Cancel" [text]="true" [raised]="true" severity="secondary" (click)="showDialog = false" />
       </div>
     </form>
   </div>

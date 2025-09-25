@@ -61,18 +61,10 @@ export class AdminLeaveRequestComponent {
     this.isLoading = true;
     this.leaveService.getAllPendingLeaves().subscribe({
       next: (data: any) => {
-<<<<<<< HEAD
-        const nonEmployeeLeaves = data.filter((item: any) => item.employeeRole !== 'Employee');
-        this.leaveRequests = nonEmployeeLeaves;
-        this.filteredLeaveRequests = [...nonEmployeeLeaves];
-=======
-        // Check if data is valid and the role is not 'Employee'
         console.log("data ", data);
-        this.leaveRequests = data.filter((item: any) => item.employeeRole == 'Employee');
+        this.leaveRequests = data.filter((item: any) => item.employeeRole == 'Manager');
         console.log("this.leaveRequests 123 ", this.leaveRequests);
-       // this.originalData = data.filter((item: any) => item.employeeRole === 'Employee');
       this.leaveRequests = [...this.leaveRequests];
->>>>>>> 5a73bb4356232abdb2a7c5705d06fe35245f8451
       },
       error: (error: any) => {
         this.leaveRequests = [];
@@ -121,24 +113,38 @@ export class AdminLeaveRequestComponent {
     this.displayDialog = false;
   }
 
-  submitAction() {
-    if (!this.reason.trim()) {
-      alert('Please enter a reason.');
-      return;
-    }
+  // submitAction() {
+  //   if (!this.reason.trim()) {
+  //     alert('Please enter a reason.');
+  //     return;
+  //   }
 
-    if (this.actionType === 'approve') {
-      this.approveLeave(this.selectedRequest, this.reason);
-    } else if (this.actionType === 'reject') {
-      this.rejectLeave(this.selectedRequest, this.reason);
-    }
+  //   if (this.actionType === 'approve') {
+  //     this.approveLeave(this.selectedRequest, this.reason);
+  //   } else if (this.actionType === 'reject') {
+  //     this.rejectLeave(this.selectedRequest, this.reason);
+  //   }
 
-    this.displayDialog = false;
+  //   this.displayDialog = false;
+  // }
+submitAction() {
+  if (!this.reason.trim()) {
+    alert('Please enter a reason.');
+    return;
   }
 
-  approveLeave(request: any, reason: string) {
-    request.managerComment = reason;
-    this.leaveService.approveLeave(request).subscribe(() => {
+  if (this.actionType === 'approve') {
+    this.approveLeave(this.selectedRequest.leaveId, this.reason);  // ✅ Fix here
+  } else if (this.actionType === 'reject') {
+    this.rejectLeave(this.selectedRequest.leaveId, this.reason);  // ✅ Fix here
+  }
+
+  this.displayDialog = false;
+}
+
+  approveLeave(leaveId:string, reason: string) {
+    
+    this.leaveService.approveLeave(leaveId,reason).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
@@ -148,9 +154,9 @@ export class AdminLeaveRequestComponent {
     });
   }
 
-  rejectLeave(request: any, reason: string) {
-    request.managerComment = reason;
-    this.leaveService.rejectLeave(request).subscribe(() => {
+  rejectLeave(leaveId:string, reason: string) {
+    
+    this.leaveService.rejectLeave(leaveId,reason).subscribe(() => {
       this.messageService.add({
         severity: 'success',
         summary: 'Success',

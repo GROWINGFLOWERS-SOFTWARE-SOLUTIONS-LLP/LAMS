@@ -1,15 +1,28 @@
 <p-toast></p-toast>
 
 <p-card class="w-full md:w-6 mx-auto mt-4 shadow-3">
-  <div class="flex justify-content-end mb-3">
-    <button
-      pButton
-      icon="pi pi-bell"
-      label="New Notification"
-      class="p-button-sm p-button-rounded p-button-info"
-      (click)="dialogVisible = true; isEditMode = false; notificationForm.reset();">
-    </button>
-  </div>
+<div class="flex flex-column sm:flex-row sm:justify-content-between sm:align-items-center mb-3 gap-2">
+  <!-- Heading -->
+  <div class="m-0 text-2xl font-bold">Notifications</div>
+
+  
+  <!-- Button -->
+  <button
+    pButton
+    icon="pi pi-plus"
+    label="Add Notification"
+    class="p-button p-button-info"
+     (click)="dialogVisible = true; isEditMode = false; notificationForm.reset();"
+     [style]="{
+              background: 'linear-gradient(90deg, #2575fc 0%, #6a11cb 100%)',
+              border: 'none',
+              color: 'white',
+              fontWeight: 'bold'
+            }">
+  </button>
+</div>
+
+
 
   <!-- Dialog Form -->
   <p-dialog
@@ -42,7 +55,7 @@
           showIcon="true"
           appendTo="body"
           dateFormat="yy-mm-dd" [showTime]="false"
-          [inputStyle]="{ width: '100%', height: '45px' }">
+          [inputStyle]="{ width: '100%', height: '50px' }">
         </p-calendar>
       </div>
 
@@ -50,13 +63,13 @@
       <div class="flex justify-content-end gap-2 mt-3">
         <button
           pButton
-          label="Cancel"
-          type="button"
+          label="Cancel"  [text]="true" [raised]="true" severity="secondary"
           class="p-button-text"
           (click)="resetForm()">
         </button>
         <button
           pButton
+           [text]="true" [raised]="true" severity="info"
           [label]="isEditMode ? 'Update' : 'Submit'"
           type="submit"
           [disabled]="notificationForm.invalid">
@@ -66,7 +79,7 @@
   </p-dialog>
 
   <!-- Notification List -->
-  <h3 class="mt-4 mb-2">Notification List</h3>
+  <!-- <h3 class="mt-4 mb-2">Notification List</h3> -->
 
   <p-table
     #notificationTable
@@ -93,7 +106,8 @@
           <div class="flex gap-2 justify-content-start">
             <button
               pButton
-              icon="pi pi-pen-to-square"
+             
+              label="Edit"
               [rounded]="true"
               [text]="true"
               [raised]="true"
@@ -102,7 +116,7 @@
             </button>
             <button
               pButton
-              icon="pi pi-trash"
+              label="Delete"
               [rounded]="true"
               [text]="true"
               [raised]="true"
