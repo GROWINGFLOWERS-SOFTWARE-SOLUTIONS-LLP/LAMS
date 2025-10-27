@@ -86,7 +86,10 @@
     <div class="flex align-items-center gap-3">
 
       <!-- 🔔 Notification Icon with Badge and Overlay -->
-      <div class="relative cursor-pointer flex align-items-center" (click)="notificationOverlay.toggle($event)">
+      <!-- <div class="relative cursor-pointer flex align-items-center" (click)="notificationOverlay.toggle($event)"> -->
+        <div 
+  class="relative cursor-pointer flex align-items-center" 
+  (click)="onNotificationClick($event, notificationOverlay)">
         <i class="pi pi-bell text-white text-2xl"></i>
 
         <span *ngIf="notificationCount > 0"
@@ -96,36 +99,36 @@
         </span>
 
         <!-- 🔽 Notification Overlay Panel -->
-      <p-overlayPanel #notificationOverlay [dismissable]="true" appendTo="body"
-  styleClass="custom-overlay surface-overlay shadow-4 border-round">
+        <p-overlayPanel #notificationOverlay [dismissable]="true" appendTo="body"
+          styleClass="custom-overlay surface-overlay shadow-4 border-round">
 
-  <div style="max-width: 90vw; width: 250px; word-wrap: break-word; max-height: 300px; overflow-y: auto;">
+          <div style="max-width: 90vw; width: 250px; word-wrap: break-word; max-height: 300px; overflow-y: auto;">
 
-    <!-- Check if there are notifications -->
-    <ng-container *ngIf="notifications.length > 0; else noNotifications">
-      
-      <!-- Loop through notifications -->
-      <div *ngFor="let notif of notifications" class="mb-3 pb-2 border-bottom-1 border-gray-200">
-        <div class="flex justify-content-between align-items-center mb-1">
-          <h4 class="m-0 text-cyan-500 text-base font-semibold">{{ notif.title }}</h4>
-          <span class="text-sm text-color-secondary">{{ notif.date | date:'dd/MM/yyyy' }}</span>
-        </div>
-        <p class="m-0 text-sm text-black-alpha-90">
-          {{ notif.description }}
-        </p>
-      </div>
+            <!-- Check if there are notifications -->
+            <ng-container *ngIf="notifications.length > 0; else noNotifications">
 
-    </ng-container>
+              <!-- Loop through notifications -->
+              <div *ngFor="let notif of notifications" class="mb-3 pb-2 border-bottom-1 border-gray-200">
+                <div class="flex justify-content-between align-items-center mb-1">
+                  <h4 class="m-0 text-cyan-500 text-base font-semibold">{{ notif.title }}</h4>
+                  <span class="text-sm text-color-secondary">{{ notif.date | date:'dd/MM/yyyy' }}</span>
+                </div>
+                <p class="m-0 text-sm text-black-alpha-90">
+                  {{ notif.description }}
+                </p>
+              </div>
 
-    <!-- No notifications fallback -->
-    <ng-template #noNotifications>
-      <div class="text-center text-sm text-color-secondary p-2">
-        No notifications available
-      </div>
-    </ng-template>
+            </ng-container>
 
-  </div>
-</p-overlayPanel>
+            <!-- No notifications fallback -->
+            <ng-template #noNotifications>
+              <div class="text-center text-sm text-color-secondary p-2">
+                No notifications available
+              </div>
+            </ng-template>
+
+          </div>
+        </p-overlayPanel>
 
 
       </div>
@@ -138,7 +141,8 @@
 
         <p-overlayPanel #overlayPanel [dismissable]="true" appendTo="body">
           <div class="flex flex-column gap-1">
-            <button pButton icon="pi pi-user" label="My Profile" class="p-button-text text-black-alpha-80" routerLink="profile"></button>
+            <button pButton icon="pi pi-user" label="My Profile" class="p-button-text text-black-alpha-80"
+              routerLink="profile"></button>
             <button pButton icon="pi pi-power-off" label="Logout" class="p-button-text text-black-alpha-80"
               (click)="navigateTo('logout')"></button>
           </div>

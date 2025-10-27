@@ -2,8 +2,6 @@
 <p-confirmDialog></p-confirmDialog>
 
 
-
-
 <!-- Employee Card Section -->
 <p-card class="shadow-4 border-round w-full mb-4">
   <!-- Add Employee Button -->
@@ -30,6 +28,11 @@
   <ng-template pTemplate="header">
     <!-- <div class="text-xl font-semibold text-gray-800">Employee List</div> -->
   </ng-template>
+  
+<!-- Simple Loader -->
+<div *ngIf="loading" class="flex justify-content-center align-items-center py-6">
+  <p-progressSpinner></p-progressSpinner>
+</div>
 
   <div *ngIf="!loading" class="overflow-auto">
     <p-table [value]="filteredEmployees" [paginator]="true" [rows]="5" [scrollable]="true"
@@ -83,6 +86,7 @@
     </p-table>
   </div>
 </p-card>
+
 
 <!-- Employee Dialog -->
 <p-dialog [(visible)]="showDialog" modal="modal" [style]="{ width: '50rem' }"

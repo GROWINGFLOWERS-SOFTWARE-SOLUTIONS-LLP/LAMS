@@ -176,29 +176,80 @@ export class DashboardComponent implements OnInit {
     }
 
     // Holiday List
-    loadHolidays(): void {
-        this.employeeService.getAllHolidays().subscribe({
-            next: (response) => {
-                console.log('Raw API response:', response);
+    // loadHolidays(): void {
+    //     this.employeeService.getAllHolidays().subscribe({
+    //         next: (response) => {
+    //             console.log('Raw API response:', response);
 
-                if (Array.isArray(response)) {
-                    this.holidays = response;
-                } else if (response?.data && Array.isArray(response.data)) {
-                    this.holidays = response.data;
-                } else {
-                    this.holidays = [];
-                    console.warn('Unexpected response format:', response);
-                }
+    //             if (Array.isArray(response)) {
+    //                 this.holidays = response;
+    //             } else if (response?.data && Array.isArray(response.data)) {
+    //                 this.holidays = response.data;
+    //             } else {
+    //                 this.holidays = [];
+    //                 console.warn('Unexpected response format:', response);
+    //             }
 
-                if (this.holidays.length > 0) {
-                    console.log('Holiday sample:', this.holidays[0]);
-                }
-            },
-            error: (err) => {
-                console.error('Error fetching holidays:', err);
-            }
+    //             if (this.holidays.length > 0) {
+    //                 console.log('Holiday sample:', this.holidays[0]);
+    //             }
+    //         },
+    //         error: (err) => {
+    //             console.error('Error fetching holidays:', err);
+    //         }
+    //     });
+    // }
+loadHolidays(): void {
+  this.employeeService.getAllHolidays().subscribe({
+    next: (response) => {
+      console.log('Raw API response:', response);
+
+      // Extract array from response (same as your current safe handling)
+      let raw: any[] = [];
+      if (Array.isArray(response)) {
+        raw = response;
+      } else if (response?.data && Array.isArray(response.data)) {
+        raw = response.data;
+      } else {
+        raw = [];
+        console.warn('Unexpected response format:', response);
+      }
+
+      // Helper: convert a date (string or Date) -> local date-only (midnight)
+      const toLocalDateOnly = (d: string | Date): Date => {
+        const dt = new Date(d); // parse incoming date/time string
+        return new Date(dt.getFullYear(), dt.getMonth(), dt.getDate()); // local midnight for that calendar day
+      };
+
+      // Today's local date-only (midnight)
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+      // Filter: keep only holidays with date >= today
+      const upcoming = raw
+        .map(h => ({ ...h, __holidayDateObj: toLocalDateOnly(h.holidayDate) })) // attach local date for sorting
+        .filter(h => h.__holidayDateObj.getTime() >= today.getTime())
+        .sort((a, b) => a.__holidayDateObj.getTime() - b.__holidayDateObj.getTime())
+        .map(h => {
+          // remove helper field if you don't want it in the final objects
+          const { __holidayDateObj, ...rest } = h;
+          return rest;
         });
+
+      this.holidays = upcoming;
+
+      if (this.holidays.length > 0) {
+        console.log('Upcoming holiday sample:', this.holidays[0]);
+      } else {
+        console.log('No upcoming holidays found.');
+      }
+    },
+    error: (err) => {
+      console.error('Error fetching holidays:', err);
+      this.holidays = [];
     }
+  });
+}
 
     // Employee Leave List
     employeeLeaves = [

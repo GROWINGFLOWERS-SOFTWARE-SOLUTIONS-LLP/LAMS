@@ -112,6 +112,10 @@ export class NavbarComponent implements OnInit {
   });
 }
 
+onNotificationClick(event: Event, overlay: any) {
+  this.fetchNotifications();   // 🔄 refresh list before opening
+  overlay.toggle(event);
+}
 
 
   checkUserRole() {
